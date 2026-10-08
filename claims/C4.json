@@ -1,0 +1,14 @@
+{
+  "statement": "The frame's first out-of-plane mode (duct pods bouncing on the arms) is at or above 200 Hz",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "first frame mode",
+    "comparator": ">=",
+    "limit": 200.0,
+    "units": "Hz"
+  },
+  "rationale": "The printed-frame vibration complaint is a soft structural mode low enough to sit inside the flight controller's control loop: the gyro sees it, the PID loop amplifies it, the motors get hot. Betaflight's dynamic notch and gyro low-pass handle a resonance above ~200 Hz with little delay; below ~150 Hz filtering it costs control. Measured by a 2.5D plate FE of the generated layout, hub clamped at the FC posts, motor+prop as point masses (conservative: a free-flying hub moves and raises the mode). REVISED 2026-10-07 from 'arm cantilever frequency above hover motor rotation frequency': that estimate ignored the duct's own mass (it put the arm at 452 Hz; the FE with the ducts on it says ~190 Hz), and the criterion would have failed every commercial whoop frame, which fly well on RPM filtering.",
+  "tags": [
+    "arm-vibration"
+  ]
+}

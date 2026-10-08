@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.frame_mode",
+  "rho": "d14862991f789e28ef81537e57450df0a415c2c0d1ad084a21278ebd8f401019",
+  "static": "0f43fb0127235bce6c32ea69c9798872c9d4169fcfa1d5292fc795882c13694e",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "eb7e39f5d7eb93570f3d0bbbb539912f0d81ddbe644bacd81b62de59215fad8e",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "b489514913737f4031cef3c04a57ce4c2f674ec9a1c59ade63f5760027b03b0d",
+      "files": {
+        "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+        "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:hand_drawn_plate",
+      "expect": "fail",
+      "note": "the hand-drawn plate (arms, ribs, spokes) in place of the optimised one",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "8fdf10a2348d0466fda88157da04889aeda8173808cdbe49f8b631bb502550ea",
+    "files": {
+      "model/petgasus.py": "9868c9eceda18b06c0b65849a619a9923a1863b60d674f59cb5e9e9e0dce190d",
+      "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+      "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_mode1_hz"
+        ],
+        "a5ab424ef4f300d6e4c2cd0d786c746fecfd25867eb172353a9b85e16745509d",
+        170.6
+      ],
+      [
+        [
+          "frame_modes_hz"
+        ],
+        "019cca1692ed0d695f6f56e6976642fb11d4927a7e0410e33dd982826f0162a8"
+      ],
+      [
+        [
+          "motor_freq_hover_hz"
+        ],
+        "47eac424d0cc1c8f4c45f6dfa03cc8f40ffe147d31e632137fb4af5e053434a8",
+        604.8
+      ],
+      [
+        [
+          "plate_layout"
+        ],
+        "5ae058139e076502bf86eb6c57d96c26c78de3cf1f104cff5112d86a18bc9618",
+        "arms"
+      ]
+    ],
+    "files": {
+      "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+      "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C4": "ade494f3817efdf0982827d7960b51a3632ddefa2208e63a7973d1b2bb1c6ce6",
+      "acceptance:C4": "d2b2c6677817dcc5a626f5ed4b5c05ee9f5c98937c0141f6c9c0eff28170219e"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "frame_mode1_hz"
+          ],
+          "67ab36c47a8fcd4f44126408ff4c6e293b1765790be371ea4e43a52f877a00c9",
+          282.0
+        ],
+        [
+          [
+            "frame_modes_hz"
+          ],
+          "07edc9ad3a16a4665e3a882bfbd7039be7109a04fd08276babb19507f865fea5"
+        ],
+        [
+          [
+            "motor_freq_hover_hz"
+          ],
+          "716bc96faf7681511abf988b0805dc1fd1613b95a948feee2a7785bf066dd400",
+          611.9
+        ],
+        [
+          [
+            "plate_layout"
+          ],
+          "0a0faae39895dfd6cb1b8e75bdd8384d51f10691eb2439f22f78e323bf7561c3",
+          "spoked"
+        ]
+      ],
+      "files": {
+        "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+        "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C4": "ade494f3817efdf0982827d7960b51a3632ddefa2208e63a7973d1b2bb1c6ce6",
+        "acceptance:C4": "d2b2c6677817dcc5a626f5ed4b5c05ee9f5c98937c0141f6c9c0eff28170219e"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 282.0,
+    "limit": 200.0,
+    "units": "Hz",
+    "detail": "modes 282, 290, 290, 316 Hz (spoked plate); motors turn at ~612 Hz in a hover",
+    "goalpost": [
+      {
+        "key": "C4",
+        "measured": 282.0,
+        "units": "Hz",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 20.0,
+            "outcome": "pass",
+            "measured": 282.0,
+            "units": "Hz"
+          },
+          {
+            "end": "limit",
+            "limit": 100.0,
+            "outcome": "pass",
+            "measured": 282.0,
+            "units": "Hz"
+          },
+          {
+            "end": "limit",
+            "limit": 400.0,
+            "outcome": "fail",
+            "measured": 282.0,
+            "units": "Hz"
+          },
+          {
+            "end": "limit",
+            "limit": 2000.0,
+            "outcome": "fail",
+            "measured": 282.0,
+            "units": "Hz"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 59,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "frame_mode1_hz"
+        ],
+        "before": 282.0,
+        "after": 170.0,
+        "outcome": "fail",
+        "measured": 170.0,
+        "limit": 200.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "frame_modes_hz"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_freq_hover_hz"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "plate_layout"
+        ],
+        "why": "word"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:hand_drawn_plate (the hand-drawn plate (arms, ribs, spokes) in place of the optimised one): modes 171, 173, 204, 276 Hz (arms plate); motors turn at ~605 Hz in a hover",
+  "measured": 170.6,
+  "limit": 200.0,
+  "units": "Hz",
+  "digest": "cfb271c6f015c2e70aae130863ba588de72eb34d4e0c8517588ad3707bcf75a5"
+}

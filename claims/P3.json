@@ -1,0 +1,6 @@
+{
+  "statement": "Pre-flight setup is correct: board alignment yaw 45, motor order and directions, angle mode on a switch",
+  "kind": "physical",
+  "note": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 45). Pass: all four correct.",
+  "rationale": "A wrong board alignment flips the quad on its first takeoff; this is the most common first-flight failure."
+}

@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "gate": "bom.moq",
+  "rho": "89de0898c6938c996f1a3556a60914a1fe908da8581a260d21bcfb40e695bb4d",
+  "code": {
+    "digest": "44bc293077f77c6d1604504a99925d4a8888d0261a8bf0c5af0a5f4962e9f036",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.moq_excess_total_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "moq_excess_total_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.moq_excess_total_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "17bcf7a8be62490fab03b2981d54c9a769219f5df11d821fbbd089fd6f88e11f"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 82.98,
+    "units": "USD",
+    "comparator": "<=",
+    "settles": "minimum order quantity overbuy",
+    "detail": "idle capital 0.00 USD vs 82.98 USD (50% of the 165.95 parts spend); no line buys more than the build consumes; 0 line(s) past 3x",
+    "evidence": [
+      "<out>/bom_moq.json"
+    ],
+    "locators": [],
+    "claims": [
+      "moq",
+      "minimum-order",
+      "overbuy",
+      "inventory"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "ade3dbc67d6c07036d3fd73bf113311dee42afe9221a1b8417d4e547be32fdbe"
+}

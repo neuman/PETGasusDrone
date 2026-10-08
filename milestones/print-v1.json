@@ -1,0 +1,15 @@
+{
+  "description": "Print the frame in PETG on the Snapmaker U1",
+  "requires": [
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C11",
+    "A3",
+    "A4"
+  ],
+  "generator": "generators/print_files.py:frame_print"
+}

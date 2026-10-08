@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "cad.wall_thickness",
+  "rho": "342a8b38ffe8568cc481517bcdd20194150404f686988837c09b51b3743c2fa3",
+  "static": "539aa5cbccb5ac15e6a38f0350471e8d0bba7719d0b25ec90c61a4a66c0e776f",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "038d40455e1c3059aa61460529610fd9c9737bf2c6d06f4bd4f8eabbc79ec122",
+      "files": [
+        "<pack:cad-solid>/cad_solid_parts.py",
+        "<pack:cad-solid>/gates/solid.py"
+      ]
+    },
+    "selftest": {
+      "digest": "467052b3e6383fa00248f6b0042055392d36da88a6f85974f769fd3d3343530b",
+      "files": {
+        "selftest/bad_bounds.py": "b80b184faa418dd5b987c112228ccaa295c42f2a0b753fdeb0584d8e3a0bd145",
+        "selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+        "selftest/baseline.json": "7348a09b8ac1a30693fd3cc4bff5cb6664707b0ee7aa13a55193caa6de2b564f",
+        "selftest/check_clash_contact.py": "574bb1c3df21465f69975896a2caf4546c9baf9b526c081a394489f341734f99",
+        "selftest/check_connectivity.py": "3cd1b9d2e3620413705f587101c3f08876bf1e32708101398e8daf80064a78ce",
+        "selftest/check_ray_cast.py": "754383e6359e608ae4a03fc61b8fe5afa77050a14844856558245db9124d6f66",
+        "selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff",
+        "selftest/make_baseline_meshes.py": "36a53ea409bbf837d58a6105a58258fd56fba848ea965abbf20a99a660965361",
+        "selftest/meshes/carriage.stl": "14ec580b55c6762d0fb6d6db3e9122d1c9f94e7d6d9bbf23b07a4b5fbc2f2037",
+        "selftest/meshes/cover.stl": "11d95d6a98f7b5ea0db1479cca55a5195b294f7fee2a3b761ba262f57d6e94f3",
+        "selftest/meshes/guide_roller.stl": "f3788ef30bb461e84af67a8386d4233b4fad510621c1b441626fd74069abd341",
+        "selftest/meshes/housing.stl": "8beb118b1373461189ef8fcb0ab35db786e0b5a41d0cab4fb6b5c219297320c3"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_meshes.py:thin_plate",
+      "expect": "fail",
+      "note": "a plate at a quarter of the project's own minimum wall; the same footprint, watertight, a valid volume, and too thin",
+      "good": "selftest/good_meshes.py:baseline_meshes",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "73a3946b5a9d38bac4d25b7945d9229f8da963f03634aecc5f51df51affd8d77",
+    "files": {
+      "<pack:cad-solid>/selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+      "<pack:cad-solid>/selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.process_min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.wall_samples"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.process_min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.wall_samples"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "process_min_wall_mm"
+        ],
+        "2034a44889655f1ed1c1c26dff15e350610e006a093e39a0ab8e421505845012",
+        2.5
+      ],
+      [
+        [
+          "wall_samples"
+        ],
+        "913f1f727cb1f4defc63f2148c2478246e2cd39b8daf450c77c03c031e59474b",
+        4000
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "meshes"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "cad"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.process_min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.wall_samples"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.process_min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.wall_samples"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "process_min_wall_mm"
+          ],
+          "2034a44889655f1ed1c1c26dff15e350610e006a093e39a0ab8e421505845012",
+          2.5
+        ],
+        [
+          [
+            "wall_samples"
+          ],
+          "913f1f727cb1f4defc63f2148c2478246e2cd39b8daf450c77c03c031e59474b",
+          4000
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "meshes"
+    ],
+    "measured": 3.0,
+    "limit": 2.5,
+    "units": "mm",
+    "detail": "thinnest wall 3.000 mm on housing at (32, 64, 11.333) vs 2.500 mm minimum [process_min_wall_mm] (244/244 inward face-normal rays hit; sampler, not a proof)",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_meshes.py:thin_plate (a plate at a quarter of the project's own minimum wall; the same footprint, watertight, a valid volume, and too thin): thinnest wall 0.625 mm on thin_plate at (-5, -5, -0.312) vs 2.500 mm minimum [process_min_wall_mm] (12/12 inward face-normal rays hit; sampler, not a proof)",
+  "measured": 0.625,
+  "limit": 2.5,
+  "units": "mm",
+  "digest": "39fc7d194450baa80d16f035483a612a75f6d8f190ca6e03d5aa4294d540efb3"
+}

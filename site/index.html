@@ -1,0 +1,797 @@
+<!doctype html>
+<!--
+  PETGasus's front page: the design explained in plain language.
+  Hand-written; nopekit never overwrites it. Every number is read at load time
+  from data/state.json (the checks) and assets/story.json (the model's derived
+  values, written by views/story.py) - nothing below is typed in by hand except
+  the plain-English wording. The full technical record is technical.html.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<title>PETGasus</title>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --surface-2: #f2f1ed;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --g-battery: #2a78d6; --g-frame: #eb6834; --g-motors: #1baf7a;
+  --g-electronics: #eda100; --g-props: #e87ba4; --g-hardware: #008300;
+  --seq-1: #cde2fb; --seq-4: #3987e5; --seq-7: #0d366b;
+  --good: #0ca30c; --warn: #fab219; --bad: #d03b3b; --good-ink: #006300;
+  --band-1: #e9e8e3; --band-2: #f2f1ed; --band-3: #f8f8f6;
+  --accent: #2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+    --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --g-battery: #3987e5; --g-frame: #d95926; --g-motors: #199e70;
+    --g-electronics: #c98500; --g-props: #d55181; --g-hardware: #008300;
+    --seq-1: #13294a; --seq-4: #3987e5; --seq-7: #cde2fb;
+    --good-ink: #0ca30c;
+    --band-1: #33332f; --band-2: #2a2a27; --band-3: #222220;
+    --accent: #3987e5;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+  --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --g-battery: #3987e5; --g-frame: #d95926; --g-motors: #199e70;
+  --g-electronics: #c98500; --g-props: #d55181; --g-hardware: #008300;
+  --seq-1: #13294a; --seq-4: #3987e5; --seq-7: #cde2fb;
+  --good-ink: #0ca30c;
+  --band-1: #33332f; --band-2: #2a2a27; --band-3: #222220;
+  --accent: #3987e5;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1120px; margin: 0 auto; padding: 0 16px 80px; }
+h1 { font-size: 44px; line-height: 1.05; margin: 0 0 6px; letter-spacing: -0.02em; }
+h2 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+h3 { font-size: 17px; margin: 0 0 4px; }
+p { margin: 0 0 12px; }
+.lede { color: var(--ink-2); font-size: 18px; max-width: 62ch; }
+.small { font-size: 13px; color: var(--ink-2); }
+.muted { color: var(--muted); }
+section { padding: 56px 0 8px; border-top: 1px solid var(--grid); }
+section:first-of-type { border-top: 0; }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px; }
+.card { background: var(--surface); border-radius: 14px; box-shadow: 0 0 0 1px var(--ring); padding: 20px; }
+a { color: var(--accent); }
+button { font: inherit; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px; align-items: center; padding-top: 36px; }
+.verdict { font-size: 22px; line-height: 1.35; margin: 18px 0 18px; }
+.verdict b { font-weight: 650; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tile { background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 12px 14px; }
+.tile .v { font-size: 26px; font-weight: 650; line-height: 1.15; white-space: nowrap; }
+.tile .l { font-size: 13px; color: var(--ink-2); }
+.viewer { position: relative; height: 460px; border-radius: 16px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, var(--surface) 0%, var(--surface-2) 100%);
+  box-shadow: 0 0 0 1px var(--ring); }
+.viewer canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.viewer .hint { position: absolute; left: 12px; bottom: 10px; font-size: 12px; color: var(--muted); pointer-events: none; }
+.viewer .label3d { position: absolute; pointer-events: none; font-size: 12px; font-weight: 600;
+  background: var(--surface); color: var(--ink); padding: 2px 7px; border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--ring); white-space: nowrap; transform: translate(-50%, -130%); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-2);
+  border: 0; background: none; padding: 3px 4px; border-radius: 6px; cursor: pointer; }
+.chip:hover, .chip.on { background: var(--surface-2); color: var(--ink); }
+.sw { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+
+/* go / no-go */
+.poll { display: grid; gap: 8px; margin-top: 18px; }
+.station { background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); }
+.station > summary { list-style: none; display: grid; grid-template-columns: 210px 120px 1fr 20px;
+  gap: 14px; align-items: center; padding: 14px 16px; cursor: pointer; }
+.station > summary::-webkit-details-marker { display: none; }
+.station .name { font-weight: 650; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-weight: 750; font-size: 13px;
+  letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; justify-self: start; }
+.pill .ic { font-size: 14px; }
+.pill.go { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good-ink); }
+.pill.nogo { background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
+.pill.hold { background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--ink); }
+.pill.stale { background: var(--surface-2); color: var(--ink-2); }
+.station .why { color: var(--ink-2); font-size: 15px; }
+.station .chev { color: var(--muted); transition: transform .15s; }
+.station[open] .chev { transform: rotate(90deg); }
+.checks { padding: 0 16px 14px 16px; display: grid; gap: 2px; }
+.check { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; padding: 7px 8px; border-radius: 8px; font-size: 14px; }
+.check:nth-child(odd) { background: var(--surface-2); }
+.check .val { color: var(--ink-2); font-variant-numeric: tabular-nums; text-align: right; }
+
+/* journey */
+.journey { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 26px; }
+.stop { position: relative; padding: 0 8px; text-align: center; }
+.stop .dot { width: 30px; height: 30px; border-radius: 50%; margin: 0 auto 10px; display: grid; place-items: center;
+  font-size: 15px; font-weight: 800; position: relative; z-index: 1; background: var(--surface);
+  box-shadow: 0 0 0 2px var(--axis); color: var(--muted); }
+.stop.done .dot { background: var(--good); box-shadow: none; color: #fff; }
+.stop.next .dot { background: var(--warn); box-shadow: none; color: #0b0b0b; }
+.stop.blocked .dot { background: var(--bad); box-shadow: none; color: #fff; }
+.stop::before { content: ""; position: absolute; top: 14px; left: -50%; width: 100%; height: 3px; background: var(--axis); }
+.stop:first-child::before { display: none; }
+.stop.done::before, .stop.next::before { background: var(--good); }
+.stop .t { font-weight: 650; font-size: 14px; }
+.stop .s { font-size: 12.5px; color: var(--ink-2); line-height: 1.35; margin-top: 2px; }
+.stop .state { font-size: 11px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; color: var(--muted); }
+.stop.done .state { color: var(--good-ink); } .stop.blocked .state { color: var(--bad); }
+
+/* charts */
+.chart { width: 100%; }
+.chart text { fill: var(--ink-2); font-size: 12px; }
+.chart .strong { fill: var(--ink); font-weight: 650; }
+.chart .axis line, .chart .axis path { stroke: var(--axis); }
+.chart .axis text { fill: var(--muted); font-variant-numeric: tabular-nums; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.bullets { display: grid; gap: 22px; margin-top: 8px; }
+.bullet-row { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: center; }
+.bullet-row .bl { font-weight: 650; } .bullet-row .bs { font-size: 13px; color: var(--ink-2); line-height: 1.35; }
+details.numbers { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+details.numbers table { border-collapse: collapse; margin-top: 6px; }
+details.numbers td, details.numbers th { padding: 3px 12px 3px 0; text-align: left; font-variant-numeric: tabular-nums; }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; margin: 12px 0; color: var(--ink-2); }
+
+/* topology */
+.multiples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.multiples figure { margin: 0; }
+.multiples figcaption { font-size: 14px; margin-top: 8px; }
+.multiples figcaption b { display: block; font-size: 15px; }
+.step-num { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--ink); color: var(--page); font-size: 12px; font-weight: 800; margin-right: 6px; }
+
+/* builder */
+.builder { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 20px; margin-top: 18px; }
+.steps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.steps button { border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer; background: var(--surface);
+  box-shadow: 0 0 0 1px var(--ring); color: var(--ink-2); font-size: 14px; }
+.steps button.on { background: var(--ink); color: var(--page); box-shadow: none; }
+.stepcard h3 { font-size: 22px; margin-bottom: 8px; }
+.inventory { display: grid; gap: 6px; margin: 14px 0; }
+.inv { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: center; font-size: 14px; }
+.inv .n { font-size: 22px; font-weight: 700; text-align: right; }
+.nav { display: flex; gap: 8px; margin-top: 8px; }
+.nav button { border: 0; border-radius: 10px; padding: 9px 16px; cursor: pointer; background: var(--ink); color: var(--page); font-weight: 650; }
+.nav button.secondary { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--ring); }
+.nav button:disabled { opacity: .35; cursor: default; }
+
+/* tests / guesses */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 16px; }
+.tcard { background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 16px; }
+.tcard .top { display: flex; flex-direction: column-reverse; gap: 4px; margin-bottom: 6px; }
+.tcard .status { font-size: 11px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.tcard p { font-size: 14px; color: var(--ink-2); margin: 0; }
+code { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+
+#tip { position: fixed; pointer-events: none; z-index: 10; background: var(--surface); color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ring), 0 8px 24px rgba(0,0,0,.12); border-radius: 10px; padding: 8px 10px;
+  font-size: 13px; max-width: 260px; opacity: 0; transition: opacity .08s; }
+footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid); font-size: 14px; color: var(--ink-2); }
+.themebtn { position: fixed; top: 12px; right: 12px; z-index: 5; border: 0; border-radius: 999px; padding: 6px 12px;
+  background: var(--surface); color: var(--ink-2); box-shadow: 0 0 0 1px var(--ring); cursor: pointer; font-size: 13px; }
+
+@media (max-width: 860px) {
+  .hero, .builder, .two { grid-template-columns: minmax(0, 1fr); }
+  .tile .v { font-size: 19px; white-space: normal; }
+  .tiles { gap: 6px; }
+  .hero { padding-top: 44px; }
+  .multiples { grid-template-columns: 1fr; }
+  .station > summary { grid-template-columns: 1fr auto 20px; }
+  .station .why { grid-column: 1 / -1; grid-row: 2; }
+  .journey { grid-template-columns: 1fr; gap: 14px; }
+  .stop { display: grid; grid-template-columns: 30px 1fr; text-align: left; gap: 0 12px; }
+  .stop .dot { margin: 0; grid-row: span 3; }
+  .stop::before { display: none; }
+  .bullet-row { grid-template-columns: 1fr; gap: 4px; }
+  .tiles { grid-template-columns: 1fr 1fr 1fr; }
+  h1 { font-size: 34px; }
+  .viewer { height: 340px; }
+}
+</style>
+</head>
+<body>
+<button class="themebtn" id="themebtn" type="button">Dark / light</button>
+<div id="tip" role="tooltip"></div>
+<main>
+
+<!-- 1. THE ANSWER FIRST ----------------------------------------------------->
+<section class="hero">
+  <div>
+    <div class="kicker">A drone you print and build together</div>
+    <h1>PETGasus</h1>
+    <p class="lede">A palm-sized quadcopter with guards around every propeller. The frame comes off your 3D printer; everything else plugs together, with no soldering.</p>
+    <p class="verdict" id="verdict">Loading…</p>
+    <div class="tiles" id="tiles"></div>
+  </div>
+  <div>
+    <div class="viewer" id="hero3d"><div class="hint">Drag to turn · scroll to zoom</div></div>
+    <div class="legend" id="legend"></div>
+  </div>
+</section>
+
+<!-- 2. GO / NO-GO ----------------------------------------------------------->
+<section id="poll-sec">
+  <div class="kicker">Ready to go?</div>
+  <h2>The go / no-go poll</h2>
+  <p class="lede">Before a launch, NASA asks each team one question: are you go? Here is the same poll for PETGasus. Each area is checked automatically from the design. Click a row to see what was checked.</p>
+  <div class="poll" id="poll"></div>
+</section>
+
+<!-- 3. JOURNEY -------------------------------------------------------------->
+<section>
+  <div class="kicker">The plan</div>
+  <h2>From here to first flight</h2>
+  <p class="lede">Seven stops. Green ones are done, yellow is the next thing to do, red is blocked until a decision is made.</p>
+  <div class="journey" id="journey"></div>
+</section>
+
+<!-- 4. WILL IT FLY ---------------------------------------------------------->
+<section>
+  <div class="kicker">Will it fly?</div>
+  <h2>Where every gram goes</h2>
+  <p class="lede" id="lift-lede"></p>
+  <div class="card"><svg class="chart" id="lift"></svg>
+    <details class="numbers"><summary>Show the numbers</summary><table id="lift-table"></table></details>
+  </div>
+  <p class="callout" id="lift-callout"></p>
+
+  <h3 style="margin-top:34px">The other numbers that matter</h3>
+  <p class="small">Each bar is the design's value. The black tick is the target it has to clear; the gray shading behind runs from "bad" (dark) to "good" (light).</p>
+  <div class="card bullets" id="bullets"></div>
+</section>
+
+<!-- 5. WHY THE FRAME LOOKS LIKE THIS --------------------------------------->
+<section>
+  <div class="kicker">Why the frame looks like this</div>
+  <h2>We asked a computer where the plastic should go</h2>
+  <p class="lede">Printed drone frames have a reputation for shaking. A stiffer frame shakes less, but plastic costs weight, and weight costs flying time. So we gave a <i>topology optimizer</i> the problem: here are the motors, the ducts and the board. Put the plastic only where it does the most good.</p>
+  <div class="multiples" id="multiples"></div>
+  <div class="legend" style="margin-top:10px">
+    <span class="chip"><span class="sw" style="background:var(--g-frame)"></span>plastic the design chose (flat, 2 mm thick)</span>
+    <span class="chip"><span class="sw" style="background:var(--ink);opacity:.6;height:4px"></span>a raised rib on top (5 mm tall: most of the stiffness)</span>
+    <span class="chip"><span class="sw" style="background:var(--axis)"></span>the same in every version: ducts, motor seats, center plate</span>
+    <span class="chip"><span class="sw" style="background:var(--seq-7)"></span>the computer's answer: darker = more plastic</span>
+  </div>
+  <div class="card" style="margin-top:16px"><svg class="chart" id="dumbbell"></svg>
+    <details class="numbers"><summary>Show the numbers</summary><table id="dumbbell-table"></table></details>
+  </div>
+</section>
+
+<!-- 6. BUILD IT ------------------------------------------------------------->
+<section>
+  <div class="kicker">Build it</div>
+  <h2>Six steps, like a LEGO manual</h2>
+  <p class="lede">Every part on this page is the real size and in its real place. Each step adds a few parts. The new ones are in color; everything already built is gray.</p>
+  <div class="builder">
+    <div><div class="viewer" id="build3d"><div class="hint">Drag to turn · scroll to zoom</div></div></div>
+    <div class="stepcard">
+      <div class="steps" id="steps"></div>
+      <h3 id="step-title"></h3>
+      <p id="step-text"></p>
+      <div class="inventory" id="step-parts"></div>
+      <div class="nav"><button class="secondary" id="prev" type="button">← Back</button><button id="next" type="button">Next step →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. WHAT IT COSTS -------------------------------------------------------->
+<section>
+  <div class="kicker">What it costs</div>
+  <h2>The shopping list, against the $150 budget</h2>
+  <p class="lede" id="cost-lede"></p>
+  <div class="card"><svg class="chart" id="cost"></svg>
+    <details class="numbers" open><summary>The list</summary><table id="cost-table"></table></details>
+  </div>
+</section>
+
+<!-- 8. PROVE IT ------------------------------------------------------------->
+<section>
+  <div class="kicker">What a computer can't check</div>
+  <h2>Five tests on the real drone</h2>
+  <p class="lede">Simulation can say the design <i>should</i> work. These five tests are how you find out it <i>does</i>. They're also the fun part.</p>
+  <div class="cards" id="tests"></div>
+
+  <h2 style="margin-top:44px">Six things we had to guess</h2>
+  <p class="lede">Some numbers aren't published anywhere. The design uses a careful guess for each one until you can measure it.</p>
+  <div class="cards" id="guesses"></div>
+</section>
+
+<footer>
+  Every number here is generated from the design files: <code>model/petgasus.py</code> and the checks it runs.
+  Nothing is typed in by hand. Want every check, its evidence and its history? See the
+  <a href="technical.html">technical record</a>, <code>REPORT.md</code> and <code>BUILD_GUIDE.md</code>.
+  <div id="built" class="muted" style="margin-top:6px"></div>
+</footer>
+</main>
+
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+// ---------------------------------------------------------------- data
+const state = await (await fetch("data/state.json", { cache: "no-store" })).json();
+const view = id => state.views.find(v => v.id === id);
+const story = await (await fetch(view("story").src, { cache: "no-store" })).json();
+const claims = Object.fromEntries(state.claims.map(c => [c.id, c]));
+const verdicts = Object.fromEntries(state.verdicts.map(v => [v.gate, v]));
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const GROUPS = ["battery", "frame", "motors", "electronics", "props", "hardware"];
+const gcol = g => css(`--g-${g}`);
+const tip = document.getElementById("tip");
+const showTip = (html, ev) => { tip.innerHTML = html; tip.style.opacity = 1;
+  tip.style.left = Math.min(ev.clientX + 14, innerWidth - 280) + "px"; tip.style.top = (ev.clientY + 14) + "px"; };
+const hideTip = () => { tip.style.opacity = 0; };
+const fmt = (v, d = 1) => (+v).toFixed(d);
+
+// Plain-English wording for each check. Only the words live here; status and
+// values always come from the generated data.
+const PLAIN = {
+  C1: ["Can lift 3× its own weight", "Enough spare lift to climb and to catch a wobble"],
+  C2: ["Weighs under 250 g", "Under the FAA's line: no registration needed"],
+  C3: ["Flies 3+ minutes per battery", "Estimated hover time"],
+  C4: ["Frame won't shake", "Its natural wobble is above 200 times a second"],
+  C5: ["No two parts collide", "All 27 parts checked against each other"],
+  C6: ["Prints with no supports, in one go", "On your Snapmaker U1, in PETG"],
+  C7: ["The 3D file is clean", "Watertight, with walls at least 3 lines thick"],
+  C8: ["Board screws grip and stay hidden", "Deep enough in the posts, nothing poking out"],
+  C9: ["Motor screws reach the motor", "The screws in the motor box are long enough"],
+  C10: ["Shopping list fits $150", "Radio, batteries and charger included"],
+  C11: ["Frame prints as one piece", "Nothing floats loose on the print bed"],
+  C12: ["Motor wires reach the board", "With slack, through a window in each duct"],
+  P1: ["Drop test", "Drop the bare frame 5 times from 2 m onto a hard floor. Pass: no cracks or white stress marks."],
+  P2: ["Hover test", "Hover 30 s at knee height. Pass: no buzzing or wobble, and the motors are only warm after."],
+  P3: ["Setup check", "In Betaflight with the props off: the 3D drone on screen copies your hand, and each motor spins the right way."],
+  P4: ["Fit check", "Fit the real board, motors, props and battery. Spin each prop by hand: nothing touches."],
+  P5: ["Kitchen-scale lift test", "Strap the drone upside down on a kitchen scale and run full throttle for 2 s. Pass: reading ≥ 3× its weight."],
+  A1: ["Ducts cost 10% of the thrust", "Ducts can help or hurt. Checked by the kitchen-scale test."],
+  A2: ["Battery-to-lift efficiency", "Sets the flight-time estimate. Time a real hover."],
+  A3: ["Motor size: 14 mm wide, 13.8 mm tall", "Measure one with calipers when the kit arrives."],
+  A4: ["Flight controller: 30 mm square or less", "Measure it before printing. The ducts were spaced around it."],
+  A5: ["Motor thrust (borrowed from a sibling motor)", "No published test exists for this motor. Kitchen-scale test."],
+  A6: ["Voltage that thrust test used", "Not stated by the maker. Kitchen-scale test."],
+};
+const plain = id => PLAIN[id] || [claims[id]?.statement || id, ""];
+const statusOf = c => c.key === "checked" ? "go" : c.key === "failing" ? "nogo" : c.key === "stale" ? "stale" : "hold";
+const ICON = { go: "✓", nogo: "✕", hold: "…", stale: "↻" };
+const WORD = { go: "GO", nogo: "NO-GO", hold: "WAITING", stale: "RE-CHECKING" };
+function measured(c) {
+  const v = verdicts[(c.compared || [])[0]];
+  if (!v || v.measured == null) return "";
+  const u = c.acceptance?.units || v.units || "";
+  const n = Math.abs(v.measured) >= 100 ? fmt(v.measured, 0) : Math.abs(v.measured) >= 10 ? fmt(v.measured, 1) : fmt(v.measured, 2);
+  return `${n} ${u === "ratio" ? "×" : u}`.trim();
+}
+
+// ---------------------------------------------------------------- hero
+const money = state.views.find(v => v.id === "bom")?.data?.rows || [];
+const total = d3.sum(money, r => r.extended || 0);
+const OPTIONAL = new Set(["PROPS", "SCREWS", "STRAP"]);
+const essentials = d3.sum(money.filter(r => !OPTIONAL.has(r.ref)), r => r.extended || 0);
+const pending = id => claims[id] && claims[id].key !== "checked";
+{
+  const design = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C11","C12"].map(id => claims[id]?.key);
+  const parts = [];
+  parts.push(design.every(k => k === "checked") ? "<b>The design passes every check a computer can run.</b>"
+    : design.includes("failing") ? "<b>Some design checks are failing.</b>"
+    : "<b>The design was edited since its last check: run <code>nopekit check</code> to re-check it.</b>");
+  if (pending("A3") || pending("A4")) parts.push("Before printing, measure two parts from the kit with calipers.");
+  if (claims.C10?.key === "failing") parts.push(`The full shopping list is <b>$${fmt(total - 150, 0)} over</b> your $150 budget; the essentials alone come to $${fmt(essentials, 0)}.`);
+  parts.push("Then it's yours to build and test.");
+  document.getElementById("verdict").innerHTML = parts.join(" ");
+  document.getElementById("tiles").innerHTML = [
+    [`${fmt(story.auw_g, 0)} g`, "ready to fly"],
+    [`${fmt(story.flight_min, 1)} min`, "flying per battery"],
+    [`$${fmt(essentials, 0)}–${fmt(total, 0)}`, "to buy"],
+  ].map(([v, l]) => `<div class="tile"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+  document.getElementById("built").textContent = `Generated ${new Date(state.meta.built).toLocaleString()} from design ${state.meta.revision}.`;
+}
+
+// ---------------------------------------------------------------- 3D
+const groupOf = name => story.parts[name]?.person_group || "hardware";
+const glbUrl = view("drone").src;
+const gltf = await new GLTFLoader().loadAsync(glbUrl);
+
+function makeViewer(el, { auto = false, labels = false } = {}) {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  el.prepend(renderer.domElement);
+  const scene = new THREE.Scene();
+  const cam = new THREE.PerspectiveCamera(32, 1, 1, 2000);
+  cam.up.set(0, 0, 1);
+  cam.position.set(150, -190, 150);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8a80, 2.2));
+  const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(80, -120, 200); scene.add(sun);
+  const root = gltf.scene.clone(true);
+  const meshes = [];
+  root.traverse(o => { if (o.isMesh) {
+    const part = (o.name || o.parent?.name || "").split("__")[0];
+    o.userData.part = part; o.userData.group = groupOf(part);
+    // the exported meshes carry no normals: flat shading derives them per face,
+    // which also keeps the printed lattice's facets crisp
+    o.material = new THREE.MeshStandardMaterial({ color: gcol(o.userData.group), roughness: 0.6,
+      metalness: o.userData.group === "hardware" ? 0.3 : 0.05, transparent: true, flatShading: true });
+    o.userData.home = o.position.clone();
+    meshes.push(o);
+  }});
+  scene.add(root);
+  const box = new THREE.Box3().setFromObject(root), c = box.getCenter(new THREE.Vector3());
+  const controls = new OrbitControls(cam, renderer.domElement);
+  controls.target.copy(c); controls.enableDamping = true; controls.autoRotate = auto; controls.autoRotateSpeed = 0.8;
+  controls.addEventListener("start", () => { controls.autoRotate = false; });
+  function size() { const w = el.clientWidth, h = el.clientHeight; renderer.setSize(w, h, false);
+    cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  new ResizeObserver(size).observe(el); size();
+  const api = { meshes, cam, controls, renderer, scene, root, onFrame: null,
+    highlight(group) { for (const m of meshes) {
+      const on = !group || m.userData.group === group;
+      m.material.color.set(on ? gcol(m.userData.group) : css("--band-1"));
+      m.material.opacity = on ? 1 : 0.35; m.material.depthWrite = on; } },
+  };
+  (function loop() { requestAnimationFrame(loop); controls.update(); api.onFrame?.(); renderer.render(scene, cam); })();
+  // hover: name the part under the pointer
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  renderer.domElement.addEventListener("pointermove", ev => {
+    const r = renderer.domElement.getBoundingClientRect();
+    ptr.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ptr, cam);
+    const hit = ray.intersectObjects(meshes.filter(m => m.visible && m.material.opacity > 0.5))[0];
+    if (hit) { const p = hit.object.userData.part;
+      showTip(`<b>${PART_NAMES(p)}</b><br><span class="muted">${story.groups[hit.object.userData.group]}</span>`, ev); }
+    else hideTip();
+  });
+  renderer.domElement.addEventListener("pointerleave", hideTip);
+  return api;
+}
+const PART_NAMES = p => ({
+  frame: "Printed frame (PETG)", flight_controller: "Flight controller (BetaFPV Matrix 1S)",
+  motor_sockets: "Motor plugs on the board", power_pigtail: "Power lead and plug", battery: "Battery (1S 320 mAh)",
+  battery_lead: "Battery plug", battery_strap: "Battery strap",
+}[p] || p.replace(/^motor_screws_/, "3 motor screws, ").replace(/^motor_lead_/, "Motor wire, ")
+       .replace(/^motor_/, "Motor, ").replace(/^prop_/, "Propeller, ").replace(/^fc_screw_/, "Board screw ")
+       .replace(/_/g, " "));
+
+const hero = makeViewer(document.getElementById("hero3d"), { auto: true });
+const legend = document.getElementById("legend");
+for (const g of GROUPS) {
+  const b = document.createElement("button"); b.className = "chip"; b.type = "button";
+  b.innerHTML = `<span class="sw" style="background:${gcol(g)}"></span>${story.groups[g]}`;
+  b.onmouseenter = () => hero.highlight(g); b.onmouseleave = () => hero.highlight(null);
+  b.onfocus = b.onmouseenter; b.onblur = b.onmouseleave;
+  legend.append(b);
+}
+
+// ---------------------------------------------------------------- poll
+const STATIONS = [
+  ["Flies well", ["C1", "C2", "C3", "C4"], "Enough lift, light enough, long enough, steady enough."],
+  ["Prints cleanly", ["C6", "C7", "C11"], "One print, no supports, about 2 hours."],
+  ["Fits together", ["C5", "C8", "C9", "C12"], "Every part, screw and wire has room."],
+  ["Fits the budget", ["C10"], null],
+  ["Real parts measured", ["A3", "A4", "A1", "A2", "A5", "A6"], "Six numbers were guesses. Two need calipers before you print; the rest are checked by the kitchen-scale test."],
+  ["Proven on the real drone", ["P4", "P3", "P5", "P2", "P1"], "Five hands-on tests, once it's built."],
+];
+document.getElementById("poll").innerHTML = STATIONS.map(([name, ids, text]) => {
+  const st = ids.map(id => statusOf(claims[id]));
+  const s = st.includes("nogo") ? "nogo" : st.every(x => x === "go") ? "go" : st.includes("stale") ? "stale" : "hold";
+  if (!text && s === "nogo") text = `The full list is $${fmt(total, 2)}; the budget is $150. The essentials alone are $${fmt(essentials, 2)}. Your call: drop the extras or raise the budget.`;
+  const rows = ids.map(id => { const c = claims[id], k = statusOf(c), [t, sub] = plain(id);
+    return `<div class="check"><span title="${WORD[k]}" style="color:${k === "go" ? "var(--good-ink)" : k === "nogo" ? "var(--bad)" : "var(--muted)"}">${ICON[k]}</span>
+      <span>${t}<br><span class="small">${sub}</span></span><span class="val">${measured(c)}</span></div>`; }).join("");
+  return `<details class="station"><summary><span class="name">${name}</span>
+    <span class="pill ${s}"><span class="ic">${ICON[s]}</span>${WORD[s]}</span>
+    <span class="why">${text}</span><span class="chev">›</span></summary><div class="checks">${rows}</div></details>`;
+}).join("");
+
+// ---------------------------------------------------------------- journey
+{
+  const printReady = state.readiness.milestones["print-v1"], orderReady = state.readiness.milestones["order-parts"];
+  const measureDone = !pending("A3") && !pending("A4");
+  const budgetOK = claims.C10?.key === "checked";
+  const stops = [
+    ["Design", "Frame drawn and checked by computer", "done"],
+    ["Decide budget", budgetOK ? "Fits $150" : `$${fmt(total - 150, 0)} over: drop extras or raise it`, budgetOK ? "done" : "blocked"],
+    ["Order parts", "Kit, radio, batteries, charger", budgetOK ? "next" : "todo"],
+    ["Measure 2 parts", "Board and motor, with calipers", measureDone ? "done" : "todo"],
+    ["Print the frame", "~2 h, no supports", printReady.ready ? "next" : "todo"],
+    ["Build & set up", "Six steps, then Betaflight", "todo"],
+    ["Test & fly", "Five real-world tests", "todo"],
+  ];
+  if (!stops.some(s => s[2] === "next")) { const i = stops.findIndex(s => s[2] === "todo"); if (i >= 0 && stops[i - 1]?.[2] === "done") stops[i][2] = "next"; }
+  const lbl = { done: "Done", next: "Next", blocked: "Decision needed", todo: "Later" };
+  document.getElementById("journey").innerHTML = stops.map(([t, s, k], i) =>
+    `<div class="stop ${k}"><div class="dot">${k === "done" ? "✓" : k === "blocked" ? "!" : i + 1}</div>
+     <div><div class="t">${t}</div><div class="s">${s}</div><div class="state">${lbl[k]}</div></div></div>`).join("");
+}
+
+// ---------------------------------------------------------------- lift budget (stacked bar vs the 1/3 line)
+function liftChart() {
+  const svg = d3.select("#lift"), W = svg.node().clientWidth || 900;
+  const m = { l: 10, r: 18, t: 64, b: 76 }, bh = 46, H = m.t + bh + m.b;
+  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+  svg.selectAll("*").remove();
+  const x = d3.scaleLinear([0, story.thrust_g], [m.l, W - m.r]);
+  const limit = story.thrust_g / 3;
+  // the whole lift, as a track; the drone's weight stacks up from zero inside it
+  svg.append("rect").attr("x", x(0)).attr("y", m.t).attr("width", x(story.thrust_g) - x(0)).attr("height", bh)
+    .attr("rx", 6).attr("fill", css("--band-2"));
+  svg.append("text").attr("x", x(story.thrust_g) - 10).attr("y", m.t + bh / 2 + 4).attr("text-anchor", "end")
+    .text("spare lift, for climbing and catching wobbles");
+  let acc = 0;
+  const segs = story.mass.map(d => { const s = { ...d, x0: acc, x1: acc + d.g }; acc += d.g; return s; });
+  const short = g => ({ hardware: "Screws etc.", electronics: "Flight controller" }[g] || story.groups[g]);
+  svg.append("g").selectAll("rect").data(segs).join("rect")
+    .attr("x", d => x(d.x0) + (d.x0 ? 1 : 0)).attr("y", m.t).attr("height", bh)
+    .attr("width", d => Math.max(1, x(d.x1) - x(d.x0) - (d.x0 ? 2 : 0)))
+    .attr("rx", 4).attr("fill", d => gcol(d.group))
+    .on("pointermove", (ev, d) => { showTip(`<b>${story.groups[d.group]}</b><br>${fmt(d.g, 1)} g · ${fmt(100 * d.g / story.auw_g, 0)}% of the weight`, ev); hero.highlight(d.group); })
+    .on("pointerleave", () => { hideTip(); hero.highlight(null); });
+  // one keyed row under the axis, in the bar's own order: every slice gets the
+  // same treatment, so no label is squeezed onto a sliver or into its neighbour
+  let lx = x(0), ly = m.t + bh + 46;
+  segs.forEach(d => {
+    const g = svg.append("g");
+    g.append("rect").attr("width", 11).attr("height", 11).attr("y", -10).attr("rx", 2).attr("fill", gcol(d.group));
+    const t = g.append("text").attr("x", 16).attr("class", "strong").text(`${short(d.group)} ${fmt(d.g, 1)} g`);
+    const w = 16 + t.node().getComputedTextLength() + 20;
+    if (lx + w > W - m.r) { lx = x(0); ly += 20; }
+    g.attr("transform", `translate(${lx},${ly})`); lx += w;
+  });
+  // the beginner limit
+  svg.append("line").attr("x1", x(limit)).attr("x2", x(limit)).attr("y1", m.t - 40).attr("y2", m.t + bh + 8)
+    .attr("stroke", css("--ink")).attr("stroke-width", 2);
+  svg.append("text").attr("x", x(limit) + 8).attr("y", m.t - 30).attr("class", "strong")
+    .text(`Beginner limit: ⅓ of the lift = ${fmt(limit, 1)} g`);
+  svg.append("text").attr("x", x(limit) + 8).attr("y", m.t - 14)
+    .text(`the drone: ${fmt(story.auw_g, 1)} g`);
+  const ax = d3.axisBottom(x).ticks(8).tickFormat(d => `${d} g`);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${m.t + bh + 4})`).call(ax).call(a => a.select(".domain").remove());
+  document.getElementById("lift-table").innerHTML = "<tr><th>Part</th><th>Grams</th></tr>" +
+    story.mass.map(d => `<tr><td>${story.groups[d.group]}</td><td>${fmt(d.g, 2)}</td></tr>`).join("") +
+    `<tr><th>Total</th><th>${fmt(story.auw_g, 2)}</th></tr><tr><td>Lift at full throttle</td><td>${fmt(story.thrust_g, 1)}</td></tr>`;
+}
+{
+  const limit = story.thrust_g / 3, spare = limit - story.auw_g;
+  document.getElementById("lift-lede").innerHTML = `At full throttle the four motors can lift about <b>${fmt(story.thrust_g, 0)} g</b>. A beginner needs the drone to weigh no more than a third of that, so it can climb, stop a fall and push through a gust. The colored bar is everything the drone weighs.`;
+  document.getElementById("lift-callout").innerHTML = spare >= 0
+    ? `It fits, with <b>${fmt(spare, 1)} g</b> to spare: about the weight of ${spare < 0.5 ? "one propeller" : "a couple of propellers"}. That's tight, which is why the frame is full of holes, and why the kitchen-scale test (below) matters. The lift number is a careful lower estimate; the real motors will probably do better.`
+    : `It's <b>${fmt(-spare, 1)} g</b> over. The design needs to lose weight or gain lift.`;
+}
+
+// ---------------------------------------------------------------- bullet graphs (Few, 2005)
+function bullets() {
+  const rows = [
+    { id: "C3", label: "Flight time", sub: "minutes per battery, hovering", v: story.flight_min, target: 3, max: 6, bands: [3, 4.5], unit: "min", d: 1 },
+    { id: "C4", label: "Steadiness", sub: "how fast the frame would wobble: higher is stiffer. Ghost tick: an ordinary X frame.", v: story.mode_hz, target: 200, max: 400, bands: [150, 250], unit: "Hz", d: 0, ghost: story.arms_mode_hz, ghostLabel: "ordinary frame" },
+    { id: "C1", label: "Lift ÷ weight", sub: "3× is comfortable for a beginner", v: story.thrust_to_weight, target: 3, max: 5, bands: [2, 3.5], unit: "×", d: 2 },
+    { id: "C12", label: "Motor wire used", sub: `of its ${story.lead_len_mm} mm; must leave 3 mm slack`, v: d3.max(Object.values(story.lead_needed_mm)), target: story.lead_len_mm - 3, max: story.lead_len_mm, bands: null, lowerIsBetter: true, unit: "mm", d: 1 },
+    { id: "C2", label: "Weight", sub: "250 g is the FAA registration line", v: story.auw_g, target: 250, max: 260, bands: null, lowerIsBetter: true, unit: "g", d: 0 },
+  ];
+  const host = d3.select("#bullets"); host.selectAll("*").remove();
+  for (const r of rows) {
+    const row = host.append("div").attr("class", "bullet-row");
+    const st = statusOf(claims[r.id]);
+    row.append("div").html(`<div class="bl">${r.label} <span style="color:${st === "go" ? "var(--good-ink)" : st === "nogo" ? "var(--bad)" : "var(--muted)"}" title="${WORD[st]}">${ICON[st]}</span></div><div class="bs">${r.sub}</div>`);
+    const svg = row.append("svg").attr("class", "chart"), W = svg.node().clientWidth || 600, H = 52;
+    svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    const x = d3.scaleLinear([0, r.max], [4, W - 96]);
+    // qualitative bands, gray (dark = bad)
+    const b = r.bands ? [[0, r.bands[0], "--band-1"], [r.bands[0], r.bands[1], "--band-2"], [r.bands[1], r.max, "--band-3"]]
+                      : r.lowerIsBetter ? [[0, r.target, "--band-3"], [r.target, r.max, "--band-1"]] : [[0, r.max, "--band-2"]];
+    svg.selectAll("rect.band").data(b).join("rect").attr("x", d => x(d[0])).attr("width", d => x(d[1]) - x(d[0]))
+      .attr("y", 6).attr("height", 28).attr("fill", d => css(d[2]));
+    svg.append("rect").attr("x", x(0)).attr("y", 14).attr("height", 12).attr("rx", 3)
+      .attr("width", x(Math.min(r.v, r.max)) - x(0)).attr("fill", css("--ink"))
+      .on("pointermove", ev => showTip(`<b>${r.label}</b><br>${fmt(r.v, r.d)} ${r.unit} (target ${r.lowerIsBetter ? "≤" : "≥"} ${fmt(r.target, r.d)})`, ev))
+      .on("pointerleave", hideTip);
+    if (r.ghost) {
+      svg.append("line").attr("x1", x(r.ghost)).attr("x2", x(r.ghost)).attr("y1", 10).attr("y2", 30).attr("stroke", css("--muted")).attr("stroke-width", 3);
+      svg.append("text").attr("x", x(r.ghost) - 4).attr("y", 48).attr("text-anchor", "end").text(`${r.ghostLabel} ${fmt(r.ghost, 0)}`);
+    }
+    svg.append("line").attr("x1", x(r.target)).attr("x2", x(r.target)).attr("y1", 4).attr("y2", 36).attr("stroke", css("--ink")).attr("stroke-width", 3);
+    svg.append("text").attr("x", x(r.target) + (r.ghost ? 4 : 0)).attr("y", 48).attr("text-anchor", r.ghost ? "start" : "middle")
+      .text(`target ${r.lowerIsBetter ? "≤" : "≥"} ${fmt(r.target, r.d)}`);
+    svg.append("text").attr("x", W - 88).attr("y", 26).attr("class", "strong").style("font-size", "15px")
+      .text(`${fmt(r.v, r.d)} ${r.unit}`);
+  }
+}
+
+// ---------------------------------------------------------------- topology small multiples
+function multiples() {
+  const L = story.layout, host = d3.select("#multiples"); host.selectAll("*").remove();
+  if (!L) return;
+  const R = L.motor_offset + L.duct_r_out + 2;
+  const panels = [
+    ["1", "An ordinary X frame", "Arms from the middle to each motor, the way most drones are drawn.", "arms"],
+    ["2", "What the computer drew", "Darker blue means more plastic there. Raw output: some spokes are too thin to print.", "field"],
+    ["3", "What you print", `Each motor hangs on ${story.spoke_count} ribbed spokes from its own duct, like a bicycle wheel. The ducts brace each other.`, "spoked"],
+  ];
+  for (const [n, title, text, kind] of panels) {
+    const fig = host.append("figure"), card = fig.append("div").attr("class", "card").style("padding", "8px");
+    const svg = card.append("svg").attr("viewBox", `${-R} ${-R} ${2 * R} ${2 * R}`).attr("class", "chart")
+      .style("aspect-ratio", "1").style("display", "block");
+    const flip = svg.append("g").attr("transform", "scale(1,-1)");
+    if (kind === "field") {
+      if (story.field) {
+        const f = story.field, cell = (2 * f.half) / f.n;
+        const sc = d3.scaleSequential(d3.interpolateRgb(css("--surface"), css("--seq-7"))).domain([0, 1]);
+        const cells = [];
+        f.rho.forEach((v, i) => { if (v > 0.04) cells.push([i % f.n, Math.floor(i / f.n), v]); });
+        flip.selectAll("rect").data(cells).join("rect").attr("x", d => -f.half + d[0] * cell).attr("y", d => -f.half + d[1] * cell)
+          .attr("width", cell + 0.05).attr("height", cell + 0.05).attr("fill", d => sc(d[2]));
+      } else {
+        svg.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").style("font-size", "6px").text("run tools/run_topopt.py");
+      }
+    } else {
+      // fixed parts in gray: ducts, motor seats, hub; designed members in the frame color
+      for (const [mx, my] of L.motors) {
+        flip.append("circle").attr("cx", mx).attr("cy", my).attr("r", (L.duct_r_in + L.duct_r_out) / 2)
+          .attr("fill", "none").attr("stroke", css("--axis")).attr("stroke-width", L.duct_r_out - L.duct_r_in);
+        flip.append("circle").attr("cx", mx).attr("cy", my).attr("r", L.mount_r).attr("fill", css("--axis"));
+      }
+      const hub = L.hub_outline.map(poly => "M" + poly.map(p => p.join(",")).join("L") + "Z").join("");
+      flip.append("path").attr("d", hub).attr("fill", css("--axis")).attr("fill-rule", "evenodd");
+      const mem = L[kind];
+      flip.selectAll("line.m").data(mem).join("line").attr("x1", d => d.p0[0]).attr("y1", d => d.p0[1])
+        .attr("x2", d => d.p1[0]).attr("y2", d => d.p1[1]).attr("stroke", gcol("frame"))
+        .attr("stroke-width", d => d.w).attr("stroke-linecap", "round");
+      flip.selectAll("line.r").data(mem.filter(d => d.rib)).join("line").attr("x1", d => d.rib[0][0]).attr("y1", d => d.rib[0][1])
+        .attr("x2", d => d.rib[1][0]).attr("y2", d => d.rib[1][1]).attr("stroke", css("--ink")).attr("stroke-opacity", 0.55)
+        .attr("stroke-width", L.rib_w * 0.8).attr("stroke-linecap", "round");
+    }
+    fig.append("figcaption").html(`<b><span class="step-num">${n}</span>${title}</b>${text}`);
+  }
+}
+function dumbbell() {
+  const svg = d3.select("#dumbbell"), W = svg.node().clientWidth || 900, H = 170;
+  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H); svg.selectAll("*").remove();
+  const rows = [
+    { label: "Steadiness (wobble speed, Hz)", a: story.arms_mode_hz, b: story.mode_hz, max: 340, target: 200, unit: "Hz", d: 0 },
+    { label: "Crash stiffness (× ordinary)", a: 1, b: story.crash_gain, max: 4.2, unit: "×", d: 1 },
+    { label: "Plastic in the arms and spokes (g)", a: story.arms_plate_g, b: story.plate_g, max: 4.2, unit: "g", d: 1 },
+  ];
+  const lx = 250, x0 = lx + 10, x1 = W - 40;
+  rows.forEach((r, i) => {
+    const y = 34 + i * 48, x = d3.scaleLinear([0, r.max], [x0, x1]);
+    svg.append("text").attr("x", 0).attr("y", y + 4).attr("class", "strong").text(r.label);
+    svg.append("line").attr("x1", x0).attr("x2", x1).attr("y1", y).attr("y2", y).attr("stroke", css("--grid"));
+    if (r.target) { svg.append("line").attr("x1", x(r.target)).attr("x2", x(r.target)).attr("y1", y - 12).attr("y2", y + 12).attr("stroke", css("--ink")).attr("stroke-width", 2);
+      svg.append("text").attr("x", x(r.target)).attr("y", y - 16).attr("text-anchor", "middle").text(`need ≥ ${r.target}`); }
+    svg.append("line").attr("x1", x(r.a)).attr("x2", x(r.b)).attr("y1", y).attr("y2", y).attr("stroke", css("--axis")).attr("stroke-width", 3);
+    svg.append("circle").attr("cx", x(r.a)).attr("cy", y).attr("r", 7).attr("fill", css("--muted")).attr("stroke", css("--surface")).attr("stroke-width", 2);
+    svg.append("circle").attr("cx", x(r.b)).attr("cy", y).attr("r", 7).attr("fill", gcol("frame")).attr("stroke", css("--surface")).attr("stroke-width", 2);
+    const left = r.a < r.b;
+    svg.append("text").attr("x", x(r.a) + (left ? -12 : 12)).attr("y", y + 4).attr("text-anchor", left ? "end" : "start").text(`ordinary ${fmt(r.a, r.d)}`);
+    svg.append("text").attr("x", x(r.b) + (left ? 12 : -12)).attr("y", y + 4).attr("text-anchor", left ? "start" : "end").attr("class", "strong").text(`printed ${fmt(r.b, r.d)}`);
+  });
+  document.getElementById("dumbbell-table").innerHTML = "<tr><th></th><th>Ordinary X frame</th><th>What you print</th></tr>" +
+    rows.map(r => `<tr><td>${r.label}</td><td>${fmt(r.a, r.d)}</td><td>${fmt(r.b, r.d)}</td></tr>`).join("");
+}
+
+// ---------------------------------------------------------------- cost
+function cost() {
+  const svg = d3.select("#cost"), W = svg.node().clientWidth || 900, H = 150;
+  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H); svg.selectAll("*").remove();
+  const NAMES = { KIT: "Drone kit (board + motors)", RADIO: "Radio", BATT: "Batteries ×5", CHG: "Charger", PROPS: "Spare props", SCREWS: "Screws", STRAP: "Strap" };
+  const rows = [...money].sort((a, b) => OPTIONAL.has(a.ref) - OPTIONAL.has(b.ref));
+  const x = d3.scaleLinear([0, Math.max(175, total + 5)], [10, W - 20]), y = 52, bh = 40;
+  let acc = 0;
+  rows.forEach((r, i) => {
+    const a = acc, b = acc + r.extended; acc = b;
+    const opt = OPTIONAL.has(r.ref);
+    svg.append("rect").attr("x", x(a) + (i ? 1 : 0)).attr("y", y).attr("width", Math.max(1, x(b) - x(a) - (i ? 2 : 0))).attr("height", bh)
+      .attr("rx", 4).attr("fill", opt ? css("--band-1") : css("--accent"))
+      .on("pointermove", ev => showTip(`<b>${NAMES[r.ref] || r.ref}</b><br>$${fmt(r.extended, 2)} · ${r.vendor}${opt ? "<br><i>optional</i>" : ""}`, ev))
+      .on("pointerleave", hideTip);
+    // the longest label that fits inside its segment, or none (it is in the list below)
+    const w = x(b) - x(a) - 10;
+    const t = svg.append("text").attr("x", (x(a) + x(b)) / 2).attr("y", y + bh / 2 + 4).attr("text-anchor", "middle")
+      .style("fill", opt ? css("--ink-2") : "#fff").style("font-weight", 600).style("pointer-events", "none");
+    for (const label of [`${(NAMES[r.ref] || r.ref).split(" (")[0]} $${fmt(r.extended, 0)}`, `$${fmt(r.extended, 0)}`, ""]) {
+      t.text(label); if (t.node().getComputedTextLength() <= w) break;
+    }
+  });
+  svg.append("line").attr("x1", x(150)).attr("x2", x(150)).attr("y1", y - 30).attr("y2", y + bh + 10).attr("stroke", css("--bad")).attr("stroke-width", 2.5);
+  svg.append("text").attr("x", x(150)).attr("y", y - 36).attr("text-anchor", "middle").attr("class", "strong").text("Budget $150");
+  svg.append("text").attr("x", x(essentials)).attr("y", y + bh + 26).attr("text-anchor", "middle").text(`essentials $${fmt(essentials, 0)}`);
+  svg.append("text").attr("x", x(total)).attr("y", y + bh + 44).attr("text-anchor", "end").text(`everything $${fmt(total, 0)} (gray = optional)`);
+  document.getElementById("cost-table").innerHTML = "<tr><th>Item</th><th>Where</th><th>Price</th><th></th></tr>" +
+    rows.map(r => `<tr><td>${NAMES[r.ref] || r.ref}</td><td>${r.vendor}</td><td>$${fmt(r.extended, 2)}</td><td>${OPTIONAL.has(r.ref) ? "optional" : ""}</td></tr>`).join("") +
+    `<tr><th>Total</th><th></th><th>$${fmt(total, 2)}</th><th></th></tr>`;
+  document.getElementById("cost-lede").innerHTML = `The four essentials come to <b>$${fmt(essentials, 2)}</b>, just under budget (plus BetaFPV's shipping, which isn't published). Spare props, screws and a strap bring it to $${fmt(total, 2)}. A rubber band holds the battery fine to start, and the kit's own screws may do.`;
+}
+
+// ---------------------------------------------------------------- step-by-step builder (IKEA / LEGO)
+const STEPS = [
+  ["Print the frame", "One print, flat side down, PETG, no supports, about 2 hours. Snip off the brim when it's done."],
+  ["Screw on the four motors", "Each motor sits on a round seat with its wire pointing at the middle. Three tiny screws go in from underneath. Snug, not tight: they strip easily."],
+  ["Add the flight controller", "The board sits turned 45° on the four posts so its corners point between the ducts. That's what lets it fit. Arrow toward the front-right duct. Four screws hold it."],
+  ["Plug in the motor wires", "Each wire runs out through the window in its duct and plugs into the socket facing it. No soldering anywhere."],
+  ["Strap on the battery", "The battery hangs underneath, held by a strap through the two slots. Its plug meets the board's power lead at the front."],
+  ["Props on last", "Only after the setup check in Betaflight, with the props off. They press onto the motor shafts."],
+];
+const builder = makeViewer(document.getElementById("build3d"));
+let step = 1, anim = 0;
+builder.onFrame = () => {
+  if (anim >= 1) return; anim = Math.min(1, anim + 0.04);
+  const e = 1 - Math.pow(1 - anim, 3);
+  for (const m of builder.meshes) {
+    const p = story.parts[m.userData.part]; if (!p || p.step !== step) continue;
+    const off = p.explode, k = 1 - e;
+    m.position.set(m.userData.home.x + off[0] * k * 0.9, m.userData.home.y + off[1] * k * 0.9, m.userData.home.z + off[2] * k * 0.9);
+  }
+};
+function showStep(s) {
+  step = s; anim = 0;
+  for (const m of builder.meshes) {
+    const p = story.parts[m.userData.part]; const st = p ? p.step : 1;
+    m.visible = st <= s; m.position.copy(m.userData.home);
+    const isNew = st === s;
+    m.material.color.set(isNew ? gcol(m.userData.group) : css("--band-1"));
+    m.material.opacity = isNew ? 1 : 0.55;
+  }
+  document.querySelectorAll("#steps button").forEach((b, i) => b.classList.toggle("on", i + 1 === s));
+  document.getElementById("step-title").innerHTML = `<span class="step-num">${s}</span>${STEPS[s - 1][0]}`;
+  document.getElementById("step-text").textContent = STEPS[s - 1][1];
+  // parts inventory for this step, counted from the model
+  const counts = {};
+  for (const [name, p] of Object.entries(story.parts)) if (p.step === s) {
+    const key = name.startsWith("motor_screws_") ? "Motor screw (M1.4 × 3)" : name.startsWith("motor_lead_") ? "Motor wire plug"
+      : name.startsWith("motor_sockets") ? null : name.startsWith("motor_") ? "Motor (1102)" : name.startsWith("prop_") ? "Propeller (45 mm)"
+      : name.startsWith("fc_screw_") ? "Board screw (M1.4 × 6)" : PART_NAMES(name);
+    if (!key) continue;
+    counts[key] = (counts[key] || { n: 0, g: p.person_group }); counts[key].n += name.startsWith("motor_screws_") ? 3 : 1;
+  }
+  document.getElementById("step-parts").innerHTML = Object.entries(counts).map(([k, v]) =>
+    `<div class="inv"><div class="n">${v.n}×</div><div><span class="sw" style="display:inline-block;vertical-align:-1px;margin-right:6px;background:${gcol(v.g)}"></span>${k}</div></div>`).join("");
+  document.getElementById("prev").disabled = s === 1; document.getElementById("next").disabled = s === STEPS.length;
+}
+document.getElementById("steps").innerHTML = STEPS.map((_, i) => `<button type="button">${i + 1}</button>`).join("");
+document.querySelectorAll("#steps button").forEach((b, i) => b.onclick = () => showStep(i + 1));
+document.getElementById("prev").onclick = () => showStep(Math.max(1, step - 1));
+document.getElementById("next").onclick = () => showStep(Math.min(STEPS.length, step + 1));
+// a link can open a given step: index.html#step=4
+showStep(Math.min(STEPS.length, Math.max(1, +((location.hash.match(/step=(\d)/) || [])[1] || 1))));
+
+// ---------------------------------------------------------------- tests & guesses
+const card = (id, label) => { const c = claims[id], k = statusOf(c), [t, sub] = plain(id);
+  return `<div class="tcard"><div class="top"><h3>${t}</h3><span class="status">${label(k, c)}</span></div><p>${sub}</p></div>`; };
+document.getElementById("tests").innerHTML = ["P4", "P3", "P5", "P2", "P1"].map(id => card(id,
+  (k, c) => c.status === "pass" ? "✓ passed" : c.status === "fail" ? "✕ failed" : "not done yet")).join("");
+document.getElementById("guesses").innerHTML = ["A4", "A3", "A5", "A6", "A1", "A2"].map(id => card(id,
+  (k, c) => c.key === "assumed" ? "accepted" : "unconfirmed")).join("");
+
+// ---------------------------------------------------------------- draw + redraw on resize / theme
+function drawAll() { liftChart(); bullets(); multiples(); dumbbell(); cost(); }
+drawAll();
+let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
+document.getElementById("themebtn").onclick = () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
+    : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.dataset.theme = dark ? "light" : "dark";
+  drawAll(); hero.highlight(null); showStep(step);
+  legend.querySelectorAll(".sw").forEach((s, i) => s.style.background = gcol(GROUPS[i]));
+};
+</script>
+</body>
+</html>

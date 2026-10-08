@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "gate": "bom.cost",
+  "rho": "c053792adc50d789bbc3b5a10c1bb33f979a005a91e604d46f3d522aeb6333d2",
+  "code": {
+    "digest": "3e2e8ca03410fc1e55bbce7cec2eb380217303d53ef971fbd8b7d5870b115b67",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "a365b2595272ae697b67cd59e1ba5340940029a8812b12ae6412c8cb15247482"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": false,
+    "measured": 167.15,
+    "limit": 150.0,
+    "units": "USD/unit",
+    "comparator": "<=",
+    "settles": "build cost per unit",
+    "detail": "167.15 USD/unit at qty 1 vs 150.00 USD budget; parts 167.15 USD + minimums 0.00 USD + one-time 0.00 USD (0.00 USD/unit amortised) = 167.15 USD run",
+    "evidence": [
+      "<out>/bom_cost.json"
+    ],
+    "locators": [],
+    "claims": [
+      "cost",
+      "build-cost",
+      "budget",
+      "unit-cost"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "c461553a84277d4556b3b9713d528ca0cb550f5949b98769d601af1ec66dc8d8"
+}

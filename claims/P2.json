@@ -1,0 +1,6 @@
+{
+  "statement": "Hovers steadily in angle mode with no audible or visible oscillation",
+  "kind": "physical",
+  "note": "After setup, hover 30 s at 1 m indoors. Pass: no buzzing, wobble or hot motors on landing (touch test). Record a blackbox log if possible and keep it as evidence.",
+  "rationale": "Settles the vibration question C4 only estimates."
+}

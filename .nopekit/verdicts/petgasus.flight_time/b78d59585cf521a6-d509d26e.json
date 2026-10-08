@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "gate": "petgasus.flight_time",
+  "rho": "b78d59585cf521a6552b89b09c35219d1e11422556e12428a26e96a3b5dbfff3",
+  "code": {
+    "digest": "f25dae1212105ae2893321511330f733368bea20a993eed0a6fa143d236c7aca",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "flight_time_min"
+        ],
+        "85bf5f2916268cbc6334585d6cdbaac36d54eca280dd31e068d43849c3adf6d0",
+        3.88
+      ],
+      [
+        [
+          "hover_power_w"
+        ],
+        "2745becf4603ce75ee95a5c13442b81e07a1418ae41de117442cd50783e6e9e1",
+        15.04
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C3": "7543b340f4ad6014d301af69c2f0ea744ff26b6c88778b0ff22dfdd67d3fb918",
+      "acceptance:C3": "35da20dbcbb43272cc42d552353265352c154201ad212a365ba9231c2e83e7fd"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 3.88,
+    "limit": 3.0,
+    "units": "min",
+    "comparator": ">=",
+    "settles": "hover flight time",
+    "detail": "15.0 W hover from the pack's usable energy (efficiency is assumption A2)",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "endurance"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "c9b46f10858011a1a30fe4ac4f83a4e98f685d6338274795e3a804648df21a84"
+}

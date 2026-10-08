@@ -1,0 +1,553 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "fdm.layer_alignment",
+  "rho": "9776fa592c5d6e7d7dc41e8f2b5b3244381b91cd50e9d3a285a24603d9d1b5aa",
+  "static": "ba606ba1abb011c304610f12c5b0dcc2a6d428220a253e1bd6a0bd179538711f",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "285771329141500b8f4403f5edaba353137ba023cbd8bbb60023a932bd10d479",
+      "files": [
+        "<pack:fdm-print>/fdm_print_parts.py",
+        "<pack:fdm-print>/gates/_process_model.py",
+        "<pack:fdm-print>/gates/fdm_print_fold.py",
+        "<pack:fdm-print>/gates/printability.py"
+      ]
+    },
+    "selftest": {
+      "digest": "353b96de7d541ec4467ae96b1535cbdf017e6ab887be035a8f469648b139d4fd",
+      "files": {
+        "selftest/bad_meshes.py": "c911d96ba144851190dfd2570f1dbb80b2af8f7b799115f6ccb145347dc4d1fd",
+        "selftest/bad_params.py": "93c3bf153c47a17f281cfc785c3be54573af4b2b6c2023639edd4198d8046c95",
+        "selftest/baseline.json": "1618b913661f8417dc8689c106c4887a0855b40483b355cd24dee7a25d60294b",
+        "selftest/baseline_mesh.py": "35b29f4bc400ebe1a386ad8989b88d3abee52e542dd02f9578c008d5298262ca",
+        "selftest/baseline_part.stl": "d72c80c2d4ace45ceecd5b2f9bc9055962db34ed3d5ff0023e92bb6fc0f8d5df"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_params.py:load_across_layers",
+      "expect": "fail",
+      "note": "the same part rotated so the load runs along the build axis, with the utilisation scaled to sit 15% past the layer-normal knockdown — the one change that turns a passing structural result into a part that snaps along a layer",
+      "good": "",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "6596bd9c00ff63b230618c45a9a3b23d58cd4a3040cbcd949335657d16ac0225",
+    "files": {
+      "<pack:fdm-print>/selftest/bad_params.py": "93c3bf153c47a17f281cfc785c3be54573af4b2b6c2023639edd4198d8046c95"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "build_axis"
+        ],
+        "5752ff3ec08f71c4c92eeb77344477416348585a27cea53440212a3881dab54e"
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.deflection_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.deflection_utilization"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_normal_strength_ratio"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.load_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.load_direction"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.primary_load_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.stiffness_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.stress_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.structural_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.utilisation_kind"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.utilization"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.utilization_kind"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.deflection_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.deflection_utilization"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_normal_strength_ratio"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.load_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.load_direction"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.primary_load_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.stiffness_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.stress_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.structural_utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.utilisation"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.utilisation_kind"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.utilization"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.utilization_kind"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "layer_normal_strength_ratio"
+        ],
+        "8e29c97e40473267183acc8265cb574b1fb4dfcd9c281f368e487cf0a285a865",
+        0.5
+      ],
+      [
+        [
+          "load_axis"
+        ],
+        "5752ff3ec08f71c4c92eeb77344477416348585a27cea53440212a3881dab54e"
+      ],
+      [
+        [
+          "utilisation"
+        ],
+        "f41e914dbbce481c8f90285af52c0cb7b1a24fa1063ed5b11466c1883a79c067",
+        0.575
+      ],
+      [
+        [
+          "utilisation_kind"
+        ],
+        "ec4d36975f953ad3120eb64d9783f5e52269d8b1bc25736f797d842905eb5b7c",
+        "stress"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "build_axis"
+          ],
+          "5752ff3ec08f71c4c92eeb77344477416348585a27cea53440212a3881dab54e"
+        ],
+        [
+          [
+            "fdm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.build_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.deflection_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.deflection_utilization"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.layer_normal"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.layer_normal_strength_ratio"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.load_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.load_direction"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.primary_load_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.print_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.stiffness_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.stress_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.structural_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.utilisation_kind"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.utilization"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.utilization_kind"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.build_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.deflection_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.deflection_utilization"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.layer_normal"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.layer_normal_strength_ratio"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.load_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.load_direction"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.primary_load_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.print_axis"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.stiffness_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.stress_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.structural_utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.utilisation"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.utilisation_kind"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.utilization"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.utilization_kind"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "layer_normal_strength_ratio"
+          ],
+          "8e29c97e40473267183acc8265cb574b1fb4dfcd9c281f368e487cf0a285a865",
+          0.5
+        ],
+        [
+          [
+            "load_axis"
+          ],
+          "0e4725af972db533bd4158ab90b7a5641a4bc067d810dc8f8ab7256a15dbc247"
+        ],
+        [
+          [
+            "utilisation"
+          ],
+          "388c54dd741386670b8c39e3444bddd3a467a7fa2c477843a80198aefca032af",
+          0.62
+        ],
+        [
+          [
+            "utilisation_kind"
+          ],
+          "ec4d36975f953ad3120eb64d9783f5e52269d8b1bc25736f797d842905eb5b7c",
+          "stress"
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 0.62,
+    "limit": 1.0,
+    "units": "derated utilisation",
+    "detail": "load at 0 deg to the layer plane (build axis from the model): stress utilisation 0.62 (utilisation) / knockdown 1.00 = 0.62 vs 1.00 (layer-normal strength 0.50x in-plane)",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_params.py:load_across_layers (the same part rotated so the load runs along the build axis, with the utilisation scaled to sit 15% past the layer-normal knockdown — the one change that turns a passing structural result into a part that snaps along a layer): load at 90 deg to the layer plane (build axis from the model): stress utilisation 0.57 (utilisation) / knockdown 0.50 = 1.15 vs 1.00 (layer-normal strength 0.50x in-plane)",
+  "measured": 1.15,
+  "limit": 1.0,
+  "units": "derated utilisation",
+  "digest": "6cf277bb67c5fd0187de7746788201c046931228a42795f015742a6561fb51e8"
+}

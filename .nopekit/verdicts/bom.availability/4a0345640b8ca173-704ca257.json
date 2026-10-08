@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "gate": "bom.availability",
+  "rho": "4a0345640b8ca173233ed400c642da76ba92e25c6ffda01018a66de2db24aa90",
+  "code": {
+    "digest": "2d5940b9d8503f0468d3c7ee8140fa658f32c809cd3e36704d570bbe5ccfe580",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "3a3dd851d8bd56251e4bcfdeba16fce09c9e41e5097d5ef186d25c3f16902f0c"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 2.0,
+    "limit": 3.0,
+    "units": "weeks",
+    "comparator": "<=",
+    "settles": "longest lead time",
+    "detail": "longest lead 2 wk (KIT); vs 3 wk budget; 0 unknown, 0 EOL, 0 flagged",
+    "evidence": [
+      "<out>/bom_availability.json"
+    ],
+    "locators": [],
+    "claims": [
+      "availability",
+      "lead-time",
+      "ship-date",
+      "stock"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "f510ecb7c365f3477518a86d8a5b34dd634a1e924f95fd4e9c55ac79829cb2b9"
+}

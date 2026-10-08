@@ -1,0 +1,6 @@
+{
+  "statement": "The 1102 (2026) motor needs a 14 mm diameter, 13.8 mm tall envelope, and its shaft C-clip clears a 2.3 mm hole",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "Listing gives 13.8 mm tall and '11 mm' (the stator); the bell is wider. Measure one with calipers when the kit arrives; P4 checks the fit. The C-clip is confirmed (listing) but its protrusion and diameter are not published."
+}

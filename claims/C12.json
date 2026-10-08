@@ -1,0 +1,14 @@
+{
+  "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "motor lead spare",
+    "comparator": ">=",
+    "limit": 3.0,
+    "units": "mm"
+  },
+  "rationale": "The lead runs from the motor's base, out through the window each duct keeps on its hub side, to the socket on the board edge facing that motor (model/assembly.py motor_lead_route). A lead pulled taut pulls its plug out in the first crash; 3 mm is a small slack loop. Lead length is the listing's 37 mm (no soldering: the lead cannot be extended).",
+  "tags": [
+    "motor-leads"
+  ]
+}

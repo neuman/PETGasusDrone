@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "gate": "cad.watertight",
+  "rho": "4a11ffaaa4936d232da438cf043dcf0aa80f17da15787ef9f3ad76b57eaa68a1",
+  "code": {
+    "digest": "67bfd56d2199d8bce5765fdb946e4c1f5804451cffd805f045db04da2aa275bb",
+    "files": [
+      "<pack:cad-solid>/cad_solid_parts.py",
+      "<pack:cad-solid>/gates/solid.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "meshes",
+          "frame"
+        ],
+        "bb1d7355211f1e8007ea4c572f44022a15ceac583422328f97f5ccfc9c159ea3",
+        "build/print/frame.ply"
+      ],
+      [
+        [
+          "meshes"
+        ],
+        "9eb0d1404fe6e565b942d5138d9eadad2a3dcd89b1a03b94f97d451997eebee8"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.ply": "42e9a8fa610e362a2215cda3b37356bb1e8d1c3b894dd2d95aefe101bb953882"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "edges",
+    "comparator": "<=",
+    "settles": "mesh watertightness",
+    "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 31822 faces",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "geometry",
+      "mesh",
+      "cad",
+      "manufacturability"
+    ],
+    "tier": 1,
+    "pack": "cad-solid"
+  },
+  "digest": "8a79cdecab892741e7520f54dccf449d4770d90850295bc2c12782a9be6933e6"
+}

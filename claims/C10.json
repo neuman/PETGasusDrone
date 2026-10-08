@@ -1,0 +1,8 @@
+{
+  "statement": "Everything to buy costs no more than $150 including radio, batteries and charger",
+  "kind": "measurable",
+  "rationale": "The user's budget. Settled by the sourcing pack over bom/bom.json - whose prices are a dated snapshot, not live stock.",
+  "tags": [
+    "budget"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "statement": "The frame prints on the Snapmaker U1 in PETG without supports, in one sitting",
+  "kind": "measurable",
+  "rationale": "A kid at the printer: no support removal with a knife, no overnight print. Settled by the fdm-print pack: bed fit, 3-perimeter walls, 45 deg overhang, bridge spans, layer alignment of the arm load, and a 3 h print-time ceiling.",
+  "tags": [
+    "printability"
+  ]
+}

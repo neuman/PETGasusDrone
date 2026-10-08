@@ -1,0 +1,8 @@
+{
+  "statement": "The exported frame mesh is a clean closed solid",
+  "kind": "measurable",
+  "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
+  "tags": [
+    "mesh"
+  ]
+}

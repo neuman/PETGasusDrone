@@ -1,0 +1,6 @@
+{
+  "statement": "Frame survives five drops from 2 m onto a hard floor without a crack",
+  "kind": "physical",
+  "note": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a duct edge, from 2 m onto tile/concrete, 5 times. Pass: no crack or whitening at the arms, spokes or duct joints. Photograph each duct.",
+  "rationale": "No closed-form or solver result settles crash survival of a printed part in a 10-year-old's hands."
+}

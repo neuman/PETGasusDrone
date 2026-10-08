@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "fdm.min_wall",
+  "rho": "51436337371f523e0492ad9068f5eccb35e37da196de049c6cc0c8dec20d6d82",
+  "static": "5095b454edf2b3c3e2814539336c0dab31cfb2b18b3aa78f5276b86070abbaa6",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "8083ee09b16eff4f721d6a4955c63d281576dd12620bf15a6da4cfe73119c6df",
+      "files": [
+        "<pack:fdm-print>/fdm_print_parts.py",
+        "<pack:fdm-print>/gates/_process_model.py",
+        "<pack:fdm-print>/gates/fdm_print_fold.py",
+        "<pack:fdm-print>/gates/printability.py"
+      ]
+    },
+    "selftest": {
+      "digest": "353b96de7d541ec4467ae96b1535cbdf017e6ab887be035a8f469648b139d4fd",
+      "files": {
+        "selftest/bad_meshes.py": "c911d96ba144851190dfd2570f1dbb80b2af8f7b799115f6ccb145347dc4d1fd",
+        "selftest/bad_params.py": "93c3bf153c47a17f281cfc785c3be54573af4b2b6c2023639edd4198d8046c95",
+        "selftest/baseline.json": "1618b913661f8417dc8689c106c4887a0855b40483b355cd24dee7a25d60294b",
+        "selftest/baseline_mesh.py": "35b29f4bc400ebe1a386ad8989b88d3abee52e542dd02f9578c008d5298262ca",
+        "selftest/baseline_part.stl": "d72c80c2d4ace45ceecd5b2f9bc9055962db34ed3d5ff0023e92bb6fc0f8d5df"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_params.py:two_perimeter_wall",
+      "expect": "fail",
+      "note": "the same part with its thinnest section cut to two beads of the line width the project actually uses — two perimeters and a seam of gap fill, which prints and then fails in service; nothing else about the part changes",
+      "good": "",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "6596bd9c00ff63b230618c45a9a3b23d58cd4a3040cbcd949335657d16ac0225",
+    "files": {
+      "<pack:fdm-print>/selftest/bad_params.py": "93c3bf153c47a17f281cfc785c3be54573af4b2b6c2023639edd4198d8046c95"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "extrusion_width_mm"
+        ],
+        "2761fa6332d4c0574c19a14e91d975b9cf7042c64a62fc53ca714c5bf5dd84a4",
+        0.42
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.min_feature_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.min_section_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.part_min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.thinnest_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.min_feature_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.min_section_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.part_min_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.thinnest_wall_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "nozzle_d_mm"
+        ],
+        "cbffa691b0145b8938393dfedf84cb1ee0c9a35d2e6647f4668d86e6e0f52ce1",
+        0.4
+      ],
+      [
+        [
+          "part_min_wall_mm"
+        ],
+        "2072489a3e36432019b073e421d0bda616656e2fd409ebd5495243a16b10b3f5",
+        0.84
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "extrusion_width_mm"
+          ],
+          "2761fa6332d4c0574c19a14e91d975b9cf7042c64a62fc53ca714c5bf5dd84a4",
+          0.42
+        ],
+        [
+          [
+            "fdm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.extrusion_width_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.line_width_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.min_feature_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.min_section_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.nozzle_d"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.nozzle_d_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.nozzle_diameter_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.part_min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm-print.thinnest_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.extrusion_width_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.line_width_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.min_feature_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.min_section_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.nozzle_d"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.nozzle_d_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.nozzle_diameter_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.part_min_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "fdm.thinnest_wall_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "nozzle_d_mm"
+          ],
+          "cbffa691b0145b8938393dfedf84cb1ee0c9a35d2e6647f4668d86e6e0f52ce1",
+          0.4
+        ],
+        [
+          [
+            "part_min_wall_mm"
+          ],
+          "768591245eec555652f9d2463fc399bc480ab55447c2f5294d211ebeb5bce025",
+          3.2
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 3.2,
+    "limit": 1.26,
+    "units": "mm",
+    "detail": "thinnest section 3.20 mm = 7.6 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_params.py:two_perimeter_wall (the same part with its thinnest section cut to two beads of the line width the project actually uses — two perimeters and a seam of gap fill, which prints and then fails in service; nothing else about the part changes): thinnest section 0.84 mm = 2.0 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
+  "measured": 0.84,
+  "limit": 1.26,
+  "units": "mm",
+  "digest": "e8a765f831dc0eae879f2fb9feb6cf6895a841a02e20b65b1d0d5d6fb9ffd43f"
+}

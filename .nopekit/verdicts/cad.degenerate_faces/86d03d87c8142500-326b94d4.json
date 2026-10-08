@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "gate": "cad.degenerate_faces",
+  "rho": "86d03d87c8142500625bbd29434803274ff20d85674e57ad1d122328c907ee17",
+  "code": {
+    "digest": "972d3da5de9d24c5cf6c79104222f10edd995e60dc8dc13b1cfef9917ca38b6a",
+    "files": [
+      "<pack:cad-solid>/cad_solid_parts.py",
+      "<pack:cad-solid>/gates/solid.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "meshes",
+          "frame"
+        ],
+        "bb1d7355211f1e8007ea4c572f44022a15ceac583422328f97f5ccfc9c159ea3",
+        "build/print/frame.ply"
+      ],
+      [
+        [
+          "meshes"
+        ],
+        "9eb0d1404fe6e565b942d5138d9eadad2a3dcd89b1a03b94f97d451997eebee8"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.ply": "0557d6675b8f5987b56947c5243ed155677867d1a6f0b95c910e675142b84287"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "repairs",
+    "comparator": "<=",
+    "settles": "degenerate faces",
+    "detail": "0 repair(s) needed across 1 part(s), limit 0 — worst frame: welded 0 vertex/vertices at 0.0001 mm, dropped 0 face(s) below 1e-08 mm^2 over 1 pass(es)",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "geometry",
+      "mesh",
+      "cad",
+      "manufacturability"
+    ],
+    "tier": 1,
+    "pack": "cad-solid"
+  },
+  "digest": "ddbe6f2df1d528da35cb6cb2f43ddee29417f8e326b280344801858d0573cafc"
+}

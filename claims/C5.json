@@ -1,0 +1,14 @@
+{
+  "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "interference volume",
+    "comparator": "<=",
+    "limit": 0.0,
+    "units": "mm3"
+  },
+  "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their real route out through the duct's port window. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
+  "tags": [
+    "envelope-clearance"
+  ]
+}
