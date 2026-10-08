@@ -1,0 +1,14 @@
+{
+  "statement": "All-up weight stays under 250 g",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "all-up weight",
+    "comparator": "<=",
+    "limit": 250.0,
+    "units": "g"
+  },
+  "rationale": "US FAA recreational threshold: under 250 g no registration is needed (the TRUST certificate still is). Also the ceiling for being a safe indoor toy.",
+  "tags": [
+    "auw"
+  ]
+}

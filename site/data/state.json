@@ -1,0 +1,5760 @@
+{
+  "claims": [
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "failed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [
+        "<out>/bom_cost.json"
+      ],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "bom.cost"
+      ],
+      "grounded_by": [],
+      "id": "C10",
+      "key": "failing",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "The user's budget. Settled by the sourcing pack over bom/bom.json - whose prices are a dated snapshot, not live stock.",
+      "reason": "bom.cost : 167.15 USD/unit at qty 1 vs 150.00 USD budget; parts 167.15 USD + minimums 0.00 USD + one-time 0.00 USD (0.00 USD/unit amortised) = 167.15 USD run",
+      "source": "",
+      "standing": "",
+      "statement": "Everything to buy costs no more than $150 including radio, batteries and charger",
+      "status": "fail",
+      "superseded": [],
+      "tags": [
+        "budget"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [
+        {
+          "gate": "bom.cost",
+          "why": "fail: 167.15 USD/unit at qty 1 vs 150.00 USD budget; parts 167.15 USD + minimums 0.00 USD + one-time 0.00 USD (0.00 USD/unit amortised) = 167.15 USD run"
+        }
+      ],
+      "verdicts": [
+        "bom.cost"
+      ],
+      "word": "failing"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A1",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "Tight ducts can add 10-20% thrust; a printed duct with a 1 mm tip gap and no shaped inlet lip may add nothing or lose some. 0.9 is the cautious middle. Replace with a scale measurement: quad upside down on a kitchen scale, full throttle, props on (P5).",
+      "reason": "owner Eric Neuman is named in claims/A1.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A1 assume",
+      "source": "",
+      "standing": "",
+      "statement": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A2",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "Typical of 1102-class motors on 45 mm props at hover. Sets the flight-time estimate only. Replace from a blackbox log or a timed hover.",
+      "reason": "owner Eric Neuman is named in claims/A2.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A2 assume",
+      "source": "",
+      "standing": "",
+      "statement": "Hover efficiency is 3.0 g of thrust per watt",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A3",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "Listing gives 13.8 mm tall and '11 mm' (the stator); the bell is wider. Measure one with calipers when the kit arrives; P4 checks the fit. The C-clip is confirmed (listing) but its protrusion and diameter are not published.",
+      "reason": "owner Eric Neuman is named in claims/A3.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A3 assume",
+      "source": "",
+      "standing": "",
+      "statement": "The 1102 (2026) motor needs a 14 mm diameter, 13.8 mm tall envelope, and its shaft C-clip clears a 2.3 mm hole",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A4",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "Not published. It sets the wheelbase (the board must clear the ducts). Measure before printing; if larger, change fc_board_side and re-run.",
+      "reason": "owner Eric Neuman is named in claims/A4.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A4 assume",
+      "source": "",
+      "standing": "",
+      "statement": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A5",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "No thrust test is published for the 2026 motor. A larger disc on a near-identical motor makes more static thrust, so the sibling figure is used as a lower bound.",
+      "reason": "owner Eric Neuman is named in claims/A5.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A5 assume",
+      "source": "",
+      "standing": "",
+      "statement": "The 1102 22000KV's 46.3 g thrust on 40 mm props is a floor for the kit's 1102 21000KV on 45 mm props",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "owner-unattributed",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "A6",
+      "key": "gap",
+      "kind": "assumption",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "Eric Neuman",
+      "physical_result": null,
+      "rationale": "The vendor does not state the voltage. If it was lower, the real thrust-to-weight is better than modelled; if it was a 4.35 V LiHV bench supply, slightly worse.",
+      "reason": "owner Eric Neuman is named in claims/A6.json and has not recorded it — Eric Neuman records it in their own shell: nopekit claim physical A6 assume",
+      "source": "",
+      "standing": "",
+      "statement": "That 46.3 g thrust test was run at 4.2 V",
+      "status": "unclaimed",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "assumption",
+      "unproven": [],
+      "verdicts": [],
+      "word": "gap"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "no-article",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "P1",
+      "key": "pending_build",
+      "kind": "physical",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a duct edge, from 2 m onto tile/concrete, 5 times. Pass: no crack or whitening at the arms, spokes or duct joints. Photograph each duct.",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "No closed-form or solver result settles crash survival of a printed part in a 10-year-old's hands.",
+      "reason": "needs an article",
+      "source": "",
+      "standing": "",
+      "statement": "Frame survives five drops from 2 m onto a hard floor without a crack",
+      "status": "unverified",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "measurement",
+      "unproven": [],
+      "verdicts": [],
+      "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "no-article",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "P2",
+      "key": "pending_build",
+      "kind": "physical",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "After setup, hover 30 s at 1 m indoors. Pass: no buzzing, wobble or hot motors on landing (touch test). Record a blackbox log if possible and keep it as evidence.",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Settles the vibration question C4 only estimates.",
+      "reason": "needs an article",
+      "source": "",
+      "standing": "",
+      "statement": "Hovers steadily in angle mode with no audible or visible oscillation",
+      "status": "unverified",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "measurement",
+      "unproven": [],
+      "verdicts": [],
+      "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "no-article",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "P3",
+      "key": "pending_build",
+      "kind": "physical",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 45). Pass: all four correct.",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A wrong board alignment flips the quad on its first takeoff; this is the most common first-flight failure.",
+      "reason": "needs an article",
+      "source": "",
+      "standing": "",
+      "statement": "Pre-flight setup is correct: board alignment yaw 45, motor order and directions, angle mode on a switch",
+      "status": "unverified",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "measurement",
+      "unproven": [],
+      "verdicts": [],
+      "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "no-article",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "P4",
+      "key": "pending_build",
+      "kind": "physical",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "Fit the AIO, motors, props and a battery. Spin each prop by hand: it must not touch anything.",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "C5 checks envelopes we wrote down; this checks the parts that arrived.",
+      "reason": "needs an article",
+      "source": "",
+      "standing": "",
+      "statement": "The AIO drops onto its posts and the battery straps on without touching any duct or prop",
+      "status": "unverified",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "measurement",
+      "unproven": [],
+      "verdicts": [],
+      "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "measured thrust to weight",
+        "units": "ratio"
+      },
+      "acceptance_render": "measured thrust to weight >= 3.0 ratio",
+      "article": "",
+      "authority": "",
+      "cause": "no-article",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [],
+      "grounded_by": [],
+      "id": "P5",
+      "key": "pending_build",
+      "kind": "physical",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 ratio",
+      "not_compared": [],
+      "note": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1, A5, A6.",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Settles C1 on hardware instead of on three assumptions.",
+      "reason": "needs an article",
+      "source": "",
+      "standing": "",
+      "statement": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
+      "status": "unverified",
+      "superseded": [],
+      "tags": [],
+      "terminal": "",
+      "terminal_word": "measurement",
+      "unproven": [],
+      "verdicts": [],
+      "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "thrust to weight",
+        "units": "ratio"
+      },
+      "acceptance_render": "thrust to weight >= 3.0 ratio",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.thrust_to_weight"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.thrust_to_weight"
+      ],
+      "grounded_by": [],
+      "id": "C1",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 ratio",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A first-time pilot in angle mode hovers at 1/TW of full thrust; at 3:1 that is a third of the stick, leaving room to arrest a fall and push through a gust. At ~2:1 the quad wallows and a beginner's late correction cannot catch it. Commercial 1S whoops run 3.5-5:1.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "thrust-margin"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.thrust_to_weight"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 250.0,
+        "limit_hi": null,
+        "quantity": "all-up weight",
+        "units": "g"
+      },
+      "acceptance_render": "all-up weight <= 250.0 g",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.auw"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.auw"
+      ],
+      "grounded_by": [],
+      "id": "C2",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "250 g",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "US FAA recreational threshold: under 250 g no registration is needed (the TRUST certificate still is). Also the ceiling for being a safe indoor toy.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "All-up weight stays under 250 g",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "auw"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.auw"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "hover flight time",
+        "units": "min"
+      },
+      "acceptance_render": "hover flight time >= 3.0 min",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.flight_time"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.flight_time"
+      ],
+      "grounded_by": [],
+      "id": "C3",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 min",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Under ~3 minutes a 10-year-old spends more time swapping packs than flying; a 4-pack session should be 12+ minutes of air time.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "Estimated hover flight time is at least 3 minutes per pack",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "endurance"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.flight_time"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 200.0,
+        "limit_hi": null,
+        "quantity": "first frame mode",
+        "units": "Hz"
+      },
+      "acceptance_render": "first frame mode >= 200.0 Hz",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.frame_mode"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.frame_mode"
+      ],
+      "grounded_by": [],
+      "id": "C4",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "200 Hz",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "The printed-frame vibration complaint is a soft structural mode low enough to sit inside the flight controller's control loop: the gyro sees it, the PID loop amplifies it, the motors get hot. Betaflight's dynamic notch and gyro low-pass handle a resonance above ~200 Hz with little delay; below ~150 Hz filtering it costs control. Measured by a 2.5D plate FE of the generated layout, hub clamped at the FC posts, motor+prop as point masses (conservative: a free-flying hub moves and raises the mode). REVISED 2026-10-07 from 'arm cantilever frequency above hover motor rotation frequency': that estimate ignored the duct's own mass (it put the arm at 452 Hz; the FE with the ducts on it says ~190 Hz), and the criterion would have failed every commercial whoop frame, which fly well on RPM filtering.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "The frame's first out-of-plane mode (duct pods bouncing on the arms) is at or above 200 Hz",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "arm-vibration"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.frame_mode"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 0.0,
+        "limit_hi": null,
+        "quantity": "interference volume",
+        "units": "mm3"
+      },
+      "acceptance_render": "interference volume <= 0.0 mm3",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.interference"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.interference"
+      ],
+      "grounded_by": [],
+      "id": "C5",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "0 mm3",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their real route out through the duct's port window. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "envelope-clearance"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.interference"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [
+        "<out>/fdm-bed-fit-parts.txt",
+        "<out>/fdm-bridge-span-parts.txt",
+        "<out>/fdm-overhang-parts.txt"
+      ],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "fdm.bed_fit",
+        "fdm.bridge_span",
+        "fdm.layer_alignment",
+        "fdm.min_wall",
+        "fdm.overhang",
+        "fdm.print_time_est",
+        "fdm.process_model_valid"
+      ],
+      "grounded_by": [],
+      "id": "C6",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A kid at the printer: no support removal with a knife, no overnight print. Settled by the fdm-print pack: bed fit, 3-perimeter walls, 45 deg overhang, bridge spans, layer alignment of the arm load, and a 3 h print-time ceiling.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "The frame prints on the Snapmaker U1 in PETG without supports, in one sitting",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "printability"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "fdm.overhang",
+        "fdm.bridge_span",
+        "fdm.bed_fit",
+        "fdm.min_wall",
+        "fdm.layer_alignment",
+        "fdm.print_time_est",
+        "fdm.process_model_valid"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [
+        "<out>/cad-solid/wall_thickness.json"
+      ],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "cad.degenerate_faces",
+        "cad.is_volume",
+        "cad.wall_thickness",
+        "cad.watertight"
+      ],
+      "grounded_by": [],
+      "id": "C7",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "The exported frame mesh is a clean closed solid",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "mesh"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "cad.watertight",
+        "cad.is_volume",
+        "cad.degenerate_faces",
+        "cad.wall_thickness"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 0.0,
+        "limit_hi": null,
+        "quantity": "FC screw protrusion below plate",
+        "units": "mm"
+      },
+      "acceptance_render": "FC screw protrusion below plate <= 0.0 mm",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.fc_screws"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.fc_screws"
+      ],
+      "grounded_by": [],
+      "id": "C8",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "0 mm",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A screw tip below the plate scratches the battery it rests on. Engagement is reported alongside.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "AIO screws (M1.4 x 6) bite at least 3 mm into the printed posts and do not poke out under the plate",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "fc-screws"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.fc_screws"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 1.0,
+        "limit_hi": null,
+        "quantity": "motor screw engagement",
+        "units": "mm"
+      },
+      "acceptance_render": "motor screw engagement >= 1.0 mm",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.motor_screws"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.motor_screws"
+      ],
+      "grounded_by": [],
+      "id": "C9",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "1 mm",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Under ~1 mm (less than two threads of M1.4) the screw strips out of the motor base in the first hard crash.",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "motor-screws"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.motor_screws"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 1,
+        "limit_hi": null,
+        "quantity": "frame pieces",
+        "units": "count"
+      },
+      "acceptance_render": "frame pieces <= 1 count",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.one_piece"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.one_piece"
+      ],
+      "grounded_by": [],
+      "id": "C11",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "1 count",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A motor seat or a member that is not joined to the rest is debris on the bed and a motor held by nothing. Counted on the generated mesh. Added after an optimised layout whose cleaned outline cut the seats loose (first mode 7 Hz).",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "The printed frame is one connected piece",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "one-piece"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.one_piece"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "motor lead spare",
+        "units": "mm"
+      },
+      "acceptance_render": "motor lead spare >= 3.0 mm",
+      "article": "",
+      "authority": "",
+      "cause": "checked",
+      "compared": [
+        "petgasus.motor_leads"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.motor_leads"
+      ],
+      "grounded_by": [],
+      "id": "C12",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 mm",
+      "not_compared": [],
+      "note": "",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "The lead runs from the motor's base, out through the window each duct keeps on its hub side, to the socket on the board edge facing that motor (model/assembly.py motor_lead_route). A lead pulled taut pulls its plug out in the first crash; 3 mm is a small slack loop. Lead length is the listing's 37 mm (no soldering: the lead cannot be extended).",
+      "reason": "—",
+      "source": "",
+      "standing": "",
+      "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "motor-leads"
+      ],
+      "terminal": "",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.motor_leads"
+      ],
+      "word": "checked"
+    }
+  ],
+  "decisions": [
+    {
+      "body": "",
+      "claims_changed": [
+        "C4",
+        "C1"
+      ],
+      "evidence": [
+        "build/topopt/field.png"
+      ],
+      "id": "plate-layout-drawn-from-the-topology-optimiser",
+      "params_changed": [
+        "plate_layout",
+        "spoke_count",
+        "spoke_phase_deg",
+        "web_h"
+      ],
+      "rejected": [
+        {
+          "evidence": "",
+          "value": "hand-drawn arms + 3 flat spokes",
+          "why": "first mode 187 Hz, under C4's 200 Hz"
+        },
+        {
+          "evidence": "",
+          "value": "optimiser density field printed directly",
+          "why": "its spokes were 0.75 mm blades; the 1.6 mm minimum-member clean-up deleted them and cut the motor seats loose (first mode 7 Hz)"
+        },
+        {
+          "evidence": "",
+          "value": "5 spokes, as the optimiser drew",
+          "why": "thrust-to-weight 3.025: no margin on C1"
+        },
+        {
+          "evidence": "",
+          "value": "3 spokes",
+          "why": "crash stiffness 0.85-1.18x the hand-drawn frame's"
+        },
+        {
+          "evidence": "",
+          "value": "4 mm webs",
+          "why": "first mode 213 Hz; 6 mm gives 283 Hz for 0.12 g"
+        }
+      ],
+      "summary": "The base plate is the optimiser's load path made printable: no hub-to-motor arms; each motor seat hangs on 4 ribbed spokes (1.3 mm x 4.8 mm ribs) from its own duct ring, the hub reaches the four duct-to-duct webs on ribbed bridges, and the webs are 6 mm tall. Judged by the same 2.5D plate FE on the exact printed layout: first mode 286 Hz vs 187 Hz for the hand-drawn arms at the same webs, crash compliance 2.2x lower, for +0.8 g.",
+      "title": "Plate layout drawn from the topology optimiser",
+      "when": "2026-10-07T19:40:17Z"
+    },
+    {
+      "body": "",
+      "claims_changed": [
+        "C5"
+      ],
+      "evidence": [],
+      "id": "battery-hangs-under-the-hub-on-a-strap",
+      "params_changed": [
+        "fc_post_h",
+        "strap_slot_w"
+      ],
+      "rejected": [
+        {
+          "evidence": "",
+          "value": "top tray on the AIO screws",
+          "why": "the 57 mm pack clashes with the duct walls at tray height (interference gate); clearing the duct tops needs 9.4 mm tray legs and M1.4x16 screws, and raises the CG over the props"
+        },
+        {
+          "evidence": "",
+          "value": "deck screwed onto the duct webs",
+          "why": "a second print and four more screws for a kid to fumble, and the CG still sits above the prop plane"
+        }
+      ],
+      "summary": "The 1S pack lies along x under the base plate, held by one 10 mm strap through two hub slots; the strap passes over the hub under the AIO, which sits on 4.5 mm posts to make room.",
+      "title": "Battery hangs under the hub on a strap",
+      "when": "2026-10-07T18:32:01Z"
+    },
+    {
+      "body": "",
+      "claims_changed": [],
+      "evidence": [],
+      "id": "build-writes-the-print-meshes",
+      "params_changed": [],
+      "rejected": [
+        {
+          "evidence": "",
+          "value": "separate generator script",
+          "why": "the mesh gates would read a file whose freshness nothing checks against the model"
+        }
+      ],
+      "summary": "build() generates the frame with manifold3d and writes build/print/frame.stl (content-addressed) in the same call that measures its volume, bbox and interferences, so the numbers gates read and the file the slicer reads cannot disagree.",
+      "title": "build() writes the print meshes",
+      "when": "2026-10-07T18:32:01Z"
+    }
+  ],
+  "gaps": [],
+  "inputs": [],
+  "locator_problems": [],
+  "meta": {
+    "built": "2026-10-08T22:37:20Z",
+    "created": "2026-10-07T18:15:03Z",
+    "generated": "nopekit site build — an output of the ledger and its verdict cache, not a source. If a number here is wrong, the ledger is wrong.",
+    "judgement_digest": "c16a5aa7cd6721617d958ca8dc168093b3425601c52293d3930ee936dd8f0b75",
+    "model_entry": "model/petgasus.py",
+    "name": "PETGasusDrone",
+    "packs": [
+      "fdm-print",
+      "cad-solid",
+      "sourcing"
+    ],
+    "records_digest": "56cca0f5752fd0e8e139476385048ff52f81d33d3d81e5e62336e69c1b2d8547",
+    "revision": "v0.1",
+    "spine_version": "0.1.0",
+    "stale": false,
+    "stale_reason": "",
+    "summary": "Kid-friendly no-solder 3D-printed (PETG) ducted micro drone, line-of-sight, < $150 electronics"
+  },
+  "outcome_words": {
+    "errored": "errored",
+    "fail": "fail",
+    "outside-context": "outside operating context",
+    "pass": "pass",
+    "skipped": "skipped",
+    "unqualified": "unqualified"
+  },
+  "params": [
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_mass_g",
+      "model_error": "",
+      "name": "motor_mass_g",
+      "rationale": "g per motor, BetaFPV 1102 21000KV (2026) - the motors in the Meteor75 Pro II kit (vendor listing). JST1.25 3-pin plug: they plug into the AIO, no solder.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.85
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_body_d",
+      "model_error": "",
+      "name": "motor_body_d",
+      "rationale": "mm, envelope of the 1102 bell for the seat and clearance checks. The listing's '11 mm' is the stator; the bell is wider. ASSUMPTION until one is measured with calipers (claim A3 / P4).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 14.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_h",
+      "model_error": "",
+      "name": "motor_h",
+      "rationale": "mm, 1102 (2026) base to shaft tip (listing).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 13.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_hole_circle_d",
+      "model_error": "",
+      "name": "motor_hole_circle_d",
+      "rationale": "mm, 1102 mount: 3 x M1.4 on a 6.6 mm circle (vendor). Shared by most 08xx/10xx/11xx whoop motors, so the frame takes other motors later.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.6
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_screw_clear_d",
+      "model_error": "",
+      "name": "motor_screw_clear_d",
+      "rationale": "mm, clearance for M1.4. 1.5 is the nominal free fit; FDM holes print about 0.1-0.2 mm small, and a screw that has to be forced through cracks a 1.8 mm seat.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.7
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "petgasus.motor_screws"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_screw_len",
+      "model_error": "",
+      "name": "motor_screw_len",
+      "rationale": "mm, the M1.4 x 3 screws that come with the motors.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_centre_relief_d",
+      "model_error": "",
+      "name": "motor_centre_relief_d",
+      "rationale": "mm, hole under the motor for the shaft end and its C-clip. Sized by the seat, not the clip: the screw holes' inner edges sit 2.45 mm from the centre, and 2.3 leaves a 1.3 mm web (3 beads, cad.wall_thickness). 3.5 lost: a 0.70 mm web. The clip's real size is part of A3 - if it does not clear, open the hole with a 3 mm drill and expect C7 to flag the thinner web.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_kv",
+      "model_error": "",
+      "name": "motor_kv",
+      "rationale": "rpm/V, the kit's 1102 21000KV (2026).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 21000.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_thrust_max_g",
+      "model_error": "",
+      "name": "motor_thrust_max_g",
+      "rationale": "g per motor, full throttle, 1S: BetaFPV's published test of the 1102 22000KV on a GF-1635 40 mm 3-blade. The 2026 21000KV has no published test; this sibling's 40 mm figure is used as a FLOOR for the kit's 45 mm props (a bigger disc on the same motor makes more static thrust).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 46.3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_thrust_test_v",
+      "model_error": "",
+      "name": "motor_thrust_test_v",
+      "rationale": "V of that thrust test. NOT STATED by the vendor - ASSUMPTION A6. If the test was at 3.7 V the real margin is ~30% better than modelled.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.2
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_d",
+      "model_error": "",
+      "name": "prop_d",
+      "rationale": "mm, Gemfan 1811 3-blade, 1.5 mm shaft: the props that come in the kit. 40 mm lost: it needs a separate purchase and gives up disc area.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 45.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_mass_g",
+      "model_error": "",
+      "name": "prop_mass_g",
+      "rationale": "g per prop, GF 1811 (vendor).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.32
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_hub_drop",
+      "model_error": "",
+      "name": "prop_hub_drop",
+      "rationale": "mm, prop plane below the motor's top: the hub presses down onto the shaft.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_mass_g",
+      "model_error": "",
+      "name": "fc_mass_g",
+      "rationale": "g, BetaFPV Matrix 1S 3-in-1 (FC + 12 A ESC + ELRS receiver), with its BT2.0 lead (vendor). No video transmitter: nothing to license or burn out.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.2
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_hole_spacing",
+      "model_error": "",
+      "name": "fc_hole_spacing",
+      "rationale": "mm, Matrix 1S 3IN1 square mounting pattern (vendor: 25.5 x 25.5).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 25.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_board_side",
+      "model_error": "",
+      "name": "fc_board_side",
+      "rationale": "mm, PCB edge, square. ASSUMPTION A4: not published; whoop boards on a 25.5 pattern run 28-30 mm. Measure before printing.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 30.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_pcb_t",
+      "model_error": "",
+      "name": "fc_pcb_t",
+      "rationale": "mm, AIO board thickness, for the screw stack.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_top_components_h",
+      "model_error": "",
+      "name": "fc_top_components_h",
+      "rationale": "mm, tallest part on the AIO's top face; only the envelope uses it.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_mass_g",
+      "model_error": "",
+      "name": "battery_mass_g",
+      "rationale": "g, BetaFPV LAVA II 1S 320 mAh LiHV, BT2.0 (vendor; Amazon B0GJSTMT8J, 5-pack).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 8.2
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_l",
+      "model_error": "",
+      "name": "battery_l",
+      "rationale": "mm, LAVA II 320 (vendor 64 x 10 x 6).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 64.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_w",
+      "model_error": "",
+      "name": "battery_w",
+      "rationale": "mm.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 10.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_h",
+      "model_error": "",
+      "name": "battery_h",
+      "rationale": "mm.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_mah",
+      "model_error": "",
+      "name": "battery_mah",
+      "rationale": "mAh. 480 mAh lost: 4.4 g heavier, thrust-to-weight 2.85 against C1's 3.0 - it still fits the strap (strap_bay_w) for longer, gentler flights.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 320.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.battery_v_nom",
+      "model_error": "",
+      "name": "battery_v_nom",
+      "rationale": "V, LiHV nominal (4.35 V full).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.misc_mass_g",
+      "model_error": "",
+      "name": "misc_mass_g",
+      "rationale": "g, screws, strap, the FC antenna and wire. A guess with a margin in it.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "petgasus.motor_screws"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.plate_t",
+      "model_error": "",
+      "name": "plate_t",
+      "rationale": "mm, base plate, arms and motor seats. 9 layers at 0.2: three solid top and bottom layers either side of a core. The motor's own M1.4 x 3 screws must still reach 1 mm into the motor through it (claim C9).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.arm_w",
+      "model_error": "",
+      "name": "arm_w",
+      "rationale": "mm, arm width at plate level.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 5.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.rib_w",
+      "model_error": "",
+      "name": "rib_w",
+      "rationale": "mm, the stiffening rib along each arm: 3 beads of 0.42.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.rib_h",
+      "model_error": "",
+      "name": "rib_h",
+      "rationale": "mm above the plate. Stiffness goes as h^3, so this rib is most of the arm's bending stiffness; it stops below the motor seat so it never meets a prop.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.spoke_w",
+      "model_error": "",
+      "name": "spoke_w",
+      "rationale": "mm, flat flange under each spoke's rib (5 beads). The rib carries the bending; 2.5 lost: 0.3 g for nothing the FE could see.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_tip_gap",
+      "model_error": "",
+      "name": "prop_tip_gap",
+      "rationale": "mm, radial gap prop tip to duct wall. Under ~0.75 a 1 mm print error or a bent prop strikes; over ~2 the duct stops helping thrust.",
+      "record": "",
+      "rejected": [
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "0.5 mm",
+          "why": "inside one print error plus prop flex of a strike"
+        }
+      ],
+      "source": "",
+      "tags": [],
+      "units": "mm",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.duct_wall",
+      "model_error": "",
+      "name": "duct_wall",
+      "rationale": "mm, 3 beads at 0.42 mm: the fdm min-wall rule.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.duct_above_prop",
+      "model_error": "",
+      "name": "duct_above_prop",
+      "rationale": "mm of duct above the prop plane: the lip that fingers and furniture meet before the tips. 3.0, 2.0 and 1.5 lost: 0.8, 0.5 and 0.25 g for no safety a kid would notice - the ring around the tips is the guard.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.duct_lattice",
+      "model_error": "",
+      "name": "duct_lattice",
+      "rationale": "Below the prop band the duct wall is a 45-degree diamond lattice. A solid wall made the ducts ~14 g, over half the frame (see PARAMS).",
+      "record": "",
+      "rejected": [
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "solid duct wall",
+          "why": "~14 g of ducts: frame 20.5 g, thrust-to-weight 2.2"
+        },
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "6 small diamond windows",
+          "why": "took 0.3 g out; not worth the print time"
+        },
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "round windows",
+          "why": "their tops are bridges/overhangs that need support"
+        }
+      ],
+      "source": "",
+      "tags": [],
+      "units": "bool",
+      "value": true
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.lattice_overhang_deg",
+      "model_error": "",
+      "name": "lattice_overhang_deg",
+      "rationale": "Steepest lattice window edge, degrees from vertical: 5 under the 45 deg no-support rule, so slicer rounding never lands a face on the wrong side of it.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 40.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.lattice_above_members",
+      "model_error": "",
+      "name": "lattice_above_members",
+      "rationale": "Start the lattice above the tallest member that joins the duct, instead of above the plate with solid patches where members join.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": false
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.joint_margin",
+      "model_error": "",
+      "name": "joint_margin",
+      "rationale": "mm of solid duct wall kept either side of a spoke or web where it joins the duct (no window there). One strut width (1.3) lost: 0.9 g of extra wall.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.4
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.lattice_margin",
+      "model_error": "",
+      "name": "lattice_margin",
+      "rationale": "mm of solid wall between the plate's top face and the lattice (2 layers).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.4
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.lattice_strut_w",
+      "model_error": "",
+      "name": "lattice_strut_w",
+      "rationale": "mm, lattice strut width square to the strut: 3 beads, same rule as the wall.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.duct_band_below_prop",
+      "model_error": "",
+      "name": "duct_band_below_prop",
+      "rationale": "mm of solid duct wall below the prop plane, where the tips run (the sweep is +-1.5 mm). 3.0 lost: 0.7 g, which put thrust-to-weight under 3.0 once the lattice's flat-ceiling half-cells were taken out.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.foot_w",
+      "model_error": "",
+      "name": "foot_w",
+      "rationale": "mm, flange at each duct's foot. Equal to the wall, i.e. no flange: a 5 mm brim does the bed-adhesion job and is snipped off; a flange stays and weighs.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.3
+    },
+    {
+      "changed_in": "plate-layout-drawn-from-the-topology-optimiser",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.web_h",
+      "model_error": "",
+      "name": "web_h",
+      "rationale": "mm, height of the wall joining neighbouring ducts. The cheapest stiffness in the frame: 4.0 -> 6.0 took the first mode from 213 to 283 Hz for 0.12 g, because the duct ring IS the structure in the spoked layout.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_yaw_deg",
+      "model_error": "",
+      "name": "fc_yaw_deg",
+      "rationale": "The AIO is mounted turned 45 degrees so its corners point between the ducts rather than into them; that is worth ~6 mm of wheelbase. Betaflight then needs board alignment yaw = 45 (build guide step, physical claim P3).",
+      "record": "",
+      "rejected": [
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "0 deg",
+          "why": "AIO corners point into the ducts; wheelbase grows ~6 mm to clear them"
+        }
+      ],
+      "source": "",
+      "tags": [],
+      "units": "deg",
+      "value": 45.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_post_od",
+      "model_error": "",
+      "name": "fc_post_od",
+      "rationale": "mm, printed posts the AIO sits on. 3.6 lost: 1.25 mm of wall round the 1.1 mm pilot, under the 1.26 mm process minimum (cad.wall_thickness).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.hub_t",
+      "model_error": "",
+      "name": "hub_t",
+      "rationale": "mm, the hub plate under the AIO: 7 layers at 0.2. It carries the battery strap and shields the board, not the arm loads. 1.2 lost: under the 1.26 mm process minimum (cad.wall_thickness), and 1.3 is not a whole number of layers.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.4
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.min_member_w",
+      "model_error": "",
+      "name": "min_member_w",
+      "rationale": "mm, narrowest optimised member that gets printed (4 beads). Narrower ones are removed from the extracted outline, not printed as threads. 2.0 lost: at the hub-excluded budget the optimiser's deep members are ~1.5 mm blades, and the open deleted them - seats came loose, first mode 7 Hz.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.6
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.hub_holes",
+      "model_error": "",
+      "name": "hub_holes",
+      "rationale": "Four triangular lightening holes in the hub, clear of the strap and posts.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": true
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.hub_hole_margin",
+      "model_error": "",
+      "name": "hub_hole_margin",
+      "rationale": "mm of hub plate kept round each lightening hole (bars to the posts, strap path, rim). 3.0 lost: 0.1 g, after phasing the duct lattice for the wire ports cost 0.26 g.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.hub_margin",
+      "model_error": "",
+      "name": "hub_margin",
+      "rationale": "mm of plate around each FC post in the hub outline. 1.5 lost: 0.1 g the strap and the posts did not need.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.2
+    },
+    {
+      "changed_in": "battery-hangs-under-the-hub-on-a-strap",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_post_h",
+      "model_error": "",
+      "name": "fc_post_h",
+      "rationale": "mm above the plate. The battery strap runs over the hub UNDER the AIO, so this is strap_t plus 3 mm for the AIO's bottom-side parts. 3.0 lost: it left 1.5 mm, and the strap would press on the ESC's FETs.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_pilot_d",
+      "model_error": "",
+      "name": "fc_pilot_d",
+      "rationale": "mm, pilot for an M1.4 screw threading into PETG.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.1
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_screw_len",
+      "model_error": "",
+      "name": "fc_screw_len",
+      "rationale": "mm, M1.4 x 6 screws down through the AIO into the posts (claim C8).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_board_clear",
+      "model_error": "",
+      "name": "fc_board_clear",
+      "rationale": "mm minimum between the AIO's edge and any duct wall, in plan.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.strap_t",
+      "model_error": "",
+      "name": "strap_t",
+      "rationale": "mm, thickness of a hook-and-loop strap where it laps over the hub.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.strap_w",
+      "model_error": "",
+      "name": "strap_w",
+      "rationale": "mm, a 10 mm hook-and-loop battery strap.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 10.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.strap_bay_w",
+      "model_error": "",
+      "name": "strap_bay_w",
+      "rationale": "mm between the strap slots' inner edges: the widest pack the strap straddles (LAVA II 480 is 15.5 wide), so the 320 and the 480 both fit.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 16.0
+    },
+    {
+      "changed_in": "battery-hangs-under-the-hub-on-a-strap",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.strap_slot_w",
+      "model_error": "",
+      "name": "strap_slot_w",
+      "rationale": "mm, slot across the strap's thickness: 1.5 strap + print shrink + fumbling.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.2
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_base_d",
+      "model_error": "",
+      "name": "motor_base_d",
+      "rationale": "mm, the 1102's stator mount/base (listing: '11 mm', the stator size).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 11.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_base_h",
+      "model_error": "",
+      "name": "motor_base_h",
+      "rationale": "mm, base height below the bell. Envelope (A3).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.shaft_d",
+      "model_error": "",
+      "name": "shaft_d",
+      "rationale": "mm, 1102 shaft (listing).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.5
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.shaft_exposed",
+      "model_error": "",
+      "name": "shaft_exposed",
+      "rationale": "mm of shaft above the bell (listing: shaft length 5 mm).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 5.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "petgasus.motor_leads"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.motor_lead_len",
+      "model_error": "",
+      "name": "motor_lead_len",
+      "rationale": "mm, the 1102 (2026)'s lead to its plug (listing: 37 mm cable).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 37.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.lead_d",
+      "model_error": "",
+      "name": "lead_d",
+      "rationale": "mm, a motor lead's 3 x 30 AWG wires bundled.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.2
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_hub_d",
+      "model_error": "",
+      "name": "prop_hub_d",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 5.0
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_blades",
+      "model_error": "",
+      "name": "prop_blades",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_chord",
+      "model_error": "",
+      "name": "prop_chord",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.0
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_blade_t",
+      "model_error": "",
+      "name": "prop_blade_t",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_pitch_deg",
+      "model_error": "",
+      "name": "prop_pitch_deg",
+      "rationale": "GF 1811 3-blade, drawn: hub, three flat pitched blades. Shape for the view; the clearance it is checked for is its swept disc and the blade corners.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 12.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.fc_hole_d",
+      "model_error": "",
+      "name": "fc_hole_d",
+      "rationale": "mm, the AIO's mounting holes (M1.4 clearance). Assumed.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.6
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.socket_w",
+      "model_error": "",
+      "name": "socket_w",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.5
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.socket_depth",
+      "model_error": "",
+      "name": "socket_depth",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.socket_h",
+      "model_error": "",
+      "name": "socket_h",
+      "rationale": "mm, a JST 1.25 3-pin motor socket on the AIO's top face, at the edge facing its motor. Position assumed; P4 checks the board that arrives.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.5
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.screw_d",
+      "model_error": "",
+      "name": "screw_d",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.4
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.screw_head_d",
+      "model_error": "",
+      "name": "screw_head_d",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.6
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.screw_head_h",
+      "model_error": "",
+      "name": "screw_head_h",
+      "rationale": "mm, M1.4 pan-head screws.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.8
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bt20_len",
+      "model_error": "",
+      "name": "bt20_len",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 6.5
+    },
+    {
+      "changed_in": "",
+      "defended": false,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bt20_w",
+      "model_error": "",
+      "name": "bt20_w",
+      "rationale": "",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 5.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bt20_h",
+      "model_error": "",
+      "name": "bt20_h",
+      "rationale": "mm, one half of a BT2.0 plug pair.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.bed_fit"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bed_x_mm",
+      "model_error": "",
+      "name": "bed_x_mm",
+      "rationale": "mm, Snapmaker U1 build plate X (user: 270 mm bed).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 270.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.bed_fit"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bed_y_mm",
+      "model_error": "",
+      "name": "bed_y_mm",
+      "rationale": "mm, Snapmaker U1 build plate Y.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 270.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.bed_fit"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bed_z_mm",
+      "model_error": "",
+      "name": "bed_z_mm",
+      "rationale": "Snapmaker U1 build volume (user: 270 mm bed).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 270.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.bed_fit"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.brim_mm",
+      "model_error": "",
+      "name": "brim_mm",
+      "rationale": "mm of brim per side: the duct rims touch the bed on a 1.3 mm wall; a brim keeps them down and is snipped off.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 5.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.min_wall",
+        "fdm.print_time_est",
+        "fdm.process_model_valid"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.nozzle_d_mm",
+      "model_error": "",
+      "name": "nozzle_d_mm",
+      "rationale": "mm, the U1's stock nozzle.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.4
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.min_wall",
+        "fdm.print_time_est",
+        "fdm.process_model_valid"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.extrusion_width_mm",
+      "model_error": "",
+      "name": "extrusion_width_mm",
+      "rationale": "mm, 1.05 x nozzle - a stock profile's line width; 3 of them is the wall rule.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.42
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est",
+        "fdm.process_model_valid"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.layer_height_mm",
+      "model_error": "",
+      "name": "layer_height_mm",
+      "rationale": "mm, 0.2: half the nozzle, the PETG default; plate_t and hub_t are whole layers.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.2
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.perimeters",
+      "model_error": "",
+      "name": "perimeters",
+      "rationale": "Wall loops. Every thin wall here is designed as exactly 3 of them.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.infill_fraction",
+      "model_error": "",
+      "name": "infill_fraction",
+      "rationale": "Thin walls everywhere: there is no room for infill; treat as solid.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.print_speed_mm_s",
+      "model_error": "",
+      "name": "print_speed_mm_s",
+      "rationale": "mm/s nominal; an ordinary PETG speed (the estimate derates it).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 60.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.max_print_time_h",
+      "model_error": "",
+      "name": "max_print_time_h",
+      "rationale": "An afternoon with a 10-year-old: a print that runs overnight is a print he does not see.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "fdm.print_time_est"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.max_filament_g",
+      "model_error": "",
+      "name": "max_filament_g",
+      "rationale": "g, one spool: the frame uses ~2% of it.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1000.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.duct_thrust_factor",
+      "model_error": "",
+      "name": "duct_thrust_factor",
+      "rationale": "Static thrust with the duct relative to the open-prop test. Tight ducts can add 10-20%; a printed duct with a 1 mm gap and no shaped lip is assumed to cost 10% instead. ASSUMPTION (A1).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.9
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.hover_eff_g_per_w",
+      "model_error": "",
+      "name": "hover_eff_g_per_w",
+      "rationale": "g of thrust per electrical watt at hover. ASSUMPTION (A2): typical of 0802 class motors on 40 mm props; refine from a blackbox log of a real hover.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.usable_capacity_frac",
+      "model_error": "",
+      "name": "usable_capacity_frac",
+      "rationale": "Land at ~3.5 V/cell: 80% of rated capacity, kinder to cheap 1S packs.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.8
+    },
+    {
+      "changed_in": "plate-layout-drawn-from-the-topology-optimiser",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [
+        "petgasus.frame_mode"
+      ],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.plate_layout",
+      "model_error": "",
+      "name": "plate_layout",
+      "rationale": "'arms' = the hand-drawn first layout (hub-to-motor arms, 3 flat spokes); 'spoked' = the layout the topology optimiser found (see geometry.members and tools/run_topopt.py). 'arms' lost: first mode ~160 Hz against C4's 200.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": "spoked"
+    },
+    {
+      "changed_in": "plate-layout-drawn-from-the-topology-optimiser",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.spoke_count",
+      "model_error": "",
+      "name": "spoke_count",
+      "rationale": "Spokes per motor seat. The optimiser drew 5; 5 lost: 0.6 g more for a thrust-to-weight of 3.025 - no margin on C1. 3 lost: crash stiffness 0.85-1.18x the hand-drawn frame's.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4
+    },
+    {
+      "changed_in": "plate-layout-drawn-from-the-topology-optimiser",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.spoke_phase_deg",
+      "model_error": "",
+      "name": "spoke_phase_deg",
+      "rationale": "Angle of the first spoke from the seat-to-centre direction. 45 (spokes on the diagonals of the seat) lost nothing; 0 (one spoke straight at the hub, one straight out) gave the same mode and half the crash stiffness (1.0x vs 2.2x).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 45.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bridge_w",
+      "model_error": "",
+      "name": "bridge_w",
+      "rationale": "mm, flat flange under each hub-to-web bridge's rib. 6.0 lost: 0.1 g for 4 Hz of first mode.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_h",
+      "model_error": "",
+      "name": "topopt_h",
+      "rationale": "mm, FE grid size. 0.5 halves the error and quadruples the run time.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.75
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_rmin",
+      "model_error": "",
+      "name": "topopt_rmin",
+      "rationale": "mm, density-filter radius: the optimiser's length scale. 1.6 lost: with projection it drew members under 1 mm wide.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 2.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_block_mm",
+      "model_error": "",
+      "name": "prop_block_mm",
+      "rationale": "mm of equivalent depth charged per mm^2 of plate under a prop, on top of its mass: blocking downwash costs like 2 x plate_t of material. Replaced 'prop_area_cost = 3' (a multiplier on mass), which starved every spoke.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 3.6
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.bounce_g",
+      "model_error": "",
+      "name": "bounce_g",
+      "rationale": "g of vertical acceleration on the fixed masses for the bending load case. The problem is linear, so the value only scales compliance; 1 g keeps it readable.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.crash_load_n",
+      "model_error": "",
+      "name": "crash_load_n",
+      "rationale": "N, a hit on a duct rim (in-plane). ~ the quad at 4 m/s stopping in ~10 ms.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 20.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_w_thrust",
+      "model_error": "",
+      "name": "topopt_w_thrust",
+      "rationale": "Objective weight on bounce stiffness (the vibration mode); see topopt_w_crash.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_w_crash",
+      "model_error": "",
+      "name": "topopt_w_crash",
+      "rationale": "Objective weights: bounce stiffness (the vibration mode) vs. crash stiffness. 2:1 for bounce lost: mode 434 Hz but crash stiffness fell to 0.31x the hand-drawn frame's, and a 10-year-old's drone is mostly a crash-test article.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_iters",
+      "model_error": "",
+      "name": "topopt_iters",
+      "rationale": "Optimiser iterations: 20 per projection-sharpness step (beta 1..16), then until it stops moving.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 120
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_member_h",
+      "model_error": "",
+      "name": "topopt_member_h",
+      "rationale": "mm, height of an optimised member: plate_t + rib_h, the baseline rib's height, so the two layouts are compared at the same depth. A flat 1.8 mm optimised plate lost: bending stiffness goes as depth cubed, and the first run's flat layout bounced at 116 Hz against the ribbed baseline's 217.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 4.8
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.member_clear",
+      "model_error": "",
+      "name": "member_clear",
+      "rationale": "mm a deep member keeps from the motor's base and from the AIO footprint, where the plate stays plate_t thin (motor seat; strap path under the board).",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_mass_frac",
+      "model_error": "",
+      "name": "topopt_mass_frac",
+      "rationale": "Optimised plate mass as a fraction of the baseline plate's.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.0
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.topopt_smooth",
+      "model_error": "",
+      "name": "topopt_smooth",
+      "rationale": "mm, corner rounding on the extracted outline; also deletes slivers < 0.8 mm.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 0.4
+    },
+    {
+      "changed_in": "",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.prop_sweep_half_h",
+      "model_error": "",
+      "name": "prop_sweep_half_h",
+      "rationale": "mm, half-height of the band the prop occupies, for the clearance check.",
+      "record": "",
+      "rejected": [],
+      "source": "",
+      "tags": [],
+      "units": "",
+      "value": 1.5
+    }
+  ],
+  "phrases": {
+    "disagree": "the resolver and the verdicts disagree — a defect to report",
+    "invalidated": "invalidated",
+    "judgment_blurb": "Each stays with the person or institution it names, who settles it in their own shell — no evaluator here does. Each row says whether its authority has recorded it.",
+    "judgment_title": "Expert judgments",
+    "need": {
+      "abandoned": "abandoned",
+      "deferred": "deferred",
+      "installing": "installing",
+      "open": "identified",
+      "proposed": "proposed",
+      "satisfied": "satisfied"
+    },
+    "outcome_hint": {
+      "errored": "the evaluator crashed — nothing was evaluated, and the evaluator itself is broken",
+      "fail": "the evaluator ran and failed",
+      "outside-context": "the evaluator passed on inputs outside the range it was qualified on — the pass does not count; a fail there would",
+      "pass": "the evaluator ran and passed",
+      "skipped": "nothing was evaluated: its tool is missing here, it skipped itself on its input, or a prerequisite is not established"
+    },
+    "result_counts": "it counts",
+    "result_not_counted": "it does not count",
+    "result_recorded": "A physical result was recorded:"
+  },
+  "readiness": {
+    "all_required_checked": false,
+    "blocking": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "C10"
+    ],
+    "by_key": {
+      "assumed": 0,
+      "checked": 11,
+      "failing": 1,
+      "gap": 6,
+      "open": 0,
+      "pending_build": 5,
+      "skipped": 0,
+      "stale": 0
+    },
+    "counts": {
+      "asserted": 0,
+      "blocked": 0,
+      "fail": 1,
+      "pass": 11,
+      "pending": 0,
+      "refuted": 0,
+      "stale": 0,
+      "unclaimed": 6,
+      "unverified": 5,
+      "verified": 0
+    },
+    "errored": 0,
+    "kinds": {
+      "assumption": 6,
+      "measurable": 12,
+      "physical": 5
+    },
+    "milestones": {
+      "order-parts": {
+        "exports": 0,
+        "last_export": null,
+        "missing": [],
+        "ready": false,
+        "required": [
+          "C1",
+          "C2",
+          "C3",
+          "C10",
+          "A1",
+          "A2",
+          "A5",
+          "A6"
+        ],
+        "unresolved": [
+          "C10",
+          "A1",
+          "A2",
+          "A5",
+          "A6"
+        ]
+      },
+      "print-v1": {
+        "exports": 0,
+        "last_export": null,
+        "missing": [],
+        "ready": false,
+        "required": [
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "C11",
+          "A3",
+          "A4"
+        ],
+        "unresolved": [
+          "A3",
+          "A4"
+        ]
+      }
+    },
+    "n_claims": 23,
+    "n_critical": 23,
+    "n_gaps": 0,
+    "n_gates": 30,
+    "ready": false,
+    "tally": [
+      {
+        "errored": 0,
+        "key": "checked",
+        "label": "11 checked",
+        "n": 11,
+        "status": "pass"
+      },
+      {
+        "errored": 0,
+        "key": "failing",
+        "label": "1 failing",
+        "n": 1,
+        "status": "fail"
+      },
+      {
+        "errored": 0,
+        "key": "gap",
+        "label": "6 gaps",
+        "n": 6,
+        "status": "unclaimed"
+      },
+      {
+        "errored": 0,
+        "key": "pending_build",
+        "label": "5 pending build",
+        "n": 5,
+        "status": "unverified"
+      }
+    ],
+    "unresolved": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "C10",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5"
+    ],
+    "verdict": "v0.1 is NOT ready: 12 of 23 required claims are unresolved — 1 failing (C10); 6 gaps (A1, A2, A3, A4, +2 more); 5 pending build (P1, P2, P3, P4, +1 more). 11 of 23 claims are checked against the current inputs. Pending build: 5 claims need an article (P1, P2, P3, P4, +1 more). No claim is checked on any article."
+  },
+  "rebuild": [],
+  "verdicts": [
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "printability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.00% of surface past the 45 deg limit vs 0.50% allowed (worst face 39.7 deg, 0 faces, 0.0 mm^2); 0 of 1 past the limit",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/fdm-overhang-parts.txt"
+      ],
+      "fresh": true,
+      "gate": "fdm.overhang",
+      "limit": 0.005,
+      "locators": [],
+      "margin": 1.0,
+      "margin_why": "",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "55d7ef5dd4bd9f91a68faeaa75708205f0c25391263d581f52d5e8656fa07d66",
+      "settles": "overhang angle",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "area fraction",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "printability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame has no ceiling face at or past 80 deg off the bed — nothing to bridge; 0 of 1 past the limit; bridges judged at 30 mm, cantilevers at 2 mm",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/fdm-bridge-span-parts.txt"
+      ],
+      "fresh": true,
+      "gate": "fdm.bridge_span",
+      "limit": 30.0,
+      "locators": [],
+      "margin": 1.0,
+      "margin_why": "",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "82bf22b0bbf07c3db75a27d4d9530ed1da375c9d3f018660b6e5aac03cd329c1",
+      "settles": "bridge span",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 92766.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "printability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.41x the usable build volume in XY (107x107x14 mm as modelled); 0 of 1 past the limit; 260x260 usable (270x270 bed - 2x5.0 brim) x 270 Z",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/fdm-bed-fit-parts.txt"
+      ],
+      "fresh": true,
+      "gate": "fdm.bed_fit",
+      "limit": 1.0,
+      "locators": [],
+      "margin": 0.587,
+      "margin_why": "",
+      "measured": 0.413,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "73dd0a5dc351e4301baf26a04f288f084ea19d131bbd410a31a98725aca3f2f1",
+      "settles": "bed fit",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "utilisation",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T20:51:14Z"
+    },
+    {
+      "age_s": 98350.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "printability"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "thinnest section 1.30 mm = 3.1 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "fdm.min_wall",
+      "limit": 1.26,
+      "locators": [],
+      "margin": 0.031746,
+      "margin_why": "",
+      "measured": 1.3,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "ce36be1b6d41c675d5de70baa095dc6c0c2892c1d9b5acc9aeddbfc39504398b",
+      "settles": "wall thickness",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T19:18:10Z"
+    },
+    {
+      "age_s": 93902.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "structural",
+        "printability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "load at 0 deg to the layer plane (build axis from the model): stress utilisation 0.19 (utilisation) / knockdown 1.00 = 0.19 vs 1.00 (layer-normal strength 0.50x in-plane)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "fdm.layer_alignment",
+      "limit": 1.0,
+      "locators": [],
+      "margin": 0.809,
+      "margin_why": "",
+      "measured": 0.191,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "36d56b31bb230d653a89b7f4db8122774131a5ec1c66f702380e759b6c47f382",
+      "settles": "layer-normal load alignment",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "derated utilisation",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T20:32:18Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "cost",
+        "printability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "ESTIMATE ~1.7 h of 3 h, ~18 g of 1000 g (14.2 cm^3 at 100% infill, 3x0.42 mm shell on 26371 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.56 of its ceiling. Not a slice.",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "fdm.print_time_est",
+      "limit": 1.0,
+      "locators": [],
+      "margin": 0.444,
+      "margin_why": "",
+      "measured": 0.556,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "f8173f452b2cab1f692397bdc063d102bca1c12a1c2bb496e73d7d952cafd6c9",
+      "settles": "print time",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "of limit",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "manufacturability",
+        "fdm",
+        "additive",
+        "printability",
+        "structural",
+        "process-validity"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "process model applies — extent 107 mm reads as millimetres; volume fills 0.09 of the bbox; layer/nozzle 0.50 inside 0.1-0.75; width/nozzle 1.05 inside 0.8-2.0; thinnest section 3.2 beads wide",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "fdm.process_model_valid",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "fdm-print",
+      "passed": true,
+      "rho": "774e6d60c06c1755298e5464b1a378fdee73e5b219a445200bd298f1fc08de90",
+      "settles": "process model validity",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "problems",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 55.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": false,
+      "claims": [
+        "geometry",
+        "envelope",
+        "packaging",
+        "mechanical",
+        "cad"
+      ],
+      "comparator": "",
+      "cpu_s": 0.0,
+      "detail": "",
+      "duration_s": 0.002653,
+      "error": "",
+      "evidence": [],
+      "fresh": false,
+      "gate": "cad.bounding",
+      "limit": null,
+      "locators": [],
+      "margin": null,
+      "margin_why": "no-verdict",
+      "measured": null,
+      "ok": false,
+      "pack": "cad-solid",
+      "passed": false,
+      "rho": "01c09409ef945dcd1b79fd83d8be2d40dd6208c8ac275dc1d2cedf3a21c52ed2",
+      "settles": "bounding box",
+      "skip_reason": "assembly_bbox_mm is absent; assembly_bbox_limit_mm is absent — nothing to compare, so nothing is claimed. This gate measures the ASSEMBLY: it reads cad.assembly_bbox_mm/assembly_bbox_mm/bbox_mm (an...",
+      "skipped": true,
+      "stale_reason": "",
+      "status": "skipped",
+      "tier": 0,
+      "unanchored": true,
+      "units": "",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T22:36:25Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "geometry",
+        "mesh",
+        "cad",
+        "manufacturability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 24740 faces",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "cad.watertight",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "cad-solid",
+      "passed": true,
+      "rho": "3f2cfc23c212c6b9bae44921b5f32939445b4682091470cda3f2bfe88dcbf8ae",
+      "settles": "mesh watertightness",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "edges",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "geometry",
+        "mesh",
+        "cad",
+        "manufacturability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 of 1 part(s) are not volumes, limit 0 (total 14206 mm^3 enclosed)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "cad.is_volume",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "cad-solid",
+      "passed": true,
+      "rho": "7eab92462622c37f778b40be6b27e44e023f26a842da21d4495cb40a7514fab9",
+      "settles": "solid validity",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "parts",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "geometry",
+        "mesh",
+        "cad",
+        "manufacturability"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 repair(s) needed across 1 part(s), limit 0 — worst frame: welded 0 vertex/vertices at 0.0001 mm, dropped 0 face(s) below 1e-08 mm^2 over 1 pass(es)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "cad.degenerate_faces",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "cad-solid",
+      "passed": true,
+      "rho": "966d45d58b7fb3526fc82b625ae24a9fc38fb921e24acd09bc6456af40160680",
+      "settles": "degenerate faces",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "repairs",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 86633.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "geometry",
+        "mesh",
+        "cad",
+        "manufacturability",
+        "wall"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "thinnest wall 1.299 mm on frame at (26.201, -53.541, 4.7) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/cad-solid/wall_thickness.json"
+      ],
+      "fresh": true,
+      "gate": "cad.wall_thickness",
+      "limit": 1.26,
+      "locators": [],
+      "margin": 0.0311905,
+      "margin_why": "",
+      "measured": 1.2993,
+      "ok": true,
+      "pack": "cad-solid",
+      "passed": true,
+      "rho": "5c8b48e61f6afeb53c4eb6f3d5b0284f18590a2ef7b95fb0999b742570c8d392",
+      "settles": "minimum wall thickness",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 1,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-07T22:33:27Z"
+    },
+    {
+      "age_s": 55.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": false,
+      "claims": [
+        "geometry",
+        "fit",
+        "assembly",
+        "interference",
+        "mechanical",
+        "cad"
+      ],
+      "comparator": "",
+      "cpu_s": 0.0,
+      "detail": "",
+      "duration_s": 0.00782,
+      "error": "",
+      "evidence": [],
+      "fresh": false,
+      "gate": "cad.clash",
+      "limit": null,
+      "locators": [],
+      "margin": null,
+      "margin_why": "no-verdict",
+      "measured": null,
+      "ok": false,
+      "pack": "cad-solid",
+      "passed": false,
+      "rho": "eaee72b4fe4ab24481f8a0c780d940095aa3ad7c566980b9a3493e7342eadb9b",
+      "settles": "part interference",
+      "skip_reason": "only 1 part(s) in the projection — interference needs at least two placed solids; a single-part check would pass vacuously",
+      "skipped": true,
+      "stale_reason": "",
+      "status": "skipped",
+      "tier": 1,
+      "unanchored": true,
+      "units": "",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T22:36:25Z"
+    },
+    {
+      "age_s": 55.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": false,
+      "claims": [
+        "geometry",
+        "fit",
+        "assembly",
+        "connectivity",
+        "linkage",
+        "mechanical",
+        "cad"
+      ],
+      "comparator": "",
+      "cpu_s": 0.01,
+      "detail": "",
+      "duration_s": 0.010057,
+      "error": "",
+      "evidence": [],
+      "fresh": false,
+      "gate": "cad.assembly_connected",
+      "limit": null,
+      "locators": [],
+      "margin": null,
+      "margin_why": "no-verdict",
+      "measured": null,
+      "ok": false,
+      "pack": "cad-solid",
+      "passed": false,
+      "rho": "998c9a4ca33a689b7d7559901b382c5143696c3399a56b2251e5216c52e87afd",
+      "settles": "assembly connectivity",
+      "skip_reason": "the assembly has 1 part(s); connectivity is a relation between parts and there is nothing to measure below two of them. Export every placed solid into the projection's mesh map, not just the one be...",
+      "skipped": true,
+      "stale_reason": "",
+      "status": "skipped",
+      "tier": 1,
+      "unanchored": true,
+      "units": "",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T22:36:25Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "sourcing",
+        "procurement",
+        "bom",
+        "cost",
+        "availability",
+        "supply-chain"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 of 7 lines not orderable (limit 0) — every line has a part number, a quantity and a usable price",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_complete.json"
+      ],
+      "fresh": true,
+      "gate": "bom.complete",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "sourcing",
+      "passed": true,
+      "rho": "1ba6f97e3cfab692ad0714e2bb71683b7654a4035d011800d56538b8ba018b40",
+      "settles": "bill of materials completeness",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "lines",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "cost",
+        "build-cost",
+        "budget",
+        "unit-cost"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "167.15 USD/unit at qty 1 vs 150.00 USD budget; parts 167.15 USD + minimums 0.00 USD + one-time 0.00 USD (0.00 USD/unit amortised) = 167.15 USD run",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_cost.json"
+      ],
+      "fresh": true,
+      "gate": "bom.cost",
+      "limit": 150.0,
+      "locators": [],
+      "margin": -0.114333,
+      "margin_why": "",
+      "measured": 167.15,
+      "ok": false,
+      "pack": "sourcing",
+      "passed": false,
+      "rho": "8e77e8b0bc1c875b4786aa88ce9e9e90e2ba23a4d5bf0b00082a15e81f23fd73",
+      "settles": "build cost per unit",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "fail",
+      "tier": 0,
+      "unanchored": true,
+      "units": "USD/unit",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "availability",
+        "lead-time",
+        "ship-date",
+        "stock"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "longest lead 2 wk (KIT); vs 3 wk budget; 0 unknown, 0 EOL, 0 flagged",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_availability.json"
+      ],
+      "fresh": true,
+      "gate": "bom.availability",
+      "limit": 3.0,
+      "locators": [],
+      "margin": 0.333333,
+      "margin_why": "",
+      "measured": 2.0,
+      "ok": true,
+      "pack": "sourcing",
+      "passed": true,
+      "rho": "4a0345640b8ca173233ed400c642da76ba92e25c6ffda01018a66de2db24aa90",
+      "settles": "longest lead time",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "weeks",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "moq",
+        "minimum-order",
+        "overbuy",
+        "inventory"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "idle capital 0.00 USD vs 83.58 USD (50% of the 167.15 parts spend); no line buys more than the build consumes; 0 line(s) past 3x",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_moq.json"
+      ],
+      "fresh": true,
+      "gate": "bom.moq",
+      "limit": 83.58,
+      "locators": [],
+      "margin": 1.0,
+      "margin_why": "",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "sourcing",
+      "passed": true,
+      "rho": "44cfd0aaa1c27cd34627fca1671280f338327c2ff6b8c431b7bb2055ade7f93b",
+      "settles": "minimum order quantity overbuy",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "USD",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 55.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": false,
+      "claims": [
+        "process-rules",
+        "vendor-capability",
+        "manufacturability",
+        "dfm"
+      ],
+      "comparator": "",
+      "cpu_s": 0.0,
+      "detail": "",
+      "duration_s": 0.002757,
+      "error": "",
+      "evidence": [],
+      "fresh": false,
+      "gate": "bom.process_rules",
+      "limit": null,
+      "locators": [],
+      "margin": null,
+      "margin_why": "no-verdict",
+      "measured": null,
+      "ok": false,
+      "pack": "sourcing",
+      "passed": false,
+      "rho": "06db7e5e242bb38b962664c696df5514bed4ff7cfa210c94a15af68983a2cb0f",
+      "settles": "vendor process capability",
+      "skip_reason": "no 'process_rules' in the BOM document — the vendor's capability set is project data (ask for it in writing with the quote); nothing to check the design against",
+      "skipped": true,
+      "stale_reason": "",
+      "status": "skipped",
+      "tier": 0,
+      "unanchored": true,
+      "units": "",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T22:36:25Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "single-source",
+        "supply-risk",
+        "second-source",
+        "supply-chain-risk"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 unrecorded single-source line(s) vs limit 10 (7 behind one source in total, 6 with a qualified alternate, 1 accepted in writing)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_single_source.json"
+      ],
+      "fresh": true,
+      "gate": "bom.single_source",
+      "limit": 10.0,
+      "locators": [],
+      "margin": 1.0,
+      "margin_why": "",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "sourcing",
+      "passed": true,
+      "rho": "e016df25e8ee0b93184084fe1b99a931fd463073661ab0c33434081dd5dbabbf",
+      "settles": "single source count",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "lines",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "currency",
+        "fx",
+        "price-currency",
+        "cost"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "0 of 7 line(s) priced in a currency this document cannot convert (limit 0) — base USD (the document's 'currency'), every line quoted in the base currency",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [
+        "<out>/bom_currency.json"
+      ],
+      "fresh": true,
+      "gate": "bom.currency",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "sourcing",
+      "passed": true,
+      "rho": "eb7ebedaae8a6946ac1ec38cb2a9ba8af08608ba7f3fa5d94f7c865013149d57",
+      "settles": "price currency coherence",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "lines",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "thrust-margin"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "136 g thrust / 45.1 g AUW; hover at 33% of full thrust",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.thrust_to_weight",
+      "limit": 3.0,
+      "locators": [],
+      "margin": 0.008,
+      "margin_why": "",
+      "measured": 3.024,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "32c8340eeab752938ae01631c281138224d1b1e7d579a38bda90503c0ff07ebd",
+      "settles": "thrust to weight",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "ratio",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "auw"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "frame 18.0 g printed PETG + bought parts",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.auw",
+      "limit": 250.0,
+      "locators": [],
+      "margin": 0.81952,
+      "margin_why": "",
+      "measured": 45.12,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "e405b0950ece7ead00528cb49c71844f28945f70c7d4b68603a7785ac26dee6a",
+      "settles": "all-up weight",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "g",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "endurance"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "15.0 W hover from the pack's usable energy (efficiency is assumption A2)",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.flight_time",
+      "limit": 3.0,
+      "locators": [],
+      "margin": 0.293333,
+      "margin_why": "",
+      "measured": 3.88,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "b78d59585cf521a6552b89b09c35219d1e11422556e12428a26e96a3b5dbfff3",
+      "settles": "hover flight time",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "min",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "arm-vibration"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "modes 282, 290, 290, 316 Hz (spoked plate); motors turn at ~612 Hz in a hover",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.frame_mode",
+      "limit": 200.0,
+      "locators": [],
+      "margin": 0.41,
+      "margin_why": "",
+      "measured": 282.0,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "467b704402cfcbc0f493cb4da2f3dfb8902aefbc92b1b16427906eb287fc9d1a",
+      "settles": "first frame mode",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "Hz",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "envelope-clearance"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "27 placed parts, every pair intersected: no undeclared overlap",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.interference",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": 0.0,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "52428520834123e7c460a14540635055b925f7a5f93ae69440d7e3501cdeeec8",
+      "settles": "interference volume",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "mm3",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "fc-screws"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "5.0 mm engaged (>= 3.0 needed) in a 7.3 mm stack",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.fc_screws",
+      "limit": 0.0,
+      "locators": [],
+      "margin": null,
+      "margin_why": "zero-limit",
+      "measured": -1.3,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "8448cf2b1455be3b96d77eb20fe2dc458ef353aa72b2abae77aefc49104339d8",
+      "settles": "FC screw protrusion below plate",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "motor-screws"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "3.0 mm screw through a 1.8 mm seat",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.motor_screws",
+      "limit": 1.0,
+      "locators": [],
+      "margin": 0.2,
+      "margin_why": "",
+      "measured": 1.2,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "52e59da2715a05f779d9de9812889415fe5b3477b4f6d3316db141e71288e570",
+      "settles": "motor screw engagement",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "one-piece"
+      ],
+      "comparator": "<=",
+      "cpu_s": 0.0,
+      "detail": "1 connected solid(s) in the frame mesh",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.one_piece",
+      "limit": 1,
+      "locators": [],
+      "margin": 0.0,
+      "margin_why": "",
+      "measured": 1.0,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "88e35aebc8c6b27342d67cf325f81cce99eceb5c4545b02d0634c4a8fc57ee62",
+      "settles": "frame pieces",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "count",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    },
+    {
+      "age_s": 14464.0,
+      "blocked_by": [],
+      "blocked_kind": "",
+      "cached": true,
+      "claims": [
+        "motor-leads"
+      ],
+      "comparator": ">=",
+      "cpu_s": 0.0,
+      "detail": "route lengths, mm: back_left 20.7, back_right 20.7, front_left 20.7, front_right 20.7; lead 37 mm",
+      "duration_s": 0.0,
+      "error": "",
+      "evidence": [],
+      "fresh": true,
+      "gate": "petgasus.motor_leads",
+      "limit": 3.0,
+      "locators": [],
+      "margin": 4.42667,
+      "margin_why": "",
+      "measured": 16.28,
+      "ok": true,
+      "pack": "",
+      "passed": true,
+      "rho": "e608215a3602d5ac0ebf93c3349662feebbb43e59b4dfd836abafeb636d21984",
+      "settles": "motor lead spare",
+      "skip_reason": "",
+      "skipped": false,
+      "stale_reason": "",
+      "status": "pass",
+      "tier": 0,
+      "units": "mm",
+      "unqualified": "",
+      "views": [],
+      "when": "2026-10-08T18:36:16Z"
+    }
+  ],
+  "views": [
+    {
+      "data": {},
+      "description": "Frame, flight controller, motors, props, battery, strap, every screw and wire, placed as built. Explode to see the assembly order.",
+      "gates": [
+        "petgasus.interference",
+        "petgasus.motor_leads"
+      ],
+      "id": "drone",
+      "kind": "model3d",
+      "meta": {
+        "explode": {
+          "axes": {
+            "height": 1,
+            "thick": 2,
+            "width": 0
+          },
+          "center": [
+            0.0,
+            0.0,
+            4.05
+          ],
+          "extent": [
+            107.4,
+            107.4,
+            23.1
+          ],
+          "movers": {
+            "battery": {
+              "nodes": [
+                "battery__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -34.0
+              ],
+              "rank": 0
+            },
+            "battery_lead": {
+              "nodes": [
+                "battery_lead__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -34.0
+              ],
+              "rank": 1
+            },
+            "battery_strap": {
+              "nodes": [
+                "battery_strap__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -22.0
+              ],
+              "rank": 2
+            },
+            "fc_screw_1": {
+              "nodes": [
+                "fc_screw_1__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                46.0
+              ],
+              "rank": 8
+            },
+            "fc_screw_2": {
+              "nodes": [
+                "fc_screw_2__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                46.0
+              ],
+              "rank": 9
+            },
+            "fc_screw_3": {
+              "nodes": [
+                "fc_screw_3__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                46.0
+              ],
+              "rank": 10
+            },
+            "fc_screw_4": {
+              "nodes": [
+                "fc_screw_4__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                46.0
+              ],
+              "rank": 11
+            },
+            "flight_controller": {
+              "nodes": [
+                "flight_controller__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                30.0
+              ],
+              "rank": 16
+            },
+            "frame": {
+              "nodes": [
+                "frame__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rank": 17
+            },
+            "motor_back_left": {
+              "nodes": [
+                "motor_back_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                20.0
+              ],
+              "rank": 19
+            },
+            "motor_back_right": {
+              "nodes": [
+                "motor_back_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                20.0
+              ],
+              "rank": 20
+            },
+            "motor_front_left": {
+              "nodes": [
+                "motor_front_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                20.0
+              ],
+              "rank": 21
+            },
+            "motor_front_right": {
+              "nodes": [
+                "motor_front_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                20.0
+              ],
+              "rank": 22
+            },
+            "motor_lead_back_left": {
+              "nodes": [
+                "motor_lead_back_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                25.0
+              ],
+              "rank": 12
+            },
+            "motor_lead_back_right": {
+              "nodes": [
+                "motor_lead_back_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                25.0
+              ],
+              "rank": 13
+            },
+            "motor_lead_front_left": {
+              "nodes": [
+                "motor_lead_front_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                25.0
+              ],
+              "rank": 14
+            },
+            "motor_lead_front_right": {
+              "nodes": [
+                "motor_lead_front_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                25.0
+              ],
+              "rank": 15
+            },
+            "motor_screws_back_left": {
+              "nodes": [
+                "motor_screws_back_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -14.0
+              ],
+              "rank": 3
+            },
+            "motor_screws_back_right": {
+              "nodes": [
+                "motor_screws_back_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -14.0
+              ],
+              "rank": 4
+            },
+            "motor_screws_front_left": {
+              "nodes": [
+                "motor_screws_front_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -14.0
+              ],
+              "rank": 5
+            },
+            "motor_screws_front_right": {
+              "nodes": [
+                "motor_screws_front_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                -14.0
+              ],
+              "rank": 6
+            },
+            "motor_sockets": {
+              "nodes": [
+                "motor_sockets__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                30.0
+              ],
+              "rank": 18
+            },
+            "power_pigtail": {
+              "nodes": [
+                "power_pigtail__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                30.0
+              ],
+              "rank": 7
+            },
+            "prop_back_left": {
+              "nodes": [
+                "prop_back_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                42.0
+              ],
+              "rank": 23
+            },
+            "prop_back_right": {
+              "nodes": [
+                "prop_back_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                42.0
+              ],
+              "rank": 24
+            },
+            "prop_front_left": {
+              "nodes": [
+                "prop_front_left__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                42.0
+              ],
+              "rank": 25
+            },
+            "prop_front_right": {
+              "nodes": [
+                "prop_front_right__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                42.0
+              ],
+              "rank": 26
+            }
+          },
+          "step": 26.565
+        },
+        "frame": "model frame: +x forward, +z up, z=0 under the base plate",
+        "groups": {
+          "battery": [
+            "battery",
+            "battery_lead",
+            "battery_strap"
+          ],
+          "electronics": [
+            "flight_controller",
+            "motor_sockets",
+            "power_pigtail"
+          ],
+          "motors": [
+            "motor_back_left",
+            "motor_back_right",
+            "motor_front_left",
+            "motor_front_right"
+          ],
+          "printed": [
+            "frame"
+          ],
+          "props": [
+            "prop_back_left",
+            "prop_back_right",
+            "prop_front_left",
+            "prop_front_right"
+          ],
+          "screws": [
+            "fc_screw_1",
+            "fc_screw_2",
+            "fc_screw_3",
+            "fc_screw_4",
+            "motor_screws_back_left",
+            "motor_screws_back_right",
+            "motor_screws_front_left",
+            "motor_screws_front_right"
+          ],
+          "wires": [
+            "motor_lead_back_left",
+            "motor_lead_back_right",
+            "motor_lead_front_left",
+            "motor_lead_front_right"
+          ]
+        },
+        "nodes": [
+          "battery__0",
+          "battery_lead__0",
+          "battery_strap__0",
+          "fc_screw_1__0",
+          "fc_screw_2__0",
+          "fc_screw_3__0",
+          "fc_screw_4__0",
+          "flight_controller__0",
+          "frame__0",
+          "motor_back_left__0",
+          "motor_back_right__0",
+          "motor_front_left__0",
+          "motor_front_right__0",
+          "motor_lead_back_left__0",
+          "motor_lead_back_right__0",
+          "motor_lead_front_left__0",
+          "motor_lead_front_right__0",
+          "motor_screws_back_left__0",
+          "motor_screws_back_right__0",
+          "motor_screws_front_left__0",
+          "motor_screws_front_right__0",
+          "motor_sockets__0",
+          "power_pigtail__0",
+          "prop_back_left__0",
+          "prop_back_right__0",
+          "prop_front_left__0",
+          "prop_front_right__0"
+        ],
+        "parts": {
+          "battery": [
+            "battery__0"
+          ],
+          "battery_lead": [
+            "battery_lead__0"
+          ],
+          "battery_strap": [
+            "battery_strap__0"
+          ],
+          "fc_screw_1": [
+            "fc_screw_1__0"
+          ],
+          "fc_screw_2": [
+            "fc_screw_2__0"
+          ],
+          "fc_screw_3": [
+            "fc_screw_3__0"
+          ],
+          "fc_screw_4": [
+            "fc_screw_4__0"
+          ],
+          "flight_controller": [
+            "flight_controller__0"
+          ],
+          "frame": [
+            "frame__0"
+          ],
+          "motor_back_left": [
+            "motor_back_left__0"
+          ],
+          "motor_back_right": [
+            "motor_back_right__0"
+          ],
+          "motor_front_left": [
+            "motor_front_left__0"
+          ],
+          "motor_front_right": [
+            "motor_front_right__0"
+          ],
+          "motor_lead_back_left": [
+            "motor_lead_back_left__0"
+          ],
+          "motor_lead_back_right": [
+            "motor_lead_back_right__0"
+          ],
+          "motor_lead_front_left": [
+            "motor_lead_front_left__0"
+          ],
+          "motor_lead_front_right": [
+            "motor_lead_front_right__0"
+          ],
+          "motor_screws_back_left": [
+            "motor_screws_back_left__0"
+          ],
+          "motor_screws_back_right": [
+            "motor_screws_back_right__0"
+          ],
+          "motor_screws_front_left": [
+            "motor_screws_front_left__0"
+          ],
+          "motor_screws_front_right": [
+            "motor_screws_front_right__0"
+          ],
+          "motor_sockets": [
+            "motor_sockets__0"
+          ],
+          "power_pigtail": [
+            "power_pigtail__0"
+          ],
+          "prop_back_left": [
+            "prop_back_left__0"
+          ],
+          "prop_back_right": [
+            "prop_back_right__0"
+          ],
+          "prop_front_left": [
+            "prop_front_left__0"
+          ],
+          "prop_front_right": [
+            "prop_front_right__0"
+          ]
+        },
+        "units": "mm"
+      },
+      "order": 5,
+      "pack": "",
+      "src": "assets/drone.glb",
+      "title": "Drone - every part"
+    },
+    {
+      "data": {},
+      "description": "The exported part in its print orientation, with the build axis and bed envelope published alongside it.",
+      "gates": [
+        "fdm.bed_fit",
+        "fdm.bridge_span",
+        "fdm.overhang"
+      ],
+      "id": "print_part",
+      "kind": "model3d",
+      "meta": {
+        "bed_mm": [
+          270.0,
+          270.0,
+          270.0
+        ],
+        "brim_mm": 5.0,
+        "build_axis": [
+          "z"
+        ],
+        "explode": {
+          "axes": {
+            "height": 1,
+            "thick": 2,
+            "width": 0
+          },
+          "center": [
+            0.0,
+            0.0,
+            7.05
+          ],
+          "extent": [
+            107.4,
+            107.4,
+            14.1
+          ],
+          "movers": {
+            "frame": {
+              "nodes": [
+                "frame__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rank": 0
+            }
+          },
+          "step": 16.215
+        },
+        "frame": "print orientation, untransformed — a locator position in the model's coordinates addresses the same point in this GLB",
+        "mesh": "build/print/frame.ply",
+        "nodes": [
+          "frame__0"
+        ],
+        "units": "mm"
+      },
+      "order": 10,
+      "pack": "fdm-print",
+      "src": "assets/print_part.glb",
+      "title": "Printed part"
+    },
+    {
+      "data": {},
+      "description": "Every placed solid in the model frame, one node per body, explodable along the stack axis.",
+      "gates": [
+        "cad.assembly_connected",
+        "cad.bounding",
+        "cad.clash",
+        "cad.degenerate_faces",
+        "cad.is_volume",
+        "cad.wall_thickness",
+        "cad.watertight"
+      ],
+      "id": "assembly",
+      "kind": "model3d",
+      "meta": {
+        "explode": {
+          "axes": {
+            "height": 1,
+            "thick": 2,
+            "width": 0
+          },
+          "center": [
+            0.0,
+            0.0,
+            7.05
+          ],
+          "extent": [
+            107.4,
+            107.4,
+            14.1
+          ],
+          "movers": {
+            "frame": {
+              "nodes": [
+                "frame__0"
+              ],
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rank": 0
+            }
+          },
+          "step": 16.215
+        },
+        "frame": "model frame, untransformed — a locator position in the model's coordinates addresses the same point in this GLB",
+        "nodes": [
+          "frame__0"
+        ],
+        "parts": {
+          "frame": [
+            "frame__0"
+          ]
+        },
+        "source": "params['meshes']",
+        "units": "mm"
+      },
+      "order": 10,
+      "pack": "cad-solid",
+      "src": "assets/assembly.glb",
+      "title": "Assembly"
+    },
+    {
+      "data": {
+        "columns": [
+          {
+            "align": "left",
+            "key": "ref",
+            "label": "Ref"
+          },
+          {
+            "align": "left",
+            "key": "description",
+            "label": "Description"
+          },
+          {
+            "align": "left",
+            "key": "vendor",
+            "label": "Vendor"
+          },
+          {
+            "align": "left",
+            "key": "vendor_pn",
+            "label": "Vendor P/N"
+          },
+          {
+            "align": "right",
+            "key": "purchased",
+            "label": "Buy",
+            "note": "pieces ordered for the run — MOQ and order multiples included"
+          },
+          {
+            "align": "right",
+            "key": "unit_price",
+            "kind": "money",
+            "label": "Unit"
+          },
+          {
+            "align": "right",
+            "key": "extended",
+            "kind": "money",
+            "label": "Extended",
+            "note": "null where the line is unpriced. Not zero: an unknown that adds up is an unknown that makes the total smaller"
+          },
+          {
+            "align": "right",
+            "key": "lead_time_weeks",
+            "label": "Lead",
+            "note": "effective: zero where distributor stock already covers the order",
+            "units": "wk"
+          },
+          {
+            "align": "left",
+            "key": "lifecycle",
+            "label": "Lifecycle"
+          },
+          {
+            "align": "right",
+            "key": "sources",
+            "label": "Sources",
+            "note": "independent sources, counted from who MAKES the part where the line records it. Two distributors of one factory's part is one source"
+          },
+          {
+            "align": "left",
+            "key": "risk",
+            "label": "Risk"
+          }
+        ],
+        "rows": [
+          {
+            "description": "BetaFPV Meteor75 Pro II O4 PNP (ELRS) - parts donor: Matrix 1S 3IN1 FC/12A ESC/ELRS RX (25.5 mm mount, BT2.0 lead, no video TX), 4x 1102 21000KV (2026) motors on JST1.25 plugs, GF1811 45 mm props, plus its stock frame as a fallback",
+            "extended": 79.99,
+            "id": "KIT",
+            "lead_time_weeks": 2.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 2.0,
+            "ref": "KIT",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "BetaFPV"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 79.99,
+            "vendor": "BetaFPV store",
+            "vendor_pn": "Meteor75 Pro II O4 PNP ELRS"
+          },
+          {
+            "description": "BetaFPV LiteRadio 3 ELRS transmitter (USB joystick for simulators; built-in battery)",
+            "extended": 32.99,
+            "id": "RADIO",
+            "lead_time_weeks": 2.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 2.0,
+            "ref": "RADIO",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "BetaFPV"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 32.99,
+            "vendor": "BetaFPV store",
+            "vendor_pn": "LiteRadio 3 ELRS"
+          },
+          {
+            "description": "BetaFPV LAVA II 1S 320 mAh LiHV, BT2.0, 5-pack (64 x 10 x 6 mm, 8.2 g)",
+            "extended": 23.19,
+            "id": "BATT",
+            "lead_time_weeks": 1.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 1.0,
+            "ref": "BATT",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "BetaFPV"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 23.19,
+            "vendor": "Amazon",
+            "vendor_pn": "B0GJSTMT8J"
+          },
+          {
+            "description": "HOBBYFLY 6-port 1S USB charger, BT2.0/PH2.0, LiHV",
+            "extended": 11.99,
+            "id": "CHG",
+            "lead_time_weeks": 1.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 1.0,
+            "ref": "CHG",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "HOBBYFLY"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 11.99,
+            "vendor": "Amazon",
+            "vendor_pn": "B0FHCVCC1R"
+          },
+          {
+            "description": "Gemfan 1811 3-blade 45 mm props, 1.5 mm shaft, 12-pack (spares: kids break props)",
+            "extended": 4.99,
+            "id": "PROPS",
+            "lead_time_weeks": 2.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 2.0,
+            "ref": "PROPS",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "Gemfan"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 4.99,
+            "vendor": "BetaFPV store",
+            "vendor_pn": "GF 1811 3-blade 1.5mm 12pcs"
+          },
+          {
+            "description": "M1.4 self-tapping screw assortment incl. M1.4 x 6 (4 used: AIO to posts)",
+            "extended": 8.0,
+            "id": "SCREWS",
+            "lead_time_weeks": 1.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 1.0,
+            "ref": "SCREWS",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "generic"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 8.0,
+            "vendor": "Amazon",
+            "vendor_pn": "search: M1.4 self tapping screw assortment"
+          },
+          {
+            "description": "10 mm hook-and-loop battery straps (pack)",
+            "extended": 6.0,
+            "id": "STRAP",
+            "lead_time_weeks": 1.0,
+            "lifecycle": "active",
+            "needed": 1.0,
+            "purchased": 1.0,
+            "quoted_lead_weeks": 1.0,
+            "ref": "STRAP",
+            "risk": "single source",
+            "source_basis": "manufacturer",
+            "source_names": [
+              "generic"
+            ],
+            "sources": 1,
+            "stock": null,
+            "unit_price": 6.0,
+            "vendor": "Amazon",
+            "vendor_pn": "search: 10mm battery strap"
+          }
+        ]
+      },
+      "description": "Every line with its purchase quantity, cost, lead time and supply risk, and the roll-up the cost gate reports.",
+      "gates": [
+        "bom.availability",
+        "bom.complete",
+        "bom.cost",
+        "bom.currency",
+        "bom.moq",
+        "bom.process_rules",
+        "bom.single_source"
+      ],
+      "id": "bom",
+      "kind": "table",
+      "meta": {
+        "build_quantity": 1,
+        "currency": "USD",
+        "gate": "bom.cost",
+        "product": "PETGasus - no-solder printed 1S whoop, line of sight",
+        "row_id": "the BOM line's `ref` — the string a buyer types on a purchase order, and what every locator in this pack targets",
+        "source": "/home/neuman/Documents/work/PETGasusDrone/bom/bom.json",
+        "totals": {
+          "charge_total": 0,
+          "nre_per_unit": 0.0,
+          "order_minimum_total": 0,
+          "parts_total": 167.15,
+          "per_unit": 167.15,
+          "run_total": 167.15,
+          "unpriced_lines": []
+        },
+        "totals_note": "run_total is parts + per-order minimum shortfalls + one-time charges, so it is larger than the Extended column adds to. per_unit amortises the charges over the run, which is why a per-unit price quoted from one build quantity is fiction at another"
+      },
+      "order": 30,
+      "pack": "sourcing",
+      "src": "",
+      "title": "Bill of materials"
+    },
+    {
+      "data": {
+        "columns": [
+          {
+            "align": "left",
+            "key": "what",
+            "label": "What"
+          },
+          {
+            "align": "right",
+            "key": "value",
+            "label": "Value"
+          }
+        ],
+        "rows": [
+          {
+            "value": "45.1 g",
+            "what": "all-up weight"
+          },
+          {
+            "value": "136 g",
+            "what": "lift"
+          },
+          {
+            "value": "282 Hz",
+            "what": "first frame mode"
+          }
+        ]
+      },
+      "description": "The model's derived numbers the plain-language front page draws.",
+      "gates": [],
+      "id": "story",
+      "kind": "table",
+      "meta": {
+        "data_url": "assets/story.json"
+      },
+      "order": 90,
+      "pack": "",
+      "src": "assets/story.json",
+      "title": "Front-page numbers"
+    }
+  ],
+  "words": {
+    "asserted": {
+      "hint": "accepted provisionally, with a reason and an owner — an assumption, or a claim carried outside an evaluator's operating context — unresolved",
+      "key": "assumed",
+      "plural": "assumed",
+      "term": "Assumed",
+      "word": "assumed"
+    },
+    "blocked": {
+      "hint": "an evaluator skipped — its tool is missing here, it skipped itself on its input, or a prerequisite is not established — and none failed: no usable verdict",
+      "key": "skipped",
+      "plural": "skipped",
+      "term": "Skipped",
+      "word": "skipped"
+    },
+    "errored": {
+      "hint": "an evaluator errored: it crashed, so nothing was evaluated, and the evaluator itself is broken",
+      "key": "skipped",
+      "plural": "skipped",
+      "term": "Skipped",
+      "word": "skipped"
+    },
+    "fail": {
+      "hint": "an evaluator failed the current candidate, a physical result failed, or an evaluator's value does not meet the claim's acceptance condition",
+      "key": "failing",
+      "plural": "failing",
+      "term": "Failing",
+      "word": "failing"
+    },
+    "pass": {
+      "hint": "every evaluator is qualified and passed on the current inputs, inside its operating context, and every value compared with the acceptance condition meets it — checked does not mean true",
+      "key": "checked",
+      "plural": "checked",
+      "term": "Checked",
+      "word": "checked"
+    },
+    "pending": {
+      "hint": "an evaluator of the claim is unrun on the current inputs",
+      "key": "open",
+      "plural": "open",
+      "term": "Open",
+      "word": "open"
+    },
+    "refuted": {
+      "hint": "an evaluator failed the current candidate, a physical result failed, or an evaluator's value does not meet the claim's acceptance condition",
+      "key": "failing",
+      "plural": "failing",
+      "term": "Failing",
+      "word": "failing"
+    },
+    "stale": {
+      "hint": "a pass whose read set has changed since, or whose prerequisite is invalidated or unrun: nothing is checked now",
+      "key": "stale",
+      "plural": "stale",
+      "term": "Stale",
+      "word": "stale"
+    },
+    "unclaimed": {
+      "hint": "no evaluator, none qualified, one unqualified, or one outside its operating context; or an assumption nobody owns",
+      "key": "gap",
+      "plural": "gaps",
+      "term": "Gap",
+      "word": "gap"
+    },
+    "unverified": {
+      "hint": "waits on an article: no physical result yet, or a pass no article binds to the current inputs",
+      "key": "pending_build",
+      "plural": "pending build",
+      "term": "Pending build",
+      "word": "pending build"
+    },
+    "verified": {
+      "hint": "every evaluator is qualified and passed on the current inputs, inside its operating context, and every value compared with the acceptance condition meets it — checked does not mean true",
+      "key": "checked",
+      "plural": "checked",
+      "term": "Checked",
+      "word": "checked"
+    }
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.fc_screws",
+  "rho": "deb39999a408f0597de68a140a5da8a6dd43eb612fa63309012d97f5abc53190",
+  "static": "f545f6b15707e32f2c1c2d3cf583b2abb7bd1eff959b992a935d19ee27175797",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "06cc8433845e030fd264a9af58cef3542bc828228bab0eaad0091bb24749cad3",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "b489514913737f4031cef3c04a57ce4c2f674ec9a1c59ade63f5760027b03b0d",
+      "files": {
+        "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+        "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:long_fc_screws",
+      "expect": "fail",
+      "note": "M1.4 x 12 screws in the known-good stack",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "8fdf10a2348d0466fda88157da04889aeda8173808cdbe49f8b631bb502550ea",
+    "files": {
+      "model/petgasus.py": "9868c9eceda18b06c0b65849a619a9923a1863b60d674f59cb5e9e9e0dce190d",
+      "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+      "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "fc_screw_engagement_mm"
+        ],
+        "3e95130d6b30a8e8dde07c16066004bb88e7cb30ba08262a39fad98c24bbeb5b",
+        11.0
+      ],
+      [
+        [
+          "fc_screw_protrusion_mm"
+        ],
+        "15a781f440033bca84e6cfd443d501e7c5aaa8d692f0ea2802edffd3e128192e",
+        4.7
+      ],
+      [
+        [
+          "fc_stack_mm"
+        ],
+        "c5305918c616c945f1726a51d6066930cf03255a71ab05230592f95948e8d5e5",
+        7.3
+      ]
+    ],
+    "files": {
+      "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+      "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C8": "f0bd9811cf2b2c03b5ce03b90c59875769073c19b685ca4b99ee715303537cd4",
+      "acceptance:C8": "b3c3f974e2d15bcd2db2a2ab0d0f5f3b20bbca7dcdfd308f30e0f9733d1be5c2"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "fc_screw_engagement_mm"
+          ],
+          "8345001284f26bcf3308b818b565b55c03821bc42ff0881bebbde54e2b747a14",
+          5.0
+        ],
+        [
+          [
+            "fc_screw_protrusion_mm"
+          ],
+          "e814916670a1198ea4ab404895d656c82321652dd6c7a3fcd58645c4f45a3f21",
+          -1.3
+        ],
+        [
+          [
+            "fc_stack_mm"
+          ],
+          "c5305918c616c945f1726a51d6066930cf03255a71ab05230592f95948e8d5e5",
+          7.3
+        ]
+      ],
+      "files": {
+        "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+        "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C8": "f0bd9811cf2b2c03b5ce03b90c59875769073c19b685ca4b99ee715303537cd4",
+        "acceptance:C8": "b3c3f974e2d15bcd2db2a2ab0d0f5f3b20bbca7dcdfd308f30e0f9733d1be5c2"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": -1.3,
+    "limit": 0.0,
+    "units": "mm",
+    "detail": "5.0 mm engaged (>= 3.0 needed) in a 7.3 mm stack",
+    "goalpost": [
+      {
+        "key": "C8",
+        "measured": -1.3,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": -0.9,
+            "outcome": "pass",
+            "measured": -1.3,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": -0.5,
+            "outcome": "pass",
+            "measured": -1.3,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 1.0,
+            "outcome": "pass",
+            "measured": -1.3,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 9.0,
+            "outcome": "pass",
+            "measured": -1.3,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 54,
+    "boundary": "",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "fc_screw_engagement_mm"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "fc_screw_protrusion_mm"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "fc_stack_mm"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:long_fc_screws (M1.4 x 12 screws in the known-good stack): 11.0 mm engaged (>= 3.0 needed) in a 7.3 mm stack",
+  "measured": 4.7,
+  "limit": 0.0,
+  "units": "mm",
+  "digest": "e8521a6875d63774de5b58fef3a5fb82698cf5353aceb72abcde0522e00dd17a"
+}

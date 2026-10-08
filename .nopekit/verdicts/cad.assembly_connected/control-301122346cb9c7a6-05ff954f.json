@@ -1,0 +1,603 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "cad.assembly_connected",
+  "rho": "301122346cb9c7a63a656d75caa869e3b78586a1e59a5994d2546ee592a7cb81",
+  "static": "1c0109224a2d9f45d630d25f156536caeae7c4cd82af6afc15732c71a36fa310",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "bbc849feb0b81a84b8d528545880aa89c314130fd9d6f0b9021adc9df2ac0653",
+      "files": [
+        "<pack:cad-solid>/cad_solid_parts.py",
+        "<pack:cad-solid>/gates/solid.py"
+      ]
+    },
+    "selftest": {
+      "digest": "467052b3e6383fa00248f6b0042055392d36da88a6f85974f769fd3d3343530b",
+      "files": {
+        "selftest/bad_bounds.py": "b80b184faa418dd5b987c112228ccaa295c42f2a0b753fdeb0584d8e3a0bd145",
+        "selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+        "selftest/baseline.json": "7348a09b8ac1a30693fd3cc4bff5cb6664707b0ee7aa13a55193caa6de2b564f",
+        "selftest/check_clash_contact.py": "574bb1c3df21465f69975896a2caf4546c9baf9b526c081a394489f341734f99",
+        "selftest/check_connectivity.py": "3cd1b9d2e3620413705f587101c3f08876bf1e32708101398e8daf80064a78ce",
+        "selftest/check_ray_cast.py": "754383e6359e608ae4a03fc61b8fe5afa77050a14844856558245db9124d6f66",
+        "selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff",
+        "selftest/make_baseline_meshes.py": "36a53ea409bbf837d58a6105a58258fd56fba848ea965abbf20a99a660965361",
+        "selftest/meshes/carriage.stl": "14ec580b55c6762d0fb6d6db3e9122d1c9f94e7d6d9bbf23b07a4b5fbc2f2037",
+        "selftest/meshes/cover.stl": "11d95d6a98f7b5ea0db1479cca55a5195b294f7fee2a3b761ba262f57d6e94f3",
+        "selftest/meshes/guide_roller.stl": "f3788ef30bb461e84af67a8386d4233b4fad510621c1b441626fd74069abd341",
+        "selftest/meshes/housing.stl": "8beb118b1373461189ef8fcb0ab35db786e0b5a41d0cab4fb6b5c219297320c3"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_meshes.py:broken_chain",
+      "expect": "fail",
+      "note": "the baseline assembly with the cover lifted 3 mm off the housing rim it is declared to seat on — a lid that is not on the box. One member of one declared chain moved, in the direction this gate measures, and nothing else: the cover is still a valid watertight solid, still inside the envelope, still the right thickness, and now interferes with even less than before. Every other gate in this pack passes it, which is the whole reason this gate exists. The cover is also then attached to nothing at all, so the fixture fires the coverage check and the declared-contact check at once — which is the relationship between the two: the declaration says WHICH contact, coverage says there has to be one",
+      "good": "selftest/good_meshes.py:baseline_meshes",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "73a3946b5a9d38bac4d25b7945d9229f8da963f03634aecc5f51df51affd8d77",
+    "files": {
+      "<pack:cad-solid>/selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+      "<pack:cad-solid>/selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "chain"
+        ],
+        "0fe9b6442da567e597f4d6823e41c4a0fd77ec520489f7e42f430efb18bf596d"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "gap_tol_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "max_gap_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "members"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "reason"
+        ],
+        "6d54bda583d7272677c314571f73e5f15e6ab0ed828a864c89c9b61b75b5a79d"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path",
+          "tol_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "assembly_chains",
+          "clamp_path"
+        ],
+        "e46f74e2cead69ec9d4a652fb56ea4258856aa44abeaa92e9b822d910701838b"
+      ],
+      [
+        [
+          "assembly_chains"
+        ],
+        "a998c795147153b192b34a0dc79d49f145afe824cf0794b8aa93b99d383617db"
+      ],
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.assembly_chains"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.assembly_joints"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_allow"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.context_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.free_standing_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.linkages"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.mating_chains"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.mating_pairs"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.mating_samples"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.mating_tolerance_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.max_mating_gap_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.unattached_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.assembly_chains"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.assembly_joints"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_allow"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.context_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.free_standing_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.linkages"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.mating_chains"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.mating_pairs"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.mating_samples"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.mating_tolerance_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.max_mating_gap_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.unattached_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "clash_allow"
+        ],
+        "fbffe8ebbe158bd33d57b461aa5df729faf354050433d639c8f02a10e2b5d599"
+      ],
+      [
+        [
+          "free_standing_parts"
+        ],
+        "7acc585478bbe701b58a6ba5d89ed5e4055fce21d238f1bb4e7b6d3733fd1778"
+      ],
+      [
+        [
+          "mating_pairs"
+        ],
+        "c90a42de0bc474568b9b18b90c64ea26ef59a23c0483d2d97269929533b268d0"
+      ],
+      [
+        [
+          "mating_samples"
+        ],
+        "b887e6e12c04feeff4e34731c9c8bb15f174f648fc51c031b6fcd7fc9c22b847",
+        2000
+      ],
+      [
+        [
+          "max_mating_gap_mm"
+        ],
+        "127909532a5e24f347add2b67044be692cea62932cbdb08ebb1ef9f0d2a0cfbe",
+        0.2
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "meshes"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "chain"
+          ],
+          "0fe9b6442da567e597f4d6823e41c4a0fd77ec520489f7e42f430efb18bf596d"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "gap_tol_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "max_gap_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "members"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "reason"
+          ],
+          "6d54bda583d7272677c314571f73e5f15e6ab0ed828a864c89c9b61b75b5a79d"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path",
+            "tol_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "assembly_chains",
+            "clamp_path"
+          ],
+          "e46f74e2cead69ec9d4a652fb56ea4258856aa44abeaa92e9b822d910701838b"
+        ],
+        [
+          [
+            "assembly_chains"
+          ],
+          "a998c795147153b192b34a0dc79d49f145afe824cf0794b8aa93b99d383617db"
+        ],
+        [
+          [
+            "cad"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.assembly_chains"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.assembly_joints"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_allow"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.context_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.free_standing_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.linkages"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.mating_chains"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.mating_pairs"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.mating_samples"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.mating_tolerance_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.max_mating_gap_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.unattached_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.assembly_chains"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.assembly_joints"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_allow"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.context_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.free_standing_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.linkages"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.mating_chains"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.mating_pairs"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.mating_samples"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.mating_tolerance_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.max_mating_gap_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.unattached_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "clash_allow"
+          ],
+          "fbffe8ebbe158bd33d57b461aa5df729faf354050433d639c8f02a10e2b5d599"
+        ],
+        [
+          [
+            "free_standing_parts"
+          ],
+          "7acc585478bbe701b58a6ba5d89ed5e4055fce21d238f1bb4e7b6d3733fd1778"
+        ],
+        [
+          [
+            "mating_pairs"
+          ],
+          "c90a42de0bc474568b9b18b90c64ea26ef59a23c0483d2d97269929533b268d0"
+        ],
+        [
+          [
+            "mating_samples"
+          ],
+          "b887e6e12c04feeff4e34731c9c8bb15f174f648fc51c031b6fcd7fc9c22b847",
+          2000
+        ],
+        [
+          [
+            "max_mating_gap_mm"
+          ],
+          "127909532a5e24f347add2b67044be692cea62932cbdb08ebb1ef9f0d2a0cfbe",
+          0.2
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "meshes"
+    ],
+    "measured": 0.0,
+    "limit": 0.2,
+    "units": "mm",
+    "detail": "every one of 4 part(s) is held: one connected assembly, 3 contact(s), loosest carriage/housing at 0.00 mm vs 0.2 mm; 3 declared contact(s) all closed (0 interpenetrating by design), worst carriage/housing 0.00 mm vs 0.2 mm allowed; chain 'clamp_path' continuous over 2 step(s); 4 of 4 parts examined; 6 part pair(s), 3 within contact reach, 3 measured in all at 0.2 mm (max_mating_gap_mm=0.2 mm); 4 part(s) welded at 0.0001 mm on load (carriage, cover, guide_roller...) — a soup format has no vert...",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_meshes.py:broken_chain (the baseline assembly with the cover lifted 3 mm off the housing rim it is declared to seat on — a lid that is not on the box. One member of one declared chain moved, in the direction this gate measures, and nothing else: the cover is still a valid watertight solid, still inside the envelope, still the right thickness, and now interferes with even less than before. Every other gate in this pack passes it, which is the whole reason this gate exists. The cover is also then attached to nothing at all, so the fixture fires the coverage check and the declared-contact check at once — which is the relationship between the two: the declaration says WHICH contact, coverage says there has to be one): 1 part(s) HELD BY NOTHING — worst cover 3.00 mm from housing, the nearest part in the assembly, vs 0.2 mm contact; 1 of 3 declared contact(s) open; chain 'clamp_path' breaks at step 1, cover -> housing (3.0 mm apart); 4 of 4 parts examined; 6 part pair(s), 2 within contact reach, 3 measured in all at 0.2 mm (max_mating_gap_mm=0.2 mm)",
+  "measured": 3.0,
+  "limit": 0.2,
+  "units": "mm",
+  "digest": "16284f6c70c7a960f8bd4cf31e2c1a6d94901549f13a79e96a087a4d97be60ea"
+}

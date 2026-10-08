@@ -1,0 +1,250 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.cost",
+  "rho": "1b6c149be3b62433334b8580e1e263135e5fc6738fe9fa87b4d52f8f592d6dbc",
+  "static": "fda79fd73fa282b1043473fa65a88ae5033289f176a6c6b7dd9d1cbede40e3a4",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "3e2e8ca03410fc1e55bbce7cec2eb380217303d53ef971fbd8b7d5870b115b67",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:price_shock",
+      "expect": "fail",
+      "note": "one line repriced so that part alone costs ten times the whole per-unit budget — the re-quote that arrives the week you order. One number moves; quantities, vendors and charges are untouched",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "bom",
+          "budget_per_unit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom",
+          "budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom",
+          "build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.budget_per_unit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "budget_per_unit"
+        ],
+        "6f0ee542fdbf0671fd409b2523735322eebb2dcdbb292f6e1f35cc22b0b5ee90",
+        58.0
+      ],
+      [
+        [
+          "budget_total"
+        ],
+        "bb5c39915922cbe11d9b942fd807e48a6ae8e28689efeac5c94eeec8afca688e",
+        29000.0
+      ],
+      [
+        [
+          "build_quantity"
+        ],
+        "7a6698962fc4b131bf6064df3022900624747890255755d87eb3defae4fff2ee",
+        500
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.budget_per_unit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.budget_total"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "bom",
+            "budget_per_unit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom",
+            "budget_total"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom",
+            "build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.budget_per_unit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.budget_total"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "budget_per_unit"
+          ],
+          "6f0ee542fdbf0671fd409b2523735322eebb2dcdbb292f6e1f35cc22b0b5ee90",
+          58.0
+        ],
+        [
+          [
+            "budget_total"
+          ],
+          "bb5c39915922cbe11d9b942fd807e48a6ae8e28689efeac5c94eeec8afca688e",
+          29000.0
+        ],
+        [
+          [
+            "build_quantity"
+          ],
+          "7a6698962fc4b131bf6064df3022900624747890255755d87eb3defae4fff2ee",
+          500
+        ],
+        [
+          [
+            "sourcing"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.budget_per_unit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.budget_total"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 53.01,
+    "limit": 58.0,
+    "units": "USD/unit",
+    "detail": "53.01 USD/unit at qty 500 vs 58.00 USD budget; parts 23,257.30 USD + minimums 275.20 USD + one-time 2,970.00 USD (5.94 USD/unit amortised) = 26,502.50 USD run",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:price_shock (one line repriced so that part alone costs ten times the whole per-unit budget — the re-quote that arrives the week you order. One number moves; quantities, vendors and charges are untouched): 621.61 USD/unit at qty 500 vs 58.00 USD budget; parts 307,557.30 USD + minimums 275.20 USD + one-time 2,970.00 USD (5.94 USD/unit amortised) = 310,802.50 USD run",
+  "measured": 621.61,
+  "limit": 58.0,
+  "units": "USD/unit",
+  "digest": "faebaed1ec70c6484ed4a3e5a281678151c9fffcb43621eda122996856986799"
+}

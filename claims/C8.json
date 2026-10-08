@@ -1,0 +1,14 @@
+{
+  "statement": "AIO screws (M1.4 x 6) bite at least 3 mm into the printed posts and do not poke out under the plate",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "FC screw protrusion below plate",
+    "comparator": "<=",
+    "limit": 0.0,
+    "units": "mm"
+  },
+  "rationale": "A screw tip below the plate scratches the battery it rests on. Engagement is reported alongside.",
+  "tags": [
+    "fc-screws"
+  ]
+}

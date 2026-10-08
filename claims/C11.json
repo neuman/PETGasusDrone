@@ -1,0 +1,14 @@
+{
+  "statement": "The printed frame is one connected piece",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "frame pieces",
+    "comparator": "<=",
+    "limit": 1,
+    "units": "count"
+  },
+  "rationale": "A motor seat or a member that is not joined to the rest is debris on the bed and a motor held by nothing. Counted on the generated mesh. Added after an optimised layout whose cleaned outline cut the seats loose (first mode 7 Hz).",
+  "tags": [
+    "one-piece"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.currency",
+  "rho": "5d380a0b423bb7560aa22d9c27dc94357250471653b81359d8fab6527b639c63",
+  "static": "ceb511d73e1449ec5076bfde3893e09763ff500e039f20adc603152cb8b847fb",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "22a1884086973a54c71d9ba75cf370c4199f928912dd9f8b852cd3100ea9821e",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:foreign_quote",
+      "expect": "fail",
+      "note": "one line re-quoted in a currency the document holds no fx rate for — the vendor who sends the second quote on their own price list. The part, the quantity, the vendor and the number itself are unchanged; only the currency beside the number is, which is precisely the change a roll-up cannot see and must refuse",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "lines",
+    "detail": "0 of 10 line(s) priced in a currency this document cannot convert (limit 0) — base USD (the document's 'currency'), 1 line(s) converted at fx_rates (CAP-01:EUR x 1.08)",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:foreign_quote (one line re-quoted in a currency the document holds no fx rate for — the vendor who sends the second quote on their own price list. The part, the quantity, the vendor and the number itself are unchanged; only the currency beside the number is, which is precisely the change a roll-up cannot see and must refuse): 1 of 10 line(s) priced in a currency this document cannot convert (limit 0): HSG-01 priced in JPY with no fx_rates['JPY'] to reach USD",
+  "measured": 1.0,
+  "limit": 0.0,
+  "units": "lines",
+  "digest": "2ac0fd571ee7e3cfad602d19c068f0a7d4bbfe3559d6e04e7ede5cc0f65f519f"
+}

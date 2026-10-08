@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "gate": "petgasus.auw",
+  "rho": "e405b0950ece7ead00528cb49c71844f28945f70c7d4b68603a7785ac26dee6a",
+  "code": {
+    "digest": "57889404d119e3df5a7fc9c4c8850ba96bd9335123e770119a2f8f0c96b0fbf2",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "auw_g"
+        ],
+        "69a39a8c6f66dd9c174909f12bf3e26f7d5cd67e75a0e04e9a04dadc58194e78",
+        45.12
+      ],
+      [
+        [
+          "frame_mass_g"
+        ],
+        "7a0d4d6df788d7d5d438e56c640d94e4dc05f706a038ffe817eb505b82de7d87",
+        18.04
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C2": "35a09483b73634bce1511d5b04e920353a71c9106ae7544ca51893320fb34b0a",
+      "acceptance:C2": "278b1d7642100e5cab5d3e625bf8d08741cf5055a5bc7e92a47a6afbfbb18693"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 45.12,
+    "limit": 250.0,
+    "units": "g",
+    "comparator": "<=",
+    "settles": "all-up weight",
+    "detail": "frame 18.0 g printed PETG + bought parts",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "auw"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "d5c3b73bc33ae66b6fc65ddc195251ce24094dc7c809ed43fe9bbf050fcec3ea"
+}

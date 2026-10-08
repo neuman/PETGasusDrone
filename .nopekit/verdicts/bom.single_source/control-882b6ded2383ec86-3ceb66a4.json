@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.single_source",
+  "rho": "882b6ded2383ec86201c4d8d3d379b4ee47d48eb55d14731773a14fbf86d5ee3",
+  "static": "73d91c5babd4a3c64f65cb4f1586bb39b8ab4a79ef7a53f2cb3b4e7b9c2459cb",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "b3b6b7d73bc30ebca15284fb826ff05a7ca84440546bc9fffa663920e1c0b011",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:lost_second_source",
+      "expect": "fail",
+      "note": "the second source goes away, with nothing written down — expressed on each line in the terms that line records: the lines that name a MANUFACTURER keep both distributors and lose the qualified alternate (two distributors of one factory's part is the case this gate exists for and the case a distributor count cannot see), the lines that name only suppliers drop to one. Prices, quantities and vendors are untouched. Enough lines to clear whatever single_source_limit the project set, so the control does not stop tripping when somebody raises it",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "bom",
+          "single_source_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.single_source_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "single_source_limit"
+        ],
+        "cb33559e51d9336cdbf86ce55c499c1b74750d592d1cb8b6ac3317b6b814a8e4",
+        0
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.single_source_limit"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "bom",
+            "single_source_limit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.single_source_limit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "single_source_limit"
+          ],
+          "cb33559e51d9336cdbf86ce55c499c1b74750d592d1cb8b6ac3317b6b814a8e4",
+          0
+        ],
+        [
+          [
+            "sourcing"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.single_source_limit"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "lines",
+    "detail": "0 unrecorded single-source line(s) vs limit 0 (3 behind one source in total, 2 with a qualified alternate, 1 accepted in writing); 7 line(s) record no manufacturer, so their sources are counted by supplier — two distributors of one factory's part would read as two there",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:lost_second_source (the second source goes away, with nothing written down — expressed on each line in the terms that line records: the lines that name a MANUFACTURER keep both distributors and lose the qualified alternate (two distributors of one factory's part is the case this gate exists for and the case a distributor count cannot see), the lines that name only suppliers drop to one. Prices, quantities and vendors are untouched. Enough lines to clear whatever single_source_limit the project set, so the control does not stop tripping when somebody raises it): 2 unrecorded single-source line(s) vs limit 0 (3 behind one source in total, 0 with a qualified alternate, 1 accepted in writing): U1 (manufacturer Wexmoor Semiconductor, stocked by 2), REG-01 (manufacturer Wexmoor Semiconductor, stocked by 2); 7 line(s) record no manufacturer, so their sources are counted by supplier — two distributors of one factory's part would read as two there",
+  "measured": 2.0,
+  "limit": 0.0,
+  "units": "lines",
+  "digest": "56822ce3f72de107a076d0796557ce3b9531f6c7d78d611bc51707386b4c187f"
+}

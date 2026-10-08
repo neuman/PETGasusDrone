@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.thrust_to_weight",
+  "rho": "878ed9d06fe9a5e84df6be78ee2f4b67a520d46b289aa368f6b77b5a08a807b8",
+  "static": "cc6b6d2d459e7e2ff2e868c2fe834d5ebce2ca89f0085914e3d720ec83f0c583",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "168e817d1e400c1b79409923e1b3c7dc3a52afa120fd6743980f401063bd1289",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "b489514913737f4031cef3c04a57ce4c2f674ec9a1c59ade63f5760027b03b0d",
+      "files": {
+        "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+        "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:heavy_battery",
+      "expect": "fail",
+      "note": "the known-good quad carrying a pack 4x as heavy; nothing else changes",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "8fdf10a2348d0466fda88157da04889aeda8173808cdbe49f8b631bb502550ea",
+    "files": {
+      "model/petgasus.py": "9868c9eceda18b06c0b65849a619a9923a1863b60d674f59cb5e9e9e0dce190d",
+      "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+      "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "auw_g"
+        ],
+        "164db50cf9c71e39f59993e8fa5e825d1c973a7103814a2f57e9c623c045e187",
+        69.72
+      ],
+      [
+        [
+          "hover_throttle_frac"
+        ],
+        "14082ca9fcbbe8aeef93bb8dc964cdd64e3b9f9333ee9fd72ee67f4dea11c39c",
+        0.511
+      ],
+      [
+        [
+          "thrust_to_weight"
+        ],
+        "dc77ce5c6ac0c204106259e34ca0206495ae652f4e4a544809006346c8008883",
+        1.957
+      ],
+      [
+        [
+          "thrust_total_g"
+        ],
+        "66c396a141a04df2d32d4d2d9f7d862e3e9dcd27550f4152fbd848a848deede3",
+        136.4
+      ]
+    ],
+    "files": {
+      "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+      "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C1": "3b029b832934ce4576a66c7fe38f19642edca9073d8aee7f4d26e9b52fad1bd2",
+      "acceptance:C1": "cb2fef3fada9eb3c1ace02b8ec64342d4c5f9991705bd85ee7884c8e088b02f6"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "auw_g"
+          ],
+          "69a39a8c6f66dd9c174909f12bf3e26f7d5cd67e75a0e04e9a04dadc58194e78",
+          45.12
+        ],
+        [
+          [
+            "hover_throttle_frac"
+          ],
+          "91f8cb48077883b757467685d5e7e9e2826a4ac1d8c789f7afffb545d97727a3",
+          0.331
+        ],
+        [
+          [
+            "thrust_to_weight"
+          ],
+          "5e9c935029494ad42f592e9d0bd0032ad80e4060239b155c0076c90a7e8088d7",
+          3.024
+        ],
+        [
+          [
+            "thrust_total_g"
+          ],
+          "66c396a141a04df2d32d4d2d9f7d862e3e9dcd27550f4152fbd848a848deede3",
+          136.4
+        ]
+      ],
+      "files": {
+        "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+        "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C1": "3b029b832934ce4576a66c7fe38f19642edca9073d8aee7f4d26e9b52fad1bd2",
+        "acceptance:C1": "cb2fef3fada9eb3c1ace02b8ec64342d4c5f9991705bd85ee7884c8e088b02f6"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 3.024,
+    "limit": 3.0,
+    "units": "ratio",
+    "detail": "136 g thrust / 45.1 g AUW; hover at 33% of full thrust",
+    "goalpost": [
+      {
+        "key": "C1",
+        "measured": 3.024,
+        "units": "ratio",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.30000000000000004,
+            "outcome": "pass",
+            "measured": 3.024,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 3.024,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 6.0,
+            "outcome": "fail",
+            "measured": 3.024,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 30.0,
+            "outcome": "fail",
+            "measured": 3.024,
+            "units": "ratio"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 75,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "thrust_to_weight"
+        ],
+        "before": 3.024,
+        "after": 2.55,
+        "outcome": "fail",
+        "measured": 2.55,
+        "limit": 3.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "auw_g"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "hover_throttle_frac"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "thrust_total_g"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:heavy_battery (the known-good quad carrying a pack 4x as heavy; nothing else changes): 136 g thrust / 69.7 g AUW; hover at 51% of full thrust",
+  "measured": 1.957,
+  "limit": 3.0,
+  "units": "ratio",
+  "digest": "5effb03bb537c13db884523af29f63ff5f59f94d53f3b73ca9a7a028639ca9f6"
+}

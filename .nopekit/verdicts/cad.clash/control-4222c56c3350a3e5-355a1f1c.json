@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "cad.clash",
+  "rho": "4222c56c3350a3e5869fe7ebb19d69ede587bf02f8436dcf37652095c055c769",
+  "static": "66775922060e4e17fc5b07dd9bbd5e7fafd7b534efa9fab506525027128c8f4d",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "62c072fbfefe0c076b5c3966c6b0047cd0f94cc5196f5684de272a0125d5d804",
+      "files": [
+        "<pack:cad-solid>/cad_solid_parts.py",
+        "<pack:cad-solid>/gates/solid.py"
+      ]
+    },
+    "selftest": {
+      "digest": "467052b3e6383fa00248f6b0042055392d36da88a6f85974f769fd3d3343530b",
+      "files": {
+        "selftest/bad_bounds.py": "b80b184faa418dd5b987c112228ccaa295c42f2a0b753fdeb0584d8e3a0bd145",
+        "selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+        "selftest/baseline.json": "7348a09b8ac1a30693fd3cc4bff5cb6664707b0ee7aa13a55193caa6de2b564f",
+        "selftest/check_clash_contact.py": "574bb1c3df21465f69975896a2caf4546c9baf9b526c081a394489f341734f99",
+        "selftest/check_connectivity.py": "3cd1b9d2e3620413705f587101c3f08876bf1e32708101398e8daf80064a78ce",
+        "selftest/check_ray_cast.py": "754383e6359e608ae4a03fc61b8fe5afa77050a14844856558245db9124d6f66",
+        "selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff",
+        "selftest/make_baseline_meshes.py": "36a53ea409bbf837d58a6105a58258fd56fba848ea965abbf20a99a660965361",
+        "selftest/meshes/carriage.stl": "14ec580b55c6762d0fb6d6db3e9122d1c9f94e7d6d9bbf23b07a4b5fbc2f2037",
+        "selftest/meshes/cover.stl": "11d95d6a98f7b5ea0db1479cca55a5195b294f7fee2a3b761ba262f57d6e94f3",
+        "selftest/meshes/guide_roller.stl": "f3788ef30bb461e84af67a8386d4233b4fad510621c1b441626fd74069abd341",
+        "selftest/meshes/housing.stl": "8beb118b1373461189ef8fcb0ab35db786e0b5a41d0cab4fb6b5c219297320c3"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_meshes.py:overlapping_pair",
+      "expect": "fail",
+      "note": "two valid 20 mm boxes placed 18 mm apart: 800 mm^3 of shared material, nothing else about either part changed and no allowlist entry",
+      "good": "selftest/good_meshes.py:baseline_meshes",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "73a3946b5a9d38bac4d25b7945d9229f8da963f03634aecc5f51df51affd8d77",
+    "files": {
+      "<pack:cad-solid>/selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+      "<pack:cad-solid>/selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "bonded_joints"
+        ],
+        "7acc585478bbe701b58a6ba5d89ed5e4055fce21d238f1bb4e7b6d3733fd1778"
+      ],
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.bonded_joints"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_allow"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_depth_tol_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_depth_tols_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_tolerance_mm3"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.clash_tolerances_mm3"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.organic_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.sliding_fits"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.bonded_joints"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_allow"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_depth_tol_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_depth_tols_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_tolerance_mm3"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.clash_tolerances_mm3"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.organic_parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.sliding_fits"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "clash_allow"
+        ],
+        "fbffe8ebbe158bd33d57b461aa5df729faf354050433d639c8f02a10e2b5d599"
+      ],
+      [
+        [
+          "clash_depth_tol_mm"
+        ],
+        "098869ce5a7e8fd0bfcaab4c64e131cca980fcc409952639d6449a6c4615375d",
+        0.01
+      ],
+      [
+        [
+          "clash_depth_tols_mm"
+        ],
+        "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+      ],
+      [
+        [
+          "clash_tolerance_mm3"
+        ],
+        "127909532a5e24f347add2b67044be692cea62932cbdb08ebb1ef9f0d2a0cfbe",
+        0.2
+      ],
+      [
+        [
+          "clash_tolerances_mm3"
+        ],
+        "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+      ],
+      [
+        [
+          "organic_parts"
+        ],
+        "f9087814108bf492f161c696c7e21e0d9bdbfb53b4ebcd0bbd64d05a4069a79b"
+      ],
+      [
+        [
+          "sliding_fits"
+        ],
+        "6edfbbc50ef70753ea32c5578a5af3ff948521a0d8517c02c9ed4199a08b84db"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "meshes"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "bonded_joints"
+          ],
+          "7acc585478bbe701b58a6ba5d89ed5e4055fce21d238f1bb4e7b6d3733fd1778"
+        ],
+        [
+          [
+            "cad"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.bonded_joints"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_allow"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_depth_tol_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_depth_tols_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_tolerance_mm3"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.clash_tolerances_mm3"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.organic_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad-solid.sliding_fits"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.bonded_joints"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_allow"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_depth_tol_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_depth_tols_mm"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_tolerance_mm3"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.clash_tolerances_mm3"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.organic_parts"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "cad.sliding_fits"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "clash_allow"
+          ],
+          "fbffe8ebbe158bd33d57b461aa5df729faf354050433d639c8f02a10e2b5d599"
+        ],
+        [
+          [
+            "clash_depth_tol_mm"
+          ],
+          "098869ce5a7e8fd0bfcaab4c64e131cca980fcc409952639d6449a6c4615375d",
+          0.01
+        ],
+        [
+          [
+            "clash_depth_tols_mm"
+          ],
+          "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+        ],
+        [
+          [
+            "clash_tolerance_mm3"
+          ],
+          "127909532a5e24f347add2b67044be692cea62932cbdb08ebb1ef9f0d2a0cfbe",
+          0.2
+        ],
+        [
+          [
+            "clash_tolerances_mm3"
+          ],
+          "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+        ],
+        [
+          [
+            "organic_parts"
+          ],
+          "f9087814108bf492f161c696c7e21e0d9bdbfb53b4ebcd0bbd64d05a4069a79b"
+        ],
+        [
+          [
+            "sliding_fits"
+          ],
+          "6edfbbc50ef70753ea32c5578a5af3ff948521a0d8517c02c9ed4199a08b84db"
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "meshes"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "pairs",
+    "detail": "0 interfering pairs of 6 (2 booleaned, 1 in surface contact, rest AABB-clear); largest shared volume 0.0000 mm^3 on carriage/cover vs 0.2 mm^3 tolerance; deepest equivalent penetration 0.0000 mm; 1 intended contact(s) allowlisted",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_meshes.py:overlapping_pair (two valid 20 mm boxes placed 18 mm apart: 800 mm^3 of shared material, nothing else about either part changed and no allowlist entry): 1 interfering pair(s) of 1 — worst reported 800.000 mm^3 on block_a/block_b vs 0.2 mm^3 / 0.01 mm tolerance: 800.0000 mm^3 vs 0.2 mm^3 tolerance; 2.0000 mm equivalent depth over 400.00 mm^2 vs 0.01 mm",
+  "measured": 1.0,
+  "limit": 0.0,
+  "units": "pairs",
+  "digest": "51f8903718f1a8d6deb7e02939dfa8032ead5e6154be7f286010505cac7de679"
+}

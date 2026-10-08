@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "gate": "petgasus.interference",
+  "rho": "52428520834123e7c460a14540635055b925f7a5f93ae69440d7e3501cdeeec8",
+  "code": {
+    "digest": "7d413f311a13a7f820b5352642a4acb485459f6cd374bc7e7234c2aafb7ec65e",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "assembly_parts"
+        ],
+        "eb12ea236fe7a86b4998162f0f3e38539c8b1c06f9a78d04945a0ce5b7401bf8"
+      ],
+      [
+        [
+          "interference_mm3"
+        ],
+        "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+      ],
+      [
+        [
+          "interference_total_mm3"
+        ],
+        "cb33559e51d9336cdbf86ce55c499c1b74750d592d1cb8b6ac3317b6b814a8e4",
+        0
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C5": "195f1a62b60d1986731b48261962927d3ce8bf44b5fc5fa5c2b9ab18c58eff3e",
+      "acceptance:C5": "0e02f7cbb3e8fbd152f3375f3877c24e12bec9b184cbf14a557007d57699d956"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "mm3",
+    "comparator": "<=",
+    "settles": "interference volume",
+    "detail": "27 placed parts, every pair intersected: no undeclared overlap",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "envelope-clearance"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "ca1b3eb5e1129f54f3dec654f3e025db9d9a1954d1b8507d789035a02e63cb48"
+}

@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.one_piece",
+  "rho": "e02110dc13abd4c5c11936777badeb19785d8546c4cad0bfafd8466c881fb534",
+  "static": "469eb7e00a646682e4afc488b9e64754d2a2141b1853c510a1370f0bd03225d0",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "f057a37c303fbec290ee6f4beda5df0741bb21cc6ab6f892de13f959c646a8ac",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "b489514913737f4031cef3c04a57ce4c2f674ec9a1c59ade63f5760027b03b0d",
+      "files": {
+        "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+        "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:no_spokes",
+      "expect": "fail",
+      "note": "the known-good frame with no spokes: the motor seats float free",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "8fdf10a2348d0466fda88157da04889aeda8173808cdbe49f8b631bb502550ea",
+    "files": {
+      "model/petgasus.py": "9868c9eceda18b06c0b65849a619a9923a1863b60d674f59cb5e9e9e0dce190d",
+      "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+      "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_pieces"
+        ],
+        "af16d4638988c76cd82596ee3d48540a862853a1c04040855923c22753f27e85",
+        5
+      ]
+    ],
+    "files": {
+      "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+      "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C11": "935703a181bb1d7bb01db16307496d3a9f6a4076c1617fa2d366ffa47d44cec8",
+      "acceptance:C11": "21a796a769194ff44a5c8ec8f011b9e6a074aaea43dc9f42eda2220508450a18"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "frame_pieces"
+          ],
+          "4bcd3657d0c29f255a305bffd762d00dbc16c2b6e76f8a3a3a4e9b476a1cdfac",
+          1
+        ]
+      ],
+      "files": {
+        "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+        "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C11": "935703a181bb1d7bb01db16307496d3a9f6a4076c1617fa2d366ffa47d44cec8",
+        "acceptance:C11": "21a796a769194ff44a5c8ec8f011b9e6a074aaea43dc9f42eda2220508450a18"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 1.0,
+    "limit": 1,
+    "units": "count",
+    "detail": "1 connected solid(s) in the frame mesh",
+    "goalpost": [
+      {
+        "key": "C11",
+        "measured": 1.0,
+        "units": "count",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.1,
+            "outcome": "fail",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 0.5,
+            "outcome": "fail",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 2.0,
+            "outcome": "pass",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 10.0,
+            "outcome": "pass",
+            "measured": 1.0,
+            "units": "count"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 0,
+    "boundary": "at-limit",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": []
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:no_spokes (the known-good frame with no spokes: the motor seats float free): 5 connected solid(s) in the frame mesh",
+  "measured": 5.0,
+  "limit": 1,
+  "units": "count",
+  "digest": "c0bb6c04adb8a8b4d50d45b32329c9129c54b11862b23d1cb1ec8c586bcdeb2e"
+}

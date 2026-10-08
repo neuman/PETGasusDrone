@@ -1,0 +1,6 @@
+{
+  "statement": "That 46.3 g thrust test was run at 4.2 V",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "The vendor does not state the voltage. If it was lower, the real thrust-to-weight is better than modelled; if it was a 4.35 V LiHV bench supply, slightly worse."
+}

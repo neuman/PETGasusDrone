@@ -1,0 +1,22 @@
+{
+  "title": "Battery hangs under the hub on a strap",
+  "when": "2026-10-07T18:32:01Z",
+  "summary": "The 1S pack lies along x under the base plate, held by one 10 mm strap through two hub slots; the strap passes over the hub under the AIO, which sits on 4.5 mm posts to make room.",
+  "rejected": [
+    {
+      "value": "top tray on the AIO screws",
+      "why": "the 57 mm pack clashes with the duct walls at tray height (interference gate); clearing the duct tops needs 9.4 mm tray legs and M1.4x16 screws, and raises the CG over the props"
+    },
+    {
+      "value": "deck screwed onto the duct webs",
+      "why": "a second print and four more screws for a kid to fumble, and the CG still sits above the prop plane"
+    }
+  ],
+  "params_changed": [
+    "fc_post_h",
+    "strap_slot_w"
+  ],
+  "claims_changed": [
+    "C5"
+  ]
+}

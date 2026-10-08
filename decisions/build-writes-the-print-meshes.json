@@ -1,0 +1,11 @@
+{
+  "title": "build() writes the print meshes",
+  "when": "2026-10-07T18:32:01Z",
+  "summary": "build() generates the frame with manifold3d and writes build/print/frame.stl (content-addressed) in the same call that measures its volume, bbox and interferences, so the numbers gates read and the file the slicer reads cannot disagree.",
+  "rejected": [
+    {
+      "value": "separate generator script",
+      "why": "the mesh gates would read a file whose freshness nothing checks against the model"
+    }
+  ]
+}

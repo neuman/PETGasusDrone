@@ -1,0 +1,14 @@
+{
+  "statement": "Estimated hover flight time is at least 3 minutes per pack",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "hover flight time",
+    "comparator": ">=",
+    "limit": 3.0,
+    "units": "min"
+  },
+  "rationale": "Under ~3 minutes a 10-year-old spends more time swapping packs than flying; a 4-pack session should be 12+ minutes of air time.",
+  "tags": [
+    "endurance"
+  ]
+}

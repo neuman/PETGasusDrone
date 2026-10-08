@@ -1,0 +1,6 @@
+{
+  "statement": "The 1102 22000KV's 46.3 g thrust on 40 mm props is a floor for the kit's 1102 21000KV on 45 mm props",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "No thrust test is published for the 2026 motor. A larger disc on a near-identical motor makes more static thrust, so the sibling figure is used as a lower bound."
+}

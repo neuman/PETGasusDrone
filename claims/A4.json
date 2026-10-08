@@ -1,0 +1,6 @@
+{
+  "statement": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "Not published. It sets the wheelbase (the board must clear the ducts). Measure before printing; if larger, change fc_board_side and re-run."
+}

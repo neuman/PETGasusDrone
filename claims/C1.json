@@ -1,0 +1,14 @@
+{
+  "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "thrust to weight",
+    "comparator": ">=",
+    "limit": 3.0,
+    "units": "ratio"
+  },
+  "rationale": "A first-time pilot in angle mode hovers at 1/TW of full thrust; at 3:1 that is a third of the stick, leaving room to arrest a fall and push through a gust. At ~2:1 the quad wallows and a beginner's late correction cannot catch it. Commercial 1S whoops run 3.5-5:1.",
+  "tags": [
+    "thrust-margin"
+  ]
+}

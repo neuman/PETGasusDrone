@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "gate": "petgasus.motor_leads",
+  "rho": "e608215a3602d5ac0ebf93c3349662feebbb43e59b4dfd836abafeb636d21984",
+  "code": {
+    "digest": "22badc8d3f3aa96048b3a103bc3c5729ab9f22ba8e76b787fcdec72a6905dbc9",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_lead_len"
+        ],
+        "d9c63a1b8b5d167afc92fe576106090e30017177bb820a81201d4d52c1604ae4",
+        37.0
+      ],
+      [
+        [
+          "motor_lead_needed_mm"
+        ],
+        "0dc54eeca072ce63cf8cda736d9f0f9211a48fc6c6729df15f5c8e2d1a723167"
+      ],
+      [
+        [
+          "motor_lead_spare_mm"
+        ],
+        "73392bd25d5ef9d58b549e6a765ebbffc434f3fc61c438311e6f19f2ae22f6c5",
+        16.28
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C12": "66d0e6834d47fc543817dbe840b9dbb47491fb2afe09fd29f38389bf7cc74bcf",
+      "acceptance:C12": "00d5734182990883b1f12473094a3b26b2cf1de551a221b472243cc51f9a801b"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 16.28,
+    "limit": 3.0,
+    "units": "mm",
+    "comparator": ">=",
+    "settles": "motor lead spare",
+    "detail": "route lengths, mm: back_left 20.7, back_right 20.7, front_left 20.7, front_right 20.7; lead 37 mm",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "motor-leads"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "793624b573343a969c11b71f2dd81c71d9ec74e5139c1cf016367a4b4ae9bdab"
+}

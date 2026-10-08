@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.motor_leads",
+  "rho": "53e5f964dcbfb5db5f05d593b6921ebaea9d872ba243f0e4495721d1d39cf52d",
+  "static": "3d6760215ccf6e1fde2b657915c33b96cef5309ad18ffa309fffa654cde36254",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "22badc8d3f3aa96048b3a103bc3c5729ab9f22ba8e76b787fcdec72a6905dbc9",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "b489514913737f4031cef3c04a57ce4c2f674ec9a1c59ade63f5760027b03b0d",
+      "files": {
+        "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+        "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:short_leads",
+      "expect": "fail",
+      "note": "motors with 20 mm leads on the known-good frame",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "8fdf10a2348d0466fda88157da04889aeda8173808cdbe49f8b631bb502550ea",
+    "files": {
+      "model/petgasus.py": "9868c9eceda18b06c0b65849a619a9923a1863b60d674f59cb5e9e9e0dce190d",
+      "selftest/bad_configs.py": "36ea1c53f258954301a1273af8699aaccaf7ea9f1190fcdf644f8f24df2b1f89",
+      "selftest/known_good.py": "9f761f51836431432d79aa9df79b080c57d9bc42c449151829368598b4809ea7"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_lead_len"
+        ],
+        "e32ac4f280eb7e459d2e927d847f6d6220e60e3d283c60e2b2db853a318e92dd",
+        20.0
+      ],
+      [
+        [
+          "motor_lead_needed_mm"
+        ],
+        "0dc54eeca072ce63cf8cda736d9f0f9211a48fc6c6729df15f5c8e2d1a723167"
+      ],
+      [
+        [
+          "motor_lead_spare_mm"
+        ],
+        "4344295a323daa9f9b136b5075c335fd0f469a4f84df2819269b29d4afcb9b48",
+        -0.72
+      ]
+    ],
+    "files": {
+      "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+      "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C12": "66d0e6834d47fc543817dbe840b9dbb47491fb2afe09fd29f38389bf7cc74bcf",
+      "acceptance:C12": "00d5734182990883b1f12473094a3b26b2cf1de551a221b472243cc51f9a801b"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "motor_lead_len"
+          ],
+          "d9c63a1b8b5d167afc92fe576106090e30017177bb820a81201d4d52c1604ae4",
+          37.0
+        ],
+        [
+          [
+            "motor_lead_needed_mm"
+          ],
+          "0dc54eeca072ce63cf8cda736d9f0f9211a48fc6c6729df15f5c8e2d1a723167"
+        ],
+        [
+          [
+            "motor_lead_spare_mm"
+          ],
+          "73392bd25d5ef9d58b549e6a765ebbffc434f3fc61c438311e6f19f2ae22f6c5",
+          16.28
+        ]
+      ],
+      "files": {
+        "build/topopt/127ec84a6f421a46.npz": "cacbb7d0fc95d8ac3eb3b4442d6f250fbf506654b71d1d4210684b649076c41a",
+        "model/topopt.py": "5cc953aa64b8465d32525cbdb216f0983b4e346e8b9ca3d2a43d8c5ba670186b"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C12": "66d0e6834d47fc543817dbe840b9dbb47491fb2afe09fd29f38389bf7cc74bcf",
+        "acceptance:C12": "00d5734182990883b1f12473094a3b26b2cf1de551a221b472243cc51f9a801b"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 16.28,
+    "limit": 3.0,
+    "units": "mm",
+    "detail": "route lengths, mm: back_left 20.7, back_right 20.7, front_left 20.7, front_right 20.7; lead 37 mm",
+    "goalpost": [
+      {
+        "key": "C12",
+        "measured": 16.28,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.30000000000000004,
+            "outcome": "pass",
+            "measured": 16.28,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 16.28,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 6.0,
+            "outcome": "pass",
+            "measured": 16.28,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 30.0,
+            "outcome": "fail",
+            "measured": 16.28,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 119,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "motor_lead_spare_mm"
+        ],
+        "before": 16.28,
+        "after": 2.55,
+        "outcome": "fail",
+        "measured": 2.55,
+        "limit": 3.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "motor_lead_len"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "back_left"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "back_right"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "front_left"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "front_right"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:short_leads (motors with 20 mm leads on the known-good frame): route lengths, mm: back_left 20.7, back_right 20.7, front_left 20.7, front_right 20.7; lead 20 mm",
+  "measured": -0.72,
+  "limit": 3.0,
+  "units": "mm",
+  "digest": "d146f0cebf10263cbfeddc8df10feb6771f9e60a9ef6bc6db01afe0b887e6f61"
+}

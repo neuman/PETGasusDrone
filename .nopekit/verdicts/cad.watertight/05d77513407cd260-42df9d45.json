@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "gate": "cad.watertight",
+  "rho": "05d77513407cd260183b46d87da6ee5cef054cbbf1cf5d64e95f09f40a471e5e",
+  "code": {
+    "digest": "67bfd56d2199d8bce5765fdb946e4c1f5804451cffd805f045db04da2aa275bb",
+    "files": [
+      "<pack:cad-solid>/cad_solid_parts.py",
+      "<pack:cad-solid>/gates/solid.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "meshes",
+          "frame"
+        ],
+        "03989e65a8c275b7c5a9e7706ad85cc5b4ac087c0b74a85932624bd44fff9390",
+        "build/print/frame.stl"
+      ],
+      [
+        [
+          "meshes"
+        ],
+        "1717eb0de38bac2c691610db52087e90bad3dce1d92b08a0b02b873808272c27"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.stl": "1f0095207eab3d3109adfa852f95d62df3b41eb2a22b6cf840deb89a7e0a15be"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": false,
+    "measured": 28.0,
+    "limit": 0.0,
+    "units": "edges",
+    "comparator": "<=",
+    "settles": "mesh watertightness",
+    "detail": "28 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 28 non-manifold of 37058 faces; 1 part(s) welded at 0.0001 mm on load (frame) — a soup format has no vertex identity of its own",
+    "evidence": [
+      "<out>/cad-solid/watertight.json"
+    ],
+    "locators": [
+      {
+        "view": "assembly",
+        "target": "frame",
+        "kind": "part",
+        "label": "0 open, 28 non-manifold edge(s) of 37058 faces",
+        "severity": "",
+        "position": null,
+        "value": 28.0
+      }
+    ],
+    "claims": [
+      "geometry",
+      "mesh",
+      "cad",
+      "manufacturability"
+    ],
+    "tier": 1,
+    "pack": "cad-solid"
+  },
+  "digest": "3b7b190ea6ace419c7663ef9f89c83eb732a1d5103af90e2735829f26f0fef45"
+}

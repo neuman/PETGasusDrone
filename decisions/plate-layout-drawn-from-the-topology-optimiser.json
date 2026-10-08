@@ -1,0 +1,40 @@
+{
+  "title": "Plate layout drawn from the topology optimiser",
+  "when": "2026-10-07T19:40:17Z",
+  "summary": "The base plate is the optimiser's load path made printable: no hub-to-motor arms; each motor seat hangs on 4 ribbed spokes (1.3 mm x 4.8 mm ribs) from its own duct ring, the hub reaches the four duct-to-duct webs on ribbed bridges, and the webs are 6 mm tall. Judged by the same 2.5D plate FE on the exact printed layout: first mode 286 Hz vs 187 Hz for the hand-drawn arms at the same webs, crash compliance 2.2x lower, for +0.8 g.",
+  "rejected": [
+    {
+      "value": "hand-drawn arms + 3 flat spokes",
+      "why": "first mode 187 Hz, under C4's 200 Hz"
+    },
+    {
+      "value": "optimiser density field printed directly",
+      "why": "its spokes were 0.75 mm blades; the 1.6 mm minimum-member clean-up deleted them and cut the motor seats loose (first mode 7 Hz)"
+    },
+    {
+      "value": "5 spokes, as the optimiser drew",
+      "why": "thrust-to-weight 3.025: no margin on C1"
+    },
+    {
+      "value": "3 spokes",
+      "why": "crash stiffness 0.85-1.18x the hand-drawn frame's"
+    },
+    {
+      "value": "4 mm webs",
+      "why": "first mode 213 Hz; 6 mm gives 283 Hz for 0.12 g"
+    }
+  ],
+  "params_changed": [
+    "plate_layout",
+    "spoke_count",
+    "spoke_phase_deg",
+    "web_h"
+  ],
+  "claims_changed": [
+    "C4",
+    "C1"
+  ],
+  "evidence": [
+    "build/topopt/field.png"
+  ]
+}

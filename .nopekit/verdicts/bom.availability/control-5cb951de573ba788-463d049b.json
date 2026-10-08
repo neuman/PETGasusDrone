@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.availability",
+  "rho": "5cb951de573ba78816d74eb919725561be21b3e21c03db35913c3b8306b18cd3",
+  "static": "5d74d425ded3bfa847de77c26ea3d121baa865a2814ec28116ef7e3a4c5d00c7",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "2d5940b9d8503f0468d3c7ee8140fa658f32c809cd3e36704d570bbe5ccfe580",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:end_of_life",
+      "expect": "fail",
+      "note": "one line's lifecycle moved to 'eol' — the notice that arrives by email and gets filed. Price, quantity and vendor are unchanged; only the part's future is",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "bom",
+          "build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom",
+          "lead_time_budget_weeks"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.lead_time_budget_weeks"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "build_quantity"
+        ],
+        "7a6698962fc4b131bf6064df3022900624747890255755d87eb3defae4fff2ee",
+        500
+      ],
+      [
+        [
+          "lead_time_budget_weeks"
+        ],
+        "528065cdf04781e96a91aa60ec8a4358b8be7dfedc02c1118e1e54a14d92d03b",
+        16
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.build_quantity"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.lead_time_budget_weeks"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "bom",
+            "build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom",
+            "lead_time_budget_weeks"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "bom.lead_time_budget_weeks"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "build_quantity"
+          ],
+          "7a6698962fc4b131bf6064df3022900624747890255755d87eb3defae4fff2ee",
+          500
+        ],
+        [
+          [
+            "lead_time_budget_weeks"
+          ],
+          "528065cdf04781e96a91aa60ec8a4358b8be7dfedc02c1118e1e54a14d92d03b",
+          16
+        ],
+        [
+          [
+            "sourcing"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.build_quantity"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ],
+        [
+          [
+            "sourcing.lead_time_budget_weeks"
+          ],
+          "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+        ]
+      ],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 12.0,
+    "limit": 16.0,
+    "units": "weeks",
+    "detail": "longest lead 12 wk (U2); vs 16 wk budget; 0 unknown, 0 EOL, 1 flagged; watch: REG-01:nrnd",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:end_of_life (one line's lifecycle moved to 'eol' — the notice that arrives by email and gets filed. Price, quantity and vendor are unchanged; only the part's future is): longest lead 12 wk (U2); vs 16 wk budget; 0 unknown, 1 EOL, 1 flagged; EOL: HSG-01; watch: REG-01:nrnd",
+  "measured": 12.0,
+  "limit": 16.0,
+  "units": "weeks",
+  "digest": "67fe314abebee1a8d421c732ce869249a6600fd0e582a474030d99626155dab7"
+}

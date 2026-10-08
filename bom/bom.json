@@ -1,0 +1,165 @@
+{
+  "schema": "nopekit.bom/1",
+  "product": "PETGasus - no-solder printed 1S whoop, line of sight",
+  "currency": "USD",
+  "build_quantity": 1,
+  "budget_per_unit": 150.0,
+  "lead_time_budget_weeks": 3,
+  "moq_ratio_limit": 3.0,
+  "moq_excess_limit": 50.0,
+  "moq_idle_limit_fraction": 0.5,
+  "single_source_limit": 10,
+  "_snapshot": "Prices and stock read 2026-10-07 from the vendor pages named in each line's note. A snapshot, not a quote: re-check before ordering. Shipping from BetaFPV's store is NOT included (not published to us).",
+  "lines": [
+    {
+      "ref": "KIT",
+      "description": "BetaFPV Meteor75 Pro II O4 PNP (ELRS) - parts donor: Matrix 1S 3IN1 FC/12A ESC/ELRS RX (25.5 mm mount, BT2.0 lead, no video TX), 4x 1102 21000KV (2026) motors on JST1.25 plugs, GF1811 45 mm props, plus its stock frame as a fallback",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "BetaFPV store",
+      "vendor_pn": "Meteor75 Pro II O4 PNP ELRS",
+      "manufacturer": "BetaFPV",
+      "unit_price": 79.99,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "lifecycle": "active",
+      "sources": [
+        "BetaFPV store"
+      ],
+      "alternate_qualified": false,
+      "single_source_accepted": true,
+      "acceptance_note": "Cheaper than its board ($39.99) and motors ($39.99) bought apart, and the only verified all-plug-in, no-video-TX set. Not on Amazon. The all-Amazon fallback (Matrix 5IN1 5A B0DQ8FH3VV + 1102 18000KV B0834P2LSY) is about $7 more and carries a video TX and a 5 A ESC.",
+      "note": "https://betafpv.com/products/meteor75-pro-ii-o4-brushless-whoop-quadcopter"
+    },
+    {
+      "ref": "RADIO",
+      "description": "BetaFPV LiteRadio 3 ELRS transmitter (USB joystick for simulators; built-in battery)",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "BetaFPV store",
+      "vendor_pn": "LiteRadio 3 ELRS",
+      "manufacturer": "BetaFPV",
+      "unit_price": 32.99,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "lifecycle": "active",
+      "sources": [
+        "BetaFPV store",
+        "RaceDayQuads"
+      ],
+      "alternate_qualified": true,
+      "note": "Upgrade worth keeping: RadioMaster Pocket ELRS, Amazon B0CG93QM4T $79.99 + 2x 18650 cells. Do NOT buy the Amazon 'LiteRadio 3' listing B09PV86XXY - it is the FrSky version and cannot bind ELRS."
+    },
+    {
+      "ref": "BATT",
+      "description": "BetaFPV LAVA II 1S 320 mAh LiHV, BT2.0, 5-pack (64 x 10 x 6 mm, 8.2 g)",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "Amazon",
+      "vendor_pn": "B0GJSTMT8J",
+      "manufacturer": "BetaFPV",
+      "unit_price": 23.19,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "lifecycle": "active",
+      "sources": [
+        "Amazon",
+        "BetaFPV store"
+      ],
+      "alternate_qualified": true,
+      "note": "Sold by BetaFPV on Amazon, 20 left on 2026-10-07. The LAVA II 480 4-pack ($21.99, BetaFPV store) also fits the strap: longer flights, thrust-to-weight 2.85 instead of ~3.1."
+    },
+    {
+      "ref": "CHG",
+      "description": "HOBBYFLY 6-port 1S USB charger, BT2.0/PH2.0, LiHV",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "Amazon",
+      "vendor_pn": "B0FHCVCC1R",
+      "manufacturer": "HOBBYFLY",
+      "unit_price": 11.99,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "lifecycle": "active",
+      "sources": [
+        "Amazon"
+      ],
+      "alternate_qualified": true
+    },
+    {
+      "ref": "PROPS",
+      "description": "Gemfan 1811 3-blade 45 mm props, 1.5 mm shaft, 12-pack (spares: kids break props)",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "BetaFPV store",
+      "vendor_pn": "GF 1811 3-blade 1.5mm 12pcs",
+      "manufacturer": "Gemfan",
+      "unit_price": 4.99,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "lifecycle": "active",
+      "sources": [
+        "BetaFPV store",
+        "RaceDayQuads"
+      ],
+      "alternate_qualified": true
+    },
+    {
+      "ref": "SCREWS",
+      "description": "M1.4 self-tapping screw assortment incl. M1.4 x 6 (4 used: AIO to posts)",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "Amazon",
+      "vendor_pn": "search: M1.4 self tapping screw assortment",
+      "manufacturer": "generic",
+      "unit_price": 8.0,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "lifecycle": "active",
+      "sources": [
+        "Amazon"
+      ],
+      "alternate_qualified": true,
+      "note": "ESTIMATED price - no specific listing verified."
+    },
+    {
+      "ref": "STRAP",
+      "description": "10 mm hook-and-loop battery straps (pack)",
+      "qty_per_unit": 1,
+      "spares_fraction": 0.0,
+      "vendor": "Amazon",
+      "vendor_pn": "search: 10mm battery strap",
+      "manufacturer": "generic",
+      "unit_price": 6.0,
+      "price_currency": "USD",
+      "moq": 1,
+      "order_multiple": 1,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "lifecycle": "active",
+      "sources": [
+        "Amazon"
+      ],
+      "alternate_qualified": true,
+      "note": "ESTIMATED price. A rubber band works on day one."
+    }
+  ]
+}

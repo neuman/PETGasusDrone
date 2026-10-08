@@ -1,0 +1,14 @@
+{
+  "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "motor screw engagement",
+    "comparator": ">=",
+    "limit": 1.0,
+    "units": "mm"
+  },
+  "rationale": "Under ~1 mm (less than two threads of M1.4) the screw strips out of the motor base in the first hard crash.",
+  "tags": [
+    "motor-screws"
+  ]
+}

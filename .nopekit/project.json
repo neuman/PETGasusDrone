@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "name": "PETGasusDrone",
+  "summary": "Kid-friendly no-solder 3D-printed (PETG) ducted micro drone, line-of-sight, < $150 electronics",
+  "created": "2026-10-07T18:15:03Z",
+  "revision": "v0.1",
+  "model_entry": "model/petgasus.py",
+  "packs": [
+    "fdm-print",
+    "cad-solid",
+    "sourcing"
+  ],
+  "spine_version": "0.1.0"
+}

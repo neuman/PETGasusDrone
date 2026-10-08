@@ -1,0 +1,6 @@
+{
+  "statement": "Hover efficiency is 3.0 g of thrust per watt",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "Typical of 1102-class motors on 45 mm props at hover. Sets the flight-time estimate only. Replace from a blackbox log or a timed hover."
+}

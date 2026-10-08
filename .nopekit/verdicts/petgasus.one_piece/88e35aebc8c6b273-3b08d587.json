@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "gate": "petgasus.one_piece",
+  "rho": "88e35aebc8c6b27342d67cf325f81cce99eceb5c4545b02d0634c4a8fc57ee62",
+  "code": {
+    "digest": "f057a37c303fbec290ee6f4beda5df0741bb21cc6ab6f892de13f959c646a8ac",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_pieces"
+        ],
+        "4bcd3657d0c29f255a305bffd762d00dbc16c2b6e76f8a3a3a4e9b476a1cdfac",
+        1
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C11": "935703a181bb1d7bb01db16307496d3a9f6a4076c1617fa2d366ffa47d44cec8",
+      "acceptance:C11": "21a796a769194ff44a5c8ec8f011b9e6a074aaea43dc9f42eda2220508450a18"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 1.0,
+    "limit": 1,
+    "units": "count",
+    "comparator": "<=",
+    "settles": "frame pieces",
+    "detail": "1 connected solid(s) in the frame mesh",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "one-piece"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "75a377b1b474f76ea8631302a56637d4dd4de29fa34e601d99b10f98c0051338"
+}

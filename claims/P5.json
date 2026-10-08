@@ -1,0 +1,12 @@
+{
+  "statement": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
+  "kind": "physical",
+  "note": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1, A5, A6.",
+  "acceptance": {
+    "quantity": "measured thrust to weight",
+    "comparator": ">=",
+    "limit": 3.0,
+    "units": "ratio"
+  },
+  "rationale": "Settles C1 on hardware instead of on three assumptions."
+}

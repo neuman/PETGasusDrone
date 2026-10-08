@@ -1,0 +1,6 @@
+{
+  "statement": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
+  "kind": "assumption",
+  "owner": "Eric Neuman",
+  "rationale": "Tight ducts can add 10-20% thrust; a printed duct with a 1 mm tip gap and no shaped inlet lip may add nothing or lose some. 0.9 is the cautious middle. Replace with a scale measurement: quad upside down on a kitchen scale, full throttle, props on (P5)."
+}

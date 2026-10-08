@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "gate": "cad.is_volume",
+  "rho": "9ec47d3d3fe7c00b3d7217409fa1bc2866b1fc64ae008ceb42e1cc189538f852",
+  "code": {
+    "digest": "f5cfc0f21d86cb0dfa4b304d2373346300b2704e54bc42ac19d22e9db6dd80da",
+    "files": [
+      "<pack:cad-solid>/cad_solid_parts.py",
+      "<pack:cad-solid>/gates/solid.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+  "reads": {
+    "params": [
+      [
+        [
+          "cad"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad-solid.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "cad.meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "meshes",
+          "frame"
+        ],
+        "03989e65a8c275b7c5a9e7706ad85cc5b4ac087c0b74a85932624bd44fff9390",
+        "build/print/frame.stl"
+      ],
+      [
+        [
+          "meshes"
+        ],
+        "1717eb0de38bac2c691610db52087e90bad3dce1d92b08a0b02b873808272c27"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.stl": "b05ca80896ceb9757a2a8d569f0ad527a13f8864bc2dafead8fa7086245e147e"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": false,
+    "measured": 1.0,
+    "limit": 0.0,
+    "units": "parts",
+    "comparator": "<=",
+    "settles": "solid validity",
+    "detail": "1 of 1 part(s) are not volumes, limit 0 — frame: not closed; 1 part(s) welded at 0.0001 mm on load (frame) — a soup format has no vertex identity of its own",
+    "evidence": [
+      "<out>/cad-solid/is_volume.json"
+    ],
+    "locators": [
+      {
+        "view": "assembly",
+        "target": "frame",
+        "kind": "part",
+        "label": "not closed",
+        "severity": "",
+        "position": null,
+        "value": 14006.475833797755
+      }
+    ],
+    "claims": [
+      "geometry",
+      "mesh",
+      "cad",
+      "manufacturability"
+    ],
+    "tier": 1,
+    "pack": "cad-solid"
+  },
+  "digest": "e417373df9e925c1c7509a631074d9c423711440b4b0dfdad78f7e2df5e6c23c"
+}

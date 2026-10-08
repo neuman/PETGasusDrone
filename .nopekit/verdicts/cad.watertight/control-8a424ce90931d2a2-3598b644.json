@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "cad.watertight",
+  "rho": "8a424ce90931d2a2052b1e0aa035ca0ddf9e63fb4ac3192e2f4bbb37bf195d23",
+  "static": "22e95b222e9b21e1ff36eb9146443937e24d7d98847bea8e9df2b5f86b27377d",
+  "static_parts": {
+    "spine": "f396daf6190537c7f68ede528849d58110bd85d8d545c39e61ecc2efda945530",
+    "code": {
+      "digest": "67bfd56d2199d8bce5765fdb946e4c1f5804451cffd805f045db04da2aa275bb",
+      "files": [
+        "<pack:cad-solid>/cad_solid_parts.py",
+        "<pack:cad-solid>/gates/solid.py"
+      ]
+    },
+    "selftest": {
+      "digest": "467052b3e6383fa00248f6b0042055392d36da88a6f85974f769fd3d3343530b",
+      "files": {
+        "selftest/bad_bounds.py": "b80b184faa418dd5b987c112228ccaa295c42f2a0b753fdeb0584d8e3a0bd145",
+        "selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+        "selftest/baseline.json": "7348a09b8ac1a30693fd3cc4bff5cb6664707b0ee7aa13a55193caa6de2b564f",
+        "selftest/check_clash_contact.py": "574bb1c3df21465f69975896a2caf4546c9baf9b526c081a394489f341734f99",
+        "selftest/check_connectivity.py": "3cd1b9d2e3620413705f587101c3f08876bf1e32708101398e8daf80064a78ce",
+        "selftest/check_ray_cast.py": "754383e6359e608ae4a03fc61b8fe5afa77050a14844856558245db9124d6f66",
+        "selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff",
+        "selftest/make_baseline_meshes.py": "36a53ea409bbf837d58a6105a58258fd56fba848ea965abbf20a99a660965361",
+        "selftest/meshes/carriage.stl": "14ec580b55c6762d0fb6d6db3e9122d1c9f94e7d6d9bbf23b07a4b5fbc2f2037",
+        "selftest/meshes/cover.stl": "11d95d6a98f7b5ea0db1479cca55a5195b294f7fee2a3b761ba262f57d6e94f3",
+        "selftest/meshes/guide_roller.stl": "f3788ef30bb461e84af67a8386d4233b4fad510621c1b441626fd74069abd341",
+        "selftest/meshes/housing.stl": "8beb118b1373461189ef8fcb0ab35db786e0b5a41d0cab4fb6b5c219297320c3"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_meshes.py:holed_box",
+      "expect": "fail",
+      "note": "a box with the two triangles of its +Z facet deleted: 4 open edges, winding and every other facet untouched",
+      "good": "selftest/good_meshes.py:baseline_meshes",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "73a3946b5a9d38bac4d25b7945d9229f8da963f03634aecc5f51df51affd8d77",
+    "files": {
+      "<pack:cad-solid>/selftest/bad_meshes.py": "3445f82fd5365e12c553be737f94a280d214e9198c5a65289b87e7f821070eb2",
+      "<pack:cad-solid>/selftest/good_meshes.py": "024368b72c1f1c877d14198c1e6aac7da615156852ca6779d39901baf976eeff"
+    }
+  },
+  "reads": {
+    "params": [],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "meshes"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "meshes"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "edges",
+    "detail": "0 bad edge(s) across 4 part(s), limit 0 — worst carriage: 0 open, 0 non-manifold of 12 faces; 4 part(s) welded at 0.0001 mm on load (carriage, cover, guide_roller...) — a soup format has no vertex identity of its own",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_meshes.py:holed_box (a box with the two triangles of its +Z facet deleted: 4 open edges, winding and every other facet untouched): 4 bad edge(s) across 1 part(s), limit 0 — worst holed_box: 4 open, 0 non-manifold of 10 faces",
+  "measured": 4.0,
+  "limit": 0.0,
+  "units": "edges",
+  "digest": "d76f3061ff94a82d87d001098649af147e372e4835a546f183f6472089294beb"
+}

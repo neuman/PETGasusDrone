@@ -1,0 +1,6 @@
+{
+  "statement": "The AIO drops onto its posts and the battery straps on without touching any duct or prop",
+  "kind": "physical",
+  "note": "Fit the AIO, motors, props and a battery. Spin each prop by hand: it must not touch anything.",
+  "rationale": "C5 checks envelopes we wrote down; this checks the parts that arrived."
+}
