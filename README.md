@@ -2,6 +2,8 @@
 
 A small 3D-printed quadcopter for an adult and a kid to build together. It needs no soldering, prints in one piece in PETG, and flies by sight (no camera or goggles), mostly indoors.
 
+**[See the design explained, with a 3D build-along →](https://neuman.github.io/PETGasusDrone/)**
+
 ![The printed frame, its top view, and the topology optimiser's density field it was drawn from](docs/images/frame.png)
 
 | | |
@@ -62,5 +64,5 @@ Change a number in `model/petgasus.py`, then run `check`. After any model change
 | `claims/` | What must be true, with acceptance limits and reasons |
 | `selftest/` | Known-good design and known-bad fixtures every check must catch |
 | `bom/` | Parts, prices and sources |
-| `views/`, `site/` | The project site (`site/index.html` is the plain-language front page) |
+| `views/`, `site/` | The project site (`site/index.html` is the plain-language front page). Pushing `site/` to `main` publishes it to GitHub Pages |
 | `.nopekit/verdicts/` | Check results, kept as evidence |
