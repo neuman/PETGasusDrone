@@ -90,6 +90,22 @@ button { font: inherit; }
   box-shadow: 0 0 0 1px var(--ring); }
 .viewer canvas { display: block; width: 100%; height: 100%; cursor: grab; }
 .viewer .hint { position: absolute; left: 12px; bottom: 10px; font-size: 12px; color: var(--muted); pointer-events: none; }
+/* explode control: the pill from the Gripster viewer (../cyberdeck), one slider between two captions */
+.control-bar { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 2;
+  display: flex; align-items: center; padding: 8px 12px; border-radius: 999px; max-width: calc(100% - 24px);
+  background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 1px var(--ring), 0 6px 18px rgba(0, 0, 0, 0.12); }
+.explode { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.explode-cap { font-size: 11px; font-weight: 600; color: var(--ink-2); white-space: nowrap; min-width: 4.6em; }
+.explode-cap--l { text-align: right; }
+.explode-slider { -webkit-appearance: none; appearance: none; flex: 1 1 auto; min-width: 60px; width: clamp(120px, 26vw, 220px);
+  height: 4px; margin: 0; border-radius: 999px; background: var(--axis); outline: none; }
+.explode-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); cursor: pointer; }
+.explode-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--accent);
+  border: 2px solid var(--surface); cursor: pointer; }
+.explode-slider:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+#hero3d .hint { top: 10px; bottom: auto; } /* the pill has the bottom edge */
 .viewer .label3d { position: absolute; pointer-events: none; font-size: 12px; font-weight: 600;
   background: var(--surface); color: var(--ink); padding: 2px 7px; border-radius: 6px;
   box-shadow: 0 0 0 1px var(--ring); white-space: nowrap; transform: translate(-50%, -130%); }
@@ -206,7 +222,13 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
     <div class="tiles" id="tiles"></div>
   </div>
   <div>
-    <div class="viewer" id="hero3d"><div class="hint">Drag to turn · scroll to zoom</div></div>
+    <div class="viewer" id="hero3d"><div class="hint">Drag to turn · scroll to zoom</div>
+      <div class="control-bar" role="toolbar" aria-label="Viewer controls">
+        <label class="explode"><span class="explode-cap explode-cap--l">Assembled</span>
+          <input class="explode-slider" id="hero-explode" type="range" min="0" max="100" value="0" aria-label="Explode / reassemble">
+          <span class="explode-cap explode-cap--r">Exploded</span></label>
+      </div>
+    </div>
     <div class="legend" id="legend"></div>
   </div>
 </section>
@@ -422,6 +444,10 @@ function makeViewer(el, { auto = false, labels = false } = {}) {
       const on = !group || m.userData.group === group;
       m.material.color.set(on ? gcol(m.userData.group) : css("--band-1"));
       m.material.opacity = on ? 1 : 0.35; m.material.depthWrite = on; } },
+    // explode: each part slides t (0 to 1) of the way along its own offset (story.parts[].explode, the same
+    // vectors the build steps use). It is placed from its remembered home, so calls never add up.
+    setExplode(t) { for (const m of meshes) { const off = story.parts[m.userData.part]?.explode; if (!off) continue;
+      m.position.set(m.userData.home.x + off[0] * t, m.userData.home.y + off[1] * t, m.userData.home.z + off[2] * t); } },
   };
   (function loop() { requestAnimationFrame(loop); controls.update(); api.onFrame?.(); renderer.render(scene, cam); })();
   // hover: name the part under the pointer
@@ -447,6 +473,9 @@ const PART_NAMES = p => ({
        .replace(/_/g, " "));
 
 const hero = makeViewer(document.getElementById("hero3d"), { auto: true });
+const heroExplode = document.getElementById("hero-explode");
+heroExplode.addEventListener("input", () => hero.setExplode(heroExplode.value / 100));
+hero.setExplode(heroExplode.value / 100); // a reload can restore the slider where it was left
 const legend = document.getElementById("legend");
 for (const g of GROUPS) {
   const b = document.createElement("button"); b.className = "chip"; b.type = "button";
