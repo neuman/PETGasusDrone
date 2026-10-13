@@ -99,27 +99,10 @@ button { font: inherit; }
 .chip:hover, .chip.on { background: var(--surface-2); color: var(--ink); }
 .sw { width: 12px; height: 12px; border-radius: 3px; flex: none; }
 
-/* go / no-go */
-.poll { display: grid; gap: 8px; margin-top: 18px; }
-.station { background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); }
-.station > summary { list-style: none; display: grid; grid-template-columns: 210px 120px 1fr 20px;
-  gap: 14px; align-items: center; padding: 14px 16px; cursor: pointer; }
-.station > summary::-webkit-details-marker { display: none; }
-.station .name { font-weight: 650; }
-.pill { display: inline-flex; align-items: center; gap: 6px; font-weight: 750; font-size: 13px;
-  letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; justify-self: start; }
-.pill .ic { font-size: 14px; }
-.pill.go { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good-ink); }
-.pill.nogo { background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
-.pill.hold { background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--ink); }
-.pill.stale { background: var(--surface-2); color: var(--ink-2); }
-.station .why { color: var(--ink-2); font-size: 15px; }
-.station .chev { color: var(--muted); transition: transform .15s; }
-.station[open] .chev { transform: rotate(90deg); }
-.checks { padding: 0 16px 14px 16px; display: grid; gap: 2px; }
-.check { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; padding: 7px 8px; border-radius: 8px; font-size: 14px; }
-.check:nth-child(odd) { background: var(--surface-2); }
-.check .val { color: var(--ink-2); font-variant-numeric: tabular-nums; text-align: right; }
+/* grounding map */
+.mapframe { width: min(1480px, 100vw - 32px); margin: 18px 0 10px 50%; transform: translateX(-50%);
+  border-radius: 14px; overflow: hidden; box-shadow: 0 0 0 1px var(--ring); background: var(--surface); }
+.mapframe iframe { display: block; width: 100%; height: min(900px, 88vh); border: 0; }
 
 /* journey */
 .journey { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 26px; }
@@ -197,8 +180,6 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   .tiles { gap: 6px; }
   .hero { padding-top: 44px; }
   .multiples { grid-template-columns: 1fr; }
-  .station > summary { grid-template-columns: 1fr auto 20px; }
-  .station .why { grid-column: 1 / -1; grid-row: 2; }
   .journey { grid-template-columns: 1fr; gap: 14px; }
   .stop { display: grid; grid-template-columns: 30px 1fr; text-align: left; gap: 0 12px; }
   .stop .dot { margin: 0; grid-row: span 3; }
@@ -230,12 +211,13 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   </div>
 </section>
 
-<!-- 2. GO / NO-GO ----------------------------------------------------------->
-<section id="poll-sec">
+<!-- 2. GROUNDING MAP -------------------------------------------------------->
+<section id="map-sec">
   <div class="kicker">Ready to go?</div>
-  <h2>The go / no-go poll</h2>
-  <p class="lede">Before a launch, NASA asks each team one question: are you go? Here is the same poll for PETGasus. Each area is checked automatically from the design. Click a row to see what was checked.</p>
-  <div class="poll" id="poll"></div>
+  <h2>The grounding map</h2>
+  <p class="lede">Every requirement the drone has to meet, drawn as one line: from the choices that feed it, through what they imply, to the check that settles it. Hover a line to follow it; click anything to see the evidence.</p>
+  <div class="mapframe"><iframe id="groundmap" src="grounding-map.html" title="PETGasus grounding map"></iframe></div>
+  <p class="small"><a href="grounding-map.html">Open the map on its own page</a></p>
 </section>
 
 <!-- 3. JOURNEY -------------------------------------------------------------->
@@ -335,7 +317,6 @@ const state = await (await fetch("data/state.json", { cache: "no-store" })).json
 const view = id => state.views.find(v => v.id === id);
 const story = await (await fetch(view("story").src, { cache: "no-store" })).json();
 const claims = Object.fromEntries(state.claims.map(c => [c.id, c]));
-const verdicts = Object.fromEntries(state.verdicts.map(v => [v.gate, v]));
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const GROUPS = ["battery", "frame", "motors", "electronics", "props", "hardware"];
 const gcol = g => css(`--g-${g}`);
@@ -376,13 +357,6 @@ const plain = id => PLAIN[id] || [claims[id]?.statement || id, ""];
 const statusOf = c => c.key === "checked" ? "go" : c.key === "failing" ? "nogo" : c.key === "stale" ? "stale" : "hold";
 const ICON = { go: "✓", nogo: "✕", hold: "…", stale: "↻" };
 const WORD = { go: "GO", nogo: "NO-GO", hold: "WAITING", stale: "RE-CHECKING" };
-function measured(c) {
-  const v = verdicts[(c.compared || [])[0]];
-  if (!v || v.measured == null) return "";
-  const u = c.acceptance?.units || v.units || "";
-  const n = Math.abs(v.measured) >= 100 ? fmt(v.measured, 0) : Math.abs(v.measured) >= 10 ? fmt(v.measured, 1) : fmt(v.measured, 2);
-  return `${n} ${u === "ratio" ? "×" : u}`.trim();
-}
 
 // ---------------------------------------------------------------- hero
 const money = state.views.find(v => v.id === "bom")?.data?.rows || [];
@@ -482,26 +456,13 @@ for (const g of GROUPS) {
   legend.append(b);
 }
 
-// ---------------------------------------------------------------- poll
-const STATIONS = [
-  ["Flies well", ["C1", "C2", "C3", "C4"], "Enough lift, light enough, long enough, steady enough."],
-  ["Prints cleanly", ["C6", "C7", "C11"], "One print, no supports, about 2 hours."],
-  ["Fits together", ["C5", "C8", "C9", "C12"], "Every part, screw and wire has room."],
-  ["Fits the budget", ["C10"], null],
-  ["Real parts measured", ["A3", "A4", "A1", "A2", "A5", "A6"], "Six numbers were guesses. Two need calipers before you print; the rest are checked by the kitchen-scale test."],
-  ["Proven on the real drone", ["P4", "P3", "P5", "P2", "P1"], "Five hands-on tests, once it's built."],
-];
-document.getElementById("poll").innerHTML = STATIONS.map(([name, ids, text]) => {
-  const st = ids.map(id => statusOf(claims[id]));
-  const s = st.includes("nogo") ? "nogo" : st.every(x => x === "go") ? "go" : st.includes("stale") ? "stale" : "hold";
-  if (!text && s === "nogo") text = `The full list is $${fmt(total, 2)}; the budget is $150. The essentials alone are $${fmt(essentials, 2)}. Your call: drop the extras or raise the budget.`;
-  const rows = ids.map(id => { const c = claims[id], k = statusOf(c), [t, sub] = plain(id);
-    return `<div class="check"><span title="${WORD[k]}" style="color:${k === "go" ? "var(--good-ink)" : k === "nogo" ? "var(--bad)" : "var(--muted)"}">${ICON[k]}</span>
-      <span>${t}<br><span class="small">${sub}</span></span><span class="val">${measured(c)}</span></div>`; }).join("");
-  return `<details class="station"><summary><span class="name">${name}</span>
-    <span class="pill ${s}"><span class="ic">${ICON[s]}</span>${WORD[s]}</span>
-    <span class="why">${text}</span><span class="chev">›</span></summary><div class="checks">${rows}</div></details>`;
-}).join("");
+// ---------------------------------------------------------------- grounding map
+// The map is its own page in a frame; keep its theme in step with this one.
+const mapFrame = document.getElementById("groundmap");
+const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
+  : matchMedia("(prefers-color-scheme: dark)").matches;
+const themeMap = () => { try { mapFrame.contentDocument.documentElement.dataset.theme = isDark() ? "dark" : "light"; } catch (e) { /* not loaded */ } };
+mapFrame.addEventListener("load", themeMap); themeMap();
 
 // ---------------------------------------------------------------- journey
 {
@@ -786,10 +747,8 @@ function drawAll() { liftChart(); bullets(); multiples(); dumbbell(); cost(); }
 drawAll();
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
 document.getElementById("themebtn").onclick = () => {
-  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
-    : matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.dataset.theme = dark ? "light" : "dark";
-  drawAll(); hero.highlight(null); showStep(step);
+  document.documentElement.dataset.theme = isDark() ? "light" : "dark";
+  themeMap(); drawAll(); hero.highlight(null); showStep(step);
   legend.querySelectorAll(".sw").forEach((s, i) => s.style.background = gcol(GROUPS[i]));
 };
 </script>
