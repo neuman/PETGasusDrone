@@ -184,6 +184,10 @@ code { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: 
 #tip { position: fixed; pointer-events: none; z-index: 10; background: var(--surface); color: var(--ink);
   box-shadow: 0 0 0 1px var(--ring), 0 8px 24px rgba(0,0,0,.12); border-radius: 10px; padding: 8px 10px;
   font-size: 13px; max-width: 260px; opacity: 0; transition: opacity .08s; }
+/* made with nopekit */
+.madewith { display: flex; align-items: center; gap: 28px; }
+.madewith img { display: block; width: 200px; height: auto; flex: none; }
+.madewith h2 { margin-top: 0; }
 footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid); font-size: 14px; color: var(--ink-2); }
 .themebtn { position: fixed; top: 12px; right: 12px; z-index: 5; border: 0; border-radius: 999px; padding: 6px 12px;
   background: var(--surface); color: var(--ink-2); box-shadow: 0 0 0 1px var(--ring); cursor: pointer; font-size: 13px; }
@@ -201,6 +205,7 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   .bullet-row { grid-template-columns: 1fr; gap: 4px; }
   .tiles { grid-template-columns: 1fr 1fr 1fr; }
   h1 { font-size: 34px; }
+  .madewith { flex-direction: column; align-items: flex-start; gap: 12px; }
   .viewer { height: 340px; }
 }
 </style>
@@ -307,6 +312,18 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   <h2 style="margin-top:44px">Assumptions</h2>
   <p class="lede">No published data exists for these six values. The design uses an estimate for each value until a measurement replaces it.</p>
   <div class="cards" id="guesses"></div>
+</section>
+
+<!-- 9. MADE WITH NOPEKIT ---------------------------------------------------->
+<section>
+  <div class="madewith">
+    <a href="https://github.com/neuman/nopekit"><img src="img/made-with-nopekit.png" width="400" height="427" loading="lazy" alt="Made with nopekit: a honey badger with goggles, a tool belt and a red toolbox"></a>
+    <div>
+      <h2>Made with nopekit</h2>
+      <p class="lede">nopekit is the check tool for this design. It runs the checks, records the evidence and builds this site.</p>
+      <p><a href="https://github.com/neuman/nopekit">github.com/neuman/nopekit</a></p>
+    </div>
+  </div>
 </section>
 
 <footer>
