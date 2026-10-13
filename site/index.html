@@ -102,7 +102,7 @@ button { font: inherit; }
 /* grounding map */
 .mapframe { width: min(1480px, 100vw - 32px); margin: 18px 0 10px 50%; transform: translateX(-50%);
   border-radius: 14px; overflow: hidden; box-shadow: 0 0 0 1px var(--ring); background: var(--surface); }
-.mapframe iframe { display: block; width: 100%; height: min(900px, 88vh); border: 0; }
+.mapframe iframe { display: block; width: 100%; height: 80vh; border: 0; } /* the script sets the real height */
 
 /* journey */
 .journey { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 26px; }
@@ -215,7 +215,7 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
 <section id="map-sec">
   <div class="kicker">Ready to go?</div>
   <h2>The grounding map</h2>
-  <p class="lede">Every requirement the drone has to meet, drawn as one line: from the choices that feed it, through what they imply, to the check that settles it. Hover a line to follow it; click anything to see the evidence.</p>
+  <p class="lede">Every requirement the drone has to meet, drawn as one line: from the choices that feed it, through what they imply, to the check that settles it. Hover a line to follow it; click anything to see the evidence. Pinch, or hold Ctrl and scroll, to zoom in; then drag to move around. The strip underneath is the history of every check run.</p>
   <div class="mapframe"><iframe id="groundmap" src="grounding-map.html" title="PETGasus grounding map"></iframe></div>
   <p class="small"><a href="grounding-map.html">Open the map on its own page</a></p>
 </section>
@@ -457,12 +457,29 @@ for (const g of GROUPS) {
 }
 
 // ---------------------------------------------------------------- grounding map
-// The map is its own page in a frame; keep its theme in step with this one.
+// The map is its own page in a frame. Keep its theme in step with this one, make the frame as tall as the map,
+// and tell the map which part of the frame is on screen (its side panels stay inside that part).
 const mapFrame = document.getElementById("groundmap");
 const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
   : matchMedia("(prefers-color-scheme: dark)").matches;
 const themeMap = () => { try { mapFrame.contentDocument.documentElement.dataset.theme = isDark() ? "dark" : "light"; } catch (e) { /* not loaded */ } };
-mapFrame.addEventListener("load", themeMap); themeMap();
+let mapW = 0;
+const fitMap = () => { try {
+  const doc = mapFrame.contentDocument, root = doc.documentElement.style;
+  if (innerWidth !== mapW) { mapW = innerWidth; root.setProperty("--host-h", innerHeight + "px"); }
+  if (doc.body.offsetHeight) mapFrame.style.height = doc.body.offsetHeight + "px";
+  const r = mapFrame.getBoundingClientRect();
+  root.setProperty("--vis-top", Math.max(0, 52 - r.top) + "px"); // 52: the theme button stays clear of the panels' close buttons
+  root.setProperty("--vis-bottom", Math.max(0, r.bottom - innerHeight) + "px");
+} catch (e) { /* not loaded */ } };
+const wireMap = () => { try {
+  themeMap(); mapW = 0; fitMap();
+  new mapFrame.contentWindow.ResizeObserver(fitMap).observe(mapFrame.contentDocument.body);
+} catch (e) { /* not loaded */ } };
+mapFrame.addEventListener("load", wireMap);
+if (mapFrame.contentDocument?.readyState === "complete") wireMap();
+addEventListener("scroll", fitMap, { passive: true });
+addEventListener("resize", fitMap);
 
 // ---------------------------------------------------------------- journey
 {

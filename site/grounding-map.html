@@ -201,53 +201,21 @@ a { color: var(--accent); }
 }
 
 /* ---- shell.css ---- */
-/* page shell: header row, headline + next steps, map toolbar, layout states (drawer beside the page, list view,
-   phone), help card, footer. Map styles live in map.css. */
-/* main.js keeps the block you are working with still across state changes; native anchoring would double that */
+/* page shell: the mode bar, the map toolbar, and the frame that holds the map and the history strip.
+   Map styles live in map.css. There is no list view: at every width the stage scales to the frame (view.js). */
 html { overflow-anchor: none; }
-.top {
-  max-width: 1480px; margin: 0 auto; container: top / inline-size;
-  padding: calc(14px + env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) 4px max(24px, env(safe-area-inset-left, 0px));
-}
 main {
   max-width: 1480px; margin: 0 auto;
-  padding: 2px max(24px, env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
+  padding: 12px max(12px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
 }
-
-/* ---- header row: name + what it is · buttons / stamp ------------------------------------------------- */
-.top-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
-.brand { flex: 1 1 320px; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
-.brand .eyebrow { flex: none; white-space: nowrap; }
-.what { margin: 0; min-width: 0; font-size: 13px; line-height: 1.4; color: var(--text-dim); }
-.top-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; flex: none; margin-left: auto; }
-.top-tools .chip[aria-expanded="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); } /* its sheet or card is open */
-.stamp { order: 3; flex: 1 1 100%; margin: 0; min-height: 1.45em; font-size: 12.5px; line-height: 1.45; color: var(--text-dim); }
-.stamp b { color: var(--text); font-weight: 600; }
-
-/* ---- headline (left) and the next-steps card (right) ------------------------------------------------- */
-.top-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px 30px; margin-top: 12px; align-items: start; }
-/* two columns from 1180 px: the card keeps >= 490 px so its rows stay one line each */
-@container top (min-width: 1132px) {
-  .top-grid.has-steps { grid-template-columns: minmax(0, 1fr) clamp(490px, 36%, 540px); }
-}
-/* the drawer narrows the page: the card waits (it comes back when the drawer closes) */
-@container top (max-width: 1131px) {
-  body.drawer-open #steps-host { display: none; }
-}
-#steps-host { min-width: 0; }
-#steps-host[hidden] { display: none; }
-#headline { font-size: 28px; font-size: clamp(22px, 1.05cqi + 13px, 28px); line-height: 1.2; font-weight: 700; letter-spacing: -0.012em; margin: 0 0 6px; max-width: 1100px; text-wrap: balance; }
-#sub { font-size: 16px; font-size: clamp(15px, 0.2cqi + 13px, 16px); line-height: 1.5; color: var(--text-dim); margin: 0; max-width: 1100px; text-wrap: pretty; }
-#sub .amber { color: var(--amber-ink); font-weight: 600; }
-#sub .red { color: var(--fail-ink); font-weight: 600; }
+/* the mode bar sits under the frame, so the map and the strip do not move when it comes and goes */
 #modebar { display: none; margin-top: 10px; }
 #modebar.on { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 12px; border-radius: 12px;
   background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); font-size: 14px; }
 #modebar b { color: var(--accent); }
 
-/* ---- the toolbar right above the map: caption · legend · layers · find --------------------------------- */
-#maptools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 12px 0 8px; }
-#maptools .cap { order: 0; flex: 1 1 520px; margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--text-dim); }
+/* ---- the toolbar right above the map: legend · layers · find · zoom --------------------------------- */
+#maptools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 0 0 8px; }
 #maptools .find { order: 1; }
 #maptools #legend { order: 2; }
 #maptools #layers { order: 3; margin-left: auto; }
@@ -286,104 +254,37 @@ main {
 .find-item { padding: 6px 9px; border-radius: 8px; font-size: 13px; line-height: 1.35; cursor: pointer; }
 .find-item.cur, .find-item:hover { background: var(--accent-soft); }
 
-/* ---- the map, the strip, the list view ------------------------------------------------------------------ */
-#hero { position: relative; padding: 6px 8px 4px; overflow: hidden; }
+#zoomctl { order: 4; display: flex; align-items: center; gap: 6px; }
+#zoomctl .iconbtn[disabled] { opacity: 0.45; cursor: default; }
+#zoomctl .chip[disabled] { opacity: 0.45; cursor: default; }
+
+/* ---- the frame and the stage ----------------------------------------------------------------------------
+   #stage holds the map and the history strip at one fixed width (view.js: STAGE_W). view.js scales it to the
+   width of #view and sets the height of #view to match; a zoom or a pan moves the stage inside the frame. */
+#view { position: relative; overflow: hidden; border-radius: var(--radius); touch-action: pan-x pan-y; }
+#view.zoomed { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+#view.panning, #view.panning * { cursor: grabbing !important; }
+#stage { position: absolute; left: 0; top: 0; width: 1420px; transform-origin: 0 0; }
+#hero { position: relative; padding: 6px 8px 4px; overflow: hidden; box-shadow: none; }
 #map { display: block; width: 100%; height: auto; aspect-ratio: auto 1400 / 584; user-select: none; } /* holds its space before the map draws */
 #strip-host { margin-top: 12px; }
-#phone-host { display: none; }
-#narrow-note { display: none; }
 
-/* the map at its native size in a sideways scroller (drawer open on a wide screen, or "Show the full map");
-   soft edge shadows say there is more to the side */
-body.drawer-open #hero, body.force-map #hero {
-  background:
-    linear-gradient(to right, var(--surface) 30%, transparent) left center / 40px 100% no-repeat local,
-    linear-gradient(to left, var(--surface) 30%, transparent) right center / 40px 100% no-repeat local,
-    radial-gradient(farthest-side at 0 50%, rgba(20, 24, 31, 0.16), transparent) left center / 14px 100% no-repeat scroll,
-    radial-gradient(farthest-side at 100% 50%, rgba(20, 24, 31, 0.16), transparent) right center / 14px 100% no-repeat scroll,
-    var(--surface);
-}
-@media (min-width: 1180px) {
-  body.drawer-open #hero { overflow-x: auto; overscroll-behavior-x: contain; }
-  body.drawer-open #map { width: var(--map-w, 1400px); max-width: none; }
-}
-/* the drawer sits beside the page: the page narrows by its width instead of being covered */
+/* the drawer sits beside the page: the page narrows by its width instead of being covered (view.js keeps the
+   map at the size it had, with the boards in view) */
 @media (min-width: 900px) {
-  body.drawer-open .top, body.drawer-open main { margin-left: auto; margin-right: var(--drawer-w); }
+  body.drawer-open main { margin-left: auto; margin-right: var(--drawer-w); }
   body.drawer-open #sheet { right: var(--drawer-w); }
 }
-
-/* below 1180 px: the list view, one column with one left edge (header, steps, note, list; .ph-root caps at 760 px) */
-@media (max-width: 1179px) {
-  .top, main { max-width: calc(760px + 2 * max(24px, env(safe-area-inset-left, 0px))); }
-  #hero, #maptools { display: none; }
-  #phone-host { display: block; }
-  #narrow-note { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; margin: 6px 0 12px; font-size: 13px; color: var(--text-dim); }
-  #narrow-note span { flex: 1 1 220px; }
-  body.force-map #maptools { display: flex; }
-  body.force-map #hero { display: block; overflow-x: auto; overscroll-behavior-x: contain; }
-  body.force-map #map { width: var(--map-w, 1400px); max-width: none; }
-}
 @media (max-width: 759px) {
-  .top { padding: calc(12px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 4px max(16px, env(safe-area-inset-left, 0px)); }
-  main { padding: 2px max(16px, env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-  .brand { flex-basis: 100%; }
-  .top-tools { margin-left: 0; flex: 1 1 100%; min-width: 0; }
-  .top-tools .chip { flex: 1 1 auto; justify-content: center; }
-  .stamp { font-size: 12px; }
-  #headline { font-size: 22px; }
-  #sub { font-size: 15px; }
+  main { padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
   .find input { width: 100%; }
   .find { flex: 1 1 100%; }
 }
-/* tap targets: header buttons are 40 px on phones and touch screens */
-@media (max-width: 759px), (pointer: coarse) {
-  .top-tools .chip { height: 40px; padding: 0 14px; }
-  .top-tools .iconbtn { width: 40px; height: 40px; font-size: 18px; }
-  #narrow-note .btn { height: 40px; }
-}
 
-/* ---- how-to-read card (opened by the button or "?"; never at load) ------------------------------------- */
-#howto {
-  position: fixed; z-index: 45; display: none; overflow: auto; overscroll-behavior: contain;
-  top: calc(60px + env(safe-area-inset-top, 0px)); right: max(24px, env(safe-area-inset-right, 0px));
-  width: min(480px, calc(100vw - 48px)); max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px);
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg);
-  padding: 16px 18px 14px;
-}
-#howto.on { display: block; }
-#howto h2 { font-size: 16px; margin: 0 0 8px; }
-#howto h2:focus { outline: none; }
-#howto ol { margin: 0; padding: 0; list-style: none; }
-#howto li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; line-height: 1.45; }
-#howto li:first-child { border-top: 0; }
-#howto li .ic { display: grid; place-items: center; min-height: 20px; padding-top: 1px; }
-#howto code { overflow-wrap: anywhere; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 0 4px; font-size: 12.5px; }
-#howto .foot { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; font-size: 12.5px; color: var(--text-dim); }
-#howto .foot span { flex: 1 1 220px; }
-@media (max-width: 759px) {
-  #howto { top: calc(12px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
-    width: auto; max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); }
-  #howto .foot .btn { height: 40px; }
-}
-kbd { font: 600 11px var(--mono); padding: 1px 5px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 5px; background: var(--surface-2); }
-
-/* ---- footer --------------------------------------------------------------------------------------------- */
-#credits { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--text-dim); max-width: 1100px; }
-#credits p { margin: 0 0 8px; }
-#credits b { color: var(--text); }
-
-/* ---- round 3: the "What is this page?" block and the status list ---- */
-#intro { margin-top: 12px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-#intro h2 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
-#intro .intro-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px 24px; }
-#intro p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text-dim); max-width: 65ch; }
-#intro b { color: var(--text); }
-#headline { margin-bottom: 4px; }
-.status-list { margin: 0 0 6px; padding-left: 1.4em; font-size: 16px; line-height: 1.5; max-width: 1100px; }
-.status-list li { margin: 2px 0; }
-#status-next { margin: 0 0 8px; font-size: 16px; line-height: 1.5; font-weight: 600; max-width: 1100px; }
-#sub b { color: var(--text); }
+/* inside a taller frame on another page, the host page says which part of the frame is on screen
+   (--vis-top, --vis-bottom); the drawer and the sheet stay inside that part */
+#drawer { top: var(--vis-top, env(safe-area-inset-top, 0px)); bottom: var(--vis-bottom, 0px); }
+#sheet { bottom: var(--vis-bottom, 0px); max-height: calc(100vh - var(--vis-top, 0px) - var(--vis-bottom, 0px)); }
 
 /* ---- map.css ---- */
 /* PETGasus grounding map: the SVG map and its milestone boards (owned with hero.js).
@@ -1469,322 +1370,27 @@ button.nx-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .hi-cell, .hi-h-time, .hi-caret { transition: none; }
 }
 
-/* ---- modules/phone.css ---- */
-/* PETGasus grounding map v2 — phone lens (.ph-): the list view below 1180 px. Boards, ranked guesses, chain cards.
-   Colours only through base.css tokens; status is always glyph + hue + word.
-   The root fills #phone-host (no max-width of its own), so it shares one left edge and width with the Next steps
-   card above it (#steps-host): the shell sizes both. */
-
-.ph-root {
-  container: ph / inline-size; text-wrap: pretty;
-  display: flex; flex-direction: column; gap: 14px;
-  color: var(--text); font-size: 15px; line-height: 1.45;
-}
-.ph-root.ph-pad { padding-left: 16px; padding-right: 16px; }
-/* zero-specificity reset so .card / .btn and every .ph- rule win */
-:where(.ph-root) :where(button) {
-  font: inherit; color: inherit; background: none; border: 0; margin: 0; padding: 0;
-  text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
-}
-:where(.ph-root) :where(p, h2, h3, ol) { margin: 0; }
-.ph-root button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
-.ph-root .glyph { vertical-align: middle; }
-/* a long status word ("Passes if the estimates are correct") wraps inside a narrow card instead of running past it */
-.ph-root .word { white-space: normal; }
-.ph-sep { color: var(--text-faint); }
-.ph-nw { white-space: nowrap; }
-
-/* ids: small trailing tags */
-.ph-root .ph-id { margin-left: 2px; white-space: nowrap; vertical-align: 2px; }
-.ph-root .ph-id.amber { background: var(--surface); border-color: var(--amber); color: var(--amber-ink); }
-.ph-root .ph-id.pending { background: var(--surface); border-color: var(--pending); color: var(--pending-ink); }
-
-/* ---- what-if / past run / preview strip (only when the page has no mode bar) ------------------ */
-.ph-mode { display: flex; flex-direction: column; gap: 8px; }
-.ph-mode-row {
-  display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px 12px; padding: 10px 12px 10px 16px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: inset 4px 0 0 var(--accent);
-}
-.ph-mode-row p { flex: 1 1 100%; min-width: 0; font-size: 14px; line-height: 1.4; }
-.ph-root .ph-mode-btn { flex: none; height: 40px; }
-
-/* ---- boards ------------------------------------------------------------------------------------- */
-.ph-card { overflow: hidden; }
-/* row layout follows the card's own width (a narrow card in the two-column grid reads like a phone) */
-.ph-board, .ph-loose { container: ph-card / inline-size; }
-/* one column reads in plan order: the milestones, the hardware tests, the claim no milestone needs */
-.ph-boards {
-  display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start;
-  grid-template-areas: "b1" "b2" "hw" "lo";
-}
-.ph-b1 { grid-area: b1; }
-.ph-b2 { grid-area: b2; }
-.ph-hw { grid-area: hw; }
-.ph-lo { grid-area: lo; }
-.ph-head { padding: 14px 16px 12px; }
-.ph-head-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 10px; min-height: 22px; }
-.ph-desc { margin-top: 4px; font-size: 14px; line-height: 1.4; color: var(--text-dim); }
-.ph-verdict {
-  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
-  font-size: 13px; font-weight: 800; letter-spacing: 0.08em;
-}
-.ph-verdict small { font-size: 12px; font-weight: 600; letter-spacing: 0; color: var(--text-dim); }
-.ph-verdict.fail { color: var(--fail-ink); }
-.ph-verdict.amber { color: var(--amber-ink); }
-.ph-verdict.ok { color: var(--ok); }
-.ph-verdict.dim { color: var(--text-dim); }
-.ph-verdict.pending { color: var(--pending-ink); }
-/* the Isotype row never breaks mid-set; the count drops below it when the card is narrow */
-.ph-iso { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; margin-top: 12px; }
-.ph-units { display: flex; flex-wrap: nowrap; gap: 3px; }
-.ph-unit { display: inline-flex; }
-.ph-unit.ph-brk { margin-left: 8px; }
-.ph-count { font-size: 14px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.ph-cap { margin-top: 6px; font-size: 13px; line-height: 1.4; color: var(--text-dim); }
-
-/* claim / test rows: name and value on the first line, the status word and its margin on the second */
-.ph-row {
-  display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 8px; row-gap: 2px; align-items: start;
-  grid-template-areas: "g name val" ". sub sub" ". faith faith";
-  width: 100%; min-height: 52px; padding: 11px 14px 12px; border-top: 1px solid var(--border);
-}
-.ph-g { grid-area: g; display: inline-flex; padding-top: 1px; }
-.ph-name { grid-area: name; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
-.ph-val {
-  grid-area: val; padding-top: 1px; text-align: right; white-space: nowrap;
-  font-size: 14px; line-height: 1.4; font-variant-numeric: tabular-nums;
-}
-.ph-val b { font-weight: 700; }
-.ph-lim { color: var(--text-dim); }
-.ph-sub { grid-area: sub; font-size: 13px; line-height: 1.4; color: var(--text-dim); overflow-wrap: anywhere; }
-.ph-root .ph-sub .word { font-size: 13px; }
-.ph-bad { color: var(--fail-ink); font-weight: 700; }
-.ph-row.is-fail { background: var(--fail-soft); box-shadow: inset 4px 0 0 var(--fail); }
-.ph-row:active { background: var(--surface-2); }
-@media (hover: hover) {
-  .ph-row:hover, .ph-acard:hover, .ph-hub:hover .ph-hl, .ph-cname:hover { background-color: var(--surface-2); }
-  .ph-row.is-fail:hover { background: var(--fail-soft); }
-}
-/* a hardware test's place in the build guide's order */
-.ph-ord {
-  display: inline-grid; place-items: center; min-width: 20px; height: 20px; margin-right: 6px; padding: 0 5px;
-  border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2);
-  font-size: 12px; font-weight: 700; color: var(--text-dim); vertical-align: 1px; font-variant-numeric: tabular-nums;
-}
-
-/* the on-faith caveat: as loud as the verdict */
-.ph-faith {
-  grid-area: faith; margin-top: 6px; padding: 7px 10px; border-radius: 10px;
-  background: var(--amber-soft); color: var(--amber-ink); font-size: 13px; line-height: 1.55; font-weight: 600;
-}
-.ph-faith b { font-weight: 800; }
-.ph-faith .glyph { vertical-align: -2px; }
-
-/* needs sign-off chips */
-.ph-sign { padding: 8px 16px 8px; border-top: 1px solid var(--border); }
-.ph-sign-h { padding-top: 2px; font-size: 13px; font-weight: 700; color: var(--amber-ink); }
-.ph-sign-h.ph-quiet { color: var(--text-dim); }
-.ph-sign-s { font-weight: 500; color: var(--text-dim); }
-.ph-chips { display: flex; flex-wrap: wrap; column-gap: 6px; }
-.ph-chipbtn { display: inline-flex; align-items: center; min-height: 40px; max-width: 100%; }
-.ph-chip {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 32px; max-width: 100%; padding: 4px 10px 4px 8px;
-  border-radius: 999px; border: 1px solid var(--amber); background: var(--amber-soft); color: var(--amber-ink);
-  font-size: 13px; font-weight: 600; line-height: 1.25;
-}
-.ph-chip.assumed { background: var(--surface); }
-.ph-chip-t { overflow-wrap: anywhere; }
-.ph-chip .ph-id { flex: none; }
-
-/* ---- sections ------------------------------------------------------------------------------------ */
-.ph-sec { display: flex; flex-direction: column; margin-top: 12px; }
-.ph-root .ph-eb { margin: 0 2px 4px; }
-.ph-deck { margin: 0 2px 12px; font-size: 14px; line-height: 1.45; color: var(--text-dim); }
-.ph-deck.ph-note { margin-top: -6px; }
-.ph-cli { font: 500 12.5px/1.3 var(--mono); color: var(--text); background: var(--surface-2); border-radius: 5px; padding: 1px 4px; overflow-wrap: anywhere; }
-.ph-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; list-style: none; padding: 0; margin: 0; }
-.ph-glabel { margin: 6px 2px 8px; font-size: 14px; font-weight: 700; color: var(--text); }
-.ph-glabel span { font-weight: 500; color: var(--text-dim); }
-.ph-grid + .ph-glabel { margin-top: 18px; }
-
-/* ---- guess cards ------------------------------------------------------------------------------------ */
-.ph-root .ph-acard {
-  display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 8px; row-gap: 3px; align-items: start; align-content: start;
-  width: 100%; padding: 12px 14px 13px; text-align: left;
-}
-.ph-acard .ph-g { grid-area: auto; grid-column: 1; grid-row: 1; }
-.ph-acard .ph-name { grid-area: auto; grid-column: 2; grid-row: 1; }
-.ph-asub { grid-column: 2 / -1; font-size: 13px; line-height: 1.4; color: var(--text-dim); }
-.ph-root .ph-acard .word { font-size: 13px; }
-.ph-pv { white-space: nowrap; } /* "Motor height 13.8 mm" wraps as one piece */
-.ph-vals b { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
-.ph-flip { grid-column: 2 / -1; margin-top: 2px; font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--text); }
-.ph-flip.hot { color: var(--amber-ink); }
-.ph-at { font-weight: 500; color: var(--text-dim); }
-.ph-meas { margin-top: 3px; color: var(--text); }
-
-/* ---- chain cards: a vertical metro line ------------------------------------------------------------- */
-.ph-ccard { padding: 2px 0 8px; }
-.ph-ccard.is-fail { box-shadow: var(--shadow), inset 4px 0 0 var(--fail); }
-.ph-ctitle { display: flex; align-items: center; gap: 4px; padding-right: 6px; }
-.ph-cname { flex: 1; min-width: 0; min-height: 44px; padding: 10px 6px 4px 14px; font-weight: 600; line-height: 1.4; border-radius: 10px; }
-.ph-tog {
-  flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 8px 0;
-  font-size: 13px; font-weight: 600; color: var(--text-dim); white-space: nowrap;
-}
-.ph-tog i { width: 6px; height: 6px; margin-top: -3px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
-.ph-tog[aria-expanded="true"] i { margin-top: 3px; transform: rotate(-135deg); }
-@media (hover: hover) { .ph-tog:hover { color: var(--text); } }
-.ph-chain { max-width: 540px; padding: 0 8px 0 14px; } /* on a wide card the tags stay near their stations */
-.ph-node {
-  /* station text on the left, its amber feeder tags in a right-hand column level with the station */
-  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 6px; align-items: start;
-  width: 100%; min-height: 40px; padding-left: 30px;
-}
-.ph-node > .ph-hub { grid-column: 1; grid-row: 1; justify-self: start; }
-.ph-node > .ph-feeds { grid-column: 2; grid-row: 1; }
-.ph-node::before {
-  content: ""; position: absolute; left: 9.5px; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: var(--line);
-}
-.ph-node.ph-first::before { top: 20px; }
-.ph-node.ph-term::before { bottom: auto; height: 20px; }
-.ph-node.ph-first.ph-term::before { display: none; }
-.ph-stn {
-  position: absolute; left: 4px; top: 13px; z-index: 1; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--surface); border: 3px solid var(--line-strong);
-}
-.ph-tg { position: absolute; left: 1px; top: 10px; z-index: 1; display: inline-flex; border-radius: 50%; background: var(--surface); }
-.ph-hub {
-  min-width: 0; min-height: 40px; padding: 8px 0; font-size: 14px; line-height: 24px; overflow-wrap: break-word;
-}
-/* the end station: what the number is and its value, then the verdict word on its own line */
-.ph-end { padding-bottom: 4px; }
-.ph-end1, .ph-end2 { display: block; }
-.ph-end2 { line-height: 20px; }
-/* guesses the claim rests on that no drawn station carries */
-.ph-also {
-  grid-column: 1 / -1; display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap;
-  margin-top: -4px; font-size: 13px; color: var(--text-dim);
-}
-.ph-also > span:first-child { margin-right: 2px; }
-.ph-also .ph-feeds { margin-left: 0; justify-content: flex-start; }
-.ph-hl { font-weight: 600; border-radius: 6px; }
-.ph-hv { color: var(--text-dim); font-variant-numeric: tabular-nums; }
-.ph-hv.is-stale { font-style: italic; }
-.ph-hv.is-moved { color: var(--text); font-weight: 500; background: var(--accent-soft); border-radius: 5px; padding: 1px 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.ph-how { font-size: 12px; color: var(--text-dim); }
-.ph-tv b { font-weight: 700; }
-.ph-root .ph-term .word { font-size: 13px; }
-.ph-feeds { display: flex; flex-wrap: wrap; justify-content: flex-end; }
-.ph-feed { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; }
-.ph-feed i { display: block; width: 7px; height: 3px; border-radius: 2px; background: var(--amber); opacity: 0.6; }
-.ph-feed span {
-  font: 600 12px/1 var(--mono); padding: 3px 5px; border-radius: 6px;
-  border: 1px dashed var(--amber-strong); background: var(--surface); color: var(--amber-ink);
-}
-.ph-feed.hot i { opacity: 1; }
-.ph-feed.hot span { border-style: solid; background: var(--amber-soft); font-weight: 700; }
-.ph-feed.signed i { width: 7px; height: 7px; margin-right: 2px; border-radius: 1px; transform: rotate(45deg); opacity: 1; }
-.ph-feed.signed span { border-style: solid; }
-/* a station that joins from the side (e.g. total thrust into thrust ÷ weight) */
-.ph-node.ph-merge { padding-left: 50px; }
-.ph-merge .ph-stn { left: 26px; }
-/* the branch drops from its station and joins the main line just above the next station */
-.ph-node.ph-merge::after {
-  content: ""; position: absolute; left: 11px; top: 20px; width: 23.5px; height: calc(100% - 16.5px);
-  border-right: 3px solid var(--line); border-bottom: 3px solid var(--line); border-bottom-right-radius: 14px;
-}
-/* collapsed upstream stations */
-.ph-node.ph-stub::before { top: 22px; width: 0; background: none; border-left: 3px dotted var(--line); }
-.ph-stubstn {
-  position: absolute; left: 6px; top: 16px; z-index: 1; width: 10px; height: 10px; border-radius: 50%;
-  border: 2px solid var(--line); background: var(--surface);
-}
-.ph-stubtxt { color: var(--text-dim); }
-.ph-ccard:not(.is-open) .ph-up { display: none; }
-.ph-ccard.is-open .ph-stub { display: none; }
-
-/* ---- end of the list: the full plan sheet ---------------------------------------------------------- */
-.ph-endrow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 13px; color: var(--text-dim); }
-.ph-endrow span { flex: 1 1 200px; min-width: 0; }
-.ph-root .ph-plan { flex: none; height: 44px; padding: 0 18px; font-size: 14px; }
-
-/* ---- narrow cards: the name gets the first line, the value and limit the second, then the status ---- */
-@container ph-card (max-width: 400px) {
-  .ph-row { grid-template-columns: 22px minmax(0, 1fr); grid-template-areas: "g name" ". val" ". sub" ". faith"; }
-  .ph-row .ph-val { padding-top: 0; text-align: left; white-space: normal; }
-  .ph-row .ph-val b, .ph-row .ph-val .ph-lim { white-space: nowrap; }
-}
-
-/* ---- wider screens -------------------------------------------------------------------------------------- */
-@container ph (min-width: 520px) {
-  .ph-mode-row p { flex-basis: 0; }
-}
-/* two columns once each card keeps about 373 px: the shell's 760 px column at 808-1179 px screens. A card that
-   narrow uses the stacked row (name, then value and limit, then status), so no claim name wraps. */
-@container ph (min-width: 760px) {
-  .ph-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  /* the first board's column takes the short "not on a milestone" card right under it (the second row takes what
-     the taller board leaves over); the tests span both columns */
-  .ph-boards {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto;
-    grid-template-areas: "b1 b2" "lo b2" "hw hw";
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ph-root *, .ph-root *::before, .ph-root *::after { transition: none !important; animation: none !important; }
-}
-
 </style>
-<header class="top">
-  <div class="top-row">
-    <div class="brand"><p class="eyebrow">PETGasus · grounding map</p><p class="what" id="what">Design checks for a small 3D-printed drone</p></div>
-    <nav class="top-tools" aria-label="Page">
-      <button class="chip" id="nextbtn" aria-controls="sheet" aria-expanded="false">Next steps</button>
-      <button class="chip" id="histbtn" aria-controls="sheet" aria-expanded="false">History</button>
-      <button class="chip" id="howbtn" aria-haspopup="dialog" aria-expanded="false">How to read this</button>
-      <button class="iconbtn" id="themebtn" aria-label="Change between the light and the dark theme">◐</button>
-    </nav>
-    <p class="stamp" id="stamp"></p>
-  </div>
-  <section id="intro" aria-labelledby="intro-h">
-    <h2 id="intro-h">What is this page?</h2>
-    <div class="intro-cols">
-      <p><b>The drone.</b> PETGasus is a small drone with ducted propellers. It has one frame, 3D-printed in PETG plastic. The flight board, motors and propellers come from a kit that you buy. You do not have to solder.</p>
-      <p><b>The checks.</b> nopekit is the check tool for the design. The design model calculates values such as weight and thrust. Each check compares one value with a limit. A requirement passes when all its checks pass.</p>
-      <p><b>The stages.</b> The project has two stages, “Order the parts” and then “Print the frame”. A stage is blocked until all its requirements pass and the owner accepts its estimates. An estimate is a value that nobody measured yet.</p>
-    </div>
-  </section>
-  <div class="top-grid" id="top-grid">
-    <div class="top-main">
-      <h1 id="headline">Order the parts: BLOCKED</h1>
-      <ol id="status" class="status-list"><li>The parts cost $167.15. The limit is $150. Remove $17.15 of parts, or increase the limit.</li><li>Four values are estimates. Nobody can measure them before the parts arrive. You must accept them before you order.</li></ol>
-      <p id="status-next">Print the frame: BLOCKED. When the kit arrives, measure the flight board and one motor.</p>
-      <p id="sub"></p>
-    </div>
-    <section id="steps-host" aria-label="Next steps"></section>
-  </div>
-  <div id="modebar" role="status"></div>
-</header>
 <main>
-  <div id="narrow-note"><span>The screen is narrow. This view shows the map as lists.</span><button class="btn" id="forcemap" aria-pressed="false">Show the full map</button></div>
   <div id="maptools">
-    <p class="cap" id="mapcap">Each line on the map is one requirement. A line goes from the choices (left) through their implications (middle) to its gate (right). Move the pointer onto a line to show it. Click an item to see the details.</p>
     <div id="legend" role="group" aria-label="Key. Click a status to show its items on the map."></div>
     <div id="layers"></div>
     <div id="find" class="find"></div>
+    <div id="zoomctl" role="group" aria-label="Zoom">
+      <button type="button" class="iconbtn" id="zout" aria-label="Zoom out" title="Zoom out">−</button>
+      <button type="button" class="iconbtn" id="zin" aria-label="Zoom in" title="Zoom in. You can also pinch, or hold Ctrl and turn the wheel.">+</button>
+      <button type="button" class="chip" id="zfit" title="Show the full map">Fit</button>
+    </div>
   </div>
-  <section id="hero" class="card" aria-label="Map of the requirements, their inputs and the stages">
-    <svg id="map" role="img" aria-label="Map of the requirements" tabindex="-1"></svg>
-  </section>
-  <div id="phone-host"></div>
-  <div id="strip-host"></div>
-  <footer id="credits">
-    <p><b>Design sources.</b> The map uses ideas from the London Underground diagram by Harry Beck and the bullet graphs by Stephen Few. It also uses ideas from Charles Minard, John Snow, Bret Victor, and the asset checks in Dagster and dbt. The status words come from Table 1 of the paper “Grounding by falsification”.</p>
-    <p id="provenance"></p>
-  </footer>
+  <div id="view">
+    <div id="stage">
+      <section id="hero" class="card" aria-label="Map of the requirements, their inputs and the stages">
+        <svg id="map" role="img" aria-label="Map of the requirements" tabindex="-1"></svg>
+      </section>
+      <div id="strip-host"></div>
+    </div>
+  </div>
+  <div id="modebar" role="status"></div>
 </main>
 <div class="scrim" id="scrim"></div>
 <aside id="drawer" role="dialog" aria-hidden="true" aria-label="Details">
@@ -2269,26 +1875,11 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   const reduceMotion = () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---------------------------------------------------------------- desktop drawer layout
-  // At 900 px and up the page moves aside instead of being covered: body.drawer-open narrows .top and main by the
-  // drawer width. At 1180 px and up the map keeps its native size inside a horizontal scroller, scrolled to the
-  // right end, so the boards and stations stay in view while a slider moves. The anchor (what was clicked) keeps
-  // its place on screen across the reflow.
-  function anchorTop(a) {
-    if (!a || !a.isConnected) return null;
-    const r = a.getBoundingClientRect();
-    return r.width || r.height ? r.top : null;
-  }
-  function pageAside(on, anchor) {
+  // At 900 px and up the page moves aside instead of being covered: body.drawer-open narrows main by the drawer
+  // width. view.js sees the frame get narrower and keeps the map at the size it had, with the boards in view.
+  function pageAside(on) {
     const b = document.body;
-    if (!b || on === b.classList.contains("drawer-open")) return;
-    const hero = $("hero"), map = $("map");
-    const a = anchorTop(anchor) != null ? anchor : hero && hero.offsetParent ? hero : $("phone-host");
-    const y0 = anchorTop(a);
-    if (map && map.viewBox && map.viewBox.baseVal && map.viewBox.baseVal.width && hero) hero.style.setProperty("--map-w", map.viewBox.baseVal.width + "px");
-    b.classList.toggle("drawer-open", on);
-    if (hero) hero.scrollLeft = on ? hero.scrollWidth : 0;
-    const y1 = anchorTop(a);
-    if (y0 != null && y1 != null && Math.abs(y1 - y0) > 1) window.scrollBy(0, y1 - y0);
+    if (b && on !== b.classList.contains("drawer-open")) b.classList.toggle("drawer-open", on);
   }
 
   // ---------------------------------------------------------------- deep links
@@ -2557,10 +2148,9 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   window.Lenses = window.Lenses || {};
 
   if (typeof document !== "undefined" && document.addEventListener) {
-    // Esc closes one thing at a time: the help card, else the drawer, else the sheet, else back to now
+    // Esc closes one thing at a time: the drawer, else the sheet, else back to now
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape" || e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
-      if (APP.help && APP.help.isOpen && APP.help.isOpen()) { APP.help.close(); return; }
       if ($("drawer") && $("drawer").classList.contains("open")) APP.closeDrawer();
       else if ($("sheet") && $("sheet").classList.contains("open")) APP.closeSheet();
       else if (Object.keys(APP.state.whatIf).length || APP.state.run != null || APP.state.signed.size) APP.resetAll();
@@ -3458,9 +3048,9 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   let lastS = null, roPending = false;
   function measureScale() {
     if (!svg) return;
-    const w = svg.getBoundingClientRect().width;
-    if (!w) { lastS = null; return; } // hidden (list view): measure again when it shows
-    const s = Math.max(0.8, w / W);
+    if (!svg.getBoundingClientRect().width) { lastS = null; return; } // not drawn yet
+    // the stage has a fixed width; view.js scales it to the frame. A zoom does not change the text scale.
+    const s = Math.min(1, Math.max(0.8, window.MapView ? window.MapView.textScale() : 1));
     if (lastS != null && Math.abs(s - lastS) < 0.002) return;
     lastS = s;
     svg.style.setProperty("--s", s.toFixed(4));
@@ -4092,7 +3682,7 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   APP.on("select", () => restore());
 
   window.Hero = {
-    build, update, restore, relayout,
+    build, update, restore, relayout, remeasure: measureScale,
     highlight: (p) => (p ? highlightSet(p) : restore()),
     clear: endHover,
     toggleLayer,
@@ -7832,8 +7422,10 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
       if (A.state.sheet === "history") A.closeSheet(); else A.openSheet("history");
     });
     const ax = inst.axis;
-    const localX = (e) => e.clientX - ax.getBoundingClientRect().left;
-    const localY = (e) => e.clientY - ax.getBoundingClientRect().top;
+    // the stage is scaled (view.js): screen pixels go back to the axis's own pixels
+    const local = (e) => { const r = ax.getBoundingClientRect(), k = r.width ? ax.offsetWidth / r.width : 1; return { x: (e.clientX - r.left) * k, y: (e.clientY - r.top) * k }; };
+    const localX = (e) => local(e).x;
+    const localY = (e) => local(e).y;
     // pick the run under the pointer; if the page above grew or shrank (the mode bar comes and goes with the past),
     // scroll by the same amount so the axis stays under the pointer
     const pickAt = (e) => keepStill(() => setIdx(pickRun(inst, localX(e))), ax, inst.dragTop);
@@ -8801,849 +8393,175 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   Lenses.history = { renderStrip, renderGrid };
 })();
 
-/* ---- modules/phone.js ---- */
-/* PETGasus grounding map v2 — phone lens (Lenses.phone.render(container, APP)).
-   The list view the page shows below 1180 px, under the shell's Next steps card (#steps-host):
-   1 boards: the stages in plan order, the hardware tests in build-guide order, the requirement no stage needs ·
-   2 the ranked estimates · 3 one card per requirement with the calculated values that lead to it · a Full plan button.
-   All visible words follow STE.md (ASD-STE100 style, one fixed vocabulary). Data keys keep their old names
-   (claims = requirements, assumptions = estimates, milestones = stages, hubs = calculated values).
-   The plan itself is the Next steps card above; this lens never repeats it.
-   Everything is computed from APP.D / APP.ev; status always comes from APP.statusOf + APP.glyph. CSS prefix .ph- */
+/* ---- view.js ---- */
+/* The frame (#view) and the stage (#stage). The stage holds the map and the history strip at one fixed width.
+   It scales to the width of the frame, so the page has one layout at every width. Inside the frame it zooms and
+   pans like a street map: pinch with two fingers, or hold Ctrl and turn the wheel, then drag. At the full view a
+   one-finger drag and a plain wheel scroll the page. A frame that is short (a phone) grows as the map zooms in,
+   up to most of the window (--host-h, which the host page gives when the map is in a frame of that page). */
 (function () {
   "use strict";
-  window.Lenses = window.Lenses || {};
+  const STAGE_W = 1420, K_MAX = 8;
+  const NO_PAN = ".hi-st-axis, button, input, a";
+  let view = null, stage = null;
+  let fit = 1, k = 1, tx = 0, ty = 0, stageH = 0;
+  let held = null; // the view before the drawer narrowed the frame
+  const zoomed = () => k > 1.001;
 
-  // worst first: the order Isotype units and board rows are sorted in
-  const SEV = { failing: 0, stale: 1, open: 2, gap: 3, onfaith: 4, assumed: 5, pending: 6, checked: 7, skipped: 8 };
-  const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
-  const KEEP_STOPS = 2; // a collapsed chain card keeps this many stations (nearest the claim) under a "from ..." stub
-  const FAITH_PCT = 10; // the bundle's on-faith rule: an unsigned guess off by 10% or less flips the claim
+  // the frame is as tall as the stage at the full view; zoomed in, it takes up to 70% of the window
+  function height() {
+    if (held) return held.h;
+    const full = Math.round(stageH * fit);
+    const host = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--host-h")) || 0;
+    return Math.max(full, Math.min(Math.round(stageH * fit * k), Math.round(host * 0.7)));
+  }
+  function apply() {
+    const h = height() + "px";
+    if (view.style.height !== h) view.style.height = h;
+    const vw = view.clientWidth, vh = view.clientHeight, cw = STAGE_W * fit * k, ch = stageH * fit * k;
+    tx = cw <= vw + 1 ? (vw - cw) / 2 : Math.min(0, Math.max(vw - cw, tx));
+    ty = ch <= vh + 1 ? 0 : Math.min(0, Math.max(vh - ch, ty));
+    stage.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px) scale(${(fit * k).toFixed(5)})`;
+    view.classList.toggle("zoomed", zoomed());
+    const zo = document.getElementById("zout"), zi = document.getElementById("zin"), zf = document.getElementById("zfit");
+    if (zo) zo.disabled = !zoomed();
+    if (zi) zi.disabled = k >= K_MAX - 0.001;
+    if (zf) zf.disabled = !zoomed();
+  }
+  // zoom to k1; the point (cx, cy) of the frame stays where it is
+  function zoomAt(k1, cx, cy) {
+    k1 = Math.min(K_MAX, Math.max(1, k1));
+    const r = k1 / k;
+    tx = cx - (cx - tx) * r;
+    ty = cy - (cy - ty) * r;
+    k = k1;
+    apply();
+  }
+  const zoomBy = (f) => zoomAt(k * f, view.clientWidth / 2, view.clientHeight / 2);
 
-  let A = null;          // APP
-  let host = null;       // the container we render into
-  let dirty = false;     // a change arrived while hidden
-  let wiredTo = null;    // the APP our listeners are attached to
-  const expanded = new Set(); // chain cards the viewer opened (kept across re-renders)
-
-  // ------------------------------------------------------------------ small helpers
-  const esc = (s) => A.fmt.esc(s);
-  const ord = (id) => parseInt(String(id).slice(1), 10) || 0;
-  const byId = (a, b) => ord(a) - ord(b);
-  const cap = (s) => String(s).charAt(0).toUpperCase() + String(s).slice(1);
-  const countWord = (n) => (n >= 0 && n < WORDS.length ? WORDS[n] : String(n));
-  const plural = (n, one, many) => (n === 1 ? one : many);
-  const minus = (s) => String(s).replace(/^-/, "\u2212");
-  const SEP = '<span class="ph-sep" aria-hidden="true">&nbsp;· </span>'; // the dot stays with the word before it
-  const tag = (id, cls = "") => `<span class="idtag ph-id${cls ? " " + cls : ""}">${esc(id)}</span>`;
-  const idCls = (id) => (id[0] === "A" ? "amber" : id[0] === "P" ? "pending" : "");
-  const tags = (ids) => `<span class="ph-nw">${ids.map((a) => tag(a, idCls(a))).join(" ")}</span>`;
-  // plain name first, id as a small trailing tag glued to the last word (a tag never wraps alone)
-  function nameHTML(text, id, cls = idCls(id)) {
-    const t = String(text || id).replace(/(\d)\s+(?=(?:g|mm|V|W|Hz|min|m|s)\b)/g, "$1\u00a0"), i = t.lastIndexOf(" ");
-    return i < 0 ? `<span class="ph-nw">${esc(t)}&nbsp;${tag(id, cls)}</span>`
-      : `${esc(t.slice(0, i))} <span class="ph-nw">${esc(t.slice(i + 1))}&nbsp;${tag(id, cls)}</span>`;
-  }
-  // a claim named inside a sentence: its short name, then its id tag
-  const claimRef = (cid) => (A.CL[cid] ? nameHTML(A.CL[cid].short, cid, "") : tag(cid));
-  const tz = () => { try { return (A.fmt.tz && A.fmt.tz()) || ""; } catch (e) { return ""; } };
-  const rel = (iso) => A.fmt.rel(iso).replace(/ /g, "\u00a0"); // "9 h ago" never splits
-  // local 24-hour time; the zone is named once per view
-  const when = (iso, zone) => `${A.fmt.day(iso)}, ${A.fmt.clock(iso)}${zone && tz() ? "\u00a0" + tz() : ""}`;
-  const shown = () => !!(host && host.isConnected && host.getClientRects().length);
-  const evOf = (id) => (A.ev && A.ev.claims[id]) || {};
-  const sameAsNow = (s) => A.ev.mode === "now" || !!s.same;
-  function label(id) {
-    if (id[0] === "C") return A.CL[id] ? A.CL[id].short : id;
-    if (id[0] === "A") return A.AS[id] ? A.AS[id].short : id;
-    if (id[0] === "P") return A.PH[id] ? A.PH[id].short : id;
-    return id;
-  }
-  // the status word for any item, in the page's fixed vocabulary (STE.md): the kind comes from APP.statusOf,
-  // the preview forms from the evaluation ("would" = a result the what-if preview calculated)
-  const WORD = {
-    checked: "Passes", onfaith: "Passes if the estimates are correct", failing: "Fails",
-    gap: "Unconfirmed", assumed: "Accepted (preview)", stale: "Not checked after a change",
-    open: "Not checked yet", pending: "Hardware test (not done)",
-  };
-  function wordOf(id, st) {
-    const w = (A.ev && A.ev.claims && A.ev.claims[id]) || {};
-    if (w.would && st.kind === "failing") return "Fails in the preview";
-    if (w.would && st.kind === "checked") return "Passes in the preview";
-    if (w.would && st.kind === "onfaith") return "Passes in the preview"; // the amber glyph and box say it depends on estimates
-    return WORD[st.kind] || st.word;
-  }
-
-  // ------------------------------------------------------------------ numbers that never tell a false story
-  // 0.03% · 0.8% · 3.5% · 10% · 23% (never "10.0%", never a "0%" margin)
-  function pctTxt(x) {
-    const a = Math.abs(x);
-    return (a < 0.1 ? a.toFixed(2) : a < 10 ? a.toFixed(1) : String(Math.round(a))).replace(/\.0+$/, "") + "%";
-  }
-  const sgnPct = (x) => (x < 0 ? "\u2212" : "+") + pctTxt(x);
-  function marginOf(c, m) {
-    // no percentage for a count ("1 piece" against "at most 1") or a bar at zero
-    if (m == null || c.limit == null || c.limit === 0 || c.units === "count") return null;
-    if (c.cmp === ">=" || c.cmp === ">") return (m - c.limit) / Math.abs(c.limit);
-    if (c.cmp === "<=" || c.cmp === "<") return (c.limit - m) / Math.abs(c.limit);
-    return null;
-  }
-  // a checked value never rounds onto (or across) its limit, and the margin worked out from the shown number reads
-  // the same as the margin shown beside it: 3.024 against 3 stays "3.024", so it agrees with "0.8% to spare"
-  function valStr(c, m) {
-    if (c.units === "USD/unit") return "$" + m.toFixed(2);
-    if (c.units === "count") return String(Math.round(m));
-    let s = A.fmt.v(m, "");
-    if (c.limit == null) return minus(s);
-    const want = marginPhrase(c, m);
-    let d = (s.split(".")[1] || "").length;
-    for (let k = 0; k < 4; k++) {
-      const v = parseFloat(s.replace(/,/g, ""));
-      const side = m === c.limit || Math.sign(v - c.limit) === Math.sign(m - c.limit);
-      if (side && marginPhrase(c, v) === want) break;
-      d += 1;
-      s = m.toFixed(d);
+  function refit() {
+    if (!view || !view.clientWidth) return;
+    const f = view.clientWidth / STAGE_W, open = document.body.classList.contains("drawer-open");
+    stageH = stage.offsetHeight;
+    if (open && !held) {
+      // the drawer took part of the width: the map keeps its size on screen and shows its right end (the boards)
+      held = { fit, k, tx, ty, h: view.clientHeight };
+      k = Math.min(K_MAX, Math.max(1, (fit * k) / f));
+      tx = -1e9;
+    } else if (!open && held) {
+      k = held.k; tx = held.tx; ty = held.ty;
+      held = null;
+    } else if (f !== fit) {
+      tx *= f / fit; ty *= f / fit;
     }
-    return minus(s);
+    const textWas = textScale();
+    fit = f;
+    apply();
+    if (Math.abs(textScale() - textWas) > 0.002 && window.Hero && window.Hero.remeasure) window.Hero.remeasure();
   }
-  function limStr(c) {
-    const l = c.limit;
-    if (c.units === "USD/unit") return "$" + (Number.isInteger(l) ? String(l) : l.toFixed(2));
-    if (c.units === "count") return String(l);
-    return minus(A.fmt.v(l, ""));
-  }
-  // the limit with its direction, so the pair never reads as a false comparison ("$167.15 · limit ≤ $150")
-  const needWord = (c) => ({ ">=": "limit\u00a0≥", ">": "limit\u00a0>", "<=": "limit\u00a0≤", "<": "limit\u00a0<" })[c.cmp] || "limit";
-  // a claim's unit as shown; a count borrows the noun from what it measures ("connected pieces" -> "1 piece")
-  function unitOf(c, x) {
-    if (c.units !== "count") return A.fmt.unit(c.units);
-    const w = String(c.means || "").trim().split(/\s+/).pop() || "";
-    return Math.round(x) === 1 ? w.replace(/s$/, "") : w;
-  }
-  // one value in the claim's own unit, for sentences ("was 3.024")
-  function plainNum(c, x) {
-    const u = unitOf(c, x);
-    return valStr(c, x) + (u ? "\u00a0" + u : "");
-  }
-  // a guess value at a flip point, with enough decimals that it agrees with the % beside it (0.893 is −0.8%, 0.89 is not)
-  function agreeNum(x, base) {
-    const pct = (v) => pctTxt(((v - base) / Math.abs(base)) * 100);
-    const want = pct(x);
-    let s = A.fmt.v(x, "");
-    let d = (s.split(".")[1] || "").length;
-    for (let k = 0; k < 4; k++) {
-      const v = parseFloat(s.replace(/,/g, ""));
-      if (v !== base && pct(v) === want) break;
-      d += 1;
-      s = x.toFixed(d);
-    }
-    return minus(s);
-  }
-  const runNum = (x) => minus(String(+x.toFixed(2))); // a model-run sample as it was run: 12.42, 30.9, 33
-  const withUnit = (s, u) => (u ? `${s}\u00a0${u}` : s);
+  // the scale the map's small text allows for: the frame's, never the zoom's
+  function textScale() { return held ? held.fit : fit; }
 
-  // multi-check claims (C6, C7): how many of their checks pass under the current evaluation
-  function passCount(c, s) {
-    if (s && s.nChecks != null && s.nPass != null) return [s.nPass, s.nChecks];
-    return [c.nPass, c.nChecks];
-  }
+  function init() {
+    view = document.getElementById("view");
+    stage = document.getElementById("stage");
+    if (!view || !stage) return;
+    fit = view.clientWidth ? view.clientWidth / STAGE_W : 1;
+    // on its own (not in a frame of another page) the page knows the height of the window itself
+    if (window.parent === window) document.documentElement.style.setProperty("--host-h", window.innerHeight + "px");
 
-  // ------------------------------------------------------------------ value vs limit
-  function vsHTML(c, s, st, bare) { // bare: the label beside it already names the noun ("Mesh checks 4 of 4 pass")
-    if (st.kind === "stale" || s.status === "stale" || s.status === "open") return "";
-    if (c.gates.length > 1) {
-      const [p, n] = passCount(c, s);
-      return `<b>${p} of ${n}</b> ${bare ? "" : "checks "}pass`;
-    }
-    const m = s.measured != null ? s.measured : sameAsNow(s) ? c.measured : null;
-    if (m == null || c.limit == null) return "";
-    return `<b>${esc(withUnit(valStr(c, m), bare && c.units === "count" ? "" : unitOf(c, m)))}</b><span class="ph-lim"> · ${esc(needWord(c))}\u00a0${esc(limStr(c))}</span>`;
-  }
+    const at = (e) => { const r = view.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
 
-  // the margin as words, in the style the bundle's own note uses for that requirement ("margin 0.8%", "margin 205 g");
-  // failing: "1.4% below the limit" for a floor, "3.2 g over the limit" for a ceiling and for money
-  function marginPhrase(c, m) {
-    if (m == null || c.limit == null || c.units === "count") return "";
-    const ceil = c.cmp === "<=" || c.cmp === "<";
-    const over = ceil ? m - c.limit : c.limit - m; // > 0: past the limit
-    if (c.units === "USD/unit") return over > 0 ? `$${over.toFixed(2)} over the limit` : `margin\u00a0$${(-over).toFixed(2)}`;
-    const g = marginOf(c, m);
-    const style = /%/.test(c.note || "") ? "pct" : /\d\s*(?:g|mm|V|W|Hz|min)\b/.test(c.note || "") ? "amount" : "auto";
-    // a margin of 100% or more reads better as the amount itself ("margin 13.3 mm", not "margin 443%")
-    if (g == null || style === "amount" || (style === "auto" && Math.abs(g) >= 1)) {
-      if (Math.abs(over) < 1e-9) return "";
-      const amt = A.fmt.v(Math.abs(over), c.units).replace(/ /g, "\u00a0");
-      return over > 0 ? `${amt} ${ceil ? "over" : "below"} the limit` : `margin\u00a0${amt}`;
-    }
-    return g < 0 ? `${pctTxt(g * 100)} ${ceil ? "over" : "below"} the limit` : `margin\u00a0${pctTxt(g * 100)}`;
-  }
-  // the bundle's own row note, minus what the row already says elsewhere
-  function cleanNote(c) {
-    let n = c.note || "";
-    n = n.replace(/\s*·\s*on faith\s*$/i, ""); // the status word and the amber box below say it already
-    if (c.gates.length > 1) n = n.replace(/^\s*\d+\s*\/\s*\d+\s*·\s*/, ""); // the value already says "7 of 7"
-    // the bundle's note in the page's words: "+0.8%" -> "margin 0.8%", "205 g to spare" -> "margin 205 g"
-    n = n.replace(/^\+(\d+(?:\.\d+)?)%$/, "margin $1%").replace(/^thinnest \+(\d+(?:\.\d+)?)%$/, "smallest\u00a0margin $1%")
-      .replace(/^(.+?) to spare$/, "margin $1").replace(/^over by (.+)$/, "$1 over the limit");
-    // a margin phrase never splits across lines ("margin 0.8%", "margin 205 g", "1.3 mm inside")
-    return n.replace(/(\d)\s+(?=(?:g|mm|V|W|Hz|min)\b)/g, "$1\u00a0").replace(/^margin /, "margin\u00a0");
-  }
-  // in a past run, a requirement whose input changed after its last check (the status word says "Not checked after a change"):
-  // which input moved, and the last real reading
-  function staleNote(c, s) {
-    const keys = s.staleKeys || [];
-    const name = (k) => {
-      const d = A.D.derived && A.D.derived[k], p = A.D.params && A.D.params[k];
-      const t = (d && d.l) || (p && p.l) || String(k).replace(/_/g, " ");
-      return /^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t;
+    // wheel: with Ctrl or Cmd it zooms (a pinch on a trackpad arrives the same way); a plain wheel scrolls the page
+    view.addEventListener("wheel", (e) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const p = at(e), d = Math.max(-0.25, Math.min(0.25, -e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.01)));
+      zoomAt(k * Math.exp(d), p.x, p.y);
+    }, { passive: false });
+
+    // mouse: drag to pan once zoomed in; a drag never also counts as a click on the item under it
+    let drag = null, swallow = false;
+    view.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse" || e.button !== 0 || !zoomed() || e.target.closest(NO_PAN)) return;
+      drag = { x: e.clientX, y: e.clientY, tx, ty, on: false };
+    });
+    window.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.on && Math.hypot(dx, dy) < 4) return;
+      drag.on = true;
+      view.classList.add("panning");
+      tx = drag.tx + dx; ty = drag.ty + dy;
+      apply();
+    });
+    const drop = () => {
+      if (drag && drag.on) { swallow = true; setTimeout(() => (swallow = false), 0); }
+      drag = null;
+      view.classList.remove("panning");
     };
-    const what = keys.slice(0, 2).map(name);
-    const t = what.length ? `${what.join(" and ")}${keys.length > 2 ? ` and ${keys.length - 2} more` : ""} changed after the last check`
-      : "an input changed after the last check";
-    return s.measured != null && c.gates.length === 1 ? [t, `last result ${plainNum(c, s.measured)}`] : [t];
-  }
-  // the row's second line after the status word: [the margin (red when failing), then the context]
-  function noteBits(c, s, st) {
-    const mode = A.ev.mode;
-    if (mode === "past" && st.kind === "stale") return staleNote(c, s);
-    if (mode === "now" || s.same) {
-      const n = cleanNote(c);
-      return !n || (c.measured != null && n.replace(/\u00a0/g, " ") === plainNum(c, c.measured).replace(/\u00a0/g, " ")) ? [] : [n];
-    }
-    if (s.status === "stale" || s.status === "open" || st.kind === "stale" || c.gates.length > 1) return [];
-    const bits = [marginPhrase(c, s.measured)];
-    if (mode === "whatif") {
-      if (c.measured != null) bits.push("current value " + plainNum(c, c.measured));
-      bits.push(s.how === "exact" ? "exact formula" : "from a model\u00a0run");
-    }
-    return bits.filter(Boolean);
-  }
-  // the failing parts total says how old its prices are and what it leaves out
-  function costNote(c, s) {
-    const K = A.D.cost;
-    if (!K || !(c.line || []).includes("bom") || A.ev.mode === "past") return "";
-    const bits = [];
-    if (K.shippingIncluded === false) bits.push("before shipping");
-    if (K.pricesRead) bits.push(`prices read ${A.fmt.day(K.pricesRead + "T12:00:00Z")}`);
-    return bits.map((b) => `${SEP}<span>${esc(b)}</span>`).join("");
-  }
+    window.addEventListener("pointerup", drop);
+    window.addEventListener("pointercancel", drop);
+    view.addEventListener("click", (e) => { if (swallow) { swallow = false; e.stopPropagation(); e.preventDefault(); } }, true);
 
-  // amber box: the unconfirmed estimates this pass depends on, and how small an error makes it fail
-  function faithHTML(c, st, s) {
-    if (st.kind !== "onfaith") return "";
-    const un = (st.faith || c.onFaith || []).filter((a) => !A.state.signed.has(a)).sort(byId);
-    if (!un.length) return "";
-    const n = un.length;
-    const them = n === 1 ? "this estimate" : "one of them";
-    // amounts are today's sensitivities: only for today's design (now, or a what-if that leaves this requirement alone)
-    let tail = "";
-    if (A.ev.mode !== "past" && sameAsNow(s)) {
-      const rows = un.map((a) => ((A.AS[a] || {}).couldFlip || []).find((x) => x.claim === c.id)).filter(Boolean);
-      if (rows.length === n) {
-        const P = rows.map((r) => Math.abs(r.flipPct));
-        const lo = Math.min(...P), hi = Math.max(...P);
-        tail = ` An error of ${pctTxt(lo) === pctTxt(hi) ? pctTxt(hi) : `${pctTxt(lo)} to ${pctTxt(hi)}`} in ${them} makes the requirement fail.`;
-        // a model run that failed is a real result: say which error still passed, never a value between the two
-        const sw = rows.filter((r) => r.method === "sweep" && r.passPct != null);
-        if (sw.length === n) {
-          const pass = Math.min(...sw.map((r) => Math.abs(r.passPct)));
-          if (pass > 0) tail += ` With an error of ${pctTxt(pass)}, it passes.`;
-        }
-        if (rows.some((r) => r.method === "estimate")) tail += " This limit is approximate.";
+    // touch: two fingers zoom and move the map; one finger pans it once zoomed in, and scrolls the page before that
+    let pinch = null, pan = null;
+    const mid = (e) => {
+      const r = view.getBoundingClientRect(), a = e.touches[0], b = e.touches[1];
+      return { x: (a.clientX + b.clientX) / 2 - r.left, y: (a.clientY + b.clientY) / 2 - r.top, d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1 };
+    };
+    const one = (e) => (zoomed() ? { x: e.touches[0].clientX, y: e.touches[0].clientY, tx, ty } : null);
+    view.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 2) {
+        const m = mid(e);
+        pinch = { d: m.d, k, x: m.x, y: m.y };
+        pan = null;
+        if (e.cancelable) e.preventDefault();
+      } else if (e.touches.length === 1) {
+        pan = e.target.closest(NO_PAN) ? null : one(e);
       }
-    }
-    if (!tail) tail = ` If ${n === 1 ? "it is" : "one of them is"} wrong by ${FAITH_PCT}% or less, the requirement can fail.`;
-    const who = n === 1 ? "an estimate" : `${n} estimates`;
-    return `<span class="ph-faith">${A.glyph("gap", 14)} <b>Depends on ${esc(who)}</b> ${tags(un)}.${esc(tail)}</span>`;
-  }
-
-  // one claim row (boards and the "not on a milestone" card); tapping opens the claim drawer
-  function rowHTML(c) {
-    const s = evOf(c.id), st = A.statusOf(c.id);
-    const bad = st.kind === "failing";
-    const bits = noteBits(c, s, st);
-    const val = vsHTML(c, s, st);
-    return `<button type="button" class="ph-row${bad ? " is-fail" : ""}" data-ph="open:claim:${esc(c.id)}">
-      <span class="ph-g">${A.glyph(st.kind, 20)}</span>
-      <span class="ph-name">${nameHTML(c.short, c.id)}</span>
-      ${val ? `<span class="ph-val">${val}</span>` : ""}
-      <span class="ph-sub"><span class="word ${st.cls}">${esc(wordOf(c.id, st))}</span>${bits.map((b, i) => `${SEP}<span${bad && i === 0 ? ' class="ph-bad"' : ""}>${esc(b)}</span>`).join("")}${costNote(c, s)}</span>
-      ${faithHTML(c, st, s)}
-    </button>`;
-  }
-
-  // ------------------------------------------------------------------ 1 · boards
-  // the milestones in the order the plan reaches them (the first step that unblocks each comes first)
-  function planRank(mid) {
-    const i = (A.D.nextMoves || []).findIndex((n) => n.unblocks === mid);
-    return i < 0 ? 99 : i;
-  }
-  const milestones = () => (A.D.milestones || []).slice().sort((a, b) => planRank(a.id) - planRank(b.id));
-  function sortItems(ids) {
-    return ids.map((id) => ({ id, st: A.statusOf(id) }))
-      .sort((a, b) => SEV[a.st.kind] - SEV[b.st.kind] || byId(a.id, b.id));
-  }
-  function unitsHTML(items) {
-    let prev = null;
-    return items.map((x) => {
-      const brk = prev && prev !== x.st.kind;
-      prev = x.st.kind;
-      return `<span class="ph-unit${brk ? " ph-brk" : ""}" title="${esc(label(x.id) + " · " + wordOf(x.id, x.st))}">${A.glyph(x.st.kind, 20)}</span>`;
-    }).join("");
-  }
-  function capText(items) {
-    const n = {};
-    items.forEach((x) => (n[x.st.kind] = (n[x.st.kind] || 0) + 1));
-    const out = [];
-    // the map's board words: "1 fails · 4 estimates to accept", then what passes
-    if (n.failing) out.push(`${n.failing} ${plural(n.failing, "fails", "fail")}`);
-    if (n.stale) out.push(`${n.stale} not checked after a change`);
-    if (n.open) out.push(`${n.open} not checked yet`);
-    if (n.gap) out.push(`${n.gap} ${plural(n.gap, "estimate", "estimates")} to accept`);
-    if (n.pending) out.push(`${n.pending} not done`);
-    const ok = (n.checked || 0) + (n.onfaith || 0);
-    // "7 pass (3 depend on estimates)": the ones that depend on estimates are part of the passing count, not extra
-    if (ok) out.push(`${ok} ${plural(ok, "passes", "pass")}${n.onfaith ? ` (${n.onfaith} ${plural(n.onfaith, "depends", "depend")} on estimates)` : ""}`);
-    if (n.assumed) out.push(`${n.assumed} ${plural(n.assumed, "estimate", "estimates")} accepted (preview)`);
-    return out.map((t) => t.replace(/ /g, "\u00a0")).join(" · "); // each item wraps whole: "3 pass (1 depends on estimates)"
-  }
-  function qualifier(m) {
-    if (A.ev.mode === "whatif") return "preview";
-    if (A.ev.mode === "past") return "old check run";
-    if (m.required.some((id) => A.state.signed.has(id))) return "preview";
-    return "";
-  }
-  function chipHTML(a) {
-    const st = A.statusOf(a), as = A.AS[a];
-    if (!as) return "";
-    return `<button type="button" class="ph-chipbtn" data-ph="open:assumption:${esc(a)}" aria-label="${esc(as.short + " " + a + " · " + wordOf(a, st))}" title="${esc(wordOf(a, st))}"><span class="ph-chip ${st.cls}">${A.glyph(st.kind, 14)}<span class="ph-chip-t">${esc(as.short)}</span>${tag(a, "amber")}</span></button>`;
-  }
-  function signHTML(ids) {
-    const left = ids.filter((a) => !A.state.signed.has(a)).length;
-    const head = left
-      ? `Estimates to accept <span class="ph-sign-s">· ${left} of ${ids.length} unconfirmed</span>`
-      : "Estimates accepted (preview)";
-    return `<div class="ph-sign"><p class="ph-sign-h${left ? "" : " ph-quiet"}">${head}</p><div class="ph-chips">${ids.map(chipHTML).join("")}</div></div>`;
-  }
-  // a board reads top-down in the same order as its Isotype row: what blocks it first, then what passes
-  const BLOCKING = new Set(["failing", "stale", "open"]);
-  function boardHTML(m, area) {
-    const em = A.ev.milestones[m.id] || { ready: m.ready, done: m.done, total: m.total };
-    const items = sortItems(m.required);
-    const claimItems = items.filter((x) => x.id[0] === "C" && A.CL[x.id]);
-    const blocking = claimItems.filter((x) => BLOCKING.has(x.st.kind)).map((x) => A.CL[x.id]);
-    const passing = claimItems.filter((x) => !BLOCKING.has(x.st.kind)).map((x) => A.CL[x.id]);
-    const asms = m.required.filter((id) => id[0] === "A").sort(byId);
-    const worst = items.length ? items[0].st.kind : "checked";
-    // the header's colour names the cause: red only when a requirement fails, amber when estimates to accept are all that is left,
-    // grey when a check needs a re-run or has not run yet
-    const vcls = em.ready ? "ok" : worst === "failing" ? "fail" : worst === "gap" ? "amber" : "dim";
-    const q = qualifier(m);
-    const cap1 = capText(items);
-    return `<section class="card ph-card ph-board ${area}" aria-label="${esc(m.title)}">
-      <div class="ph-head">
-        <div class="ph-head-top">
-          <h2 class="eyebrow">${esc(m.title)}</h2>
-          <span class="ph-verdict ${vcls}">${A.glyph(em.ready ? "checked" : worst, 16)}<span>${em.ready ? "READY" : "BLOCKED"}</span>${q ? `<small>(${esc(q)})</small>` : ""}</span>
-        </div>
-        <p class="ph-desc">${esc(m.description)}</p>
-        <div class="ph-iso">
-          <span class="ph-units" role="img" aria-label="${esc(cap1)}">${unitsHTML(items)}</span>
-          <span class="ph-count">${em.done} of ${em.total} done</span>
-        </div>
-        <p class="ph-cap">${esc(cap1)}</p>
-      </div>
-      ${blocking.length ? `<div class="ph-rows">${blocking.map(rowHTML).join("")}</div>` : ""}
-      ${asms.length ? signHTML(asms) : ""}
-      ${passing.length ? `<div class="ph-rows">${passing.map(rowHTML).join("")}</div>` : ""}
-    </section>`;
-  }
-
-  // the hardware tests, in the build guide's order
-  function testRowHTML(p) {
-    const st = A.statusOf(p.id);
-    const bits = [];
-    (p.settles || []).filter((c) => A.CL[c]).forEach((c) => bits.push(`tests ${claimRef(c)} on the drone`));
-    // the test gives data that can replace an estimate (it does not always measure the estimate itself)
-    const r = p.replaces || [];
-    if (r.length) bits.push(`its data can replace ${plural(r.length, "estimate", "estimates")} ${tags(r)}`);
-    const cf = p.confirms || [];
-    if (cf.length) bits.push(`confirms the measured ${plural(cf.length, "estimate", "estimates")} ${tags(cf)}`);
-    if (!bits.length) bits.push("tests what the model does not calculate");
-    return `<button type="button" class="ph-row" data-ph="open:physical:${esc(p.id)}">
-      <span class="ph-g">${A.glyph(st.kind, 20)}</span>
-      <span class="ph-name">${p.order != null ? `<span class="ph-ord">${esc(p.order)}</span>` : ""}${nameHTML(p.short, p.id)}</span>
-      <span class="ph-sub"><span class="word ${st.cls}">${esc(wordOf(p.id, st))}</span>${SEP}${bits.join(SEP)}</span>
-    </button>`;
-  }
-  function testsHTML(area) {
-    const P = (A.D.physical || []).slice().sort((a, b) => (a.order ?? 99) - (b.order ?? 99) || byId(a.id, b.id));
-    if (!P.length) return "";
-    const items = sortItems(P.map((p) => p.id));
-    const done = P.filter((p) => p.status !== "pending").length;
-    const G = A.D.assumptions || [];
-    const settled = new Set(P.flatMap((p) => p.replaces || []));
-    const rest = G.filter((a) => !settled.has(a.id));
-    const whens = [...new Set(rest.map((a) => a.measure && a.measure.when).filter(Boolean))];
-    let desc = "Do these tests on the built drone, in the order of the build guide.";
-    if (settled.size) {
-      desc += ` Their data can replace ${settled.size} of the ${G.length} estimates.`;
-      if (rest.length && whens.length === 1) desc += ` Measure the other ${rest.length} ${whens[0]}.`;
-    }
-    const cap1 = capText(items);
-    return `<section class="card ph-card ph-board ${area}" aria-label="Hardware tests">
-      <div class="ph-head">
-        <div class="ph-head-top">
-          <h2 class="eyebrow">Hardware tests</h2>
-          <span class="ph-verdict ${done === P.length ? "ok" : "pending"}">${A.glyph(done === P.length ? "checked" : "pending", 16)}<span>${done === P.length ? "ALL DONE" : "NOT DONE"}</span></span>
-        </div>
-        <p class="ph-desc">${esc(desc)}</p>
-        <div class="ph-iso">
-          <span class="ph-units" role="img" aria-label="${esc(cap1)}">${unitsHTML(items)}</span>
-          <span class="ph-count">${done} of ${P.length} done</span>
-        </div>
-        <p class="ph-cap">${esc(cap1)}</p>
-      </div>
-      <div class="ph-rows">${P.map(testRowHTML).join("")}</div>
-    </section>`;
-  }
-  // the requirements no stage needs
-  function looseHTML(area) {
-    const L = A.D.claims.filter((c) => !c.milestones || !c.milestones.length);
-    if (!L.length) return "";
-    return `<section class="card ph-card ph-loose ${area}" aria-label="Not needed for a stage">
-      <div class="ph-head ph-head-s">
-        <h2 class="eyebrow">Not needed for a stage</h2>
-        <p class="ph-desc">${L.length === 1 ? "No stage needs this requirement. If it fails, the stages can start." : "No stage needs these requirements. If they fail, the stages can start."}</p>
-      </div>
-      <div class="ph-rows">${L.map(rowHTML).join("")}</div>
-    </section>`;
-  }
-  function boardsHTML() {
-    const ms = milestones();
-    // grid areas: one column reads in plan order (milestones, tests, the claim no milestone needs); two columns put
-    // the short card under the first board and give the tests the full width
-    const boards = ms.map((m, i) => boardHTML(m, i < 2 ? `ph-b${i + 1}` : "")).join("");
-    return `<div class="ph-boards">${boards}${testsHTML("ph-hw")}${looseHTML("ph-lo")}</div>`;
-  }
-
-  // ------------------------------------------------------------------ 2 · the estimates
-  // how small an error makes a requirement fail: the failing model run for a sweep row, the threshold otherwise
-  function danger(a) {
-    const f = a.couldFlip || [];
-    return f.length ? Math.min(...f.map((x) => Math.abs(x.flipPct))) : Infinity;
-  }
-  // a data label inside a sentence: "Motor height" -> "the motor height" (an acronym such as "FC" keeps its case)
-  const inSentence = (t) => "the " + (/^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t);
-  // "If the voltage of the thrust test is 4.217 V (+0.4%), Thrust ≥ 3× weight C1 fails." ·
-  // "If the motor height is 12.42 mm (−10%), Nothing collides C5 fails. At 13.39 mm (−3%), it passes." ·
-  // "If the shaft clip clearance is more than 2.38 mm (+3.5%), Clean, closed mesh C7 fails. Approximate limit (...)."
-  function flipHTML(a, f) {
-    const hot = Math.abs(f.flipPct) <= FAITH_PCT + 1e-6;
-    const u = A.fmt.unit(f.unit);
-    const exact = f.method === "exact", est = f.method === "estimate";
-    const x = withUnit(exact ? agreeNum(f.flipAt, f.value) : runNum(f.flipAt), u);
-    const lead = `If ${esc(inSentence(f.label || "value"))} is ${est ? (f.flipPct > 0 ? "more than " : "less than ") : ""}${x} (${sgnPct(f.flipPct)}),`;
-    let tail = "";
-    if (f.method === "sweep" && f.passAt != null) tail = ` At ${withUnit(runNum(f.passAt), u)}${f.passPct != null ? ` (${sgnPct(f.passPct)})` : ""}, it passes.`;
-    if (est) {
-      const row = ((A.D.sens && A.D.sens[f.claim] && A.D.sens[f.claim].rows) || []).find((r) => r.param === f.param);
-      tail = ` Approximate limit${row && row.how ? ` (${row.how})` : ""}.`;
-    }
-    return `<span class="ph-flip${hot ? " hot" : ""}">${lead} ${claimRef(f.claim)} fails.${tail ? `<span class="ph-at">${esc(tail)}</span>` : ""}</span>`;
-  }
-  // how a measurement replaces the estimate: "When the kit arrives, before printing, use calipers on one motor (...)."
-  function measureHTML(a) {
-    const m = a.measure;
-    const pTags = (h) => h.replace(/\s*\((P\d+)\)/g, (_, p) => "\u00a0" + tag(p, "pending")).replace(/\b(P\d+)\b(?![^<]*<\/span>)/g, (p) => tag(p, "pending"));
-    if (!m || !m.how) return a.replacedBy ? `<span class="ph-asub ph-meas">A hardware test replaces it with a measured value ${tag(a.replacedBy, "pending")}.</span>` : "";
-    // the method only: the first clause, without its comment ("..., which measures ..."); the drawer has the procedure
-    const how = String(m.how).split(/:\s|;\s|,\s+which\s/)[0].trim().replace(/\.$/, "");
-    const sentence = /^[A-Z][a-z]/.test(how); // the bundle may give a whole instruction ("Measure the board ...")
-    const when = m.when ? cap(m.when) : "";
-    let t = when ? (sentence ? `${esc(when)}. ${pTags(esc(how))}.` : `${esc(when)}, use ${pTags(esc(how))}.`) : `${pTags(esc(cap(how)))}.`;
-    // an estimate measured before a stage (no hardware test replaces it) can be wrong in either direction
-    if (!a.replacedBy) t += ` If a measured value is different from the estimate, put it in the model and do the checks again.`;
-    return `<span class="ph-asub ph-meas">${t}</span>`;
-  }
-  function asmCardHTML(a) {
-    const st = A.statusOf(a.id);
-    const P = a.params || [];
-    const vals = P.map((p) => `<span class="ph-pv">${esc(p.label)}\u00a0<b>${esc(A.fmt.v(p.value, p.unit)).replace(/ /g, "\u00a0")}</b></span>`).join(SEP);
-    const all = (a.couldFlip || []).filter((f) => A.CL[f.claim]).sort((x, y) => Math.abs(x.flipPct) - Math.abs(y.flipPct));
-    // a dependency count, then how many of those requirements a small error is known to make fail
-    const n = (a.holdsUp || []).length;
-    const k = new Set(all.map((f) => f.claim)).size;
-    const uses = `Input to ${n} ${plural(n, "requirement", "requirements")}.${k ? ` It can make ${n === 1 && k === 1 ? "it" : `${k} of them`} fail.` : ""}`;
-    return `<button type="button" class="card ph-card ph-acard" data-ph="open:assumption:${esc(a.id)}">
-      <span class="ph-g">${A.glyph(st.kind, 20)}</span>
-      <span class="ph-name">${nameHTML(a.short, a.id)}</span>
-      <span class="ph-asub"><span class="word ${st.cls}">${esc(wordOf(a.id, st))}</span>${SEP}${esc(uses)}</span>
-      <span class="ph-asub ph-vals">${vals}</span>
-      ${all.map((f) => flipHTML(a, f)).join("")}
-      ${measureHTML(a)}
-    </button>`;
-  }
-  function asmHTML() {
-    const L = (A.D.assumptions || []).slice().sort((a, b) => danger(a) - danger(b) || byId(a.id, b.id));
-    if (!L.length) return "";
-    const signed = L.filter((a) => A.state.signed.has(a.id)).length;
-    const deck = [
-      `The model uses ${L.length} estimates. An estimate is a value that nobody has measured yet.`,
-      "The owner must accept the estimates of a stage before that stage can start.",
-      signed ? `This preview accepts ${signed} of them. The check tool does not record a preview.` : "",
-      "The list starts with the estimate where the smallest error makes a requirement fail.",
-    ].filter(Boolean).join(" ");
-    // the error sizes come from today's design; say so when the page shows something else
-    const asOf = A.ev.mode === "whatif" ? "The errors in this list are for the current design, not for the preview."
-      : A.ev.mode === "past" ? "The errors in this list are for the current design, not for the old check run." : "";
-    return `<section class="ph-sec" aria-label="Estimates">
-      <h2 class="eyebrow ph-eb">Estimates (values not measured yet)</h2>
-      <p class="ph-deck">${esc(deck)} To accept an estimate, the owner types a command in a terminal. Example:<br><code class="ph-cli">nopekit claim physical A5 assume</code></p>${asOf ? `<p class="ph-deck ph-note">${esc(asOf)}</p>` : ""}
-      <div class="ph-grid">${L.map(asmCardHTML).join("")}</div>
-    </section>`;
-  }
-
-  // ------------------------------------------------------------------ 3 · how the model calculates each requirement
-  const memoAnc = {}, memoPar = {};
-  function anc(k) { // derived keys k depends on, transitively
-    if (memoAnc[k]) return memoAnc[k];
-    const out = new Set();
-    memoAnc[k] = out;
-    const d = A.D.derived[k];
-    if (d) d.parents.forEach((p) => {
-      if (p.slice(0, 2) !== "D:") return;
-      const n = p.slice(2);
-      out.add(n);
-      anc(n).forEach((x) => out.add(x));
-    });
-    return out;
-  }
-  function params(k) { // inputs that reach derived key (or input) k
-    if (memoPar[k]) return memoPar[k];
-    const out = new Set();
-    memoPar[k] = out;
-    if (k in A.BASE) out.add(k);
-    const d = A.D.derived[k];
-    if (d) d.parents.forEach((p) => {
-      const n = p.slice(2);
-      if (p.slice(0, 2) === "P:") out.add(n);
-      else params(n).forEach((x) => out.add(x));
-    });
-    return out;
-  }
-  // the derived quantity each hub's value string reports (fallback when the core has no hubValue)
-  const VALUE_KEY = {
-    layout: "motor_offset", frame: "frame_mass_g", modes: "frame_mode1_hz", assembly: "interference_total_mm3",
-    mass: "auw_g", thrust: "thrust_total_g", hover: "hover_power_w", fcstack: "fc_stack_mm", mscrew: "plate_t",
-  };
-  function hubReach(h) {
-    if (VALUE_KEY[h]) return params(VALUE_KEY[h]);
-    const hub = A.D.hubs[h], s = new Set();
-    (hub.members || []).forEach((m) => params(m).forEach((x) => s.add(x)));
-    Object.values(hub.feeders || {}).forEach((ps) => ps.forEach((p) => s.add(p)));
-    return s;
-  }
-  // a hub joins from the side when its headline value does not come from the previous station,
-  // but another of its members combines both (e.g. total thrust ÷ all-up weight)
-  function isMerge(h, prev) {
-    const mem = (A.D.hubs[h] || {}).members || [];
-    const pm = new Set((A.D.hubs[prev] || {}).members || []);
-    if (mem.length < 2 || !pm.size) return false;
-    const fromPrev = (k) => [...anc(k)].some((x) => pm.has(x));
-    if (fromPrev(mem[0])) return false;
-    return mem.some((m) => m !== mem[0] && fromPrev(m) && anc(m).has(mem[0]));
-  }
-  function hubAs(h) {
-    const hub = A.D.hubs[h] || {};
-    const s = new Set();
-    Object.values(hub.feeders || {}).forEach((ps) => ps.forEach((p) => { const q = A.D.params[p]; if (q && q.a) s.add(q.a); }));
-    return [...s];
-  }
-  // the hub's own value string, minus a trailing word its label already says ("Motor screw seat 1.8 mm seat")
-  function hubText(h, text) {
-    const lab = String((A.D.hubs[h] || {}).label || "").trim().split(/\s+/).pop().toLowerCase();
-    const t = String(text || "").trim();
-    const i = t.lastIndexOf(" ");
-    return i > 0 && t.slice(i + 1).toLowerCase() === lab ? t.slice(0, i) : t;
-  }
-  // a recomputed value dropped into the hub's own value string, same decimals and words (fallback only)
-  function swapNum(h, x, pre = "") {
-    const base = String((A.D.hubs[h] || {}).value || "");
-    const m = base.match(/-?\d[\d,]*(?:\.(\d+))?/);
-    if (!m) return pre + minus(A.fmt.v(x, ""));
-    const num = m[1] ? x.toFixed(m[1].length) : A.fmt.v(x, "");
-    return base.slice(0, m.index) + pre + minus(num) + base.slice(m.index + m[0].length);
-  }
-  function localHubValue(h) {
-    const hub = A.D.hubs[h];
-    if (!hub || !hub.value) return null;
-    if (A.ev.mode === "now") return { text: hub.value };
-    if (A.ev.mode === "past") return null;
-    const wi = A.state.whatIf || {};
-    const keys = Object.keys(wi).filter((k) => Math.abs(wi[k] - A.BASE[k]) > 1e-12);
-    if (!keys.some((k) => hubReach(h).has(k))) return { text: hub.value };
-    const v = Object.assign({}, A.BASE, wi);
-    const cl = A.closed(v);
-    const within = (cid) => !!A.CLOSED_BY_CLAIM[cid] && keys.every((k) => A.CLOSED_BY_CLAIM[cid].has(k));
-    const rec = keys.length === 1 ? A.sweepRecord(keys[0], wi[keys[0]]) : null;
-    const ex = (x) => ({ text: swapNum(h, x), moved: true });
-    const sw = (x) => ({ text: swapNum(h, x, "\u2248"), moved: true });
-    switch (h) {
-      case "mass": if (within("C2")) return ex(cl.auw); if (rec && rec.auw != null) return sw(rec.auw); break;
-      case "thrust": if (within("C1")) return ex(cl.thrust); if (rec && rec.thrust != null) return sw(rec.thrust); break;
-      case "hover": if (within("C3")) return ex(cl.hover); if (rec && rec.hover != null) return sw(rec.hover); break;
-      case "frame":
-        if (keys.length === 1 && keys[0] === "frame_mass_g") return ex(wi.frame_mass_g);
-        if (rec && rec.frameMass != null) return sw(rec.frameMass);
-        break;
-      case "modes": if (rec && rec.mode1 != null) return sw(rec.mode1); break;
-      case "assembly": if (rec && rec.interf != null) return sw(rec.interf); break;
-      case "fcstack": if (within("C8")) return ex(v.fc_screw_len - cl.fcProt); break;
-      case "mscrew": if (within("C9")) return ex(v.plate_t); break;
-      default: break;
-    }
-    return { text: "needs a model rebuild", stale: true };
-  }
-  // a station's value under the current state: the core's rule (exact closed form, else a real model run marked "≈",
-  // else "needs a re-run"; a past run has no per-station values), in the station's own words
-  function hubValue(h) {
-    let v = null;
-    try { v = A.hubValue ? A.hubValue(h) : localHubValue(h); } catch (e) { v = localHubValue(h); }
-    if (!v) return null;
-    return v.stale ? { text: "needs a model rebuild", stale: true } : Object.assign({}, v, { text: hubText(h, v.text) });
-  }
-  // an amber tag for a guess feeding a station: dashed = unsigned, solid = unsigned and can flip this claim,
-  // diamond = signed in the preview (no longer a guess on this page)
-  function feedHTML(a, hot, asButton) {
-    const as = A.AS[a];
-    const signed = A.state.signed.has(a);
-    const t = esc((as ? as.short : a) + " · " + (signed ? WORD.assumed : WORD.gap));
-    const cls = `ph-feed${signed ? " signed" : hot ? " hot" : ""}`;
-    const inner = `<i aria-hidden="true"></i><span>${esc(a)}</span>`;
-    return asButton
-      ? `<button type="button" class="${cls}" data-ph="open:assumption:${esc(a)}" title="${t}" aria-label="${esc((as ? as.short + " " : "") + a + " · " + (signed ? WORD.assumed : WORD.gap))}">${inner}</button>`
-      : `<span class="${cls}" title="${t}">${inner}</span>`;
-  }
-  function chainCardHTML(c) {
-    const s = evOf(c.id), st = A.statusOf(c.id);
-    const hubs = (c.line || []).filter((h) => A.D.hubs[h]);
-    const rests = new Set(c.restsOn || []);
-    const hot = new Set(st.kind === "onfaith" ? (st.faith || c.onFaith || []).filter((a) => !A.state.signed.has(a)) : []);
-    // each guess ticks the last station it feeds directly (nearest the claim)
-    const lastAt = {};
-    hubs.forEach((h, i) => hubAs(h).forEach((a) => { if (rests.has(a)) lastAt[a] = i; }));
-    const per = hubs.map(() => []);
-    Object.keys(lastAt).sort(byId).forEach((a) => per[lastAt[a]].push(a));
-    const extra = (c.restsOn || []).filter((a) => !(a in lastAt)).sort(byId);
-    const nodes = hubs.map((h, i) => ({ h, as: per[i], merge: i > 0 && isMerge(h, hubs[i - 1]), val: hubValue(h) }));
-    if (A.ev.mode === "whatif" && !s.same) {
-      const unknown = { text: "needs a model rebuild", stale: true };
-      // for a claim the what-if reaches: down the main line, a station after one that changed (or is unknown)
-      // cannot keep today's number unless it was recomputed; a side branch (total thrust) is judged on its own.
-      // (A claim the core marks unaffected keeps its chain: a frame-mass what-if moves the mass, not the geometry.)
-      let upstream = false;
-      nodes.forEach((n) => {
-        if (n.merge || !n.val) return;
-        if (upstream && !n.val.moved && !n.val.stale) n.val = unknown;
-        if (n.val.moved || n.val.stale) upstream = true;
-      });
-      // a claim that "needs a re-run" never sits under a chain that looks unchanged: the model links the input
-      // to it somewhere these steps do not show, so the station its verdict is read from is unknown too
-      if (s.status === "stale" && nodes.length && !nodes.some((n) => n.val && (n.val.stale || n.val.moved))) {
-        const last = nodes[nodes.length - 1];
-        if (last.val) last.val = unknown;
+    }, { passive: false });
+    view.addEventListener("touchmove", (e) => {
+      if (pinch && e.touches.length === 2) {
+        if (e.cancelable) e.preventDefault();
+        const m = mid(e), k1 = Math.min(K_MAX, Math.max(1, pinch.k * m.d / pinch.d)), r = k1 / k;
+        tx = m.x - (pinch.x - tx) * r;
+        ty = m.y - (pinch.y - ty) * r;
+        k = k1; pinch.x = m.x; pinch.y = m.y;
+        apply();
+      } else if (pan && e.touches.length === 1) {
+        if (e.cancelable) e.preventDefault();
+        tx = pan.tx + e.touches[0].clientX - pan.x;
+        ty = pan.ty + e.touches[0].clientY - pan.y;
+        apply();
       }
-    }
-    // collapse the upstream stations into one stub only when that saves at least one line
-    let hide = Math.max(0, nodes.length - KEEP_STOPS);
-    while (hide > 0 && nodes[hide] && nodes[hide].merge) hide--; // keep a side-join next to its main-line partner
-    if (hide < 2) hide = 0;
-    const isOpen = expanded.has(c.id);
-    const feeds = (as, btn) => (as.length ? `<span class="ph-feeds">${as.map((a) => feedHTML(a, hot.has(a), btn)).join("")}</span>` : "");
+    }, { passive: false });
+    const lift = (e) => {
+      if (e.touches.length < 2) pinch = null;
+      pan = e.touches.length === 1 ? one(e) : null; // the finger that stays goes on with the pan
+    };
+    view.addEventListener("touchend", lift);
+    view.addEventListener("touchcancel", lift);
 
-    let rows = "";
-    if (hide) {
-      const hid = nodes.slice(0, hide);
-      const hidAs = [...new Set(hid.flatMap((n) => n.as))].sort(byId);
-      rows += `<button type="button" class="ph-node ph-stub" data-ph="chain:${esc(c.id)}" aria-expanded="false">
-        <span class="ph-stubstn" aria-hidden="true"></span>
-        <span class="ph-hub"><span class="ph-stubtxt">from ${hid.map((n) => esc(A.D.hubs[n.h].label)).join(", ")}</span></span>
-        ${feeds(hidAs, false)}
-      </button>`;
-    }
-    nodes.forEach((n, i) => {
-      const hub = A.D.hubs[n.h];
-      const val = n.val;
-      const cls = ["ph-node"];
-      if (i === 0) cls.push("ph-first");
-      if (i < hide) cls.push("ph-up");
-      if (n.merge) cls.push("ph-merge");
-      const vcls = val ? (val.stale ? " is-stale" : val.moved ? " is-moved" : "") : "";
-      rows += `<div class="${cls.join(" ")}">
-        <span class="ph-stn" aria-hidden="true"></span>
-        <button type="button" class="ph-hub" data-ph="open:hub:${esc(n.h)}"><span class="ph-hl">${esc(hub.label)}</span>${val ? ` <span class="ph-hv${vcls}">${esc(val.text)}</span>` : ""}</button>
-        ${feeds(n.as, true)}
-      </div>`;
-    });
-    // the end station: line 1 says what the number is ("Full thrust ÷ weight 3.024 · need ≥ 3"), line 2 the verdict word
-    let means = String(c.means || "").replace(c.gates.length > 1 ? /^\d+\s+/ : /^$/, "");
-    const lastHub = nodes.length ? A.D.hubs[nodes[nodes.length - 1].h] : null;
-    if (lastHub && means.toLowerCase() === String(lastHub.label).toLowerCase()) means = ""; // "All-up weight" just above
-    const how = A.ev.mode === "whatif" && s.would ? (s.how === "exact" ? "exact formula" : "from a model\u00a0run") : "";
-    const vs = vsHTML(c, s, st, !!means);
-    const line1 = [means ? `<span class="ph-hl">${esc(cap(means))}</span>` : "", vs ? `<span class="ph-tv ph-nw">${vs}</span>` : ""].filter(Boolean).join(" ");
-    rows += `<div class="ph-node ph-term${nodes.length ? "" : " ph-first"}">
-      <span class="ph-tg">${A.glyph(st.kind, 20)}</span>
-      <button type="button" class="ph-hub ph-end" data-ph="open:claim:${esc(c.id)}">${line1 ? `<span class="ph-end1">${line1}</span>` : ""}<span class="ph-end2"><span class="word ${st.cls}">${esc(wordOf(c.id, st))}</span>${how ? ` <small class="ph-how">(${how})</small>` : ""}</span></button>
-      ${extra.length ? `<span class="ph-also"><span>also depends on</span>${feeds(extra, true)}</span>` : ""}
-    </div>`;
+    const on = (id, f) => { const b = document.getElementById(id); if (b) b.addEventListener("click", f); };
+    on("zin", () => zoomBy(1.5));
+    on("zout", () => zoomBy(1 / 1.5));
+    on("zfit", () => zoomAt(1, 0, 0));
 
-    return `<article class="card ph-card ph-ccard${isOpen ? " is-open" : ""}${st.kind === "failing" ? " is-fail" : ""}" data-cid="${esc(c.id)}">
-      <div class="ph-ctitle">
-        <button type="button" class="ph-cname" data-ph="open:claim:${esc(c.id)}">${nameHTML(c.short, c.id)}</button>
-        ${hide ? `<button type="button" class="ph-tog" data-ph="chain:${esc(c.id)}" aria-expanded="${isOpen}"><span class="ph-tog-t">${isOpen ? "Fewer steps" : "All steps"}</span><i aria-hidden="true"></i></button>` : ""}
-      </div>
-      <div class="ph-chain">${rows}</div>
-    </article>`;
-  }
-  function chainsHTML() {
-    // the milestones in plan order, as on the boards; within a group, worst first (the failing kit cost leads)
-    const seen = new Set();
-    const worst = (list) => list.map((c) => ({ c, k: SEV[A.statusOf(c.id).kind] }))
-      .sort((a, b) => a.k - b.k || byId(a.c.id, b.c.id)).map((x) => x.c);
-    const groups = milestones().map((m) => {
-      const list = A.D.claims.filter((c) => !seen.has(c.id) && (c.milestones || []).includes(m.id));
-      list.forEach((c) => seen.add(c.id));
-      return { title: m.title, list: worst(list) };
-    });
-    const rest = A.D.claims.filter((c) => !seen.has(c.id));
-    if (rest.length) groups.push({ title: "Not needed for a stage", list: worst(rest) });
-    const deck = "Each card shows the calculated values that lead to one requirement. The last line compares the result with the limit. "
-      + "An amber tag is an unconfirmed estimate. A solid amber tag is an estimate that can make the requirement fail.";
-    const past = A.ev.mode === "past" ? `<p class="ph-deck ph-note">The last line of each card shows the result of the old check run. The steps above it show the current design.</p>` : "";
-    return `<section class="ph-sec" aria-label="How the model calculates each requirement">
-      <h2 class="eyebrow ph-eb">How the model calculates each requirement</h2>
-      <p class="ph-deck">${esc(deck)}</p>${past}
-      ${groups.filter((g) => g.list.length).map((g) => `<h3 class="ph-glabel">${esc(g.title)} <span>· ${g.list.length} ${plural(g.list.length, "requirement", "requirements")}</span></h3>
-        <div class="ph-grid">${g.list.map(chainCardHTML).join("")}</div>`).join("")}
-    </section>`;
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(refit);
+      ro.observe(view);
+      ro.observe(stage);
+    } else window.addEventListener("resize", refit);
+    refit();
   }
 
-  // ------------------------------------------------------------------ end: the full plan (the steps live above)
-  // (no footer of its own: the page's stamp names the last check run, and the guesses section says how sign-off works)
-  function endHTML() {
-    if (!(A.D.nextMoves || []).length) return "";
-    return `<div class="ph-endrow"><button type="button" class="btn ph-plan" data-ph="sheet:next">Full plan</button><span>Shows each step, what can go wrong in it, and when to measure each estimate.</span></div>`;
-  }
-  // ------------------------------------------------------------------ what-if / past run / preview strip (one sentence each)
-  function modeHTML() {
-    // the page's header already carries a mode bar with "Back to now"; a second one would only repeat it
-    if (document.getElementById("modebar")) return "";
-    const ev = A.ev, st = A.state, out = [];
-    if (ev.mode === "whatif") {
-      const keys = Object.keys(st.whatIf || {});
-      const what = keys.map((k) => {
-        const p = A.D.params[k];
-        const lab = p ? p.l : (A.D.derived[k] && A.D.derived[k].l) ? cap(A.D.derived[k].l) : "An input";
-        const u = p ? p.u : k === "frame_mass_g" ? "g" : "";
-        return `${lab} is ${A.fmt.v(st.whatIf[k], u)} (current value ${A.fmt.v(A.BASE[k], u)}).`;
-      }).join(" ");
-      const flips = (ev.changed || []).map((id) => {
-        const s = ev.claims[id], c = A.CL[id];
-        return `${c.short} ${s.status === "fail" ? "fails" : "passes"} in the preview${s.measured != null ? ` (${plainNum(c, s.measured)})` : ""}.`;
-      });
-      const stale = A.D.claims.filter((c) => (ev.claims[c.id] || {}).status === "stale").length;
-      let txt = `This is a preview. ${what} ${flips.length ? flips.join(" ") : "No result changes."}`;
-      if (stale) txt += ` ${stale} ${plural(stale, "requirement needs", "requirements need")} a model rebuild.`;
-      txt += " The check tool does not record a preview.";
-      out.push(txt);
-    } else if (ev.mode === "past" && st.run != null && A.D.runs[st.run]) {
-      const run = A.D.runs[st.run];
-      out.push(`This is the check run of ${when(run.t, true)} (${rel(run.t)}).`);
-    }
-    if (st.signed && st.signed.size) {
-      const ids = [...st.signed].sort(byId);
-      const what = ids.length <= 2 ? ids.map(label).join(" and ") : `${ids.length} estimates`;
-      out.push(`This preview accepts ${what}.${out.length ? "" : " The check tool does not record a preview."}`);
-    }
-    if (!out.length) return "";
-    return `<div class="ph-mode" role="status"><div class="ph-mode-row"><p>${out.map(esc).join(" ")}</p><button type="button" class="btn ph-mode-btn" data-ph="mode:now">Back to now</button></div></div>`;
-  }
-
-  // ------------------------------------------------------------------ render + wiring
-  function toggleChain(id) {
-    const card = [...host.querySelectorAll(".ph-ccard")].find((el) => el.dataset.cid === id);
-    if (!card) return;
-    const isOpen = !card.classList.contains("is-open");
-    card.classList.toggle("is-open", isOpen);
-    if (isOpen) expanded.add(id); else expanded.delete(id);
-    card.querySelectorAll("[data-ph]").forEach((b) => { if (b.dataset.ph === "chain:" + id) b.setAttribute("aria-expanded", String(isOpen)); });
-    const t = card.querySelector(".ph-tog-t");
-    if (t) t.textContent = isOpen ? "Fewer steps" : "All steps";
-  }
-  function onClick(e) {
-    const t = e.target.closest("[data-ph]");
-    if (!t || !host || !host.contains(t)) return;
-    const [act, a, b] = t.dataset.ph.split(":");
-    if (act === "open") A.openDrawer(a, b, { fresh: true }); // a tap in the list starts a new trail, like a map click
-    else if (act === "sheet") A.openSheet(a);
-    else if (act === "chain") toggleChain(a);
-    else if (act === "mode") { if (A.resetAll) A.resetAll(); else A.set({ whatIf: {}, run: null, signed: new Set() }); }
-  }
-  function wire(container) {
-    if (!container.__phWired) {
-      container.addEventListener("click", onClick);
-      container.__phWired = true;
-    }
-    if (wiredTo !== A) {
-      wiredTo = A;
-      // a drawer that covers the whole screen (phones) hides the list: dragging its sliders should not rebuild ~1,100
-      // nodes per step (about 160 ms on a slow phone), so the list catches up when the drawer closes
-      A.on("change", () => { if (shown() && !covered()) draw(); else dirty = true; });
-      A.on("select", (sel) => { if (!sel && dirty && shown()) draw(); });
-      window.addEventListener("resize", () => { if (!shown()) return; if (dirty && !covered()) draw(); else fitGutter(); });
-    }
-  }
-  function covered() {
-    const dr = document.getElementById("drawer");
-    return !!(dr && dr.classList.contains("open") && dr.offsetWidth >= document.documentElement.clientWidth - 1);
-  }
-  // the page normally supplies the 16 px side gutter; if the container runs edge to edge, add it here
-  function fitGutter() {
-    const root = host && host.querySelector(".ph-root");
-    if (!root || !shown()) return;
-    const r = host.getBoundingClientRect();
-    root.classList.toggle("ph-pad", r.left < 8 && r.right > document.documentElement.clientWidth - 8);
-  }
-  function draw() {
-    if (!host || !A) return;
-    host.innerHTML = `<div class="ph-root">
-      ${modeHTML()}
-      ${boardsHTML()}
-      ${asmHTML()}
-      ${chainsHTML()}
-      ${endHTML()}
-    </div>`;
-    dirty = false;
-    fitGutter();
-  }
-
-  window.Lenses.phone = {
-    render(container, APP) {
-      if (!container) return;
-      A = APP || window.APP;
-      host = container;
-      wire(container);
-      draw();
-    },
-  };
+  window.MapView = { init, refit, textScale, zoomAt, get k() { return k; } };
 })();
 
 /* ---- main.js ---- */
-/* boot: header (one-liner, stamp, buttons), next-steps card host, map toolbar (caption, legend filter, find),
-   help card, theme, keys, and the lenses that live on the page (strip, phone list). Every lens call is guarded:
-   one module failing (say, d3 did not load) never stops the rest of the page. */
+/* boot: the frame (view.js), the map, its toolbar (legend filter, find), keys, and the history strip. Every lens
+   call is guarded: one module failing (say, d3 did not load) never stops the rest of the page. */
 (function () {
   "use strict";
   const APP = window.APP, D = APP.D, F = APP.fmt;
@@ -9658,107 +8576,13 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
     if (typeof H.highlight === "function") H.highlight(APP.state.pinned || null);
   };
 
-  // ---------------------------------------------------------------- header
-  function oneLiner() {
-    const m = D.meta, el = $("what");
-    if (!el || el.textContent.trim()) return; // index.html holds the fixed text
-    let w = String(m.what || "").trim();
-    if (m.project && w.toLowerCase().startsWith(String(m.project).toLowerCase() + ":")) w = w.slice(m.project.length + 1).trim();
-    el.textContent = w.charAt(0).toUpperCase() + w.slice(1);
-  }
-  // one time in the main view: the last real check run, in the viewer's clock and zone
-  function stamp() {
-    const m = D.meta, t = m.lastRun || m.checked;
-    const skipped = D.gates.filter((g) => g.status === "skipped").length;
-    const active = D.gates.length - skipped;
-    const fresh = D.gates.filter((g) => g.status !== "skipped" && g.fresh).length;
-    const all = m.fresh !== false && fresh === active;
-    const el = $("stamp");
-    el.innerHTML = `Last check run: <b>${F.day(t)}, ${F.clock(t)} ${F.esc(F.tz(t))}</b>. ` +
-      (all ? `All ${active} checks use the current design.` : `${fresh} of ${active} checks use the current design.`) +
-      (skipped ? ` ${skipped} ${skipped === 1 ? "check was" : "checks were"} not done.` : "");
-    el.title = `The last check run was ${F.rel(t)}.`;
-  }
-  function provenance() {
-    const p = $("provenance");
-    if (!p) return;
-    const m = D.meta, c = m.counts || {};
-    const snap = m.snapshot, last = m.lastRun || m.checked;
-    const note = String((D.sweep && D.sweep.note) || "");
-    const nSweep = (note.match(/^(\d+) runs/) || [])[1], nMore = (note.match(/plus a (\d+)-run/) || [])[1];
-    const priced = (D.cost && D.cost.pricesRead) || m.pricesRead;
-    const s = [
-      `This page uses a copy of the ${F.esc(m.project || "")} project files from ${F.day(snap)}, ${F.clock(snap)} ${F.esc(F.tz(snap))}.`,
-      `The last check run before the copy was at ${F.clock(last)}.`,
-      `The copy contains ${m.nParams} inputs, ${m.nDerived} calculated values and ${m.nGates} checks.`,
-      `It also contains ${c.claims} requirements, ${c.guesses} estimates and ${c.tests} hardware tests.`,
-      `The page shows the results of ${D.runs.length} check runs.`,
-    ];
-    if (nSweep) {
-      s.push(`It also uses ${nSweep} extra runs of the design model. Each extra run changes one input.`);
-      if (nMore) s.push(`Another ${nMore} runs examine the length of the motor leads.`);
-      s.push("The extra runs did not do the mesh checks again.");
-    }
-    if (priced) s.push(`The prices are from ${F.day(priced + "T12:00:00Z")}.`);
-    s.push("The links between inputs and calculated values come from the source code of the model.");
-    s.push("This page does not change the project.");
-    p.innerHTML = `<b>Data.</b> ${s.join(" ")}`;
-  }
-  function buttons() {
-    const nb = $("nextbtn"), hb = $("histbtn");
-    if (nb) nb.onclick = () => (APP.state.sheet === "next" ? APP.closeSheet() : APP.openSheet("next"));
-    if (hb) hb.onclick = () => (APP.state.sheet === "history" ? APP.closeSheet() : APP.openSheet("history"));
-    const sync = () => {
-      if (nb) nb.setAttribute("aria-expanded", APP.state.sheet === "next" ? "true" : "false");
-      if (hb) hb.setAttribute("aria-expanded", APP.state.sheet === "history" ? "true" : "false");
-    };
-    APP.on("sheet", sync);
-    sync();
-  }
-  // the status: #headline (short, large type), #status (the numbered reasons), #status-next (the other stage).
-  // core.js writes the words (ev.headline, ev.status, ev.statusNext); hero.js writes #sub (the risk paragraph).
-  function renderStatus() {
-    const ev = APP.ev, h = $("headline"), ol = $("status"), nx = $("status-next");
-    if (h && h.textContent !== ev.headline) h.textContent = ev.headline;
-    if (ol) {
-      const items = ev.status || [];
-      const html = items.map((t) => `<li>${F.esc(t)}</li>`).join("");
-      if (ol.innerHTML !== html) ol.innerHTML = html;
-      ol.hidden = !items.length;
-    }
-    if (nx) {
-      const t = ev.statusNext || "";
-      if (nx.textContent !== t) nx.textContent = t;
-      nx.hidden = !t;
-    }
-  }
-  function status() {
-    renderStatus();
-    APP.on("change", renderStatus);
-  }
-
-  // the compact next-steps card (Lenses.next.renderSteps); nothing at all when the lens does not provide it
-  function steps() {
-    const host = $("steps-host"), grid = $("top-grid");
-    if (!host) return;
-    const R = L().next && L().next.renderSteps;
-    const fit = () => {
-      const has = host.childElementCount > 0;
-      host.hidden = !has;
-      if (grid) grid.classList.toggle("has-steps", has);
-    };
-    if (typeof R === "function") guard("next steps", () => R(host, APP));
-    fit();
-    if (window.MutationObserver) new MutationObserver(fit).observe(host, { childList: true });
-  }
-
   // ---------------------------------------------------------------- legend: the board's glyphs, each a filter you can pin
   const KEY = [
     { k: "checked", w: "Passes", tip: "The requirement passes. An error of 10% or less in one estimate does not make it fail." },
     { k: "onfaith", w: "Depends on estimates", tip: "Passes if the estimates are correct. If one estimate is wrong by 10% or less, the requirement fails. The map shows an amber band on its line." },
     { k: "failing", w: "Fails", tip: "The requirement fails now. Red shows a failure and nothing else." },
-    { k: "stale", w: "Not checked after a change", tip: "An input of the requirement changed after its last check. The map shows a dashed line.", hideEmpty: true },
-    { k: "open", w: "Not checked yet", tip: "The check tool did not check the requirement yet in this check run.", hideEmpty: true },
+    { k: "stale", w: "Not checked after a change", tip: "An input of the requirement changed after its last check. The map shows a dashed line." },
+    { k: "open", w: "Not checked yet", tip: "The check tool did not check the requirement yet in this check run." },
     { k: "gap", w: "Unconfirmed", tip: "A value that nobody measured yet. The owner did not accept it yet (A1 to A6)." },
     { k: "pending", w: "Hardware test (not done)", tip: "A test on the real drone (P1 to P5). The tests start when the parts arrive." },
   ];
@@ -9790,7 +8614,9 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   function drawLegend() {
     const host = $("legend");
     if (!host) return;
-    const items = KEY.map((x) => Object.assign({ n: countFor(x.k) }, x)).filter((x) => !(x.hideEmpty && !x.n));
+    // every key is always shown (one with no items is disabled), so the toolbar keeps its height when the strip
+    // shows a past run
+    const items = KEY.map((x) => Object.assign({ n: countFor(x.k) }, x));
     if (pinnedKind && !items.some((x) => x.k === pinnedKind)) { pinnedKind = null; APP.state.pinned = null; }
     const keys = items.map((x) => x.k).join(",");
     const ae = document.activeElement, had = host.contains(ae) && ae.dataset ? ae.dataset.k : null;
@@ -9902,101 +8728,13 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
     box.addEventListener("blur", () => setTimeout(close, 150));
   }
 
-  // ---------------------------------------------------------------- theme
-  function theme() {
-    const btn = $("themebtn");
-    let saved = null;
-    try { saved = localStorage.getItem("pg-theme"); } catch (e) { /* storage unavailable */ }
-    if (saved === "light" || saved === "dark") document.documentElement.setAttribute("data-theme", saved);
-    const cur = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const label = () => btn.setAttribute("aria-label", cur() === "dark" ? "Switch to the light theme" : "Switch to the dark theme");
-    label();
-    btn.onclick = () => {
-      const nxt = cur() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", nxt);
-      try { localStorage.setItem("pg-theme", nxt); } catch (e) { /* ignore */ }
-      label();
-    };
-  }
-
-  // ---------------------------------------------------------------- how to read this (a card; it takes focus, Esc closes it first)
-  function help() {
-    const box = document.createElement("div");
-    box.id = "howto";
-    box.setAttribute("role", "dialog");
-    box.setAttribute("aria-labelledby", "howto-h");
-    const g = (k) => APP.glyph(k, 18);
-    const sw = {
-      cols: `<svg width="30" height="16" aria-hidden="true"><rect x="1" y="3" width="7" height="10" rx="2" fill="var(--surface-2)" stroke="var(--line)"/><rect x="11.5" y="3" width="7" height="10" rx="3.5" fill="var(--surface)" stroke="var(--line-strong)"/><rect x="22" y="3" width="7" height="10" rx="2" fill="var(--surface-2)" stroke="var(--line)"/></svg>`,
-      band: `<svg width="30" height="14" aria-hidden="true"><line x1="2" y1="7" x2="28" y2="7" stroke="var(--amber)" stroke-width="12" stroke-linecap="round" opacity=".55"/><line x1="2" y1="7" x2="28" y2="7" stroke="var(--line)" stroke-width="3.2" stroke-linecap="round"/></svg>`,
-      lines: `<svg width="30" height="16" aria-hidden="true"><line x1="2" y1="4" x2="28" y2="4" stroke="var(--fail)" stroke-width="3.2" stroke-linecap="round"/><line x1="2" y1="12" x2="28" y2="12" stroke="var(--line)" stroke-width="3.2" stroke-dasharray="5 4"/></svg>`,
-      line: `<svg width="30" height="12" aria-hidden="true"><line x1="2" y1="6" x2="22" y2="6" stroke="var(--line)" stroke-width="3.2" stroke-linecap="round"/><circle cx="25" cy="6" r="4" fill="var(--surface)" stroke="var(--ok)" stroke-width="1.5"/></svg>`,
-    };
-    const A5 = APP.AS.A5 || D.assumptions[0];
-    const cmd = (A5 && A5.record) || "nopekit claim physical A5 assume";
-    const ms = D.milestones.map((m) => `“${F.esc(m.title)}”`).join(" and ");
-    const li = (ic, html) => `<li><span class="ic">${ic}</span><span>${html}</span></li>`;
-    // the map (wide screens, or "Show the full map") and the lists (narrow screens) need different words
-    const listView = () => matchMedia("(max-width: 1179px)").matches && !document.body.classList.contains("force-map");
-    const content = (lists) => `<div class="howto-head"><h2 id="howto-h" tabindex="-1">How to read this ${lists ? "page" : "map"}</h2>` +
-      `<button class="iconbtn" id="howto-x" aria-label="Close this card">×</button></div><ol>` +
-      (lists
-        ? li(sw.line, `<b>The page shows the design as lists.</b> Each stage has a list of requirements. Each row shows a value and its limit. Tap a row to see the details.`)
-        : li(sw.cols, `<b>The map has three columns.</b> Choices (left) are the numbers the design starts from: ${D.meta.nParams} model inputs in groups, plus the parts list. Implications (middle) are the values that the design model calculates from them. Gates (right) are the go/no-go groups. Each row in a gate is one requirement, with its value and its limit.`) +
-          li(sw.line, `<b>Each line is one requirement.</b> The line goes from the choices through the implications to its gate. Move the pointer onto a line to show it. Click an item to see the details.`)) +
-      li(g("gap"), `<b>Amber shows an unconfirmed estimate.</b> It is a value that nobody measured yet (A1 to A6). A stage stays blocked until the owner accepts its estimates.`) +
-      li(lists ? APP.glyph("onfaith", 18) : sw.band, `<b>Passes if the estimates are correct</b> ${lists ? "" : `(${APP.glyph("onfaith", 14)} and an amber band on the line)`}. The requirement passes now. If one estimate is wrong by 10% or less, the requirement fails.`) +
-      li(lists ? g("failing") : sw.lines, `<b>Red shows a failure</b> and nothing else. ${lists ? `The symbol ${APP.glyph("stale", 14)}` : "A dashed line"} shows a requirement that is not checked after a change.`) +
-      li(g("assumed"), `<b>Accept an estimate.</b> The owner accepts an estimate with a command in a terminal. <code class="mono howto-cmd">${F.esc(cmd)}</code> This page does not record anything. A preview shows the result of a change. The check tool does not record it.`) +
-      li(g("pending"), `<b>Where to look next.</b> The next steps are at the top of the page. Click “Next steps” to see all of them. ${lists ? "Click “History” to see the past check runs." : "The strip under the map shows the past check runs."} In a details panel, drag a value to make a preview.`) +
-      `</ol>` + (lists ? `<div class="foot"><span></span><button class="btn btn-primary" id="howto-ok">Close</button></div>`
-        : `<div class="foot"><span>Keys: <kbd>?</kbd> this card · <kbd>/</kbd> find · <kbd>f</kbd> a requirement that fails · <kbd>Esc</kbd> close</span><button class="btn btn-primary" id="howto-ok">Close</button></div>`);
-    let shownLists = null;
-    const fill = () => {
-      const lists = listView();
-      if (lists === shownLists) return;
-      shownLists = lists;
-      box.innerHTML = content(lists);
-      box.querySelector("#howto-ok").onclick = () => show(false);
-      box.querySelector("#howto-x").onclick = () => show(false);
-    };
-    document.body.appendChild(box);
-    const btn = $("howbtn");
-    let opener = null;
-    const isOpen = () => box.classList.contains("on");
-    const show = (on) => {
-      if (on === isOpen()) return;
-      if (on) {
-        fill();
-        const ae = document.activeElement;
-        opener = ae && ae !== document.body ? ae : btn;
-        APP.tip(null);
-        box.classList.add("on");
-        box.scrollTop = 0;
-        box.querySelector("#howto-h").focus({ preventScroll: true });
-      } else {
-        const had = box.contains(document.activeElement);
-        box.classList.remove("on");
-        if (had && opener && opener.isConnected) opener.focus({ preventScroll: true });
-        opener = null;
-      }
-      if (btn) btn.setAttribute("aria-expanded", on ? "true" : "false");
-    };
-    APP.help = { isOpen, open: () => show(true), close: () => show(false), toggle: () => show(!isOpen()) };
-    if (btn) btn.onclick = () => show(!isOpen());
-    fill();
-    // clicking elsewhere closes it (it is a card, not a modal)
-    document.addEventListener("pointerdown", (e) => { if (isOpen() && !box.contains(e.target) && e.target !== btn && !(btn && btn.contains(e.target))) show(false); });
-  }
-
   // ---------------------------------------------------------------- keys (never with Ctrl, Cmd or Alt: those belong to the browser)
   function keys() {
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return;
       const t = e.target;
       if (t && t.closest && t.closest("input, textarea, select, [contenteditable=''], [contenteditable=true]")) return;
-      if (e.key === "?") { e.preventDefault(); APP.help && APP.help.toggle(); }
-      else if (e.key === "/") {
+      if (e.key === "/") {
         const box = $("findbox");
         if (box && box.offsetParent) { e.preventDefault(); box.focus(); }
       } else if (e.key === "f") {
@@ -10006,47 +8744,21 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
     });
   }
 
-  // ---------------------------------------------------------------- the map in a sideways scroller (narrow screens: "Show the full map")
-  function forceMap() {
-    const fm = $("forcemap");
-    if (!fm) return;
-    fm.onclick = () => {
-      const on = document.body.classList.toggle("force-map");
-      fm.textContent = on ? "Show the lists" : "Show the full map";
-      fm.setAttribute("aria-pressed", on ? "true" : "false");
-      const h = $("hero"), map = $("map");
-      if (on && h) {
-        const vb = map && map.viewBox && map.viewBox.baseVal;
-        if (vb && vb.width) h.style.setProperty("--map-w", vb.width + "px");
-        mapShown();
-        h.scrollLeft = h.scrollWidth; // the boards first; the inputs are a scroll to the left
-        h.scrollIntoView({ behavior: APP.reduceMotion && APP.reduceMotion() ? "auto" : "smooth", block: "start" });
-      }
-    };
-    // the map measures its own text when it draws; a map that was hidden (list view) re-draws once it shows
-    const wide = matchMedia("(min-width: 1180px)");
-    const onWide = () => { if (wide.matches) mapShown(); };
-    if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
-  }
-  function mapShown() { guard("map update", () => hero().update && hero().update()); }
-
   // ---------------------------------------------------------------- keep what you are working with still
-  // A state change rewrites the headline, the subhead and the mode bar above the map. Without this the boards you
-  // watch while dragging a slider, or the strip you scrub, would jump each time. The block the interaction came from
-  // (map, strip, list; the map or list for the drawer, a sheet or a key) keeps its place on screen; an interaction
-  // in the header itself lets the page flow. (Native scroll anchoring is off in shell.css so the two never stack.)
+  // The drawer narrows the page, and the toolbar above the map can then take another line. Without this the
+  // boards you watch would jump. The frame keeps its place on screen. (Native scroll anchoring is off in
+  // shell.css so the two never stack.)
   function holdPlace() {
-    const IDS = ["hero", "strip-host", "phone-host", "maptools"];
+    const IDS = ["view", "maptools"];
     let tops = {}, src = null;
     const shown = (el) => el && el.offsetParent !== null;
     const note = () => { tops = {}; IDS.forEach((id) => { const el = $(id); if (shown(el)) tops[id] = el.getBoundingClientRect().top; }); };
     const pick = () => {
       if (src && src.closest) {
-        if (src.closest(".top")) return null;
-        const m = src.closest("#hero, #strip-host, #phone-host, #maptools");
+        const m = src.closest("#view, #maptools");
         if (m && tops[m.id] != null) return m.id;
       }
-      return ["hero", "phone-host"].find((id) => tops[id] != null) || null;
+      return tops.view != null ? "view" : null;
     };
     document.addEventListener("pointerdown", (e) => { src = e.target; note(); }, true);
     document.addEventListener("keydown", (e) => { src = e.target; note(); }, true);
@@ -10066,19 +8778,13 @@ window.BUNDLE = {"meta":{"project":"PETGasus","repoName":"PETGasusDrone","built"
   }
 
   function boot() {
-    guard("header", () => { oneLiner(); stamp(); provenance(); buttons(); });
-    guard("theme", theme);
+    guard("view", () => window.MapView.init());
     guard("map", () => hero().build && hero().build());
-    guard("status", status); // after the map: its change listener runs after the map's
     guard("legend", legend);
     guard("find", find);
-    guard("force map", forceMap);
-    guard("steps", steps);
     guard("history strip", () => L().history && L().history.renderStrip && L().history.renderStrip($("strip-host"), APP));
-    guard("phone list", () => L().phone && L().phone.render && L().phone.render($("phone-host"), APP));
     guard("map update", () => hero().update && hero().update());
-    guard("status", renderStatus);
-    guard("help", help);
+    guard("view", () => window.MapView.refit());
     guard("keys", keys);
     // layer chips live in the map; their state goes into the link too
     const ly = $("layers");
