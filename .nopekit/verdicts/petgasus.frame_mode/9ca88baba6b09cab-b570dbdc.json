@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "gate": "petgasus.frame_mode",
+  "rho": "9ca88baba6b09caba337510b1fd047394a3d1d45851028c96eeeb28ca94aa6d8",
+  "code": {
+    "digest": "eb7e39f5d7eb93570f3d0bbbb539912f0d81ddbe644bacd81b62de59215fad8e",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_mode1_hz"
+        ],
+        "67ab36c47a8fcd4f44126408ff4c6e293b1765790be371ea4e43a52f877a00c9",
+        282.0
+      ],
+      [
+        [
+          "frame_modes_hz"
+        ],
+        "07edc9ad3a16a4665e3a882bfbd7039be7109a04fd08276babb19507f865fea5"
+      ],
+      [
+        [
+          "motor_freq_hover_hz"
+        ],
+        "716bc96faf7681511abf988b0805dc1fd1613b95a948feee2a7785bf066dd400",
+        611.9
+      ],
+      [
+        [
+          "plate_layout"
+        ],
+        "0a0faae39895dfd6cb1b8e75bdd8384d51f10691eb2439f22f78e323bf7561c3",
+        "spoked"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C4": "ade494f3817efdf0982827d7960b51a3632ddefa2208e63a7973d1b2bb1c6ce6",
+      "acceptance:C4": "d2b2c6677817dcc5a626f5ed4b5c05ee9f5c98937c0141f6c9c0eff28170219e"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 282.0,
+    "limit": 200.0,
+    "units": "Hz",
+    "comparator": ">=",
+    "settles": "first frame mode",
+    "detail": "modes 282, 290, 290, 316 Hz (spoked plate); motors turn at ~612 Hz in a hover",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "arm-vibration"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "9dc91f7ad9eb54acd06aca84b0e4dde8836ffad95e9923c6243118d395ef800c"
+}

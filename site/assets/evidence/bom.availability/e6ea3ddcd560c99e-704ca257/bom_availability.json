@@ -1,0 +1,66 @@
+{
+  "lines": [
+    {
+      "ref": "KIT",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "effective_weeks": 2.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "RADIO",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "effective_weeks": 2.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "BATT",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "effective_weeks": 1.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "CHG",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "effective_weeks": 1.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "PROPS",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 2,
+      "effective_weeks": 2.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "SCREWS",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "effective_weeks": 1.0,
+      "lifecycle": "active"
+    },
+    {
+      "ref": "STRAP",
+      "purchase_qty": 1.0,
+      "stock": null,
+      "lead_time_weeks": 1,
+      "effective_weeks": 1.0,
+      "lifecycle": "active"
+    }
+  ],
+  "unknown": [],
+  "eol": [],
+  "flagged": [],
+  "longest_weeks": 2.0,
+  "longest_ref": "KIT",
+  "lead_time_budget_weeks": 3
+}

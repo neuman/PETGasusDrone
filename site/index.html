@@ -393,7 +393,7 @@ const pending = id => claims[id] && claims[id].key !== "checked";
     [`${fmt(story.flight_min, 1)} min`, "hover time for each battery"],
     [`$${fmt(essentials, 0)}–${fmt(total, 0)}`, "parts cost"],
   ].map(([v, l]) => `<div class="tile"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
-  document.getElementById("built").textContent = `Generated ${new Date(state.meta.built).toLocaleString()} from design ${state.meta.revision}.`;
+  document.getElementById("built").textContent = `Generated from design ${state.meta.revision}.`;
 }
 
 // ---------------------------------------------------------------- 3D

@@ -1,0 +1,11 @@
+{
+  "currency": "USD",
+  "currency_from": "the document's 'currency'",
+  "fx_rates": {},
+  "quoted_currencies": [
+    "USD"
+  ],
+  "unconvertible": [],
+  "converted": [],
+  "fx_direction": "fx_rates[CODE] multiplies a price quoted in CODE to reach the document currency"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "gate": "fdm.min_wall",
+  "rho": "2a23d5e4ca17ae9b504afa0b77ba5fb09d52b780bf9496eef472e63e4dc94bc6",
+  "code": {
+    "digest": "3dbc0eef091af8e5f1b1fd3e2de58da52da3658fb6867f9202355c4b6f465de2",
+    "files": [
+      "<pack:fdm-print>/fdm_print_parts.py",
+      "<pack:fdm-print>/gates/_process_model.py",
+      "<pack:fdm-print>/gates/fdm_print_fold.py",
+      "<pack:fdm-print>/gates/printability.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "extrusion_width_mm"
+        ],
+        "2761fa6332d4c0574c19a14e91d975b9cf7042c64a62fc53ca714c5bf5dd84a4",
+        0.42
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.part_min_wall_mm"
+        ],
+        "93a0a35e427f101bfa6d83dbf58fe4b1925db259d266fe138b67611104564b44",
+        1.3
+      ],
+      [
+        [
+          "nozzle_d_mm"
+        ],
+        "cbffa691b0145b8938393dfedf84cb1ee0c9a35d2e6647f4668d86e6e0f52ce1",
+        0.4
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 1.3,
+    "limit": 1.26,
+    "units": "mm",
+    "comparator": ">=",
+    "settles": "wall thickness",
+    "detail": "thinnest section 1.30 mm = 3.1 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "manufacturability",
+      "fdm",
+      "additive",
+      "printability"
+    ],
+    "tier": 0,
+    "pack": "fdm-print"
+  },
+  "digest": "05c3e914ea2e5d9d3986a490a56bfbf4b9f079b49936b63cd627093177ce2673"
+}

@@ -1,0 +1,94 @@
+{
+  "ratio_limit": 3.0,
+  "excess_limit": 50.0,
+  "idle_capital_limit": 83.58,
+  "idle_capital_limit_from": "50% of the 167.15 parts spend",
+  "parts_total": 167.15,
+  "idle_capital_total": 0.0,
+  "lines": [
+    {
+      "ref": "KIT",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 79.99,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "RADIO",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 32.99,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "BATT",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 23.19,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "CHG",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 11.99,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "PROPS",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 4.99,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "SCREWS",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 8.0,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    },
+    {
+      "ref": "STRAP",
+      "needed": 1.0,
+      "purchased": 1.0,
+      "ratio": 1.0,
+      "unit_price": 6.0,
+      "excess_pieces": 0.0,
+      "excess_spend": 0.0,
+      "past_ratio_filter": false,
+      "moq": 1,
+      "order_multiple": 1
+    }
+  ]
+}

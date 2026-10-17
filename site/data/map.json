@@ -1,0 +1,4445 @@
+{
+  "columns": {
+    "requirements": 0
+  },
+  "edges": {
+    "contradicts": {},
+    "needs": {
+      "evaluator:bom.cost": [
+        "evaluator:bom.complete"
+      ],
+      "evaluator:bom.moq": [
+        "evaluator:bom.complete"
+      ],
+      "evaluator:cad.assembly_connected": [
+        "evaluator:cad.is_volume"
+      ],
+      "evaluator:cad.clash": [
+        "evaluator:cad.is_volume"
+      ],
+      "evaluator:cad.wall_thickness": [
+        "evaluator:cad.watertight"
+      ],
+      "evaluator:fdm.bed_fit": [
+        "evaluator:fdm.process_model_valid"
+      ],
+      "evaluator:fdm.bridge_span": [
+        "evaluator:fdm.process_model_valid"
+      ],
+      "evaluator:fdm.layer_alignment": [
+        "evaluator:fdm.process_model_valid"
+      ],
+      "evaluator:fdm.min_wall": [
+        "evaluator:fdm.process_model_valid"
+      ],
+      "evaluator:fdm.overhang": [
+        "evaluator:fdm.process_model_valid"
+      ],
+      "evaluator:fdm.print_time_est": [
+        "evaluator:fdm.process_model_valid"
+      ]
+    },
+    "reads": {
+      "evaluator:bom.availability": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom_path",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path"
+      ],
+      "evaluator:bom.complete": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom_path",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path"
+      ],
+      "evaluator:bom.cost": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom.budget_total",
+        "value:bom_path",
+        "value:budget_total",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path",
+        "value:sourcing.budget_total"
+      ],
+      "evaluator:bom.currency": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom_path",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path"
+      ],
+      "evaluator:bom.moq": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom.moq_excess_total_limit",
+        "value:bom_path",
+        "value:moq_excess_total_limit",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path",
+        "value:sourcing.moq_excess_total_limit"
+      ],
+      "evaluator:bom.single_source": [
+        "value:bom",
+        "value:bom.bom",
+        "value:bom.bom_path",
+        "value:bom_path",
+        "value:sourcing",
+        "value:sourcing.bom",
+        "value:sourcing.bom_path"
+      ],
+      "evaluator:cad.degenerate_faces": [
+        "value:cad",
+        "value:cad-solid",
+        "value:cad-solid.meshes",
+        "value:cad.meshes",
+        "value:meshes"
+      ],
+      "evaluator:cad.is_volume": [
+        "value:cad",
+        "value:cad-solid",
+        "value:cad-solid.meshes",
+        "value:cad.meshes",
+        "value:meshes"
+      ],
+      "evaluator:cad.wall_thickness": [
+        "value:cad",
+        "value:cad-solid",
+        "value:cad-solid.meshes",
+        "value:cad-solid.wall_samples",
+        "value:cad.meshes",
+        "value:cad.process_min_wall_mm",
+        "value:cad.wall_samples",
+        "value:meshes",
+        "value:wall_samples"
+      ],
+      "evaluator:cad.watertight": [
+        "value:cad",
+        "value:cad-solid",
+        "value:cad-solid.meshes",
+        "value:cad.meshes",
+        "value:meshes"
+      ],
+      "evaluator:fdm.bed_fit": [
+        "value:bbox_by_part_mm",
+        "value:bed_x_mm",
+        "value:bed_y_mm",
+        "value:bed_z_mm",
+        "value:brim_mm",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.bbox_by_part_mm",
+        "value:fdm-print.bbox_mm_by_part",
+        "value:fdm-print.bboxes_mm",
+        "value:fdm-print.bed_x",
+        "value:fdm-print.bed_x_mm",
+        "value:fdm-print.bed_xy",
+        "value:fdm-print.bed_xy_mm",
+        "value:fdm-print.bed_y",
+        "value:fdm-print.bed_y_mm",
+        "value:fdm-print.bed_z",
+        "value:fdm-print.bed_z_mm",
+        "value:fdm-print.brim_allowance_mm",
+        "value:fdm-print.brim_mm",
+        "value:fdm-print.build_height_mm",
+        "value:fdm-print.mesh_path_by_part",
+        "value:fdm-print.mesh_paths",
+        "value:fdm-print.part_meshes",
+        "value:fdm-print.parts",
+        "value:fdm-print.print_bbox_by_part_mm",
+        "value:fdm.bbox_by_part_mm",
+        "value:fdm.bbox_mm_by_part",
+        "value:fdm.bboxes_mm",
+        "value:fdm.bed_x",
+        "value:fdm.bed_x_mm",
+        "value:fdm.bed_xy",
+        "value:fdm.bed_xy_mm",
+        "value:fdm.bed_y",
+        "value:fdm.bed_y_mm",
+        "value:fdm.bed_z",
+        "value:fdm.bed_z_mm",
+        "value:fdm.brim_allowance_mm",
+        "value:fdm.brim_mm",
+        "value:fdm.build_height_mm",
+        "value:fdm.mesh_path_by_part",
+        "value:fdm.mesh_paths",
+        "value:fdm.part_meshes",
+        "value:fdm.parts",
+        "value:fdm.print_bbox_by_part_mm",
+        "value:mesh_paths"
+      ],
+      "evaluator:fdm.bridge_span": [
+        "value:bbox_by_part_mm",
+        "value:bridge_ceiling_deg",
+        "value:bridge_limit_mm",
+        "value:build_axis",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.bbox_by_part_mm",
+        "value:fdm-print.bbox_mm_by_part",
+        "value:fdm-print.bboxes_mm",
+        "value:fdm-print.bridge_ceiling_deg",
+        "value:fdm-print.bridge_limit_mm",
+        "value:fdm-print.build_axis",
+        "value:fdm-print.layer_normal",
+        "value:fdm-print.max_bridge_mm",
+        "value:fdm-print.max_cantilever_mm",
+        "value:fdm-print.mesh_path_by_part",
+        "value:fdm-print.mesh_paths",
+        "value:fdm-print.part_meshes",
+        "value:fdm-print.parts",
+        "value:fdm-print.print_axis",
+        "value:fdm-print.print_bbox_by_part_mm",
+        "value:fdm.bbox_by_part_mm",
+        "value:fdm.bbox_mm_by_part",
+        "value:fdm.bboxes_mm",
+        "value:fdm.bridge_ceiling_deg",
+        "value:fdm.bridge_limit_mm",
+        "value:fdm.build_axis",
+        "value:fdm.layer_normal",
+        "value:fdm.max_bridge_mm",
+        "value:fdm.max_cantilever_mm",
+        "value:fdm.mesh_path_by_part",
+        "value:fdm.mesh_paths",
+        "value:fdm.part_meshes",
+        "value:fdm.parts",
+        "value:fdm.print_axis",
+        "value:fdm.print_bbox_by_part_mm",
+        "value:max_bridge_mm",
+        "value:max_cantilever_mm",
+        "value:mesh_paths"
+      ],
+      "evaluator:fdm.layer_alignment": [
+        "value:build_axis",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.build_axis",
+        "value:fdm-print.deflection_utilisation",
+        "value:fdm-print.deflection_utilization",
+        "value:fdm-print.layer_normal",
+        "value:fdm-print.layer_normal_strength_ratio",
+        "value:fdm-print.load_axis",
+        "value:fdm-print.load_direction",
+        "value:fdm-print.primary_load_axis",
+        "value:fdm-print.print_axis",
+        "value:fdm-print.stiffness_utilisation",
+        "value:fdm-print.stress_utilisation",
+        "value:fdm-print.structural_utilisation",
+        "value:fdm-print.utilisation",
+        "value:fdm-print.utilisation_kind",
+        "value:fdm-print.utilization",
+        "value:fdm-print.utilization_kind",
+        "value:fdm.build_axis",
+        "value:fdm.deflection_utilisation",
+        "value:fdm.deflection_utilization",
+        "value:fdm.layer_normal",
+        "value:fdm.layer_normal_strength_ratio",
+        "value:fdm.load_axis",
+        "value:fdm.load_direction",
+        "value:fdm.primary_load_axis",
+        "value:fdm.print_axis",
+        "value:fdm.stiffness_utilisation",
+        "value:fdm.stress_utilisation",
+        "value:fdm.structural_utilisation",
+        "value:fdm.utilisation",
+        "value:fdm.utilisation_kind",
+        "value:fdm.utilization",
+        "value:fdm.utilization_kind",
+        "value:layer_normal_strength_ratio",
+        "value:load_axis",
+        "value:utilisation",
+        "value:utilisation_kind"
+      ],
+      "evaluator:fdm.min_wall": [
+        "value:extrusion_width_mm",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.extrusion_width_mm",
+        "value:fdm-print.line_width_mm",
+        "value:fdm-print.nozzle_d",
+        "value:fdm-print.nozzle_d_mm",
+        "value:fdm-print.nozzle_diameter_mm",
+        "value:fdm.extrusion_width_mm",
+        "value:fdm.line_width_mm",
+        "value:fdm.nozzle_d",
+        "value:fdm.nozzle_d_mm",
+        "value:fdm.nozzle_diameter_mm",
+        "value:fdm.part_min_wall_mm",
+        "value:nozzle_d_mm"
+      ],
+      "evaluator:fdm.overhang": [
+        "value:bbox_by_part_mm",
+        "value:bridge_ceiling_deg",
+        "value:build_axis",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.bbox_by_part_mm",
+        "value:fdm-print.bbox_mm_by_part",
+        "value:fdm-print.bboxes_mm",
+        "value:fdm-print.bridge_ceiling_deg",
+        "value:fdm-print.build_axis",
+        "value:fdm-print.layer_normal",
+        "value:fdm-print.max_overhang_deg",
+        "value:fdm-print.mesh_path_by_part",
+        "value:fdm-print.mesh_paths",
+        "value:fdm-print.overhang_area_allow_frac",
+        "value:fdm-print.overhang_limit_deg",
+        "value:fdm-print.part_meshes",
+        "value:fdm-print.parts",
+        "value:fdm-print.print_axis",
+        "value:fdm-print.print_bbox_by_part_mm",
+        "value:fdm.bbox_by_part_mm",
+        "value:fdm.bbox_mm_by_part",
+        "value:fdm.bboxes_mm",
+        "value:fdm.bridge_ceiling_deg",
+        "value:fdm.build_axis",
+        "value:fdm.layer_normal",
+        "value:fdm.max_overhang_deg",
+        "value:fdm.mesh_path_by_part",
+        "value:fdm.mesh_paths",
+        "value:fdm.overhang_area_allow_frac",
+        "value:fdm.overhang_limit_deg",
+        "value:fdm.part_meshes",
+        "value:fdm.parts",
+        "value:fdm.print_axis",
+        "value:fdm.print_bbox_by_part_mm",
+        "value:max_overhang_deg",
+        "value:mesh_paths",
+        "value:overhang_area_allow_frac",
+        "value:overhang_limit_deg"
+      ],
+      "evaluator:fdm.print_time_est": [
+        "value:density_g_cm3",
+        "value:extrusion_width_mm",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.area_mm2",
+        "value:fdm-print.density_g_cm3",
+        "value:fdm-print.extrusion_width_mm",
+        "value:fdm-print.filament_density_g_cm3",
+        "value:fdm-print.infill",
+        "value:fdm-print.infill_fraction",
+        "value:fdm-print.layer_h_mm",
+        "value:fdm-print.layer_height_mm",
+        "value:fdm-print.line_width_mm",
+        "value:fdm-print.max_filament_g",
+        "value:fdm-print.max_filament_mass_g",
+        "value:fdm-print.max_print_time_h",
+        "value:fdm-print.nozzle_d",
+        "value:fdm-print.nozzle_d_mm",
+        "value:fdm-print.nozzle_diameter_mm",
+        "value:fdm-print.perimeters",
+        "value:fdm-print.print_speed_mm_s",
+        "value:fdm-print.print_time_limit_h",
+        "value:fdm-print.speed_mm_s",
+        "value:fdm-print.spool_g",
+        "value:fdm-print.surface_area_mm2",
+        "value:fdm-print.wall_count",
+        "value:fdm.area_mm2",
+        "value:fdm.density_g_cm3",
+        "value:fdm.extrusion_width_mm",
+        "value:fdm.filament_density_g_cm3",
+        "value:fdm.infill",
+        "value:fdm.infill_fraction",
+        "value:fdm.layer_h_mm",
+        "value:fdm.layer_height_mm",
+        "value:fdm.line_width_mm",
+        "value:fdm.max_filament_g",
+        "value:fdm.max_filament_mass_g",
+        "value:fdm.max_print_time_h",
+        "value:fdm.nozzle_d",
+        "value:fdm.nozzle_d_mm",
+        "value:fdm.nozzle_diameter_mm",
+        "value:fdm.part_volume_mm3",
+        "value:fdm.perimeters",
+        "value:fdm.print_speed_mm_s",
+        "value:fdm.print_time_limit_h",
+        "value:fdm.speed_mm_s",
+        "value:fdm.spool_g",
+        "value:fdm.surface_area_mm2",
+        "value:fdm.wall_count",
+        "value:filament_density_g_cm3",
+        "value:infill_fraction",
+        "value:layer_height_mm",
+        "value:max_filament_g",
+        "value:max_print_time_h",
+        "value:nozzle_d_mm",
+        "value:perimeters",
+        "value:print_speed_mm_s",
+        "value:surface_area_mm2"
+      ],
+      "evaluator:fdm.process_model_valid": [
+        "value:extrusion_width_mm",
+        "value:fdm",
+        "value:fdm-print",
+        "value:fdm-print.extrusion_width_mm",
+        "value:fdm-print.layer_h_mm",
+        "value:fdm-print.layer_height",
+        "value:fdm-print.layer_height_mm",
+        "value:fdm-print.line_width_mm",
+        "value:fdm-print.nozzle_d",
+        "value:fdm-print.nozzle_d_mm",
+        "value:fdm-print.nozzle_diameter_mm",
+        "value:fdm.extrusion_width_mm",
+        "value:fdm.layer_h_mm",
+        "value:fdm.layer_height",
+        "value:fdm.layer_height_mm",
+        "value:fdm.line_width_mm",
+        "value:fdm.nozzle_d",
+        "value:fdm.nozzle_d_mm",
+        "value:fdm.nozzle_diameter_mm",
+        "value:fdm.part_bbox_mm",
+        "value:fdm.part_min_wall_mm",
+        "value:fdm.part_volume_mm3",
+        "value:layer_height_mm",
+        "value:nozzle_d_mm"
+      ],
+      "evaluator:petgasus.auw": [
+        "value:auw_g",
+        "value:frame_mass_g"
+      ],
+      "evaluator:petgasus.fc_screws": [
+        "value:fc_screw_engagement_mm",
+        "value:fc_screw_protrusion_mm",
+        "value:fc_stack_mm"
+      ],
+      "evaluator:petgasus.flight_time": [
+        "value:flight_time_min",
+        "value:hover_power_w"
+      ],
+      "evaluator:petgasus.frame_mode": [
+        "value:frame_mode1_hz",
+        "value:frame_modes_hz",
+        "value:motor_freq_hover_hz",
+        "value:plate_layout"
+      ],
+      "evaluator:petgasus.interference": [
+        "value:assembly_parts",
+        "value:interference_mm3",
+        "value:interference_total_mm3"
+      ],
+      "evaluator:petgasus.motor_leads": [
+        "value:motor_lead_len",
+        "value:motor_lead_needed_mm",
+        "value:motor_lead_spare_mm"
+      ],
+      "evaluator:petgasus.motor_screws": [
+        "value:motor_screw_engagement_mm",
+        "value:motor_screw_len",
+        "value:plate_t"
+      ],
+      "evaluator:petgasus.one_piece": [
+        "value:frame_pieces"
+      ],
+      "evaluator:petgasus.thrust_to_weight": [
+        "value:auw_g",
+        "value:hover_throttle_frac",
+        "value:thrust_to_weight",
+        "value:thrust_total_g"
+      ]
+    },
+    "resolves": {},
+    "rests_on": {},
+    "serves": {},
+    "settles": {
+      "evaluator:bom.cost": [
+        "claim:C10"
+      ],
+      "evaluator:cad.degenerate_faces": [
+        "claim:C7"
+      ],
+      "evaluator:cad.is_volume": [
+        "claim:C7"
+      ],
+      "evaluator:cad.wall_thickness": [
+        "claim:C7"
+      ],
+      "evaluator:cad.watertight": [
+        "claim:C7"
+      ],
+      "evaluator:fdm.bed_fit": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.bridge_span": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.layer_alignment": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.min_wall": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.overhang": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.print_time_est": [
+        "claim:C6"
+      ],
+      "evaluator:fdm.process_model_valid": [
+        "claim:C6"
+      ],
+      "evaluator:petgasus.auw": [
+        "claim:C2"
+      ],
+      "evaluator:petgasus.fc_screws": [
+        "claim:C8"
+      ],
+      "evaluator:petgasus.flight_time": [
+        "claim:C3"
+      ],
+      "evaluator:petgasus.frame_mode": [
+        "claim:C4"
+      ],
+      "evaluator:petgasus.interference": [
+        "claim:C5"
+      ],
+      "evaluator:petgasus.motor_leads": [
+        "claim:C12"
+      ],
+      "evaluator:petgasus.motor_screws": [
+        "claim:C9"
+      ],
+      "evaluator:petgasus.one_piece": [
+        "claim:C11"
+      ],
+      "evaluator:petgasus.thrust_to_weight": [
+        "claim:C1"
+      ]
+    },
+    "sources": {}
+  },
+  "evaluators": {
+    "bom.availability": {
+      "basis": "model-only",
+      "claims": [],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.complete": {
+      "basis": "model-only",
+      "claims": [],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.cost": {
+      "basis": "model-only",
+      "claims": [
+        "C10"
+      ],
+      "current": true,
+      "outcome": "fail",
+      "outcome_word": "fail",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.currency": {
+      "basis": "model-only",
+      "claims": [],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.moq": {
+      "basis": "model-only",
+      "claims": [],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.process_rules": {
+      "basis": "sourced",
+      "claims": [],
+      "current": false,
+      "outcome": "skipped",
+      "outcome_word": "skipped",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "bom.single_source": {
+      "basis": "model-only",
+      "claims": [],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "sourcing",
+      "registered": true,
+      "tier": 0
+    },
+    "cad.assembly_connected": {
+      "basis": "model-only",
+      "claims": [],
+      "current": false,
+      "outcome": "skipped",
+      "outcome_word": "skipped",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "cad.bounding": {
+      "basis": "model-only",
+      "claims": [],
+      "current": false,
+      "outcome": "skipped",
+      "outcome_word": "skipped",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 0
+    },
+    "cad.clash": {
+      "basis": "model-only",
+      "claims": [],
+      "current": false,
+      "outcome": "skipped",
+      "outcome_word": "skipped",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "cad.degenerate_faces": {
+      "basis": "model-only",
+      "claims": [
+        "C7"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "cad.is_volume": {
+      "basis": "established",
+      "claims": [
+        "C7"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "cad.wall_thickness": {
+      "basis": "model-only",
+      "claims": [
+        "C7"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "cad.watertight": {
+      "basis": "model-only",
+      "claims": [
+        "C7"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "cad-solid",
+      "registered": true,
+      "tier": 1
+    },
+    "fdm.bed_fit": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 0
+    },
+    "fdm.bridge_span": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 1
+    },
+    "fdm.layer_alignment": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 0
+    },
+    "fdm.min_wall": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 0
+    },
+    "fdm.overhang": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 1
+    },
+    "fdm.print_time_est": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 0
+    },
+    "fdm.process_model_valid": {
+      "basis": "model-only",
+      "claims": [
+        "C6"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "fdm-print",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.auw": {
+      "basis": "undeclared",
+      "claims": [
+        "C2"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.fc_screws": {
+      "basis": "undeclared",
+      "claims": [
+        "C8"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.flight_time": {
+      "basis": "undeclared",
+      "claims": [
+        "C3"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.frame_mode": {
+      "basis": "undeclared",
+      "claims": [
+        "C4"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.interference": {
+      "basis": "undeclared",
+      "claims": [
+        "C5"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.motor_leads": {
+      "basis": "undeclared",
+      "claims": [
+        "C12"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.motor_screws": {
+      "basis": "undeclared",
+      "claims": [
+        "C9"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.one_piece": {
+      "basis": "undeclared",
+      "claims": [
+        "C11"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    },
+    "petgasus.thrust_to_weight": {
+      "basis": "undeclared",
+      "claims": [
+        "C1"
+      ],
+      "current": true,
+      "outcome": "pass",
+      "outcome_word": "pass",
+      "pack": "",
+      "registered": true,
+      "tier": 0
+    }
+  },
+  "feeds": [],
+  "generated": "nopekit site build wrote this file from the records, the results in .nopekit/verdicts/ and site/content/. It is not a source. Change those, then build again.",
+  "lanes": [
+    "zones",
+    "stations",
+    "boards"
+  ],
+  "layers": [
+    1
+  ],
+  "legend": [
+    {
+      "n": 1,
+      "token": "failing"
+    },
+    {
+      "n": 6,
+      "token": "gap"
+    },
+    {
+      "n": 5,
+      "token": "pending_build"
+    },
+    {
+      "n": 11,
+      "token": "checked"
+    }
+  ],
+  "lines": [
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A1",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 0,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A1"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A2",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 1,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A2"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A3",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 2,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A3"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A4",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 3,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A4"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A5",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 4,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A5"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "A6",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 5,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:A6"
+      ],
+      "taps": [],
+      "token": "gap",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C1",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 6,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {
+        "station:@auw_g": "read"
+      },
+      "stops": [
+        "station:@auw_g",
+        "claim:C1"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "auw_g",
+        "hover_throttle_frac",
+        "thrust_to_weight",
+        "thrust_total_g"
+      ],
+      "via": {
+        "station:@auw_g": [
+          "auw_g"
+        ]
+      }
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C2",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 7,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {
+        "station:@auw_g": "read"
+      },
+      "stops": [
+        "station:@auw_g",
+        "claim:C2"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "auw_g",
+        "frame_mass_g"
+      ],
+      "via": {
+        "station:@auw_g": [
+          "auw_g"
+        ]
+      }
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C3",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 8,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C3"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "flight_time_min",
+        "hover_power_w"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C4",
+      "errored": false,
+      "fed_by": [
+        "zone:other"
+      ],
+      "marks": [],
+      "order": 9,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C4"
+      ],
+      "taps": [
+        {
+          "choices": [
+            "plate_layout"
+          ],
+          "zone": "zone:other"
+        }
+      ],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "frame_mode1_hz",
+        "frame_modes_hz",
+        "motor_freq_hover_hz",
+        "plate_layout"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C5",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 10,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C5"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "assembly_parts",
+        "interference_mm3",
+        "interference_total_mm3"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C6",
+      "errored": false,
+      "fed_by": [
+        "zone:other"
+      ],
+      "marks": [],
+      "order": 11,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C6"
+      ],
+      "taps": [
+        {
+          "choices": [
+            "bed_x_mm",
+            "bed_y_mm",
+            "bed_z_mm",
+            "brim_mm",
+            "nozzle_d_mm",
+            "extrusion_width_mm",
+            "layer_height_mm",
+            "perimeters",
+            "infill_fraction",
+            "print_speed_mm_s",
+            "max_print_time_h",
+            "max_filament_g"
+          ],
+          "zone": "zone:other"
+        }
+      ],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "bbox_by_part_mm",
+        "bed_x_mm",
+        "bed_y_mm",
+        "bed_z_mm",
+        "bridge_ceiling_deg",
+        "bridge_limit_mm",
+        "brim_mm",
+        "build_axis",
+        "density_g_cm3",
+        "extrusion_width_mm",
+        "fdm",
+        "fdm-print",
+        "fdm-print.area_mm2",
+        "fdm-print.bbox_by_part_mm",
+        "fdm-print.bbox_mm_by_part",
+        "fdm-print.bboxes_mm",
+        "fdm-print.bed_x",
+        "fdm-print.bed_x_mm",
+        "fdm-print.bed_xy",
+        "fdm-print.bed_xy_mm",
+        "fdm-print.bed_y",
+        "fdm-print.bed_y_mm",
+        "fdm-print.bed_z",
+        "fdm-print.bed_z_mm",
+        "fdm-print.bridge_ceiling_deg",
+        "fdm-print.bridge_limit_mm",
+        "fdm-print.brim_allowance_mm",
+        "fdm-print.brim_mm",
+        "fdm-print.build_axis",
+        "fdm-print.build_height_mm",
+        "fdm-print.deflection_utilisation",
+        "fdm-print.deflection_utilization",
+        "fdm-print.density_g_cm3",
+        "fdm-print.extrusion_width_mm",
+        "fdm-print.filament_density_g_cm3",
+        "fdm-print.infill",
+        "fdm-print.infill_fraction",
+        "fdm-print.layer_h_mm",
+        "fdm-print.layer_height",
+        "fdm-print.layer_height_mm",
+        "fdm-print.layer_normal",
+        "fdm-print.layer_normal_strength_ratio",
+        "fdm-print.line_width_mm",
+        "fdm-print.load_axis",
+        "fdm-print.load_direction",
+        "fdm-print.max_bridge_mm",
+        "fdm-print.max_cantilever_mm",
+        "fdm-print.max_filament_g",
+        "fdm-print.max_filament_mass_g",
+        "fdm-print.max_overhang_deg",
+        "fdm-print.max_print_time_h",
+        "fdm-print.mesh_path_by_part",
+        "fdm-print.mesh_paths",
+        "fdm-print.nozzle_d",
+        "fdm-print.nozzle_d_mm",
+        "fdm-print.nozzle_diameter_mm",
+        "fdm-print.overhang_area_allow_frac",
+        "fdm-print.overhang_limit_deg",
+        "fdm-print.part_meshes",
+        "fdm-print.parts",
+        "fdm-print.perimeters",
+        "fdm-print.primary_load_axis",
+        "fdm-print.print_axis",
+        "fdm-print.print_bbox_by_part_mm",
+        "fdm-print.print_speed_mm_s",
+        "fdm-print.print_time_limit_h",
+        "fdm-print.speed_mm_s",
+        "fdm-print.spool_g",
+        "fdm-print.stiffness_utilisation",
+        "fdm-print.stress_utilisation",
+        "fdm-print.structural_utilisation",
+        "fdm-print.surface_area_mm2",
+        "fdm-print.utilisation",
+        "fdm-print.utilisation_kind",
+        "fdm-print.utilization",
+        "fdm-print.utilization_kind",
+        "fdm-print.wall_count",
+        "fdm.area_mm2",
+        "fdm.bbox_by_part_mm",
+        "fdm.bbox_mm_by_part",
+        "fdm.bboxes_mm",
+        "fdm.bed_x",
+        "fdm.bed_x_mm",
+        "fdm.bed_xy",
+        "fdm.bed_xy_mm",
+        "fdm.bed_y",
+        "fdm.bed_y_mm",
+        "fdm.bed_z",
+        "fdm.bed_z_mm",
+        "fdm.bridge_ceiling_deg",
+        "fdm.bridge_limit_mm",
+        "fdm.brim_allowance_mm",
+        "fdm.brim_mm",
+        "fdm.build_axis",
+        "fdm.build_height_mm",
+        "fdm.deflection_utilisation",
+        "fdm.deflection_utilization",
+        "fdm.density_g_cm3",
+        "fdm.extrusion_width_mm",
+        "fdm.filament_density_g_cm3",
+        "fdm.infill",
+        "fdm.infill_fraction",
+        "fdm.layer_h_mm",
+        "fdm.layer_height",
+        "fdm.layer_height_mm",
+        "fdm.layer_normal",
+        "fdm.layer_normal_strength_ratio",
+        "fdm.line_width_mm",
+        "fdm.load_axis",
+        "fdm.load_direction",
+        "fdm.max_bridge_mm",
+        "fdm.max_cantilever_mm",
+        "fdm.max_filament_g",
+        "fdm.max_filament_mass_g",
+        "fdm.max_overhang_deg",
+        "fdm.max_print_time_h",
+        "fdm.mesh_path_by_part",
+        "fdm.mesh_paths",
+        "fdm.nozzle_d",
+        "fdm.nozzle_d_mm",
+        "fdm.nozzle_diameter_mm",
+        "fdm.overhang_area_allow_frac",
+        "fdm.overhang_limit_deg",
+        "fdm.part_bbox_mm",
+        "fdm.part_meshes",
+        "fdm.part_min_wall_mm",
+        "fdm.part_volume_mm3",
+        "fdm.parts",
+        "fdm.perimeters",
+        "fdm.primary_load_axis",
+        "fdm.print_axis",
+        "fdm.print_bbox_by_part_mm",
+        "fdm.print_speed_mm_s",
+        "fdm.print_time_limit_h",
+        "fdm.speed_mm_s",
+        "fdm.spool_g",
+        "fdm.stiffness_utilisation",
+        "fdm.stress_utilisation",
+        "fdm.structural_utilisation",
+        "fdm.surface_area_mm2",
+        "fdm.utilisation",
+        "fdm.utilisation_kind",
+        "fdm.utilization",
+        "fdm.utilization_kind",
+        "fdm.wall_count",
+        "filament_density_g_cm3",
+        "infill_fraction",
+        "layer_height_mm",
+        "layer_normal_strength_ratio",
+        "load_axis",
+        "max_bridge_mm",
+        "max_cantilever_mm",
+        "max_filament_g",
+        "max_overhang_deg",
+        "max_print_time_h",
+        "mesh_paths",
+        "nozzle_d_mm",
+        "overhang_area_allow_frac",
+        "overhang_limit_deg",
+        "perimeters",
+        "print_speed_mm_s",
+        "surface_area_mm2",
+        "utilisation",
+        "utilisation_kind"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C7",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 12,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C7"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "cad",
+        "cad-solid",
+        "cad-solid.meshes",
+        "cad-solid.wall_samples",
+        "cad.meshes",
+        "cad.process_min_wall_mm",
+        "cad.wall_samples",
+        "meshes",
+        "wall_samples"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C8",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 13,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C8"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "fc_screw_engagement_mm",
+        "fc_screw_protrusion_mm",
+        "fc_stack_mm"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C9",
+      "errored": false,
+      "fed_by": [
+        "zone:other"
+      ],
+      "marks": [],
+      "order": 14,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C9"
+      ],
+      "taps": [
+        {
+          "choices": [
+            "motor_screw_len",
+            "plate_t"
+          ],
+          "zone": "zone:other"
+        }
+      ],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "motor_screw_engagement_mm",
+        "motor_screw_len",
+        "plate_t"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C10",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 15,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C10"
+      ],
+      "taps": [],
+      "token": "failing",
+      "unseen": false,
+      "values": [
+        "bom",
+        "bom.bom",
+        "bom.bom_path",
+        "bom.budget_total",
+        "bom_path",
+        "budget_total",
+        "sourcing",
+        "sourcing.bom",
+        "sourcing.bom_path",
+        "sourcing.budget_total"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C11",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 16,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C11"
+      ],
+      "taps": [],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "frame_pieces"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "C12",
+      "errored": false,
+      "fed_by": [
+        "zone:other"
+      ],
+      "marks": [],
+      "order": 17,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:C12"
+      ],
+      "taps": [
+        {
+          "choices": [
+            "motor_lead_len"
+          ],
+          "zone": "zone:other"
+        }
+      ],
+      "token": "checked",
+      "unseen": false,
+      "values": [
+        "motor_lead_len",
+        "motor_lead_needed_mm",
+        "motor_lead_spare_mm"
+      ],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "P1",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 18,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:P1"
+      ],
+      "taps": [],
+      "token": "pending_build",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "P2",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 19,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:P2"
+      ],
+      "taps": [],
+      "token": "pending_build",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "P3",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 20,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:P3"
+      ],
+      "taps": [],
+      "token": "pending_build",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "P4",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 21,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:P4"
+      ],
+      "taps": [],
+      "token": "pending_build",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim": "P5",
+      "errored": false,
+      "fed_by": [],
+      "marks": [],
+      "order": 22,
+      "reads_all": null,
+      "serves": [],
+      "sets": [],
+      "stop_kind": {},
+      "stops": [
+        "claim:P5"
+      ],
+      "taps": [],
+      "token": "pending_build",
+      "unseen": false,
+      "values": [],
+      "via": {}
+    }
+  ],
+  "meta": {
+    "name": "PETGasusDrone",
+    "records_digest": "56cca0f5752fd0e8e139476385048ff52f81d33d3d81e5e62336e69c1b2d8547",
+    "resolution_digest": "3083ba48279cce3a3c4bc4bd89bb8293f7210d5818f9d1b938910de9f6a43000"
+  },
+  "nodes": [
+    {
+      "assumptions": [],
+      "claims": [
+        "C4",
+        "C6",
+        "C9",
+        "C12"
+      ],
+      "count": 16,
+      "estimate": [],
+      "feeds": [],
+      "generated": true,
+      "ground": {
+        "assumption": 0,
+        "chosen": 16,
+        "input": 0
+      },
+      "id": "zone:other",
+      "idle": false,
+      "key": "other",
+      "kind": "zone",
+      "lane": "zones",
+      "line": "",
+      "members": [
+        "motor_screw_len",
+        "plate_t",
+        "motor_lead_len",
+        "bed_x_mm",
+        "bed_y_mm",
+        "bed_z_mm",
+        "brim_mm",
+        "nozzle_d_mm",
+        "extrusion_width_mm",
+        "layer_height_mm",
+        "perimeters",
+        "infill_fraction",
+        "print_speed_mm_s",
+        "max_print_time_h",
+        "max_filament_g",
+        "plate_layout"
+      ],
+      "moved": [],
+      "order": 0,
+      "rank": 0,
+      "sources": {
+        "assumption": 0,
+        "chosen": 0,
+        "datasheet": 0,
+        "estimate": 0,
+        "unrecorded": 16
+      },
+      "taps": [
+        "C4",
+        "C6",
+        "C9",
+        "C12"
+      ],
+      "title": "Choices",
+      "unmeasured": []
+    },
+    {
+      "claims": [
+        "C1",
+        "C2"
+      ],
+      "column": 0,
+      "depth": null,
+      "fed_by": [],
+      "generated": true,
+      "head": "auw_g",
+      "id": "station:@auw_g",
+      "key": "@auw_g",
+      "kind": "station",
+      "lane": "stations",
+      "layer": 0,
+      "line": "",
+      "members": [
+        "auw_g"
+      ],
+      "order": 0,
+      "rank": 0,
+      "stop_kinds": {
+        "C1": "read",
+        "C2": "read"
+      },
+      "title": "auw_g",
+      "value_text": "45.12 g"
+    },
+    {
+      "claims": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "errored": false,
+      "generated": true,
+      "id": "board:other",
+      "key": "other",
+      "kind": "board",
+      "lane": "boards",
+      "line": "",
+      "marks": [],
+      "order": 0,
+      "tally": [
+        {
+          "errored": 0,
+          "key": "checked",
+          "label": "11 checked",
+          "n": 11,
+          "status": "pass"
+        },
+        {
+          "errored": 0,
+          "key": "failing",
+          "label": "1 failing",
+          "n": 1,
+          "status": "fail"
+        },
+        {
+          "errored": 0,
+          "key": "gap",
+          "label": "6 gaps",
+          "n": 6,
+          "status": "unclaimed"
+        },
+        {
+          "errored": 0,
+          "key": "pending_build",
+          "label": "5 pending build",
+          "n": 5,
+          "status": "unverified"
+        }
+      ],
+      "title": "Claims",
+      "token": "failing",
+      "word": "failing"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A1",
+      "key": "A1",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 0,
+      "row": 0,
+      "severity": 3,
+      "title": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A2",
+      "key": "A2",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 1,
+      "row": 1,
+      "severity": 3,
+      "title": "Hover efficiency is 3.0 g of thrust per watt",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A3",
+      "key": "A3",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 2,
+      "row": 2,
+      "severity": 3,
+      "title": "The 1102 (2026) motor needs a 14 mm diameter, 13.8 mm tall envelope, and its shaft C-clip clears a 2.3 mm hole",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A4",
+      "key": "A4",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 3,
+      "row": 3,
+      "severity": 3,
+      "title": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A5",
+      "key": "A5",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 4,
+      "row": 4,
+      "severity": 3,
+      "title": "The 1102 22000KV's 46.3 g thrust on 40 mm props is a floor for the kit's 1102 21000KV on 45 mm props",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "assumption",
+      "critical": true,
+      "errored": false,
+      "id": "claim:A6",
+      "key": "A6",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 5,
+      "row": 5,
+      "severity": 3,
+      "title": "That 46.3 g thrust test was run at 4.2 V",
+      "token": "gap",
+      "value_text": "",
+      "word": "gap"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C1",
+      "key": "C1",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 6,
+      "row": 6,
+      "severity": 8,
+      "title": "Thrust-to-weight at nominal pack voltage is at least 3:1",
+      "token": "checked",
+      "value_text": "3.024 ratio against a limit of 3 ratio, 0.80% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C2",
+      "key": "C2",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 7,
+      "row": 7,
+      "severity": 8,
+      "title": "All-up weight stays under 250 g",
+      "token": "checked",
+      "value_text": "45.12 g against a limit of 250 g, 82% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C3",
+      "key": "C3",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 8,
+      "row": 8,
+      "severity": 8,
+      "title": "Estimated hover flight time is at least 3 minutes per pack",
+      "token": "checked",
+      "value_text": "3.88 min against a limit of 3 min, 29% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C4",
+      "key": "C4",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 9,
+      "row": 9,
+      "severity": 8,
+      "title": "The frame's first out-of-plane mode (duct pods bouncing on the arms) is at or above 200 Hz",
+      "token": "checked",
+      "value_text": "282 Hz against a limit of 200 Hz, 41% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C5",
+      "key": "C5",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 10,
+      "row": 10,
+      "severity": 8,
+      "title": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+      "token": "checked",
+      "value_text": "0 mm3 against a limit of 0 mm3",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C6",
+      "key": "C6",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 11,
+      "row": 11,
+      "severity": 8,
+      "title": "The frame prints on the Snapmaker U1 in PETG without supports, in one sitting",
+      "token": "checked",
+      "value_text": "",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C7",
+      "key": "C7",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 12,
+      "row": 12,
+      "severity": 8,
+      "title": "The exported frame mesh is a clean closed solid",
+      "token": "checked",
+      "value_text": "",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C8",
+      "key": "C8",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 13,
+      "row": 13,
+      "severity": 8,
+      "title": "AIO screws (M1.4 x 6) bite at least 3 mm into the printed posts and do not poke out under the plate",
+      "token": "checked",
+      "value_text": "-1.3 mm against a limit of 0 mm",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C9",
+      "key": "C9",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 14,
+      "row": 14,
+      "severity": 8,
+      "title": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+      "token": "checked",
+      "value_text": "1.2 mm against a limit of 1 mm, 20% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C10",
+      "key": "C10",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 15,
+      "row": 15,
+      "severity": 0,
+      "title": "Everything to buy costs no more than $150 including radio, batteries and charger",
+      "token": "failing",
+      "value_text": "",
+      "word": "failing"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C11",
+      "key": "C11",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 16,
+      "row": 16,
+      "severity": 8,
+      "title": "The printed frame is one connected piece",
+      "token": "checked",
+      "value_text": "1 count against a limit of 1 count, at the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "id": "claim:C12",
+      "key": "C12",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 17,
+      "row": 17,
+      "severity": 8,
+      "title": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
+      "token": "checked",
+      "value_text": "16.28 mm against a limit of 3 mm, 443% inside the limit",
+      "word": "checked"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "id": "claim:P1",
+      "key": "P1",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 18,
+      "row": 18,
+      "severity": 6,
+      "title": "Frame survives five drops from 2 m onto a hard floor without a crack",
+      "token": "pending_build",
+      "value_text": "",
+      "word": "pending build"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "id": "claim:P2",
+      "key": "P2",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 19,
+      "row": 19,
+      "severity": 6,
+      "title": "Hovers steadily in angle mode with no audible or visible oscillation",
+      "token": "pending_build",
+      "value_text": "",
+      "word": "pending build"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "id": "claim:P3",
+      "key": "P3",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 20,
+      "row": 20,
+      "severity": 6,
+      "title": "Pre-flight setup is correct: board alignment yaw 45, motor order and directions, angle mode on a switch",
+      "token": "pending_build",
+      "value_text": "",
+      "word": "pending build"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "id": "claim:P4",
+      "key": "P4",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 21,
+      "row": 21,
+      "severity": 6,
+      "title": "The AIO drops onto its posts and the battery straps on without touching any duct or prop",
+      "token": "pending_build",
+      "value_text": "",
+      "word": "pending build"
+    },
+    {
+      "amber": null,
+      "board": "other",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "id": "claim:P5",
+      "key": "P5",
+      "kind": "claim",
+      "lane": "boards",
+      "marks": [],
+      "order": 22,
+      "row": 22,
+      "severity": 6,
+      "title": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
+      "token": "pending_build",
+      "value_text": "",
+      "word": "pending build"
+    }
+  ],
+  "schema": 2,
+  "self": "eb9c1a5d97147fffdf2bba2cd93cda7acccbe206f08b91e2790448ab4f12d39d",
+  "trace": {
+    "amber": "none",
+    "key": null,
+    "notice": "The links from the choices are not measured yet. Each line starts at the values that its evaluators read.",
+    "round": null,
+    "singles": 0,
+    "skipped": {},
+    "state": "untraced",
+    "text": "",
+    "ties": 0,
+    "unmoved": []
+  },
+  "unread": [
+    "arm_w",
+    "battery_h",
+    "battery_l",
+    "battery_mah",
+    "battery_mass_g",
+    "battery_v_nom",
+    "battery_w",
+    "bounce_g",
+    "bridge_w",
+    "bt20_h",
+    "bt20_len",
+    "bt20_w",
+    "crash_load_n",
+    "duct_above_prop",
+    "duct_band_below_prop",
+    "duct_lattice",
+    "duct_thrust_factor",
+    "duct_wall",
+    "fc_board_clear",
+    "fc_board_side",
+    "fc_hole_d",
+    "fc_hole_spacing",
+    "fc_mass_g",
+    "fc_pcb_t",
+    "fc_pilot_d",
+    "fc_post_h",
+    "fc_post_od",
+    "fc_screw_len",
+    "fc_top_components_h",
+    "fc_yaw_deg",
+    "foot_w",
+    "hover_eff_g_per_w",
+    "hub_hole_margin",
+    "hub_holes",
+    "hub_margin",
+    "hub_t",
+    "joint_margin",
+    "lattice_above_members",
+    "lattice_margin",
+    "lattice_overhang_deg",
+    "lattice_strut_w",
+    "lead_d",
+    "member_clear",
+    "min_member_w",
+    "misc_mass_g",
+    "motor_base_d",
+    "motor_base_h",
+    "motor_body_d",
+    "motor_centre_relief_d",
+    "motor_h",
+    "motor_hole_circle_d",
+    "motor_kv",
+    "motor_mass_g",
+    "motor_screw_clear_d",
+    "motor_thrust_max_g",
+    "motor_thrust_test_v",
+    "prop_blade_t",
+    "prop_blades",
+    "prop_block_mm",
+    "prop_chord",
+    "prop_d",
+    "prop_hub_d",
+    "prop_hub_drop",
+    "prop_mass_g",
+    "prop_pitch_deg",
+    "prop_sweep_half_h",
+    "prop_tip_gap",
+    "rib_h",
+    "rib_w",
+    "screw_d",
+    "screw_head_d",
+    "screw_head_h",
+    "shaft_d",
+    "shaft_exposed",
+    "socket_depth",
+    "socket_h",
+    "socket_w",
+    "spoke_count",
+    "spoke_phase_deg",
+    "spoke_w",
+    "strap_bay_w",
+    "strap_slot_w",
+    "strap_t",
+    "strap_w",
+    "topopt_h",
+    "topopt_iters",
+    "topopt_mass_frac",
+    "topopt_member_h",
+    "topopt_rmin",
+    "topopt_smooth",
+    "topopt_w_crash",
+    "topopt_w_thrust",
+    "usable_capacity_frac",
+    "web_h"
+  ],
+  "values": {
+    "assembly_parts": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "auw_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": "station:@auw_g",
+      "units": "g",
+      "value_text": "45.12 g",
+      "zone": null
+    },
+    "bbox_by_part_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bed_x_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "270",
+      "zone": "zone:other"
+    },
+    "bed_y_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "270",
+      "zone": "zone:other"
+    },
+    "bed_z_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "270",
+      "zone": "zone:other"
+    },
+    "bom": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bom.bom": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bom.bom_path": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bom.budget_total": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bom_path": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "bom/bom.json",
+      "zone": null
+    },
+    "bridge_ceiling_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "bridge_limit_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "brim_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "5",
+      "zone": "zone:other"
+    },
+    "budget_total": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "build_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "z",
+      "zone": null
+    },
+    "cad": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "cad-solid": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "cad-solid.meshes": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "cad-solid.wall_samples": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "cad.meshes": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "cad.process_min_wall_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm",
+      "value_text": "1.26 mm",
+      "zone": null
+    },
+    "cad.wall_samples": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "extrusion_width_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "0.42",
+      "zone": "zone:other"
+    },
+    "fc_screw_engagement_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "5",
+      "zone": null
+    },
+    "fc_screw_protrusion_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm",
+      "value_text": "-1.3 mm",
+      "zone": null
+    },
+    "fc_stack_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "7.3",
+      "zone": null
+    },
+    "fdm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.area_mm2": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bbox_by_part_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bbox_mm_by_part": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bboxes_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_x": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_x_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_xy": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_xy_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_y": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_y_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_z": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bed_z_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bridge_ceiling_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.bridge_limit_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.brim_allowance_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.brim_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.build_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.build_height_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.deflection_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.deflection_utilization": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.extrusion_width_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.filament_density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.infill": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.infill_fraction": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.layer_h_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.layer_height": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.layer_height_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.layer_normal": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.layer_normal_strength_ratio": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.line_width_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.load_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.load_direction": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_bridge_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_cantilever_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_filament_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_filament_mass_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_overhang_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.max_print_time_h": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.mesh_path_by_part": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.mesh_paths": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.nozzle_d": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.nozzle_d_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.nozzle_diameter_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.overhang_area_allow_frac": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.overhang_limit_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.part_meshes": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.parts": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.perimeters": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.primary_load_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.print_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.print_bbox_by_part_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.print_speed_mm_s": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.print_time_limit_h": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.speed_mm_s": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.spool_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.stiffness_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.stress_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.structural_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.surface_area_mm2": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.utilisation_kind": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.utilization": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.utilization_kind": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm-print.wall_count": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.area_mm2": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bbox_by_part_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bbox_mm_by_part": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bboxes_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_x": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_x_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_xy": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_xy_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_y": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_y_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_z": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bed_z_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bridge_ceiling_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.bridge_limit_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.brim_allowance_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.brim_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.build_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.build_height_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.deflection_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.deflection_utilization": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.extrusion_width_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.filament_density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.infill": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.infill_fraction": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.layer_h_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.layer_height": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.layer_height_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.layer_normal": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.layer_normal_strength_ratio": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.line_width_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.load_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.load_direction": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_bridge_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_cantilever_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_filament_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_filament_mass_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_overhang_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.max_print_time_h": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.mesh_path_by_part": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.mesh_paths": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.nozzle_d": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.nozzle_d_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.nozzle_diameter_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.overhang_area_allow_frac": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.overhang_limit_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.part_bbox_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.part_meshes": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.part_min_wall_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm",
+      "value_text": "1.3 mm",
+      "zone": null
+    },
+    "fdm.part_volume_mm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "14206",
+      "zone": null
+    },
+    "fdm.parts": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.perimeters": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.primary_load_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.print_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.print_bbox_by_part_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.print_speed_mm_s": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.print_time_limit_h": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.speed_mm_s": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.spool_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.stiffness_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.stress_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.structural_utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.surface_area_mm2": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.utilisation_kind": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.utilization": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.utilization_kind": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "fdm.wall_count": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "filament_density_g_cm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "flight_time_min": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "min",
+      "value_text": "3.88 min",
+      "zone": null
+    },
+    "frame_mass_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "18.04",
+      "zone": null
+    },
+    "frame_mode1_hz": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "Hz",
+      "value_text": "282 Hz",
+      "zone": null
+    },
+    "frame_modes_hz": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "frame_pieces": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "count",
+      "value_text": "1 count",
+      "zone": null
+    },
+    "hover_power_w": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "15.04",
+      "zone": null
+    },
+    "hover_throttle_frac": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "0.331",
+      "zone": null
+    },
+    "infill_fraction": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "of limit",
+      "value_text": "1 of limit",
+      "zone": "zone:other"
+    },
+    "interference_mm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "interference_total_mm3": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm3",
+      "value_text": "0 mm3",
+      "zone": null
+    },
+    "layer_height_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "0.2",
+      "zone": "zone:other"
+    },
+    "layer_normal_strength_ratio": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "load_axis": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "x",
+      "zone": null
+    },
+    "max_bridge_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "max_cantilever_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "max_filament_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "1000",
+      "zone": "zone:other"
+    },
+    "max_overhang_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "max_print_time_h": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "3",
+      "zone": "zone:other"
+    },
+    "mesh_paths": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "meshes": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "motor_freq_hover_hz": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "611.9",
+      "zone": null
+    },
+    "motor_lead_len": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "37",
+      "zone": "zone:other"
+    },
+    "motor_lead_needed_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "motor_lead_spare_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm",
+      "value_text": "16.28 mm",
+      "zone": null
+    },
+    "motor_screw_engagement_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "mm",
+      "value_text": "1.2 mm",
+      "zone": null
+    },
+    "motor_screw_len": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "3",
+      "zone": "zone:other"
+    },
+    "nozzle_d_mm": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "0.4",
+      "zone": "zone:other"
+    },
+    "overhang_area_allow_frac": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "overhang_limit_deg": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "perimeters": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "3",
+      "zone": "zone:other"
+    },
+    "plate_layout": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "spoked",
+      "zone": "zone:other"
+    },
+    "plate_t": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "1.8",
+      "zone": "zone:other"
+    },
+    "print_speed_mm_s": {
+      "ground": "chosen",
+      "read": true,
+      "role": "choice",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "60",
+      "zone": "zone:other"
+    },
+    "sourcing": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "sourcing.bom": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "sourcing.bom_path": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "sourcing.budget_total": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    },
+    "surface_area_mm2": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "26371",
+      "zone": null
+    },
+    "thrust_to_weight": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "ratio",
+      "value_text": "3.024 ratio",
+      "zone": null
+    },
+    "thrust_total_g": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "136.4",
+      "zone": null
+    },
+    "utilisation": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "derated utilisation",
+      "value_text": "0.191 derated utilisation",
+      "zone": null
+    },
+    "utilisation_kind": {
+      "ground": "chosen",
+      "read": true,
+      "role": "derived",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "stress",
+      "zone": null
+    },
+    "wall_samples": {
+      "ground": "chosen",
+      "read": true,
+      "role": "absent",
+      "source": "unrecorded",
+      "station": null,
+      "units": "",
+      "value_text": "",
+      "zone": null
+    }
+  }
+}

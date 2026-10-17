@@ -43,7 +43,7 @@ Every number above comes from the model, [`model/petgasus.py`](model/petgasus.py
 
 ## Working on the design
 
-The checks run with [nopekit](https://github.com/neuman/nopekit).
+The checks run with [nopekit](https://github.com/neuman/nopekit). In Claude Code, this repo asks for the nopekit plugin: run `/plugin marketplace add neuman/nopekit`, then `/plugin install nopekit@nopekit`. To run the commands below in your own shell, install it with pip as well.
 
 ```sh
 pip install -r requirements.txt

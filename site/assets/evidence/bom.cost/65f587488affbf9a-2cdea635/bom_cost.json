@@ -1,0 +1,90 @@
+{
+  "build_quantity": 1,
+  "currency": "USD",
+  "lines": [
+    {
+      "ref": "KIT",
+      "vendor": "BetaFPV store",
+      "vendor_pn": "Meteor75 Pro II O4 PNP ELRS",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 79.99,
+      "extended": 79.99
+    },
+    {
+      "ref": "RADIO",
+      "vendor": "BetaFPV store",
+      "vendor_pn": "LiteRadio 3 ELRS",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 32.99,
+      "extended": 32.99
+    },
+    {
+      "ref": "BATT",
+      "vendor": "Amazon",
+      "vendor_pn": "B0GJSTMT8J",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 23.19,
+      "extended": 23.19
+    },
+    {
+      "ref": "CHG",
+      "vendor": "Amazon",
+      "vendor_pn": "B0FHCVCC1R",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 11.99,
+      "extended": 11.99
+    },
+    {
+      "ref": "PROPS",
+      "vendor": "BetaFPV store",
+      "vendor_pn": "GF 1811 3-blade 1.5mm 12pcs",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 4.99,
+      "extended": 4.99
+    },
+    {
+      "ref": "SCREWS",
+      "vendor": "Amazon",
+      "vendor_pn": "search: M1.4 self tapping screw assortment",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 8.0,
+      "extended": 8.0
+    },
+    {
+      "ref": "STRAP",
+      "vendor": "Amazon",
+      "vendor_pn": "search: 10mm battery strap",
+      "qty_per_unit": 1,
+      "needed": 1.0,
+      "purchased": 1.0,
+      "unit_price": 6.0,
+      "extended": 6.0
+    }
+  ],
+  "unpriced": [],
+  "parts_total": 167.15,
+  "vendor_subtotals": {
+    "Amazon": 49.18,
+    "BetaFPV store": 117.97
+  },
+  "order_minimum_shortfalls": [],
+  "order_minimum_unmatched": [],
+  "order_minimum_total": 0,
+  "charges": [],
+  "charge_total": 0,
+  "nre_per_unit": 0.0,
+  "run_total": 167.15,
+  "per_unit": 167.15
+}

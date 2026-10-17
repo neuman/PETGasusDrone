@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.process_rules",
+  "rho": "b433b24eed71cd913d9b425555bf59b3b6acfb4cdf761e4dfe8c3b278c41f708",
+  "static": "1e3b1ff02e40a99f4b40d8c50629f3dce62aee6ef44dc6721e91e64732c89b53",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "3f0f3ee87a77e0b244180beba0f98735197d5fc4375cf5742fde1db224b274e9",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:outside_capability",
+      "expect": "fail",
+      "note": "one declared process attribute moved outside the vendor's stated set — a finish the quoted line does not offer, or a tolerance ten times tighter than the process holds — written everywhere the document records that one fact, so a design-scoped rule and a line-scoped rule both trip from the single change and neither half of the rule engine goes unexercised. The BOM is otherwise untouched",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "violations",
+    "detail": "0 violation(s) of 7 project-supplied rule(s) (limit 0) — design is inside every stated capability",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:outside_capability (one declared process attribute moved outside the vendor's stated set — a finish the quoted line does not offer, or a tolerance ten times tighter than the process holds — written everywhere the document records that one fact, so a design-scoped rule and a line-scoped rule both trip from the single change and neither half of the rule engine goes unexercised. The BOM is otherwise untouched): 2 violation(s) of 7 project-supplied rule(s) (limit 0): board-finish-for-press-fit@design.surface_finish 'levelled-solder' is not one of ['ENIG', 'hard-gold']; fab-class-capability@PCB-01.surface_finish 'levelled-solder' is not one of ['ENIG', 'immersion-tin']",
+  "measured": 2.0,
+  "limit": 0.0,
+  "units": "violations",
+  "digest": "eaa56295f43c4963830c4f0b6890067467cf7b49dffb18f7bd9e9bad53964cfd"
+}

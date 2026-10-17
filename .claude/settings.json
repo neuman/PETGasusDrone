@@ -1,4 +1,12 @@
 {
+  "extraKnownMarketplaces": {
+    "nopekit": {
+      "source": {
+        "source": "github",
+        "repo": "neuman/nopekit"
+      }
+    }
+  },
   "enabledPlugins": {
     "nopekit@nopekit": true
   }

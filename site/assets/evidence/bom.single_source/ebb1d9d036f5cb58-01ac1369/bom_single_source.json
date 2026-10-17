@@ -1,0 +1,77 @@
+{
+  "single_source": [
+    {
+      "ref": "KIT",
+      "source": "BetaFPV",
+      "basis": "manufacturer",
+      "suppliers": [
+        "BetaFPV store"
+      ]
+    },
+    {
+      "ref": "RADIO",
+      "source": "BetaFPV",
+      "basis": "manufacturer",
+      "suppliers": [
+        "BetaFPV store",
+        "RaceDayQuads"
+      ]
+    },
+    {
+      "ref": "BATT",
+      "source": "BetaFPV",
+      "basis": "manufacturer",
+      "suppliers": [
+        "Amazon",
+        "BetaFPV store"
+      ]
+    },
+    {
+      "ref": "CHG",
+      "source": "HOBBYFLY",
+      "basis": "manufacturer",
+      "suppliers": [
+        "Amazon"
+      ]
+    },
+    {
+      "ref": "PROPS",
+      "source": "Gemfan",
+      "basis": "manufacturer",
+      "suppliers": [
+        "BetaFPV store",
+        "RaceDayQuads"
+      ]
+    },
+    {
+      "ref": "SCREWS",
+      "source": "generic",
+      "basis": "manufacturer",
+      "suppliers": [
+        "Amazon"
+      ]
+    },
+    {
+      "ref": "STRAP",
+      "source": "generic",
+      "basis": "manufacturer",
+      "suppliers": [
+        "Amazon"
+      ]
+    }
+  ],
+  "accepted_in_writing": [
+    "KIT"
+  ],
+  "covered_by_qualified_alternate": [
+    "RADIO",
+    "BATT",
+    "CHG",
+    "PROPS",
+    "SCREWS",
+    "STRAP"
+  ],
+  "unrecorded": [],
+  "lines_with_no_manufacturer_recorded": 0,
+  "limit": 10.0
+}

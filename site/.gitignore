@@ -3,3 +3,7 @@
 # so it is not ours to commit. Delete this file if you want an offline,
 # self-contained archive of the project in git.
 vendor/
+
+# `site build` writes the build time and each result's age here. It changes on
+# every build, so git ignores it. The page works without it.
+data/build.json

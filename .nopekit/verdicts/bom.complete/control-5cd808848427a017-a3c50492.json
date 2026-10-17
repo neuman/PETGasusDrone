@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "bom.complete",
+  "rho": "5cd808848427a0177e913994d120e67d65785009fe28f60905eeadfc1a022cb3",
+  "static": "fffbe5a1ce5bd97ec68f0b760e0c34e2b184cf0f42807cdc9c23579b77f1d200",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "bc2b1ff651af4709a63d0f997cf8a4562f4cb7a7182906599c292fdb07a8f10d",
+      "files": [
+        "<pack:sourcing>/bomlib.py",
+        "<pack:sourcing>/gates/sourcing.py"
+      ]
+    },
+    "selftest": {
+      "digest": "c32dfb60d83d9cba66db3b67512250e342746e17c676133b9767cf616838a59b",
+      "files": {
+        "selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+        "selftest/baseline.json": "02cd94b1c6894e474b395bddc33b540b24321aa132d795d0eb002617a06a6ab9",
+        "selftest/example_bom.json": "b90823efb39a143fc5ef8117c27c784d8f34c23400d649791546f197fac7befc",
+        "selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_boms.py:unpriced_line",
+      "expect": "fail",
+      "note": "one line's unit_price blanked out — the single most common real BOM defect. Nothing else about the part changes, and the roll-up that silently treats it as free is exactly what this gate refuses",
+      "good": "selftest/good_boms.py:baseline_bom",
+      "mutation": false
+    }
+  },
+  "host": "live",
+  "fixture": {
+    "digest": "5ac776159b0af9aea116f797f143918fbb1219ff10efcd6543ff32f4514a7140",
+    "files": {
+      "<pack:sourcing>/bomlib.py": "9b1cd44fd385120892e271bcac3230155cc8acbf87c771fa5cac3fa4c198d08d",
+      "<pack:sourcing>/selftest/bad_boms.py": "c487c7922882e34825eeeff3ce5148bcaab107d8cdbf3cf0ecad7be4136eebf9",
+      "<pack:sourcing>/selftest/good_boms.py": "ab21450dc315a4ceb7e4c04209eaad96da00eae189da13bda236c3cfd3a2f488"
+    }
+  },
+  "reads": {
+    "params": [],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [
+    "bom"
+  ],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [],
+      "files": {},
+      "dirs": {},
+      "ledger": {},
+      "host": [],
+      "opaque": []
+    },
+    "extra": [
+      "bom"
+    ],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "lines",
+    "detail": "0 of 10 lines not orderable (limit 0) — every line has a part number, a quantity and a usable price",
+    "goalpost": []
+  },
+  "mutation": null,
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_boms.py:unpriced_line (one line's unit_price blanked out — the single most common real BOM defect. Nothing else about the part changes, and the roll-up that silently treats it as free is exactly what this gate refuses): 1 of 10 lines not orderable (limit 0): HSG-01",
+  "measured": 1.0,
+  "limit": 0.0,
+  "units": "lines",
+  "digest": "c5c248f76b4edea1c8ea21815bc279c602c450d7e45f3edecf1db1951670e340"
+}

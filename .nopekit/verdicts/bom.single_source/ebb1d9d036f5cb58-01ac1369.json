@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "gate": "bom.single_source",
+  "rho": "ebb1d9d036f5cb58e6030823afdc08604173fa13db67cda2332ffeec2da7a472",
+  "code": {
+    "digest": "7e48158689e6eba948b2375a4af12cab1346b0079a78b87e60d8e3d6c38c9f3a",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "3a3dd851d8bd56251e4bcfdeba16fce09c9e41e5097d5ef186d25c3f16902f0c"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 10.0,
+    "units": "lines",
+    "comparator": "<=",
+    "settles": "single source count",
+    "detail": "0 unrecorded single-source line(s) vs limit 10 (7 behind one source in total, 6 with a qualified alternate, 1 accepted in writing)",
+    "evidence": [
+      "<out>/bom_single_source.json"
+    ],
+    "locators": [],
+    "claims": [
+      "single-source",
+      "supply-risk",
+      "second-source",
+      "supply-chain-risk"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "766b0615652a254969e494c035d5d52142e1970148377f56674f2a14b4a3ce45"
+}
