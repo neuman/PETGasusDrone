@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.one_piece",
+  "rho": "f44506fb7e60dc554e77a05e18a26f9ccca281eb64dfd9c05dd57ccf8f85e64f",
+  "static": "2748dc77af4395f2a31472f99ae747b2a1d55b013ed345ec4b875645e830c689",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "d018b6ba055f70e03841fc4242e659d67ac32593300f6b232f384f5dc472f307",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "bc6ea9ee63d236cc9b8e73aa75bd4db4494c114a496d639d8aa64ee44fe24b1c",
+      "files": {
+        "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+        "selftest/known_good.py": "362a2e9e6395ed592777035730dfbd74e781c516c26805e9e21ce75c8c41e48b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:no_field",
+      "expect": "fail",
+      "note": "the known-good design with no topology field: seats, guard arcs, posts and saddle with nothing joining them",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "825d74dff308cfe903c8233ce7c314e5b9ccecf8a2775480a27ee5238b097981",
+    "files": {
+      "model/petgasus.py": "5b98190884a885f791bc0f3be8bfd0a5cb3a9ea8b4b403238e9e866ed0dd2bff",
+      "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+      "selftest/known_good.py": "362a2e9e6395ed592777035730dfbd74e781c516c26805e9e21ce75c8c41e48b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_pieces"
+        ],
+        "1b2cb6995b841329234270155df7ba962be1a4a33d3505365c135a5c6293e44b",
+        13
+      ]
+    ],
+    "files": {
+      "build/fea/0503a227f2de/frame-fine.msh": "2a387ff14339e70d632857420efb41e08cfd975e36c7a84772819acb938d2781",
+      "build/fea/0503a227f2de/frame.msh": "2a387ff14339e70d632857420efb41e08cfd975e36c7a84772819acb938d2781",
+      "build/fea/175a0bd74031/frame-fine.msh": "f0c3c8fcd033e53e3ed5b3a2b0e8de5b48b1cbcad9b65fd7c609557e3038fab2",
+      "build/fea/175a0bd74031/frame.msh": "a3b9dc779f6728bfc7e34bcb13dbc5e87691024ba0d3f017ec6aaaf54f5199d7",
+      "build/frame_cache/5e6491b4a3ec294f.npz": "bc88b4f65dea10761e2d35d84c6e51031e6341a43b9c23545df5f6dc064748cb",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C11": "935703a181bb1d7bb01db16307496d3a9f6a4076c1617fa2d366ffa47d44cec8",
+      "acceptance:C11": "21a796a769194ff44a5c8ec8f011b9e6a074aaea43dc9f42eda2220508450a18"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "frame_pieces"
+          ],
+          "4bcd3657d0c29f255a305bffd762d00dbc16c2b6e76f8a3a3a4e9b476a1cdfac",
+          1
+        ]
+      ],
+      "files": {
+        "build/fea/175a0bd74031/frame-fine.msh": "f0c3c8fcd033e53e3ed5b3a2b0e8de5b48b1cbcad9b65fd7c609557e3038fab2",
+        "build/fea/175a0bd74031/frame.msh": "a3b9dc779f6728bfc7e34bcb13dbc5e87691024ba0d3f017ec6aaaf54f5199d7",
+        "build/frame_cache/5e6491b4a3ec294f.npz": "bc88b4f65dea10761e2d35d84c6e51031e6341a43b9c23545df5f6dc064748cb",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C11": "935703a181bb1d7bb01db16307496d3a9f6a4076c1617fa2d366ffa47d44cec8",
+        "acceptance:C11": "21a796a769194ff44a5c8ec8f011b9e6a074aaea43dc9f42eda2220508450a18"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 1.0,
+    "limit": 1,
+    "units": "count",
+    "detail": "1 connected solid(s) in the frame mesh",
+    "goalpost": [
+      {
+        "key": "C11",
+        "measured": 1.0,
+        "units": "count",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.1,
+            "outcome": "fail",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 0.5,
+            "outcome": "fail",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 2.0,
+            "outcome": "pass",
+            "measured": 1.0,
+            "units": "count"
+          },
+          {
+            "end": "limit",
+            "limit": 10.0,
+            "outcome": "pass",
+            "measured": 1.0,
+            "units": "count"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 0,
+    "boundary": "at-limit",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": []
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:no_field (the known-good design with no topology field: seats, guard arcs, posts and saddle with nothing joining them): 13 connected solid(s) in the frame mesh",
+  "measured": 13.0,
+  "limit": 1,
+  "units": "count",
+  "digest": "8fda205be8f54d5af3a2b579e2a13da25165d03594e57ae0a2feef377d0b8d22"
+}

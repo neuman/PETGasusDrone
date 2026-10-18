@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "gate": "petgasus.guard_height",
+  "rho": "4b550a39539b8c026cc0d709a0b4592a92074fa9480e4e2b21acb6fcc8405556",
+  "code": {
+    "digest": "25e8631dc5ae51e252a2f6c4d95ddde2ca08899b6dab0f17d4e8fb91e638b25c",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_top_z"
+        ],
+        "64b09a78a95a12280cddf3f422e0cfb1166443e24b76af35f9e407eb1ecf4c20",
+        14.6
+      ],
+      [
+        [
+          "guard_band_h_max_mm"
+        ],
+        "911b2e55cad846595669258cd2ee5b1184ab196fd4be969fde068f4f994ced92",
+        4.9
+      ],
+      [
+        [
+          "guard_band_h_mm"
+        ],
+        "812b24a857d1d41790da34bac9b5b76cc1e2ddc7c7ed1c7a45a0192d41114078",
+        4.25
+      ],
+      [
+        [
+          "guard_wall"
+        ],
+        "cbd8fd810325cda8aa98c99a2291f49e206f38ecd05c9d5d02c0ef95290b7d68",
+        1.4
+      ],
+      [
+        [
+          "guard_z0"
+        ],
+        "d4ba11bf9c6c1506c943a6b70e1b2046387dd394a2db560290f2c0f8d43a6dca",
+        10.6
+      ],
+      [
+        [
+          "guard_z1"
+        ],
+        "64b09a78a95a12280cddf3f422e0cfb1166443e24b76af35f9e407eb1ecf4c20",
+        14.6
+      ],
+      [
+        [
+          "prop_r"
+        ],
+        "1868dc08bbc8017c21e129c03dfa94c253b28982d838ef87252609673de31136",
+        22.5
+      ],
+      [
+        [
+          "prop_z"
+        ],
+        "c404ad5a4d9975130e3a2d74730d83e04640b4e0fa8b9eaf7382556fb64173c5",
+        12.6
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C13": "b2b59308f82013d8fe06bb0a538ebd03f32ce78987563b018b6477151182f612",
+      "acceptance:C13": "408b18ebee29801bd388815f1a1bfdf55189b47c9f0738ea60a97c0a28a69ba9"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 4.25,
+    "limit": 4.5,
+    "units": "mm",
+    "comparator": "<=",
+    "settles": "guard height",
+    "detail": "median 4.25 mm, tallest 4.90 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "guard-height"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "c52cec9cdb51fa92057b0f48a9187eefd774b040348d7412ff9943d4bffe2aa7"
+}

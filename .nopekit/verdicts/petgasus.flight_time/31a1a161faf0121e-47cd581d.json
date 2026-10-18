@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "gate": "petgasus.flight_time",
+  "rho": "31a1a161faf0121edaab878dd1f2c8d7892115382f88757113557e37cc66b544",
+  "code": {
+    "digest": "85b7ffa687b02816034eef675e2462cc54fb56fe89ba614797ed2aa49d3b662a",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "flight_time_min"
+        ],
+        "c126d8021f6d91dc86a5a47417a3423336a8c3a2881f8f3bbd32f5c7bbec34c0",
+        3.7
+      ],
+      [
+        [
+          "hover_eff_g_per_w"
+        ],
+        "76cafa2b6501274bb7c7a91050fbbfbd4781a8792a56016a5cadb53b5357d324",
+        2.967
+      ],
+      [
+        [
+          "hover_power_w"
+        ],
+        "1be3585967a81082871fbf2540a2e000947a5cc17101c6522844aea720367f29",
+        15.77
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C3": "7543b340f4ad6014d301af69c2f0ea744ff26b6c88778b0ff22dfdd67d3fb918",
+      "acceptance:C3": "35da20dbcbb43272cc42d552353265352c154201ad212a365ba9231c2e83e7fd"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 3.7,
+    "limit": 3.0,
+    "units": "min",
+    "comparator": ">=",
+    "settles": "hover flight time",
+    "detail": "15.8 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "endurance"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "12a8d0f8a5d95ad9129379d318c9f5b845ba6b09d659810ce9377da33761d671"
+}

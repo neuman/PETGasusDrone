@@ -925,7 +925,7 @@
       "claims": [
         "C7"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "cad-solid",
@@ -937,7 +937,7 @@
       "claims": [
         "C7"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "cad-solid",
@@ -949,7 +949,7 @@
       "claims": [
         "C7"
       ],
-      "current": false,
+      "current": true,
       "outcome": "fail",
       "outcome_word": "fail",
       "pack": "cad-solid",
@@ -961,7 +961,7 @@
       "claims": [
         "C7"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "cad-solid",
@@ -973,7 +973,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -985,7 +985,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "fail",
       "outcome_word": "fail",
       "pack": "fdm-print",
@@ -997,7 +997,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -1009,7 +1009,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -1021,7 +1021,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -1033,7 +1033,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -1045,7 +1045,7 @@
       "claims": [
         "C6"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "fdm-print",
@@ -1057,7 +1057,7 @@
       "claims": [
         "C2"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1093,7 +1093,7 @@
       "claims": [
         "C8"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1119,7 +1119,7 @@
       "claims": [
         "C3"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1143,7 +1143,7 @@
       "claims": [
         "C13"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1155,7 +1155,7 @@
       "claims": [
         "C5"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1167,7 +1167,7 @@
       "claims": [
         "C12"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1179,7 +1179,7 @@
       "claims": [
         "C9"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1191,7 +1191,7 @@
       "claims": [
         "C11"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1203,7 +1203,7 @@
       "claims": [
         "C14"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1215,7 +1215,7 @@
       "claims": [
         "C1"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1227,7 +1227,7 @@
       "claims": [
         "C17"
       ],
-      "current": false,
+      "current": true,
       "outcome": "pass",
       "outcome_word": "pass",
       "pack": "",
@@ -1256,12 +1256,12 @@
       "token": "gap"
     },
     {
-      "n": 11,
-      "token": "stale"
-    },
-    {
       "n": 6,
       "token": "pending_build"
+    },
+    {
+      "n": 11,
+      "token": "checked"
     }
   ],
   "lines": [
@@ -1386,7 +1386,7 @@
         "claim:C5"
       ],
       "taps": [],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "assembly_parts",
@@ -1396,7 +1396,11 @@
       "via": {}
     },
     {
-      "amber": null,
+      "amber": {
+        "enters": null,
+        "state": "untraced",
+        "word": "The assumptions under this pass are not tested yet."
+      },
       "board": "fits",
       "claim": "C8",
       "errored": false,
@@ -1422,7 +1426,7 @@
           "zone": "zone:z-board"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "fc_grommet_h",
@@ -1460,7 +1464,7 @@
           "zone": "zone:z-seat"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "motor_screw_engagement_mm",
@@ -1488,7 +1492,7 @@
         "claim:C11"
       ],
       "taps": [],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "frame_pieces"
@@ -1522,7 +1526,7 @@
           "zone": "zone:other"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "motor_lead_len",
@@ -1636,7 +1640,7 @@
         "claim:C1"
       ],
       "taps": [],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "auw_g",
@@ -1671,7 +1675,7 @@
         "claim:C2"
       ],
       "taps": [],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "auw_g",
@@ -1701,7 +1705,7 @@
         "claim:C3"
       ],
       "taps": [],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "flight_time_min",
@@ -1829,7 +1833,7 @@
           "zone": "zone:z-hoops"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "frame_top_z",
@@ -1870,7 +1874,7 @@
           "zone": "zone:other"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "motor_body_d",
@@ -2154,7 +2158,7 @@
           "zone": "zone:z-shape"
         }
       ],
-      "token": "stale",
+      "token": "checked",
       "unseen": false,
       "values": [
         "topology_current",
@@ -2186,8 +2190,8 @@
   ],
   "meta": {
     "name": "PETGasusDrone",
-    "records_digest": "2cf41b6df6917620409ea5160dee3b5c19c23990aee28d409a9ad8ffdff74c49",
-    "resolution_digest": "93597dad83bb5547ecfca3f32164208fb558cbf9c80c9c3858143afbab51ce56"
+    "records_digest": "a5f0d1fb63cc31a67d13cd73822b5d6f65aefc7bca3198efb9a0c039e81ef2af",
+    "resolution_digest": "dabb1c24e08e25d194c3f977be28e3634d156236241893b72575bb01f6cdce9d"
   },
   "nodes": [
     {
@@ -2205,8 +2209,8 @@
       "order": 0,
       "rank": 5,
       "title": "A small drone an adult and a 10-year-old can build together, from a request by a 10-year-old",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2223,8 +2227,8 @@
       "order": 1,
       "rank": 2,
       "title": "No soldering",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2239,8 +2243,8 @@
       "order": 2,
       "rank": 6,
       "title": "Flown by sight, no camera or goggles, mostly indoors",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2323,8 +2327,8 @@
       "order": 7,
       "rank": 9,
       "title": "Low guard hoops instead of tall ducts",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2356,8 +2360,8 @@
       "order": 9,
       "rank": 4,
       "title": "Printed only: no carbon rods",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2762,7 +2766,7 @@
         "C2": "read"
       },
       "title": "auw_g",
-      "value_text": ""
+      "value_text": "43.29 g"
     },
     {
       "claims": [
@@ -2849,17 +2853,17 @@
       "tally": [
         {
           "errored": 0,
+          "key": "checked",
+          "label": "5 checked",
+          "n": 5,
+          "status": "pass"
+        },
+        {
+          "errored": 0,
           "key": "gap",
           "label": "2 gaps",
           "n": 2,
           "status": "unclaimed"
-        },
-        {
-          "errored": 0,
-          "key": "stale",
-          "label": "5 stale",
-          "n": 5,
-          "status": "stale"
         },
         {
           "errored": 0,
@@ -2895,17 +2899,17 @@
       "tally": [
         {
           "errored": 0,
+          "key": "checked",
+          "label": "3 checked",
+          "n": 3,
+          "status": "pass"
+        },
+        {
+          "errored": 0,
           "key": "gap",
           "label": "2 gaps",
           "n": 2,
           "status": "unclaimed"
-        },
-        {
-          "errored": 0,
-          "key": "stale",
-          "label": "3 stale",
-          "n": 3,
-          "status": "stale"
         },
         {
           "errored": 0,
@@ -2936,15 +2940,15 @@
       "tally": [
         {
           "errored": 0,
-          "key": "stale",
-          "label": "2 stale",
+          "key": "checked",
+          "label": "2 checked",
           "n": 2,
-          "status": "stale"
+          "status": "pass"
         }
       ],
       "title": "Guards the props",
-      "token": "stale",
-      "word": "stale"
+      "token": "checked",
+      "word": "checked"
     },
     {
       "claims": [
@@ -2965,17 +2969,17 @@
       "tally": [
         {
           "errored": 0,
+          "key": "checked",
+          "label": "1 checked",
+          "n": 1,
+          "status": "pass"
+        },
+        {
+          "errored": 0,
           "key": "failing",
           "label": "2 failing",
           "n": 2,
           "status": "fail"
-        },
-        {
-          "errored": 0,
-          "key": "stale",
-          "label": "1 stale",
-          "n": 1,
-          "status": "stale"
         },
         {
           "errored": 0,
@@ -3078,14 +3082,18 @@
       "marks": [],
       "order": 4,
       "row": 0,
-      "severity": 5,
+      "severity": 8,
       "title": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
-      "token": "stale",
+      "token": "checked",
       "value_text": "0 mm3 against a limit of 0 mm3",
-      "word": "stale"
+      "word": "checked"
     },
     {
-      "amber": null,
+      "amber": {
+        "enters": null,
+        "state": "untraced",
+        "word": "The assumptions under this pass are not tested yet."
+      },
       "board": "fits",
       "claim_kind": "measurable",
       "critical": true,
@@ -3097,11 +3105,11 @@
       "marks": [],
       "order": 5,
       "row": 1,
-      "severity": 5,
+      "severity": 8,
       "title": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
-      "token": "stale",
+      "token": "checked",
       "value_text": "-3.4 mm against a limit of 0 mm",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3116,11 +3124,11 @@
       "marks": [],
       "order": 6,
       "row": 2,
-      "severity": 5,
+      "severity": 8,
       "title": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
-      "token": "stale",
+      "token": "checked",
       "value_text": "1.2 mm against a limit of 1 mm, 20% inside the limit",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3135,11 +3143,11 @@
       "marks": [],
       "order": 7,
       "row": 3,
-      "severity": 5,
+      "severity": 8,
       "title": "The printed frame is one connected piece",
-      "token": "stale",
+      "token": "checked",
       "value_text": "1 count against a limit of 1 count, at the limit",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3154,11 +3162,11 @@
       "marks": [],
       "order": 8,
       "row": 4,
-      "severity": 5,
+      "severity": 8,
       "title": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
-      "token": "stale",
+      "token": "checked",
       "value_text": "14.35 mm against a limit of 3 mm, 378% inside the limit",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3249,11 +3257,11 @@
       "marks": [],
       "order": 13,
       "row": 0,
-      "severity": 5,
+      "severity": 8,
       "title": "Thrust-to-weight at nominal pack voltage is at least 3:1",
-      "token": "stale",
-      "value_text": "5.718 ratio against a limit of 3 ratio, 91% inside the limit",
-      "word": "stale"
+      "token": "checked",
+      "value_text": "5.663 ratio against a limit of 3 ratio, 89% inside the limit",
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3268,11 +3276,11 @@
       "marks": [],
       "order": 14,
       "row": 1,
-      "severity": 5,
+      "severity": 8,
       "title": "All-up weight stays under 250 g",
-      "token": "stale",
-      "value_text": "42.87 g against a limit of 250 g, 83% inside the limit",
-      "word": "stale"
+      "token": "checked",
+      "value_text": "43.29 g against a limit of 250 g, 83% inside the limit",
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3287,11 +3295,11 @@
       "marks": [],
       "order": 15,
       "row": 2,
-      "severity": 5,
+      "severity": 8,
       "title": "Estimated hover flight time is at least 3 minutes per pack",
-      "token": "stale",
-      "value_text": "3.74 min against a limit of 3 min, 25% inside the limit",
-      "word": "stale"
+      "token": "checked",
+      "value_text": "3.7 min against a limit of 3 min, 23% inside the limit",
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3382,11 +3390,11 @@
       "marks": [],
       "order": 20,
       "row": 0,
-      "severity": 5,
+      "severity": 8,
       "title": "The guards are solid bands at most 4.5 mm tall, as printed",
-      "token": "stale",
+      "token": "checked",
       "value_text": "4.25 mm against a limit of 4.5 mm, 6% inside the limit",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3401,11 +3409,11 @@
       "marks": [],
       "order": 21,
       "row": 1,
-      "severity": 5,
+      "severity": 8,
       "title": "The frame covers at most 15 % of any prop's disc, seen from above",
-      "token": "stale",
-      "value_text": "0.1479 ratio against a limit of 0.15 ratio, 1% inside the limit",
-      "word": "stale"
+      "token": "checked",
+      "value_text": "0.1481 ratio against a limit of 0.15 ratio, 1% inside the limit",
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3458,11 +3466,11 @@
       "marks": [],
       "order": 24,
       "row": 2,
-      "severity": 5,
+      "severity": 8,
       "title": "The frame is drawn from a topology field computed for this design's problem",
-      "token": "stale",
+      "token": "checked",
       "value_text": "1 bool against a limit of 1 bool, at the limit",
-      "word": "stale"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3485,7 +3493,7 @@
     }
   ],
   "schema": 2,
-  "self": "3258701b9ee9102d9de74df753e6c55ca92560438162d5d17494d9fa29f0ea36",
+  "self": "7762e739ef4ae50ba6a7dbec7eb552fd7eddbe3a37768161a646be8d72eb0b69",
   "trace": {
     "amber": "none",
     "key": null,
@@ -3627,8 +3635,8 @@
       "role": "derived",
       "source": "unrecorded",
       "station": "station:@auw_g",
-      "units": "",
-      "value_text": "43.29",
+      "units": "g",
+      "value_text": "43.29 g",
       "zone": null
     },
     "battery_mah": {
@@ -5347,8 +5355,8 @@
       "role": "derived",
       "source": "unrecorded",
       "station": null,
-      "units": "",
-      "value_text": "3.7",
+      "units": "min",
+      "value_text": "3.7 min",
       "zone": null
     },
     "frame_mass_g": {
@@ -5847,8 +5855,8 @@
       "role": "derived",
       "source": "unrecorded",
       "station": null,
-      "units": "",
-      "value_text": "0.1481",
+      "units": "ratio",
+      "value_text": "0.1481 ratio",
       "zone": null
     },
     "prop_r": {
@@ -5997,8 +6005,8 @@
       "role": "derived",
       "source": "unrecorded",
       "station": null,
-      "units": "",
-      "value_text": "5.663",
+      "units": "ratio",
+      "value_text": "5.663 ratio",
       "zone": null
     },
     "thrust_total_g": {

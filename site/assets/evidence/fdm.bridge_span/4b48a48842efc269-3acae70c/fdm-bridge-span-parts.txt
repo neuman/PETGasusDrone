@@ -3,4 +3,4 @@
 # score is span / the limit that applies to that region, so a bridge and a cantilever are comparable
 # 1 past the limit, 0 not measured
 part	status	score	worst_span_mm	its_limit_mm	regions	anchoring	mesh
-frame	measured	inf	0.71	0.00	919	UNANCHORED	/home/neuman/Documents/work/PETGasusDrone/build/print/frame.ply
+frame	measured	inf	0.71	0.00	1007	UNANCHORED	/home/neuman/Documents/work/PETGasusDrone/build/print/frame.ply

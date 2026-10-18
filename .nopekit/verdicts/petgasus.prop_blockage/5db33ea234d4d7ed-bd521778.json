@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "gate": "petgasus.prop_blockage",
+  "rho": "5db33ea234d4d7ed01f641da96a39052176f7faa4d9a16c3058545080089f4d5",
+  "code": {
+    "digest": "a68bd3b1a3559a35e4d71f2c18e226df0070503f880bee193ffac21b7c193cfb",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_body_d"
+        ],
+        "708af044090e5dbe86cae60a00529396a4ad653c462a69c2dd736ce8cc9a9cd4",
+        14.0
+      ],
+      [
+        [
+          "prop_blockage_frac"
+        ],
+        "53f6ea42348003a0db5052cf0ee72e25508c8575380ec005e6bf1b61e69eaadf",
+        0.1481
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C14": "c6eaaa2da844a4d9172c77ea72c1f2247fa445e6badfc5b058b07df366b57437",
+      "acceptance:C14": "41ca4802b0a7917335d2c3fc0bc9d49e52ca3c855d717099d0491e73489592a8"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.1481,
+    "limit": 0.15,
+    "units": "ratio",
+    "comparator": "<=",
+    "settles": "prop disc blockage",
+    "detail": "14.8% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "downwash"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "d0aea12608a5a63699b18d9a0ecb40a4ad1234282654c25707b192f6297cdec9"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "gate": "petgasus.motor_screws",
+  "rho": "1372e9a044620a5d3dc1381750213d94f277f1aa8328bd6eca0c8ede42c2f9a9",
+  "code": {
+    "digest": "7c9e538e070a926367abae17717027503d34d770704eb080d921273800143cbe",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_screw_engagement_mm"
+        ],
+        "e0036ec891dc393d61176adbce8c552c241fe17ef71e0b3eb7b7f59194a43387",
+        1.2
+      ],
+      [
+        [
+          "motor_screw_len"
+        ],
+        "55da3374d16bff02ddd713a81a8663b51507102a3f0dec673f2946d98d64be93",
+        3.0
+      ],
+      [
+        [
+          "plate_t"
+        ],
+        "c40f2e2abfe59857bdea0eb863945b238ffd4a9a541f8757f0fa3387b7d344ab",
+        1.8
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C9": "a981a328dc1e81e4bd8a59a166787fb98c104e1cccc31a071d6e5e37bc42143a",
+      "acceptance:C9": "1d562d032faadbcb534b06186320c180b7a744242417a3cc0ca6c9e155d295b3"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 1.2,
+    "limit": 1.0,
+    "units": "mm",
+    "comparator": ">=",
+    "settles": "motor screw engagement",
+    "detail": "3.0 mm screw through a 1.8 mm seat",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "motor-screws"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "c1fd4fc00755599bfb1c782106bcddc238bdec9643b659cae0006bf72dcb1941"
+}

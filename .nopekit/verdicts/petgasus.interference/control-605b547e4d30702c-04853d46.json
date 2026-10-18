@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.interference",
+  "rho": "605b547e4d30702c83bd933515b2370e4cf1a66f908e33a0a8a3c83a2c1e1d99",
+  "static": "6ed6fe7a63086c5e4fd61f13cf0f0e4a06fdd5b5cf41feb3cfb079336a6d9b36",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "582667ea01ba229b45fb017ec2ce92e9e15b17f83e668724de91bdd8831f457a",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "bc6ea9ee63d236cc9b8e73aa75bd4db4494c114a496d639d8aa64ee44fe24b1c",
+      "files": {
+        "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+        "selftest/known_good.py": "362a2e9e6395ed592777035730dfbd74e781c516c26805e9e21ce75c8c41e48b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:oversize_props",
+      "expect": "fail",
+      "note": "the prop tip gap cut by 2.5 mm to -0.5: the guards drawn 2.5 mm further in, into the props' tips",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "825d74dff308cfe903c8233ce7c314e5b9ccecf8a2775480a27ee5238b097981",
+    "files": {
+      "model/petgasus.py": "5b98190884a885f791bc0f3be8bfd0a5cb3a9ea8b4b403238e9e866ed0dd2bff",
+      "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+      "selftest/known_good.py": "362a2e9e6395ed592777035730dfbd74e781c516c26805e9e21ce75c8c41e48b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "assembly_parts"
+        ],
+        "c9e6e621b2af4d0729a551ae0475cc9a803bf18e345edf707760ae76d757bf09"
+      ],
+      [
+        [
+          "interference_mm3"
+        ],
+        "92225a8bd5feb4638f5ff0b1958105d7e0d247cd6bc48ef78ec4568022279134"
+      ],
+      [
+        [
+          "interference_total_mm3"
+        ],
+        "8773a4509a6dd86d2fd1ba600ca263c8377ec6771216faf4f81a67aba2a57257",
+        35.561
+      ]
+    ],
+    "files": {
+      "build/fea/175a0bd74031/frame-fine.msh": "f0c3c8fcd033e53e3ed5b3a2b0e8de5b48b1cbcad9b65fd7c609557e3038fab2",
+      "build/fea/175a0bd74031/frame.msh": "a3b9dc779f6728bfc7e34bcb13dbc5e87691024ba0d3f017ec6aaaf54f5199d7",
+      "build/fea/f3cfaff6a768/frame-fine.msh": "214aa602286720fba67e5d891d309a84907bdc825fd3a032560918a294564c93",
+      "build/fea/f3cfaff6a768/frame.msh": "eac0040408c9dbb88c934ea5a927d00baeb6487f341cd4a3368e45ae5f94b04d",
+      "build/frame_cache/4b4feec361036d03.npz": "d4652270dd60c9ea336fd611406638a8abc3699577618e48548506495d1a3059",
+      "build/frame_cache/5e6491b4a3ec294f.npz": "bc88b4f65dea10761e2d35d84c6e51031e6341a43b9c23545df5f6dc064748cb",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C5": "195f1a62b60d1986731b48261962927d3ce8bf44b5fc5fa5c2b9ab18c58eff3e",
+      "acceptance:C5": "0e02f7cbb3e8fbd152f3375f3877c24e12bec9b184cbf14a557007d57699d956"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "assembly_parts"
+          ],
+          "c9e6e621b2af4d0729a551ae0475cc9a803bf18e345edf707760ae76d757bf09"
+        ],
+        [
+          [
+            "interference_mm3"
+          ],
+          "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+        ],
+        [
+          [
+            "interference_total_mm3"
+          ],
+          "cb33559e51d9336cdbf86ce55c499c1b74750d592d1cb8b6ac3317b6b814a8e4",
+          0
+        ]
+      ],
+      "files": {
+        "build/fea/175a0bd74031/frame-fine.msh": "f0c3c8fcd033e53e3ed5b3a2b0e8de5b48b1cbcad9b65fd7c609557e3038fab2",
+        "build/fea/175a0bd74031/frame.msh": "a3b9dc779f6728bfc7e34bcb13dbc5e87691024ba0d3f017ec6aaaf54f5199d7",
+        "build/frame_cache/5e6491b4a3ec294f.npz": "bc88b4f65dea10761e2d35d84c6e51031e6341a43b9c23545df5f6dc064748cb",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C5": "195f1a62b60d1986731b48261962927d3ce8bf44b5fc5fa5c2b9ab18c58eff3e",
+        "acceptance:C5": "0e02f7cbb3e8fbd152f3375f3877c24e12bec9b184cbf14a557007d57699d956"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "mm3",
+    "detail": "31 placed parts, every pair intersected: no undeclared overlap",
+    "goalpost": [
+      {
+        "key": "C5",
+        "measured": 0.0,
+        "units": "mm3",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": -0.9,
+            "outcome": "fail",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": -0.5,
+            "outcome": "fail",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": 1.0,
+            "outcome": "pass",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": 9.0,
+            "outcome": "pass",
+            "measured": 0.0,
+            "units": "mm3"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 0,
+    "boundary": "at-limit",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": []
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:oversize_props (the prop tip gap cut by 2.5 mm to -0.5: the guards drawn 2.5 mm further in, into the props' tips): 31 placed parts, every pair intersected: overlaps (mm3) frame|prop_back_left 8.890, frame|prop_back_right 8.890, frame|prop_front_left 8.890, frame|prop_front_right 8.890",
+  "measured": 35.561,
+  "limit": 0.0,
+  "units": "mm3",
+  "digest": "d2745a670a4af8f35bc5c20bfe3ec961dffd4af1cd36d1804bf7e7fb8086fbf6"
+}

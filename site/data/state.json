@@ -1,5 +1,7 @@
 {
-  "amber": {},
+  "amber": {
+    "C8": "untraced"
+  },
   "claims": [
     {
       "acceptance": {
@@ -60,7 +62,7 @@
       "owner": "",
       "physical_result": null,
       "rationale": "A kid at the printer: one plate, an afternoon. REVISED 2026-10-17: supports are allowed (R7); the 3D frame is not drawn to the 45 degree rule, so the no-support overhang check no longer judges it. It prints flat, as it flies (print_tilt_deg 0), with tree supports. The frame must fit the 270 mm bed with its brim, every wall must be printable at the U1's 0.4 mm nozzle, and the whole job must fit the 3 h ceiling.",
-      "reason": "fdm.bridge_span : worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm (invalidated: build/print/frame.ply changed)",
+      "reason": "fdm.bridge_span : worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
       "requirements": [
         "R5",
         "R7"
@@ -146,7 +148,7 @@
       "owner": "",
       "physical_result": null,
       "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
-      "reason": "cad.wall_thickness : thinnest wall 0.992 mm on frame at (-29.801, 28.411, 5.626) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof) (invalidated: build/print/frame.ply changed)",
+      "reason": "cad.wall_thickness : thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
       "requirements": [
         "R5"
       ],
@@ -164,7 +166,7 @@
       "unproven": [
         {
           "gate": "cad.wall_thickness",
-          "why": "fail: thinnest wall 0.992 mm on frame at (-29.801, 28.411, 5.626) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)"
+          "why": "fail: thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)"
         }
       ],
       "verdicts": [
@@ -660,766 +662,6 @@
     },
     {
       "acceptance": {
-        "comparator": ">=",
-        "limit": 3.0,
-        "limit_hi": null,
-        "quantity": "thrust to weight",
-        "units": "ratio"
-      },
-      "acceptance_render": "thrust to weight >= 3.0 ratio",
-      "article": "",
-      "authority": "",
-      "board": "flies",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.thrust_to_weight"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.thrust_to_weight"
-      ],
-      "grounded_by": [],
-      "id": "C1",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "3 ratio",
-      "mechanism": {
-        "by": "datasheet",
-        "evaluators": [
-          "petgasus.thrust_to_weight"
-        ],
-        "how": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight"
-      },
-      "not_compared": [],
-      "note": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "A first-time pilot in angle mode hovers at 1/TW of full thrust; at 3:1 that is a third of the stick, leaving room to arrest a fall and push through a gust. At ~2:1 the quad wallows and a beginner's late correction cannot catch it. Commercial 1S whoops run 3.5-5:1.",
-      "reason": "invalidated: petgasus.thrust_to_weight : auw_g 42.87 -> 43.29, hover_throttle_frac 0.175 -> 0.177, thrust_to_weight 5.718 -> 5.663 (+1 more)",
-      "requirements": [
-        "R3"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "thrust-margin"
-      ],
-      "terminal": "datasheet",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.thrust_to_weight"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 250.0,
-        "limit_hi": null,
-        "quantity": "all-up weight",
-        "units": "g"
-      },
-      "acceptance_render": "all-up weight <= 250.0 g",
-      "article": "",
-      "authority": "",
-      "board": "flies",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.auw"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.auw"
-      ],
-      "grounded_by": [],
-      "id": "C2",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "250 g",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.auw"
-        ],
-        "how": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass"
-      },
-      "not_compared": [],
-      "note": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "US FAA recreational threshold: under 250 g no registration is needed (the TRUST certificate still is). Also the ceiling for being a safe indoor toy.",
-      "reason": "invalidated: petgasus.auw : auw_g 42.87 -> 43.29, frame_mass_g 15.79 -> 16.21, gate code changed",
-      "requirements": [
-        "R1"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "All-up weight stays under 250 g",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "auw"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.auw"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": ">=",
-        "limit": 3.0,
-        "limit_hi": null,
-        "quantity": "hover flight time",
-        "units": "min"
-      },
-      "acceptance_render": "hover flight time >= 3.0 min",
-      "article": "",
-      "authority": "",
-      "board": "flies",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.flight_time"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.flight_time"
-      ],
-      "grounded_by": [],
-      "id": "C3",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "3 min",
-      "mechanism": {
-        "by": "datasheet",
-        "evaluators": [
-          "petgasus.flight_time"
-        ],
-        "how": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy"
-      },
-      "not_compared": [],
-      "note": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "Under ~3 minutes a 10-year-old spends more time swapping packs than flying; a 4-pack session should be 12+ minutes of air time.",
-      "reason": "invalidated: petgasus.flight_time : flight_time_min 3.74 -> 3.7, hover_eff_g_per_w 2.972 -> 2.967, hover_power_w 15.6 -> 15.77 (+1 more)",
-      "requirements": [
-        "R1"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "Estimated hover flight time is at least 3 minutes per pack",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "endurance"
-      ],
-      "terminal": "datasheet",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.flight_time"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 0.0,
-        "limit_hi": null,
-        "quantity": "interference volume",
-        "units": "mm3"
-      },
-      "acceptance_render": "interference volume <= 0.0 mm3",
-      "article": "",
-      "authority": "",
-      "board": "fits",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.interference"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.interference"
-      ],
-      "grounded_by": [],
-      "id": "C5",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "0 mm3",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.interference"
-        ],
-        "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap"
-      },
-      "not_compared": [],
-      "note": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their straight run from the motor's base to the plug under the board. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
-      "reason": "invalidated: petgasus.interference : gate code changed",
-      "requirements": [
-        "R1"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "envelope-clearance"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.interference"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 0.0,
-        "limit_hi": null,
-        "quantity": "FC screw protrusion below plate",
-        "units": "mm"
-      },
-      "acceptance_render": "FC screw protrusion below plate <= 0.0 mm",
-      "article": "",
-      "authority": "",
-      "board": "fits",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.fc_screws"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.fc_screws"
-      ],
-      "grounded_by": [],
-      "id": "C8",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "0 mm",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.fc_screws"
-        ],
-        "how": "screw length less the grommet stack, against the post's height"
-      },
-      "not_compared": [],
-      "note": "screw length less the grommet stack, against the post's height",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "A screw tip that pokes out under the posts scratches the battery strapped under the hub. Engagement is reported alongside.",
-      "reason": "invalidated: petgasus.fc_screws : gate code changed",
-      "requirements": [
-        "R2"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "fc-screws"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.fc_screws"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": ">=",
-        "limit": 1.0,
-        "limit_hi": null,
-        "quantity": "motor screw engagement",
-        "units": "mm"
-      },
-      "acceptance_render": "motor screw engagement >= 1.0 mm",
-      "article": "",
-      "authority": "",
-      "board": "fits",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.motor_screws"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.motor_screws"
-      ],
-      "grounded_by": [],
-      "id": "C9",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "1 mm",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.motor_screws"
-        ],
-        "how": "screw length less the seat's thickness"
-      },
-      "not_compared": [],
-      "note": "screw length less the seat's thickness",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "Under ~1 mm (less than two threads of M1.4) the screw strips out of the motor base in the first hard crash.",
-      "reason": "invalidated: petgasus.motor_screws : gate code changed",
-      "requirements": [
-        "R2"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "motor-screws"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.motor_screws"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 1,
-        "limit_hi": null,
-        "quantity": "frame pieces",
-        "units": "count"
-      },
-      "acceptance_render": "frame pieces <= 1 count",
-      "article": "",
-      "authority": "",
-      "board": "fits",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.one_piece"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.one_piece"
-      ],
-      "grounded_by": [],
-      "id": "C11",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "1 count",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.one_piece"
-        ],
-        "how": "the printed frame mesh decomposed into connected solids"
-      },
-      "not_compared": [],
-      "note": "the printed frame mesh decomposed into connected solids",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "A motor seat or a member that is not joined to the rest is debris on the bed and a motor held by nothing. Counted on the generated mesh. Added after an optimised layout whose cleaned outline cut the seats loose (first mode 7 Hz).",
-      "reason": "invalidated: petgasus.one_piece : gate code changed",
-      "requirements": [
-        "R5",
-        "R10"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The printed frame is one connected piece",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "one-piece"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.one_piece"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": ">=",
-        "limit": 3.0,
-        "limit_hi": null,
-        "quantity": "motor lead spare",
-        "units": "mm"
-      },
-      "acceptance_render": "motor lead spare >= 3.0 mm",
-      "article": "",
-      "authority": "",
-      "board": "fits",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.motor_leads"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.motor_leads"
-      ],
-      "grounded_by": [],
-      "id": "C12",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "3 mm",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.motor_leads"
-        ],
-        "how": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm"
-      },
-      "not_compared": [],
-      "note": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "The lead runs straight from the motor's base to its plug in the ESC socket under the board's side arm on that motor's side (model/assembly.py motor_lead_route); the topology problem keeps that run clear of the frame. A lead pulled taut pulls its plug out in the first crash; 3 mm is a small slack loop. Lead length is the listing's 37 mm (no soldering: the lead cannot be extended).",
-      "reason": "invalidated: petgasus.motor_leads : gate code changed",
-      "requirements": [
-        "R2"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "motor-leads"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.motor_leads"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 4.5,
-        "limit_hi": null,
-        "quantity": "guard height",
-        "units": "mm"
-      },
-      "acceptance_render": "guard height <= 4.5 mm",
-      "article": "",
-      "authority": "",
-      "board": "guards",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.guard_height"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.guard_height"
-      ],
-      "grounded_by": [],
-      "id": "C13",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "4.5 mm",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.guard_height"
-        ],
-        "how": "the printed frame's band height at points round each guard's arc (median)"
-      },
-      "not_compared": [],
-      "note": "the printed frame's band height at points round each guard's arc (median)",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "The r/diydrones review: v0.1's ducts were too tall ('no more than 4mm high') and their windows made propwash and added weight. Each guard is drawn as a 4 mm solid arc round the prop's outer half (guard_h, guard_arc_deg), spanning the prop's +-1.5 mm band; measured on the printed shape, the optimiser's rim under each band and the smoothing make it 4.15-4.9 mm (median 4.2). That extra sits below the band and outside the prop's disc, so it adds no duct; the author set the limit to 4.5 mm (2026-10-17), still well short of v0.1's 10.9 mm ducts. Nothing the optimiser draws may stand above the guards' top.",
-      "reason": "invalidated: petgasus.guard_height : gate code changed",
-      "requirements": [
-        "R8"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "guard-height"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.guard_height"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": 0.15,
-        "limit_hi": null,
-        "quantity": "prop disc blockage",
-        "units": "ratio"
-      },
-      "acceptance_render": "prop disc blockage <= 0.15 ratio",
-      "article": "",
-      "authority": "",
-      "board": "guards",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.prop_blockage"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.prop_blockage"
-      ],
-      "grounded_by": [],
-      "id": "C14",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "0.15 ratio",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.prop_blockage"
-        ],
-        "how": "the frame cut by each prop's annulus and projected onto the plane"
-      },
-      "not_compared": [],
-      "note": "the frame cut by each prop's annulus and projected onto the plane",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "Material under a prop blocks its downwash and costs thrust; the review's propwash point. Each seat sits in the middle of its disc, so whatever holds it stiffly crosses the disc: the stiffest organic frame covered 22 %, and one held to 8.5 % was 2.9x less stiff. The author chose the middle (2026-10-17): 15 %, which costs about 7.5 % of static thrust (blockage costs roughly half its area fraction), A1's figure.",
-      "reason": "invalidated: petgasus.prop_blockage : prop_blockage_frac 0.1479 -> 0.1481, gate code changed",
-      "requirements": [
-        "R8"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "downwash"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.prop_blockage"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
-        "comparator": ">=",
-        "limit": 1,
-        "limit_hi": null,
-        "quantity": "topology proposal current",
-        "units": "bool"
-      },
-      "acceptance_render": "topology proposal current >= 1 bool",
-      "article": "",
-      "authority": "",
-      "board": "prints",
-      "cause": "invalidated",
-      "compared": [
-        "petgasus.topology_current"
-      ],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "petgasus.topology_current"
-      ],
-      "grounded_by": [],
-      "id": "C17",
-      "key": "stale",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "1 bool",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "petgasus.topology_current"
-        ],
-        "how": "the proposal's recorded problem hash against this design's"
-      },
-      "not_compared": [],
-      "note": "the proposal's recorded problem hash against this design's",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "Method rule 6. The field is a proposal computed once for a set of seats, guard arcs, keep-outs and loads; a design that moved since puts limbs where it no longer wants them, and no other check would see it.",
-      "reason": "invalidated: petgasus.topology_current : gate code changed",
-      "requirements": [
-        "R6"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The frame is drawn from a topology field computed for this design's problem",
-      "status": "stale",
-      "superseded": [],
-      "tags": [
-        "topology-current"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [],
-      "verdicts": [
-        "petgasus.topology_current"
-      ],
-      "word": "stale"
-    },
-    {
-      "acceptance": {
         "comparator": "<=",
         "limit": null,
         "limit_hi": null,
@@ -1759,6 +1001,766 @@
       "unproven": [],
       "verdicts": [],
       "word": "pending build"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "thrust to weight",
+        "units": "ratio"
+      },
+      "acceptance_render": "thrust to weight >= 3.0 ratio",
+      "article": "",
+      "authority": "",
+      "board": "flies",
+      "cause": "checked",
+      "compared": [
+        "petgasus.thrust_to_weight"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.thrust_to_weight"
+      ],
+      "grounded_by": [],
+      "id": "C1",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 ratio",
+      "mechanism": {
+        "by": "datasheet",
+        "evaluators": [
+          "petgasus.thrust_to_weight"
+        ],
+        "how": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight"
+      },
+      "not_compared": [],
+      "note": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A first-time pilot in angle mode hovers at 1/TW of full thrust; at 3:1 that is a third of the stick, leaving room to arrest a fall and push through a gust. At ~2:1 the quad wallows and a beginner's late correction cannot catch it. Commercial 1S whoops run 3.5-5:1.",
+      "reason": "—",
+      "requirements": [
+        "R3"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "thrust-margin"
+      ],
+      "terminal": "datasheet",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.thrust_to_weight"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 250.0,
+        "limit_hi": null,
+        "quantity": "all-up weight",
+        "units": "g"
+      },
+      "acceptance_render": "all-up weight <= 250.0 g",
+      "article": "",
+      "authority": "",
+      "board": "flies",
+      "cause": "checked",
+      "compared": [
+        "petgasus.auw"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.auw"
+      ],
+      "grounded_by": [],
+      "id": "C2",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "250 g",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.auw"
+        ],
+        "how": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass"
+      },
+      "not_compared": [],
+      "note": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "US FAA recreational threshold: under 250 g no registration is needed (the TRUST certificate still is). Also the ceiling for being a safe indoor toy.",
+      "reason": "—",
+      "requirements": [
+        "R1"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "All-up weight stays under 250 g",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "auw"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.auw"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "hover flight time",
+        "units": "min"
+      },
+      "acceptance_render": "hover flight time >= 3.0 min",
+      "article": "",
+      "authority": "",
+      "board": "flies",
+      "cause": "checked",
+      "compared": [
+        "petgasus.flight_time"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.flight_time"
+      ],
+      "grounded_by": [],
+      "id": "C3",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 min",
+      "mechanism": {
+        "by": "datasheet",
+        "evaluators": [
+          "petgasus.flight_time"
+        ],
+        "how": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy"
+      },
+      "not_compared": [],
+      "note": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Under ~3 minutes a 10-year-old spends more time swapping packs than flying; a 4-pack session should be 12+ minutes of air time.",
+      "reason": "—",
+      "requirements": [
+        "R1"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "Estimated hover flight time is at least 3 minutes per pack",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "endurance"
+      ],
+      "terminal": "datasheet",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.flight_time"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 0.0,
+        "limit_hi": null,
+        "quantity": "interference volume",
+        "units": "mm3"
+      },
+      "acceptance_render": "interference volume <= 0.0 mm3",
+      "article": "",
+      "authority": "",
+      "board": "fits",
+      "cause": "checked",
+      "compared": [
+        "petgasus.interference"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.interference"
+      ],
+      "grounded_by": [],
+      "id": "C5",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "0 mm3",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.interference"
+        ],
+        "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap"
+      },
+      "not_compared": [],
+      "note": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their straight run from the motor's base to the plug under the board. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
+      "reason": "—",
+      "requirements": [
+        "R1"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "envelope-clearance"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.interference"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 0.0,
+        "limit_hi": null,
+        "quantity": "FC screw protrusion below plate",
+        "units": "mm"
+      },
+      "acceptance_render": "FC screw protrusion below plate <= 0.0 mm",
+      "article": "",
+      "authority": "",
+      "board": "fits",
+      "cause": "checked",
+      "compared": [
+        "petgasus.fc_screws"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.fc_screws"
+      ],
+      "grounded_by": [],
+      "id": "C8",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "0 mm",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.fc_screws"
+        ],
+        "how": "screw length less the grommet stack, against the post's height"
+      },
+      "not_compared": [],
+      "note": "screw length less the grommet stack, against the post's height",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A screw tip that pokes out under the posts scratches the battery strapped under the hub. Engagement is reported alongside.",
+      "reason": "—",
+      "requirements": [
+        "R2"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "fc-screws"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.fc_screws"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 1.0,
+        "limit_hi": null,
+        "quantity": "motor screw engagement",
+        "units": "mm"
+      },
+      "acceptance_render": "motor screw engagement >= 1.0 mm",
+      "article": "",
+      "authority": "",
+      "board": "fits",
+      "cause": "checked",
+      "compared": [
+        "petgasus.motor_screws"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.motor_screws"
+      ],
+      "grounded_by": [],
+      "id": "C9",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "1 mm",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.motor_screws"
+        ],
+        "how": "screw length less the seat's thickness"
+      },
+      "not_compared": [],
+      "note": "screw length less the seat's thickness",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Under ~1 mm (less than two threads of M1.4) the screw strips out of the motor base in the first hard crash.",
+      "reason": "—",
+      "requirements": [
+        "R2"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "motor-screws"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.motor_screws"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 1,
+        "limit_hi": null,
+        "quantity": "frame pieces",
+        "units": "count"
+      },
+      "acceptance_render": "frame pieces <= 1 count",
+      "article": "",
+      "authority": "",
+      "board": "fits",
+      "cause": "checked",
+      "compared": [
+        "petgasus.one_piece"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.one_piece"
+      ],
+      "grounded_by": [],
+      "id": "C11",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "1 count",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.one_piece"
+        ],
+        "how": "the printed frame mesh decomposed into connected solids"
+      },
+      "not_compared": [],
+      "note": "the printed frame mesh decomposed into connected solids",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A motor seat or a member that is not joined to the rest is debris on the bed and a motor held by nothing. Counted on the generated mesh. Added after an optimised layout whose cleaned outline cut the seats loose (first mode 7 Hz).",
+      "reason": "—",
+      "requirements": [
+        "R5",
+        "R10"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The printed frame is one connected piece",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "one-piece"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.one_piece"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 3.0,
+        "limit_hi": null,
+        "quantity": "motor lead spare",
+        "units": "mm"
+      },
+      "acceptance_render": "motor lead spare >= 3.0 mm",
+      "article": "",
+      "authority": "",
+      "board": "fits",
+      "cause": "checked",
+      "compared": [
+        "petgasus.motor_leads"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.motor_leads"
+      ],
+      "grounded_by": [],
+      "id": "C12",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "3 mm",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.motor_leads"
+        ],
+        "how": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm"
+      },
+      "not_compared": [],
+      "note": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "The lead runs straight from the motor's base to its plug in the ESC socket under the board's side arm on that motor's side (model/assembly.py motor_lead_route); the topology problem keeps that run clear of the frame. A lead pulled taut pulls its plug out in the first crash; 3 mm is a small slack loop. Lead length is the listing's 37 mm (no soldering: the lead cannot be extended).",
+      "reason": "—",
+      "requirements": [
+        "R2"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "motor-leads"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.motor_leads"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 4.5,
+        "limit_hi": null,
+        "quantity": "guard height",
+        "units": "mm"
+      },
+      "acceptance_render": "guard height <= 4.5 mm",
+      "article": "",
+      "authority": "",
+      "board": "guards",
+      "cause": "checked",
+      "compared": [
+        "petgasus.guard_height"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.guard_height"
+      ],
+      "grounded_by": [],
+      "id": "C13",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "4.5 mm",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.guard_height"
+        ],
+        "how": "the printed frame's band height at points round each guard's arc (median)"
+      },
+      "not_compared": [],
+      "note": "the printed frame's band height at points round each guard's arc (median)",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "The r/diydrones review: v0.1's ducts were too tall ('no more than 4mm high') and their windows made propwash and added weight. Each guard is drawn as a 4 mm solid arc round the prop's outer half (guard_h, guard_arc_deg), spanning the prop's +-1.5 mm band; measured on the printed shape, the optimiser's rim under each band and the smoothing make it 4.15-4.9 mm (median 4.2). That extra sits below the band and outside the prop's disc, so it adds no duct; the author set the limit to 4.5 mm (2026-10-17), still well short of v0.1's 10.9 mm ducts. Nothing the optimiser draws may stand above the guards' top.",
+      "reason": "—",
+      "requirements": [
+        "R8"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "guard-height"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.guard_height"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
+        "limit": 0.15,
+        "limit_hi": null,
+        "quantity": "prop disc blockage",
+        "units": "ratio"
+      },
+      "acceptance_render": "prop disc blockage <= 0.15 ratio",
+      "article": "",
+      "authority": "",
+      "board": "guards",
+      "cause": "checked",
+      "compared": [
+        "petgasus.prop_blockage"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.prop_blockage"
+      ],
+      "grounded_by": [],
+      "id": "C14",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "0.15 ratio",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.prop_blockage"
+        ],
+        "how": "the frame cut by each prop's annulus and projected onto the plane"
+      },
+      "not_compared": [],
+      "note": "the frame cut by each prop's annulus and projected onto the plane",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Material under a prop blocks its downwash and costs thrust; the review's propwash point. Each seat sits in the middle of its disc, so whatever holds it stiffly crosses the disc: the stiffest organic frame covered 22 %, and one held to 8.5 % was 2.9x less stiff. The author chose the middle (2026-10-17): 15 %, which costs about 7.5 % of static thrust (blockage costs roughly half its area fraction), A1's figure.",
+      "reason": "—",
+      "requirements": [
+        "R8"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "downwash"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.prop_blockage"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": ">=",
+        "limit": 1,
+        "limit_hi": null,
+        "quantity": "topology proposal current",
+        "units": "bool"
+      },
+      "acceptance_render": "topology proposal current >= 1 bool",
+      "article": "",
+      "authority": "",
+      "board": "prints",
+      "cause": "checked",
+      "compared": [
+        "petgasus.topology_current"
+      ],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "petgasus.topology_current"
+      ],
+      "grounded_by": [],
+      "id": "C17",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "1 bool",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "petgasus.topology_current"
+        ],
+        "how": "the proposal's recorded problem hash against this design's"
+      },
+      "not_compared": [],
+      "note": "the proposal's recorded problem hash against this design's",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "Method rule 6. The field is a proposal computed once for a set of seats, guard arcs, keep-outs and loads; a design that moved since puts limbs where it no longer wants them, and no other check would see it.",
+      "reason": "—",
+      "requirements": [
+        "R6"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The frame is drawn from a topology field computed for this design's problem",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "topology-current"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "petgasus.topology_current"
+      ],
+      "word": "checked"
     }
   ],
   "decisions": [
@@ -1897,17 +1899,17 @@
           "input": "print-orientation-petg-v02",
           "type": "dominated",
           "value": "standing on edge (tilt 90-105 deg)",
-          "why": "about half the support (10 %), but a 111 mm tall part balanced on a 20-38 mm rim: five times the layers, a wobbling print for a kid to babysit, and no strength gained"
+          "why": "about half the support (10 %), but a 111 mm tall part balanced on a 20-38 mm rim: five times the layers, a wobbling print for a kid to babysit, and no strength gained (up to 14 % lost at some headings)"
         },
         {
           "evidence": "",
           "input": "print-orientation-petg-v02",
           "type": "dominated",
           "value": "tilted 30-75 deg",
-          "why": "support 12-15 % but up to 14 % of the strength lost across the layers, and an awkward pose"
+          "why": "support 12-15 % but up to 10 % of the strength lost across the layers at 75 deg, and an awkward pose"
         }
       ],
-      "summary": "The frame prints flat on its underside, as it flies (print_tilt_deg 0), with tree supports. The orientation scan (fea.print_orientation, on CalculiX's PETG crash stresses) found no pose loses strength to the layers: the frame's worst crash tension runs along them in every candidate near flat or on edge. Flat needs support under 22 % of its surface (support_area_max_frac allows 35 %) and stands 20 mm tall.",
+      "summary": "The frame prints flat on its underside, as it flies (print_tilt_deg 0), with tree supports. The orientation scan (fea.print_orientation, on CalculiX's PETG crash stresses) found that flat loses no strength to the layers: the frame's worst crash tension runs along them. Tilts of 75-105 deg lose up to 14 % at some headings; every other tilt loses none. Flat needs support under 22 % of its surface (support_area_max_frac allows 35 %) and stands 20 mm tall.",
       "title": "Print flat, as it flies",
       "when": "2026-10-17T21:23:33Z"
     },
@@ -3449,12 +3451,12 @@
       "cad-solid",
       "sourcing"
     ],
-    "records_digest": "2cf41b6df6917620409ea5160dee3b5c19c23990aee28d409a9ad8ffdff74c49",
-    "resolution_digest": "93597dad83bb5547ecfca3f32164208fb558cbf9c80c9c3858143afbab51ce56",
+    "records_digest": "a5f0d1fb63cc31a67d13cd73822b5d6f65aefc7bca3198efb9a0c039e81ef2af",
+    "resolution_digest": "dabb1c24e08e25d194c3f977be28e3634d156236241893b72575bb01f6cdce9d",
     "revision": "v0.2",
     "spine_version": "0.1.0",
     "stale": true,
-    "stale_reason": "fdm.overhang: build/print/frame.ply changed; fdm.bridge_span: build/print/frame.ply changed; fdm.bed_fit: prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6 (+20 more)",
+    "stale_reason": "petgasus.frame_mode: frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 475.3 (+2 more)",
     "summary": "Kid-friendly no-solder micro drone with a 3D-printed, topology-optimised frame (PETG, or nylon-CF for strength) and low prop guards, line-of-sight, < $150 electronics"
   },
   "outcome_words": {
@@ -5912,7 +5914,7 @@
       "home": "model/petgasus.py Config.print_tilt_deg",
       "model_error": "",
       "name": "print_tilt_deg",
-      "rationale": "deg the frame is tilted on the bed from flying-level, about the horizontal axis at print_azimuth_deg. The layers lie square to the build direction, so this sets which way the printed part is weak (fea.layer_normal). Flat, as it flies: the orientation scan on CalculiX's crash stresses found no pose loses strength to the layers, and flat stands 20 mm tall with support under 22 % of its surface. On edge (90-105 deg) lost: 10 % support, but 111 mm tall on its rim, five times the layers.",
+      "rationale": "deg the frame is tilted on the bed from flying-level, about the horizontal axis at print_azimuth_deg. The layers lie square to the build direction, so this sets which way the printed part is weak (fea.layer_normal). Flat, as it flies: the orientation scan on CalculiX's crash stresses found that flat loses no strength to the layers (tilts of 75-105 deg lose up to 14 % at some headings), and flat stands 20 mm tall with support under 22 % of its surface. On edge (90-105 deg) lost: 10 % support, but 111 mm tall on its rim, five times the layers.",
       "read_by": [],
       "record": "",
       "rejected": [],
@@ -6406,42 +6408,31 @@
       "A1",
       "A3",
       "A4",
-      "C1",
-      "C2",
-      "C3",
       "C4",
-      "C5",
       "C6",
       "C7",
-      "C8",
-      "C9",
       "C10",
-      "C11",
-      "C12",
-      "C13",
-      "C14",
       "C15",
-      "C16",
-      "C17"
+      "C16"
     ],
     "by_key": {
       "assumed": 0,
-      "checked": 0,
+      "checked": 11,
       "failing": 3,
       "gap": 6,
       "open": 0,
       "pending_build": 6,
       "skipped": 0,
-      "stale": 11
+      "stale": 0
     },
     "counts": {
       "asserted": 0,
       "blocked": 0,
       "fail": 3,
-      "pass": 0,
+      "pass": 11,
       "pending": 0,
       "refuted": 0,
-      "stale": 11,
+      "stale": 0,
       "unclaimed": 6,
       "unverified": 6,
       "verified": 0
@@ -6484,9 +6475,6 @@
           "A1"
         ],
         "unresolved": [
-          "C1",
-          "C2",
-          "C3",
           "C10",
           "A1"
         ]
@@ -6510,15 +6498,8 @@
           "A4"
         ],
         "unresolved": [
-          "C5",
           "C6",
           "C7",
-          "C8",
-          "C9",
-          "C11",
-          "C13",
-          "C14",
-          "C17",
           "A3",
           "A4"
         ]
@@ -6544,15 +6525,8 @@
           "C16"
         ],
         "unresolved": [
-          "C5",
           "C6",
           "C7",
-          "C8",
-          "C9",
-          "C11",
-          "C13",
-          "C14",
-          "C17",
           "A3",
           "A4",
           "C15",
@@ -6566,6 +6540,13 @@
     "n_gates": 36,
     "ready": false,
     "tally": [
+      {
+        "errored": 0,
+        "key": "checked",
+        "label": "11 checked",
+        "n": 11,
+        "status": "pass"
+      },
       {
         "errored": 0,
         "key": "failing",
@@ -6582,13 +6563,6 @@
       },
       {
         "errored": 0,
-        "key": "stale",
-        "label": "11 stale",
-        "n": 11,
-        "status": "stale"
-      },
-      {
-        "errored": 0,
         "key": "pending_build",
         "label": "6 pending build",
         "n": 6,
@@ -6599,23 +6573,12 @@
       "A1",
       "A3",
       "A4",
-      "C1",
-      "C2",
-      "C3",
       "C4",
-      "C5",
       "C6",
       "C7",
-      "C8",
-      "C9",
       "C10",
-      "C11",
-      "C12",
-      "C13",
-      "C14",
       "C15",
       "C16",
-      "C17",
       "P1",
       "P2",
       "P3",
@@ -6623,7 +6586,7 @@
       "P5",
       "P6"
     ],
-    "verdict": "v0.2 is NOT ready: 26 of 26 required claims are unresolved — 3 failing (C6, C7, C10); 6 gaps (A1, A3, A4, C4, +2 more); 11 stale (C1, C2, C3, C5, +7 more); 6 pending build (P1, P2, P3, P4, +2 more). 0 of 26 claims are checked against the current inputs. Pending build: 6 claims need an article (P1, P2, P3, P4, +2 more). No claim is checked on any article."
+    "verdict": "v0.2 is NOT ready: 15 of 26 required claims are unresolved — 3 failing (C6, C7, C10); 6 gaps (A1, A3, A4, C4, +2 more); 6 pending build (P1, P2, P3, P4, +2 more). 11 of 26 claims are checked against the current inputs. Pending build: 6 claims need an article (P1, P2, P3, P4, +2 more). No claim is checked on any article."
   },
   "rebuild": [],
   "rejections": [
@@ -7522,11 +7485,11 @@
       "disagree": [],
       "errored": false,
       "id": "R1",
-      "key": "stale",
+      "key": "checked",
       "source": "interview",
       "statement": "A small drone an adult and a 10-year-old can build together, from a request by a 10-year-old",
-      "status": "stale",
-      "word": "stale",
+      "status": "pass",
+      "word": "checked",
       "worst": [
         "C2",
         "C3",
@@ -7542,11 +7505,11 @@
       "disagree": [],
       "errored": false,
       "id": "R2",
-      "key": "stale",
+      "key": "checked",
       "source": "interview",
       "statement": "No soldering",
-      "status": "stale",
-      "word": "stale",
+      "status": "pass",
+      "word": "checked",
       "worst": [
         "C8",
         "C9",
@@ -7560,11 +7523,11 @@
       "disagree": [],
       "errored": false,
       "id": "R3",
-      "key": "stale",
+      "key": "checked",
       "source": "interview",
       "statement": "Flown by sight, no camera or goggles, mostly indoors",
-      "status": "stale",
-      "word": "stale",
+      "status": "pass",
+      "word": "checked",
       "worst": [
         "C1"
       ]
@@ -7645,11 +7608,11 @@
       "disagree": [],
       "errored": false,
       "id": "R8",
-      "key": "stale",
+      "key": "checked",
       "source": "interview",
       "statement": "Low guard hoops instead of tall ducts",
-      "status": "stale",
-      "word": "stale",
+      "status": "pass",
+      "word": "checked",
       "worst": [
         "C13",
         "C14"
@@ -7680,11 +7643,11 @@
       "disagree": [],
       "errored": false,
       "id": "R10",
-      "key": "stale",
+      "key": "checked",
       "source": "interview",
       "statement": "Printed only: no carbon rods",
-      "status": "stale",
-      "word": "stale",
+      "status": "pass",
+      "word": "checked",
       "worst": [
         "C11"
       ]
@@ -7729,31 +7692,31 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 14.27% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 45111 faces, 2070.8 mm^2); 0 of 1 past the limit",
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 14.69% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 48967 faces, 2233.1 mm^2); 0 of 1 past the limit",
       "duration_s": 0.0,
       "error": "",
       "evidence": [
         "<out>/fdm-overhang-parts.txt"
       ],
       "evidence_assets": [
-        "assets/evidence/fdm.overhang/52fcfb233bd7b839-ab1e733d/fdm-overhang-parts.txt"
+        "assets/evidence/fdm.overhang/f608a9848c3a5e6f-102d806f/fdm-overhang-parts.txt"
       ],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.overhang",
       "limit": 0.35,
       "locators": [],
-      "margin": 0.5924,
+      "margin": 0.580257,
       "margin_why": "",
-      "measured": 0.14266,
+      "measured": 0.14691,
       "ok": true,
       "order": 21,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "52fcfb233bd7b839ba07ad76b51094f809755040dfdb6872a9a7c55dbe57bdf5",
+      "rho": "f608a9848c3a5e6fd438bb030fd6efff34eb56edc52ccf6fc045582b09b172d4",
       "settles": "overhang angle",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 1,
       "units": "area fraction",
@@ -7781,10 +7744,10 @@
         "<out>/fdm-bridge-span/frame.txt"
       ],
       "evidence_assets": [
-        "assets/evidence/fdm.bridge_span/88091cdb18002a4e-3acae70c/fdm-bridge-span-parts.txt",
-        "assets/evidence/fdm.bridge_span/88091cdb18002a4e-3acae70c/frame.txt"
+        "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/fdm-bridge-span-parts.txt",
+        "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/frame.txt"
       ],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.bridge_span",
       "limit": 0.0,
       "locators": [
@@ -7805,11 +7768,11 @@
       "order": 2,
       "pack": "fdm-print",
       "passed": false,
-      "rho": "88091cdb18002a4ece001a52908eaeb1e0a8f92b48e71f78c25e72e4f3e2ba24",
+      "rho": "4b48a48842efc269b05275ef0300775302c38fc17e37d02f8d792fa5abef5ba1",
       "settles": "bridge span",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "fail",
       "tier": 1,
       "units": "mm",
@@ -7840,7 +7803,7 @@
       "evidence_assets": [
         "assets/evidence/fdm.bed_fit/0752ef02c200adcb-b5c71de2/fdm-bed-fit-parts.txt"
       ],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.bed_fit",
       "limit": 1.0,
       "locators": [],
@@ -7855,7 +7818,7 @@
       "settles": "bed fit",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "utilisation",
@@ -7880,7 +7843,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.min_wall",
       "limit": 1.26,
       "locators": [],
@@ -7895,7 +7858,7 @@
       "settles": "wall thickness",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm",
@@ -7921,7 +7884,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.layer_alignment",
       "limit": 60.0,
       "locators": [],
@@ -7936,7 +7899,7 @@
       "settles": "layer-normal load alignment",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "deg from layer plane",
@@ -7957,27 +7920,27 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "ESTIMATE ~1.5 h of 3 h, ~15 g of 1000 g (12.3 cm^3 at 100% infill, 3x0.42 mm shell on 14516 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.49 of its ceiling. Not a slice.",
+      "detail": "ESTIMATE ~1.5 h of 3 h, ~16 g of 1000 g (12.7 cm^3 at 100% infill, 3x0.42 mm shell on 15200 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.50 of its ceiling. Not a slice.",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.print_time_est",
       "limit": 1.0,
       "locators": [],
-      "margin": 0.513,
+      "margin": 0.501,
       "margin_why": "",
-      "measured": 0.487,
+      "measured": 0.499,
       "ok": true,
       "order": 22,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "424a3b02f75dbbf202953862bfbcd8f440049dcf848b3b1d2d54082f377d5a97",
+      "rho": "ed23239a282b091e218a5ec2e3b05a5308be3ca0d83b70625e04666b62d96c99",
       "settles": "print time",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "fdm.part_volume_mm3 12337.01 -> 12663.6, surface_area_mm2 14515.57 -> 15200.34",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "of limit",
@@ -8004,7 +7967,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "fdm.process_model_valid",
       "limit": 0.0,
       "locators": [],
@@ -8015,11 +7978,11 @@
       "order": 23,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "71a6f785822a25a277f5927fdb1ce0eff8eaa9947cf4f01266e22a7e6cba460b",
+      "rho": "72dff835bff611492df35a72857c6791fba833b51913077771a7f524fc2d0fe5",
       "settles": "process model validity",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "fdm.part_volume_mm3 12337.01 -> 12663.6",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "problems",
@@ -8041,7 +8004,7 @@
       "comparator": "",
       "cpu_s": 0.0,
       "detail": "",
-      "duration_s": 0.002648,
+      "duration_s": 0.001924,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8081,12 +8044,12 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 277454 faces",
+      "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 293442 faces",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "cad.watertight",
       "limit": 0.0,
       "locators": [],
@@ -8097,11 +8060,11 @@
       "order": 17,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "3155500501d6c83e249e68283eff7359e83f3568d3bae429d6743c20892520c5",
+      "rho": "080840af9c5bb3384bf6a6c6dc90c7412a4ab27a140f73e3d9fdacc38800fcda",
       "settles": "mesh watertightness",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 1,
       "units": "edges",
@@ -8121,12 +8084,12 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "0 of 1 part(s) are not volumes, limit 0 (total 12337 mm^3 enclosed)",
+      "detail": "0 of 1 part(s) are not volumes, limit 0 (total 12664 mm^3 enclosed)",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "cad.is_volume",
       "limit": 0.0,
       "locators": [],
@@ -8137,11 +8100,11 @@
       "order": 16,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "e588f5f2d46fbc441b9c07355946dd59fcfc1805766ff2713c41fa5198b60295",
+      "rho": "53d76175725bf3d41727108cfe9232386003fdaa5ec61c9cb9fabe988156fc43",
       "settles": "solid validity",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 1,
       "units": "parts",
@@ -8166,7 +8129,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "cad.degenerate_faces",
       "limit": 0.0,
       "locators": [],
@@ -8177,11 +8140,11 @@
       "order": 15,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "7a1e5bfdc120673e78f3cbdba524974311298a02d00579662d098e8d79845047",
+      "rho": "bcf50f080f25dbbc78e4320aa6f99a807949a64e0e04e1d4a49da960a3488a03",
       "settles": "degenerate faces",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 1,
       "units": "repairs",
@@ -8202,45 +8165,45 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "thinnest wall 0.992 mm on frame at (-29.801, 28.411, 5.626) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
+      "detail": "thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
       "duration_s": 0.0,
       "error": "",
       "evidence": [
         "<out>/cad-solid/wall_thickness.json"
       ],
       "evidence_assets": [
-        "assets/evidence/cad.wall_thickness/498cdb0f96ab32ef-16296333/wall_thickness.json"
+        "assets/evidence/cad.wall_thickness/8bcdcb526cd9b0d2-7e4956fd/wall_thickness.json"
       ],
-      "fresh": false,
+      "fresh": true,
       "gate": "cad.wall_thickness",
       "limit": 1.26,
       "locators": [
         {
           "kind": "point",
-          "label": "0.992 mm wall vs 1.260 mm minimum (4000 rays sampled)",
+          "label": "0.353 mm wall vs 1.260 mm minimum (4000 rays sampled)",
           "position": [
-            -29.801,
-            28.411,
-            5.626
+            -0.544,
+            54.806,
+            18.369
           ],
           "severity": "",
           "target": "frame",
-          "value": 0.9923,
+          "value": 0.3528,
           "view": "assembly"
         }
       ],
-      "margin": -0.21246,
+      "margin": -0.72,
       "margin_why": "",
-      "measured": 0.9923,
+      "measured": 0.3528,
       "ok": false,
       "order": 1,
       "pack": "cad-solid",
       "passed": false,
-      "rho": "498cdb0f96ab32effaa38fca623f7aa790e6f71960693e4a73e651b5f23cb2a7",
+      "rho": "8bcdcb526cd9b0d27bd7e4a08fe117e85ba4e956779aeb9cc27ec1097fc85648",
       "settles": "minimum wall thickness",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "build/print/frame.ply changed",
+      "stale_reason": "",
       "status": "fail",
       "tier": 1,
       "units": "mm",
@@ -8263,9 +8226,9 @@
         "cad"
       ],
       "comparator": "",
-      "cpu_s": 0.07,
+      "cpu_s": 0.03,
       "detail": "",
-      "duration_s": 0.066125,
+      "duration_s": 0.030334,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8280,7 +8243,7 @@
       "order": 9,
       "pack": "cad-solid",
       "passed": false,
-      "rho": "2370c09ab4445d33017bb7b2db0e75e3cffcf59c4e8f1cd0d21d0350e1026f43",
+      "rho": "da5bba97fe8675a067cc289fa99db2b8ef9106397354a8830c47415ebd4318db",
       "settles": "part interference",
       "skip_reason": "only 1 part(s) in the projection — interference needs at least two placed solids; a single-part check would pass vacuously",
       "skipped": true,
@@ -8307,9 +8270,9 @@
         "cad"
       ],
       "comparator": "",
-      "cpu_s": 0.06,
+      "cpu_s": 0.03,
       "detail": "",
-      "duration_s": 0.065762,
+      "duration_s": 0.031706,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8324,7 +8287,7 @@
       "order": 7,
       "pack": "cad-solid",
       "passed": false,
-      "rho": "717e96ee36916fb11166abc3ccf7c74cb138bbf90fe75481f15dc975a12a89ab",
+      "rho": "a4574a51749ccb75397c70a3d8165e6da821378c52410f63f39be34a12181009",
       "settles": "assembly connectivity",
       "skip_reason": "the assembly has 1 part(s); connectivity is a relation between parts and there is nothing to measure below two of them. Export every placed solid into the projection's mesh map, not just the one be...",
       "skipped": true,
@@ -8529,7 +8492,7 @@
       "comparator": "",
       "cpu_s": 0.01,
       "detail": "",
-      "duration_s": 0.002595,
+      "duration_s": 0.0016,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8654,27 +8617,27 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "245 g thrust / 42.9 g AUW; hover at 18% of full thrust",
+      "detail": "245 g thrust / 43.3 g AUW; hover at 18% of full thrust",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.thrust_to_weight",
       "limit": 3.0,
       "locators": [],
-      "margin": 0.906,
+      "margin": 0.887667,
       "margin_why": "",
-      "measured": 5.718,
+      "measured": 5.663,
       "ok": true,
       "order": 34,
       "pack": "",
       "passed": true,
-      "rho": "cade0d063a017f41c54f4e3f8071c6d0aedad69bb0d7712827405d12868e3b41",
+      "rho": "e1fc6979d0ff4c6587a1a59e530cb45f64b135551c87b47089062bdcef19137b",
       "settles": "thrust to weight",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "auw_g 42.87 -> 43.29, hover_throttle_frac 0.175 -> 0.177, thrust_to_weight 5.718 -> 5.663 (+1 more)",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "ratio",
@@ -8691,27 +8654,27 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "frame 15.8 g printed PETG + bought parts",
+      "detail": "frame 16.2 g printed PETG + bought parts",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.auw",
       "limit": 250.0,
       "locators": [],
-      "margin": 0.82852,
+      "margin": 0.82684,
       "margin_why": "",
-      "measured": 42.87,
+      "measured": 43.29,
       "ok": true,
       "order": 24,
       "pack": "",
       "passed": true,
-      "rho": "48fd5047996d9b6605dfc0b4ff2a36d854d18847f94bcf915397d231589e0709",
+      "rho": "0658b2fb2b088a3f70b98e841b45f3101087e68e9ad901d433bb283f968c591e",
       "settles": "all-up weight",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "auw_g 42.87 -> 43.29, frame_mass_g 15.79 -> 16.21, gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "g",
@@ -8728,27 +8691,27 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "15.6 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+      "detail": "15.8 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.flight_time",
       "limit": 3.0,
       "locators": [],
-      "margin": 0.246667,
+      "margin": 0.233333,
       "margin_why": "",
-      "measured": 3.74,
+      "measured": 3.7,
       "ok": true,
       "order": 26,
       "pack": "",
       "passed": true,
-      "rho": "c60873f95427a2aaedcb9cf6a1b7e699be2e91a3505bfb19fbe3dcd8b5d68aa1",
+      "rho": "31a1a161faf0121edaab878dd1f2c8d7892115382f88757113557e37cc66b544",
       "settles": "hover flight time",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "flight_time_min 3.74 -> 3.7, hover_eff_g_per_w 2.972 -> 2.967, hover_power_w 15.6 -> 15.77 (+1 more)",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "min",
@@ -8770,7 +8733,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.interference",
       "limit": 0.0,
       "locators": [],
@@ -8781,11 +8744,11 @@
       "order": 29,
       "pack": "",
       "passed": true,
-      "rho": "6fb15cffefbf27412a915cedd2a06149680d09eb0612a8833ec4332d05cf29fd",
+      "rho": "a34d1d959e03b08c5f66c0f401c7cfb0ab55f7ed8c94baca496df46083326132",
       "settles": "interference volume",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm3",
@@ -8807,7 +8770,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.fc_screws",
       "limit": 0.0,
       "locators": [],
@@ -8818,11 +8781,11 @@
       "order": 25,
       "pack": "",
       "passed": true,
-      "rho": "bf1825014b2700ba2af70363b11f5dd3322a364a2bb85ad4539948d171cc7fa7",
+      "rho": "118ccb865b5833ec3288c409e0353e7a3591c4af27ded3e88f6205495aabe726",
       "settles": "FC screw protrusion below plate",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm",
@@ -8844,7 +8807,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.motor_screws",
       "limit": 1.0,
       "locators": [],
@@ -8855,11 +8818,11 @@
       "order": 31,
       "pack": "",
       "passed": true,
-      "rho": "0ec043b671f76c85e2b9eb92fd59e2fc9efb6f815d4e1030a190cae58cb7b79e",
+      "rho": "1372e9a044620a5d3dc1381750213d94f277f1aa8328bd6eca0c8ede42c2f9a9",
       "settles": "motor screw engagement",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm",
@@ -8881,7 +8844,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.one_piece",
       "limit": 1,
       "locators": [],
@@ -8892,11 +8855,11 @@
       "order": 32,
       "pack": "",
       "passed": true,
-      "rho": "69e43fb837ad81690fb343e77ebc9f429bffdbddd95ffeb667bc26ad054f7a31",
+      "rho": "e5a6e56d21787340748a4fd3c8adcba9a292edacce401d01aa0f2eb157ff9a3e",
       "settles": "frame pieces",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "count",
@@ -8918,7 +8881,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.motor_leads",
       "limit": 3.0,
       "locators": [],
@@ -8929,11 +8892,11 @@
       "order": 30,
       "pack": "",
       "passed": true,
-      "rho": "af33f799b356939ac5b53fd92be381af014414bc1c27b17f35c7c9d05fe7fceb",
+      "rho": "5e791aa938a42b06c288a4a63f5dbd59c5b739b07c6f4aeed6d7e371ab0caa31",
       "settles": "motor lead spare",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm",
@@ -8955,7 +8918,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.guard_height",
       "limit": 4.5,
       "locators": [],
@@ -8966,11 +8929,11 @@
       "order": 28,
       "pack": "",
       "passed": true,
-      "rho": "806b0625f55fa07cb1ca2a224261af70a2234da7d8cf1bcfc7d5cd5ad0544d41",
+      "rho": "4b550a39539b8c026cc0d709a0b4592a92074fa9480e4e2b21acb6fcc8405556",
       "settles": "guard height",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "mm",
@@ -8992,22 +8955,22 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.prop_blockage",
       "limit": 0.15,
       "locators": [],
-      "margin": 0.014,
+      "margin": 0.0126667,
       "margin_why": "",
-      "measured": 0.1479,
+      "measured": 0.1481,
       "ok": true,
       "order": 33,
       "pack": "",
       "passed": true,
-      "rho": "4d7ae37492e4bc0bbfc64555b3c79dba145609b00facf757674cc2f7e62e34d0",
+      "rho": "5db33ea234d4d7ed01f641da96a39052176f7faa4d9a16c3058545080089f4d5",
       "settles": "prop disc blockage",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "prop_blockage_frac 0.1479 -> 0.1481, gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "ratio",
@@ -9029,7 +8992,7 @@
       "error": "",
       "evidence": [],
       "evidence_assets": [],
-      "fresh": false,
+      "fresh": true,
       "gate": "petgasus.topology_current",
       "limit": 1,
       "locators": [],
@@ -9040,11 +9003,11 @@
       "order": 35,
       "pack": "",
       "passed": true,
-      "rho": "52fa14d8237c37780d57de62b7fd311436c898ea51797f44e9d9e9972e0a8757",
+      "rho": "6911dc850db28fe2166a6d3dd9f66930a63e50e55707fb3aa47ca440246d96d0",
       "settles": "topology proposal current",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "gate code changed",
+      "stale_reason": "",
       "status": "pass",
       "tier": 0,
       "units": "bool",
