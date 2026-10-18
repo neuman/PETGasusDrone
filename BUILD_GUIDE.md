@@ -4,14 +4,14 @@ PETGasus is a small 3D-printed quadcopter for an adult and a 10-year-old to buil
 
 | | |
 |---|---|
-| Size | 108 × 108 × 15 mm frame, 82 mm motor-to-motor |
-| Weight | ~45 g ready to fly (under the FAA's 250 g registration line) |
-| Frame | One print in PETG, about 18 g of plastic and ~1.5–2 h. No supports. |
+| Size | 111 × 111 × 20 mm frame, 83 mm motor-to-motor |
+| Weight | ~43 g ready to fly in PETG, ~41 g in nylon-CF (under the FAA's 250 g registration line) |
+| Frame | One print, about 16 g of PETG (13.5 g of nylon-CF) and ~1.5 h, plus supports. |
 | Soldering | None. The motors plug into the board and the battery lead is already attached. |
-| Flight time | ~3.5–4 min per battery (estimate) |
-| Prop guards | All four props spin inside ducts |
+| Flight time | ~3.7 min per battery in PETG, ~4 min in nylon-CF (estimates) |
+| Prop guards | A low guard round the outer side of each prop, joined into one rim |
 
-The frame layout came from a topology optimiser (`tools/run_topopt.py`). It tied each motor to its own duct ring with four ribbed spokes, joined the ducts to each other, and tied that ring to the centre plate. Compared with an ordinary hand-drawn "X" frame of the same footprint, it is about 3.6× stiffer in a crash. Its first vibration mode is 286 Hz against 187 Hz, which keeps it away from the wobble problem that printed frames are known for. These figures come from simulation only. The real tests are below.
+The frame's shape came from a 3D topology optimiser. It was told where the motors, props, board, battery and leads go, what must stay empty, and how the frame gets loaded: full thrust, a prop hitting something, the battery, and crashes on the guards from nine directions. It put about 12 g of plastic where those loads go, and the model drew that as one smooth piece with a fillet at every joint. A separate finite-element program (CalculiX) then checked the printed shape for vibration and crashes. These figures come from simulation only. The real tests are below.
 
 ---
 
@@ -29,7 +29,7 @@ Prices were checked on 2026-10-07. Re-check them before ordering.
 | 6 | M1.4 self-tapping screw assortment that includes M1.4 × 6 (you need 4) | Amazon | ~$8 (estimate) |
 | 7 | 10 mm hook-and-loop battery straps | Amazon | ~$6 (estimate) |
 
-The total is **$167**. Without items 5 to 7 it is **$148** plus shipping (see the budget note at the end).
+The total is **$167**. Without items 5 and 7 it is **$156** plus shipping (see the budget note at the end). Item 6 is not optional: the board's own screws are too short for the printed posts.
 
 **Why the kit instead of individual parts.** The no-solder board and the plug-in motors cost more bought separately ($80) than the whole kit. The kit's board also has no video transmitter, so there is nothing to license or burn out.
 
@@ -43,10 +43,10 @@ The total is **$167**. Without items 5 to 7 it is **$148** plus shipping (see th
 
 ## 2. Before printing: two measurements (5 minutes)
 
-Once the kit arrives, check two numbers with calipers. The frame was sized around them:
+Once the kit arrives, check two parts with calipers. BetaFPV publishes most of their sizes, but not these:
 
-- **Flight controller board.** It must be **30 mm square or smaller**. If it is bigger, change `fc_board_side` in `model/petgasus.py` and rebuild. The ducts will move out to make room.
-- **Motor.** It must be **14 mm diameter or less** and **13.8 mm tall or less**. The little clip on the bottom of the shaft has to fit a **2.3 mm** hole.
+- **Flight controller board.** It is a cross, with a mounting hole at the tip of each arm. The frame was drawn for a cross **40 mm tip to tip or less**, with the four motor sockets under the two side arms, about **12.3 mm** out from the centre. Those numbers come from BetaFPV's photos, not a drawing. If yours differ, change `fc_arm_tip_r` or `socket_y` in `model/petgasus.py` and rebuild.
+- **Motor.** BetaFPV's drawing gives 13.8 mm across and 13.6 mm tall. Check that the little clip on the bottom of the shaft fits a **2.3 mm** hole, and that the base under the bell is about **11 mm** across.
 
 These are claims A3 and A4. When they check out, record them (see section 9).
 
@@ -58,11 +58,15 @@ Open `build/print/frame.3mf` in Snapmaker Orca. `frame.stl` is the same part for
 
 For the sealed print package, run `python3 -m nopekit export print-v1` after recording A3 and A4. It writes `out/print-v1/`, which holds the mesh and a print-settings sheet.
 
-- **PETG.** If the spool has been open a while, dry it first. Wet PETG strings inside the ducts.
-- 0.4 mm nozzle, 0.2 mm layers, **3 walls**, **100% infill**.
-- **No supports.** Nothing on the part needs them: the steepest overhang is 40° and there are no bridges. If the slicer adds supports, turn them off.
-- **5 mm brim.** Snip it off afterwards.
-- Print it flat side down, as exported.
+- **PETG for an everyday print.** A stock U1 prints it with nothing extra. If the spool has been open a while, dry it first: wet filament strings, and it is weaker across its layers.
+- **Nylon with carbon fibre (PA6-CF, or PAHT-CF) if you want it to survive hard crashes.** In the simulations it takes two to four times the crash PETG does, is stiffer, and is 2 g lighter. It needs a hardened-steel nozzle, the U1's top cover on, and a spool dried at 80 °C for 8 to 12 hours just before printing. Use the same settings otherwise.
+- 0.4 mm nozzle, 0.2 mm layers, **3 walls**, **100% infill**. The limbs are only a few millimetres across.
+- **Print it as exported. Do not re-orient it in the slicer.** The model already turned the frame so that the worst crash stress runs along the layers, not across them.
+- **Supports ON: tree supports, touching the build plate and the part.** The frame is a curved 3D shape, so its limbs and its rim overhang.
+- **Use PLA for the support interface** (the few layers that touch the part), if your printer has two toolheads. PETG does not stick to PLA, so the supports peel off cleanly. Snapmaker's guide "Using a Different Filament for Support (PLA and PETG)" shows how to set it up in Snapmaker Orca.
+- **5 mm brim** where the part touches the bed. Snip it off afterwards.
+
+Peel the supports by hand, slowly, from the thin end of each limb towards the thick end. If a support will not come off without bending a limb, stop: that is claim P6 failing. Note where it happened and see section 9.
 
 After printing, run an M1.4 screw in and out of each of the four small posts in the middle. That pre-cuts the threads.
 
@@ -73,7 +77,7 @@ After printing, run an M1.4 screw in and out of each of the four small posts in 
 Work with the battery unplugged throughout.
 
 1. Pull the props off. Twist gently and lift straight up.
-2. Unplug the four motor connectors from the board, then unscrew the board from the stock frame. **Keep its screws.** If they are M1.4 × 4 or longer, they fit the printed posts and you can skip buying item 6.
+2. Unplug the four motor connectors from the board, then unscrew the board from the stock frame. **Keep its four rubber grommets** (the little rubber balls in its mounting holes). The board's own screws are too short for the printed posts: use four M1.4 × 6 from item 6.
 3. Unscrew the motors from the stock frame. Each has 3 tiny M1.4 × 3 screws; keep all 12.
 4. Put the stock frame and canopy in a bag. That is the spare drone.
 
@@ -81,12 +85,12 @@ Work with the battery unplugged throughout.
 
 ## 5. Assemble
 
-The centre plate has two strap slots, one on the left and one on the right, with their long sides running front to back. The frame is symmetric, so pick either end along the slots as the **front** and mark it with a marker.
+The centre of the frame has two strap slots, one on the left and one on the right, with their long sides running front to back. The frame is the same front to back, so pick either end along the slots as the **front** and mark it with a marker.
 
-1. **Motors.** Set each motor on a round seat with its wire pointing toward the centre. Screw it on from underneath with its three M1.4 × 3 screws. Snug is enough: these screws strip if forced.
-2. **Flight controller.** Place the board on the four posts with its **arrow pointing at the front-right duct**. It sits turned 45°, so its corners point between the ducts. That is what lets it fit. Screw it down with four M1.4 screws.
-3. **Motor plugs.** Plug each motor into the nearest socket. Which motor goes to which socket gets checked in Betaflight in step 7.
-4. **Battery strap.** Thread the strap up through one slot, over the centre plate (under the board), and down through the other slot. The battery hangs **underneath** the frame along the front-back line. Its weight sits low, which makes the drone steadier for a beginner.
+1. **Motors.** Set each motor on a round seat with its wire pointing toward the centre. Screw it on from underneath with its three M1.4 × 3 screws; there is a clear way up to each one for the screwdriver. Snug is enough: these screws strip if forced.
+2. **Flight controller.** Push a rubber grommet into each of the board's four holes. Set the board on the four posts with its **arrow pointing forward**: its front arm points at the front, between the two front hoops. Screw it down through the grommets with four M1.4 × 6 screws, just until the rubber starts to squash.
+3. **Motor plugs.** The sockets are **underneath** the board's two side arms, and open sideways. Push each motor's plug into the nearest one from the outside. Which motor goes to which socket gets checked in Betaflight in step 7.
+4. **Battery strap.** Thread the strap up through one slot, over the centre (under the board), and down through the other slot. The battery hangs **underneath** the frame along the front-back line, with its plug at the **back**, next to the board's power lead. Its weight sits low, which makes the drone steadier for a beginner.
 5. **Props stay off** until the Betaflight checks in step 7 are done.
 
 **Check:** spin each motor by hand. Nothing should rub.
@@ -107,7 +111,7 @@ The kit's receiver runs ExpressLRS (ELRS) 3.4. The LiteRadio 3 runs ELRS 3.0. Th
 
 Install **Betaflight App** (the configurator) and plug the board into a computer over USB.
 
-1. **Setup tab, board alignment.** Set **Yaw = 45** because the board is turned. Tilt and turn the drone in your hand. The 3D model on screen must follow exactly. If it turns the opposite way, use **−45 (315)**. Getting this wrong flips the drone on its first takeoff, so check it twice.
+1. **Setup tab, board alignment.** The board's arrow points forward, so leave **Yaw = 0**. Tilt and turn the drone in your hand. The 3D model on screen must follow exactly. If it does not, the board is turned: fix the board, not the setting. Getting this wrong flips the drone on its first takeoff, so check it twice.
 2. **Motors tab, battery plugged in, props off.** Use **Motor reorder** to click each motor in the order it asks. Then use **Motor direction** to make each one spin the way the diagram shows. Write down which way each one spins.
 3. **Modes tab.**
    - **ARM** on a switch.
@@ -137,7 +141,7 @@ Install **Betaflight App** (the configurator) and plug the board into a computer
 
 ## 9. Testing it, and recording what you find
 
-Simulation says the design works. These tests on the real drone are what prove it. Record each result in your own terminal; it is your observation, so the AI can't record it for you. Photos make good evidence.
+Simulation says the design flies and fits. For crashes it only gives a floor: CalculiX finds the drop and wall hit at which some point of the frame first reaches the plastic's strength, ignoring how much PETG bends before it cracks. These tests on the real drone are what prove it. Record each result in your own terminal; it is your observation, so the AI can't record it for you. Photos make good evidence.
 
 | Test | What to do | Pass |
 |---|---|---|
@@ -145,7 +149,8 @@ Simulation says the design works. These tests on the real drone are what prove i
 | **P3** Setup | Betaflight checks in section 7 | All four motors in the right place and direction; 3D model follows the drone |
 | **P5** Thrust | Strap the drone upside down to a kitchen scale. Motors tab, all four at 100% for 2 s. | Scale reading ≥ 3 × the drone's weight |
 | **P2** Hover | Hover for 30 s at 1 m | No buzzing or wobble; motors only warm |
-| **P1** Crash | Bare frame, 5 drops from 2 m onto a hard floor | No cracks or white stress marks |
+| **P1** Crash | Bare frame with the motors on. 5 drops from 2 m onto a hard floor, then 5 hits into a wall at a jog (about 3 m/s), guard first | No cracks or white stress marks at the limbs, seats, posts or guards |
+| **P6** Supports | Peel the supports off by hand after printing | Every limb whole, no cracks |
 
 ```sh
 export PYTHONPATH=~/.claude/plugins/cache/nopekit/nopekit/a00d0e5da19d/src
@@ -159,12 +164,11 @@ For the full picture of what is checked, what is assumed and what is still unkno
 
 ## Budget note
 
-The full list comes to $167, against a $150 target. Ways to get under $150:
+The full list comes to $167, against a $150 target. Ways to get closer:
 
 - **Skip the strap.** A rubber band holds a 1S battery fine to start with.
 - **Skip the spare props.** The kit includes a set, but kids break props.
-- **Skip the screws.** This works if the kit's board screws turn out to be M1.4 × 4 or longer.
 
-With all three skipped the total is **$148 plus BetaFPV's shipping**, which is not published.
+The screws (item 6) stay: the board's own M1.4 × 5 leave 2.4 mm in the printed posts, under the 3 mm the posts need (claim C8). With both skipped the total is **$156 plus BetaFPV's shipping**, which is not published: still over $150.
 
 The project's budget check (claim C10) stays red until you choose: either drop lines from `bom/bom.json` or raise the budget.

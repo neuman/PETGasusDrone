@@ -14,7 +14,7 @@ A small 3D-printed quadcopter for an adult and a kid to build together. It needs
 | Flight time | ~3.9 min per 1S 320 mAh battery (estimate) |
 | Electronics | Taken from a BetaFPV Meteor75 Pro kit: plug-in motors, no soldering |
 | Control | ExpressLRS radio, Betaflight flight software, self-levelling mode |
-| Cost | $167 for everything, including radio, batteries and charger; $148 for the essentials |
+| Cost | $167 for everything, including radio, batteries and charger; $156 for the essentials (everything but the spare props and the strap) |
 
 ## Build one
 
