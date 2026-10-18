@@ -1,0 +1,40 @@
+{
+  "title": "Shadow on the props capped at 15 %; crash checks are an elastic floor",
+  "when": "2026-10-17T19:31:07Z",
+  "summary": "Each motor seat sits in the middle of its prop's disc, so whatever holds it stiffly shadows the disc. The optimiser charges each cell under a prop 1 + (topo_prop_cost - 1)/N, N the designable cells in its column (topo_prop_cost 10): the extra is shared down the column, so a deep web pays it about once, though a shallow member under-pays (a charge per volume, not a true shadow: model/topopt3d.py's known limitation 2) and C14 allows 15 % of each disc, which costs about 7.5 % of static thrust (A1, guard_thrust_factor 0.925). CalculiX's crash checks are an elastic energy method on the free drone that ignores plastic work, the floor's give and damping: a floor, not a prediction; real survival is P1's drops and wall hits. (Their bars, lowered here to 0.3 m and 1 m/s on a broken gate's numbers, were restored to 1 m and 3 m/s: decisions/crash-bars-restored-to-1-m-and-3-m-s.json.)",
+  "rejected": [
+    {
+      "value": "a 10 % shadow limit (C14 as it was)",
+      "why": "met only by giving up stiffness: the organic frame held to 8.5 % was 2.9x less stiff than the 22 % one; the author chose the middle (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "no limit beyond the cost: the stiffest organic frame",
+      "why": "22 % of each disc, roughly 11 % of static thrust",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "thin deep blades (a filter 3 mm across, 6 mm deep)",
+      "why": "6 % shadow at 1.6x A's compliance, but on the 2 mm grid it drew grid-aligned bars round a square hub, the look the redesign set out to leave, in 3 pieces",
+      "type": "dominated"
+    },
+    {
+      "value": "TPU 95A guard arcs as bumpers",
+      "why": "by the first, held-at-posts crash method they made the crash floors worse (drop 0.084 against 0.113 m, wall 0.42 against 0.78 m/s): the weak joint stayed where the rim's V members meet a side post. The free-body method that replaced it also read the drop floor lower with TPU guards, in its first filament comparison. A linear model is a poor judge of TPU",
+      "type": "dominated"
+    }
+  ],
+  "params_changed": [
+    "topo_prop_cost",
+    "guard_thrust_factor"
+  ],
+  "claims_changed": [
+    "C14",
+    "A1",
+    "C15",
+    "C16",
+    "P1"
+  ]
+}

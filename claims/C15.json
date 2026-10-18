@@ -1,0 +1,26 @@
+{
+  "statement": "A drop onto a guard from 1 m keeps the strong (nylon-CF) frame under its printed strength",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "survivable drop height",
+    "comparator": ">=",
+    "limit": 1.0,
+    "units": "m"
+  },
+  "rationale": "The review: 'it will break after a couple of crashes'. Judged in the strong filament (strong_material, PA6-CF), the print for anyone serious about crashes; the everyday PETG print is not judged here. CalculiX on the free drone (inertia relief): a 1 N hit on a guard's outermost underside, along the floor's normal at the smallest bank that makes that point land first, is balanced by the inertia of every mass the drone carries. The worst stress along or across the layers, averaged over 0.5 mm (by volume) and away from the contact patch, sets the energy the frame takes before it reaches strength; Goldsmith's effective mass for an off-centre hit turns that energy into a drop height. The method ignores the plastic work the filament does before it cracks, the floor's give and any damping, so it is a floor, not a prediction. It does not judge shear between the layers: no data sheet gives that strength. A beginner indoors falls from about head height: 1 m. The author lowered the limit to 0.3 m (2026-10-17) on numbers from a gate that a review then found broken (a corrupted multithreaded solve, singular stress at sharp cut edges, a drop pose that could not happen), and restored 1 m once they were fixed; the latest result is in the gate's detail. Whether the frame survives a real crash is P1's to say.",
+  "tags": [
+    "crash-drop"
+  ],
+  "mechanism": {
+    "by": "solver",
+    "how": "CalculiX on the free drone (inertia relief), in the strong filament: a 1 N hit on a guard's outermost underside along the floor's normal, banked so that point lands first; the energy at which the worst stress, averaged over 0.3 mm, reaches strength along or across the layers, as a drop height for Goldsmith's effective mass; each solve checked for equilibrium, the result on a finer mesh (fea_converged)",
+    "evaluators": [
+      "petgasus.crash_drop",
+      "petgasus.fea_converged"
+    ]
+  },
+  "requirements": [
+    "R11",
+    "R9"
+  ]
+}

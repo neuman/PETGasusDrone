@@ -1,0 +1,18 @@
+{
+  "path": "inputs/datasheets/filament-data-2026-10-17.md",
+  "kind": "datasheet",
+  "description": "FDM filament data sheets: PETG, PETG-CF, PA, PA-CF, PLA, ASA, TPU 95A; XY and Z modulus and strength, with sources",
+  "sha256": "c359fa787b81cf9521ce39d310463b20fef919c52fc9b8e554bf92b97b0f8b0b",
+  "added": "2026-10-17T09:52:05Z",
+  "extractions": [
+    {
+      "what": "Bambu TDS, XY / Z: PETG HF 1810/1540 MPa, 34/23 MPa; PETG-CF 2460/1340, 35/29; PLA 2580/2060, 35/31; ASA 2450/2120, 37/31; PAHT-CF 3860/2180, 92/47; PA6-CF 4430/2170, 102/48; TPU 95A HF 27.3/22.3 MPa",
+      "grounds": [
+        "material",
+        "guard_material",
+        "C15",
+        "C16"
+      ]
+    }
+  ]
+}

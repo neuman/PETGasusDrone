@@ -1,0 +1,35 @@
+{
+  "url": "https://cdn.shopify.com/s/files/1/1778/6615/files/1102_Brushless_Motors_2026_load_performance.jpg",
+  "kind": "link",
+  "description": "BetaFPV outline drawing and load table, 1102 21000KV (2026) on GF 1811-3: 66.6 g at 3.81 V full throttle",
+  "sha256": "1a0d5aef0a6da7a5eaa9fc695ed5a6617ab1e03043b59cefa3e7094c9e735dab",
+  "added": "2026-10-17T09:52:05Z",
+  "extractions": [
+    {
+      "what": "1102 21000KV (2026) on GF 1811-3: 66.6 g at 100 % throttle, 9.18 A, 3.81 V",
+      "grounds": [
+        "motor_thrust_max_g",
+        "motor_thrust_test_v",
+        "C1"
+      ]
+    },
+    {
+      "what": "efficiency per thrust, 30-100 % throttle: 9.6 g 3.05 g/W ... 66.6 g 1.91 g/W",
+      "grounds": [
+        "motor_eff_table",
+        "C3"
+      ]
+    },
+    {
+      "what": "outline: bell 13.8 mm, height 13.6 mm (8.6 body + 5 shaft), shaft 1.5 mm, 3 x M1.4 on a 6.6 mm circle, 37 mm lead, 28 AWG, JST 1.25 3-pin",
+      "grounds": [
+        "motor_body_d",
+        "motor_h",
+        "shaft_exposed",
+        "shaft_d",
+        "motor_hole_circle_d",
+        "motor_lead_len"
+      ]
+    }
+  ]
+}

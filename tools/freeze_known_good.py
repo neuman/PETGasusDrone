@@ -1,14 +1,25 @@
 """Write selftest/known_good.py from the model's CURRENT Config.
 
 Run this only when the live design is the one every control should be one change
-away from (all project gates pass on it). It states every field, so a later
-default edit in model/petgasus.py does not move the known-good design.
+away from: every project gate passes on it, against the live claims or, where
+the live design misses one, against CALIBRATE's limit below. It states every
+field, so a later default edit in model/petgasus.py does not move the known-good
+design.
 """
 import dataclasses, os, pprint, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "model"))
 import petgasus  # noqa: E402
+
+#: Limits the known-good is calibrated against where the live design misses the
+#: live claim, by the author's choice or by a real gap still open: a control can
+#: only show its gate is able to fail if the known-good design passes it. Each
+#: control's design (selftest/bad_configs.py) falls far below these too.
+CALIBRATE = {
+    "C4": (100.0, "the author keeps C4 at 200 Hz and expects the PETG frame (~143 Hz) to fail it; "
+                  "tpu_frame (~20 Hz) is far below 100"),
+}
 
 cfg = dataclasses.asdict(petgasus.CONFIG)
 claims = []
@@ -17,15 +28,24 @@ for p in sorted(glob.glob(os.path.join(ROOT, "claims", "*.json"))):
     cid = os.path.basename(p)[:-5]
     row = json.load(open(p))
     if row.get("acceptance") and row.get("kind") == "measurable":
+        acc = dict(row["acceptance"])
+        if cid in CALIBRATE:
+            acc["limit"] = CALIBRATE[cid][0]
         claims.append({"id": cid, "statement": row["statement"], "kind": "measurable",
-                       "acceptance": row["acceptance"], "tags": row.get("tags", [])})
+                       "acceptance": acc, "tags": row.get("tags", [])})
+import textwrap
+calibrated = "\n".join(textwrap.fill(f"{cid}: limit {lim:g} ({why})", 80, initial_indent="  ",
+                                     subsequent_indent="    ") for cid, (lim, why) in sorted(CALIBRATE.items()))
 
 src = f'''"""PETGasus's known-good design: the design every control is one change away from.
 
 Frozen from model/petgasus.py by tools/freeze_known_good.py when every project gate
-passed on the live design. Every Config field is stated, so a default edit in the
-model does not move it. CLAIMS are the acceptance conditions it was calibrated
-against; a live claim moved later leaves every control where it is.
+passed on the live design, against CALIBRATE's limits where the live design
+misses a claim. Every Config field is stated, so a default edit in the model
+does not move it. CLAIMS are the acceptance conditions it was calibrated
+against; a live claim moved later leaves every control where it is. Calibrated
+below the live claim (tools/freeze_known_good.py CALIBRATE):
+{calibrated}
 """
 from __future__ import annotations
 

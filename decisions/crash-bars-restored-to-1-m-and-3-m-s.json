@@ -1,0 +1,23 @@
+{
+  "title": "Crash bars restored to 1 m and 3 m/s",
+  "when": "2026-10-18T04:46:07Z",
+  "summary": "C15 (drop onto a guard, 1 m) and C16 (wall hit, 3 m/s) are judged in the strong filament (nylon-CF, strong_material) by CalculiX on the free drone, an elastic floor. The author had lowered them to 0.3 m and 1 m/s on numbers a 128-agent review then traced to the gate: CalculiX's multithreaded solver returning solutions out of equilibrium round sliver tets, single nodes at razor-sharp keep-out corners deciding the verdict, an analysis surface thinner than the print, and a drop pose in which the guard could not land first. With those fixed (single-threaded solve and an equilibrium check, keep-out edges rounded, stress averaged over 0.5 mm, one opening for every surface, the drop banked until the guard lands first), the frame takes 6.96 m and 2.76 m/s in PA6-CF (1.81 m and 1.24 m/s in PETG), converged on a finer mesh; the author restored the original bars.",
+  "rejected": [
+    {
+      "value": "a 0.3 m drop and 1 m/s wall floor",
+      "why": "set on the broken gate's numbers (0.11-0.49 m, 0.29-0.78 m/s); the author restored 1 m and 3 m/s once it was fixed (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "a 2.5 m/s wall bar",
+      "why": "would pass nylon-CF (2.76 m/s), but only by setting the bar to the result; 3 m/s is a jog, and the 8 % gap is real for P1's wall hits or a later design pass to settle",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    }
+  ],
+  "claims_changed": [
+    "C15",
+    "C16"
+  ]
+}

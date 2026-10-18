@@ -1,0 +1,21 @@
+{
+  "path": "inputs/data/print-orientation-petg-v02.json",
+  "kind": "data",
+  "description": "print orientations for the v0.2 frame (field d385cf32) on a 15 deg grid: surface needing support past 45 deg, and how much of the worst crash tension (CalculiX, PETG, the drop and both wall hits, free body) acts across the layers, against PETG's 0.68 across-over-in-layer strength",
+  "sha256": "b4240784318e9ad65d849020546ac33193cc9d750a06b3cf47af8683a1cfd236",
+  "added": "2026-10-17T21:23:09Z",
+  "extractions": [
+    {
+      "what": "flat as it flies (tilt 0): 22 % of the surface needs support, and the layers cost no strength (the worst across-layer tension is under PETG's 0.68 of the in-layer worst: strength factor 1.0); the least support is standing on edge (tilt 90-105 deg about the axis at 90 deg): about 10 %, also at strength factor 1.0, but a 111 mm tall part 20-38 mm thick on its rim; middle tilts lose up to 14 % strength",
+      "grounds": [
+        "print_tilt_deg",
+        "print_azimuth_deg",
+        "C6",
+        "P6"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/print_orientation.py --mesh <frame in flight pose, stl> --frd <crash_drop impact.frd> --frd <crash_wall impact.frd>",
+  "proposer": "fea.print_orientation"
+}

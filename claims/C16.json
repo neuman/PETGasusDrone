@@ -1,0 +1,26 @@
+{
+  "statement": "A hit on a wall at 3 m/s keeps the strong (nylon-CF) frame under its printed strength",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "survivable wall speed",
+    "comparator": ">=",
+    "limit": 3.0,
+    "units": "m/s"
+  },
+  "rationale": "Indoors in angle mode a beginner hits walls at walking-to-jogging pace. Same method and filament as C15, for two hits on a guard's outer face: square on at the point facing forward, off the centre of mass so the drone spins, and head on along the arm's line, in line with the centre in plan, so most of its mass is behind the hit; the slower speed counts. An elastic floor, not a prediction. 3 m/s is a jog; the author lowered it to 1 m/s (2026-10-17) on the broken gate's numbers and restored 3 m/s once it was fixed. The latest result is in the gate's detail, with how far the hit pushes the guard in against the printed tip gap (the exact arc's is 2 mm; drawn, the guard's inner face comes to about 1.1 mm from the tips). P1's wall hits at a jog are the physical bar.",
+  "tags": [
+    "crash-wall"
+  ],
+  "mechanism": {
+    "by": "solver",
+    "how": "As C15, for a 1 N hit square on a guard's outer face where it faces forward and one head on through the centre; the slower, as a wall speed",
+    "evaluators": [
+      "petgasus.crash_wall",
+      "petgasus.fea_converged"
+    ]
+  },
+  "requirements": [
+    "R11",
+    "R9"
+  ]
+}

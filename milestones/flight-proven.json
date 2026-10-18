@@ -1,0 +1,10 @@
+{
+  "description": "Call the printed drone flight-proven: its frame's first mode, and the hover, thrust and crash tests on the real thing",
+  "requires": [
+    "C4",
+    "P1",
+    "P2",
+    "P5"
+  ],
+  "generator": ""
+}

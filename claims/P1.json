@@ -1,6 +1,6 @@
 {
-  "statement": "Frame survives five drops from 2 m onto a hard floor without a crack",
+  "statement": "Frame survives five drops from 2 m onto a hard floor and five hits into a wall at a jog (about 3 m/s) without a crack",
   "kind": "physical",
-  "note": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a duct edge, from 2 m onto tile/concrete, 5 times. Pass: no crack or whitening at the arms, spokes or duct joints. Photograph each duct.",
-  "rationale": "No closed-form or solver result settles crash survival of a printed part in a 10-year-old's hands."
+  "note": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a guard's edge, from 2 m onto tile or concrete, 5 times. Then throw or fly it guard-first into a wall at a jog, 5 times, side-on and head-on. Pass: no crack or whitening at the limbs, the seats, the posts or where a limb meets a guard. Photograph each guard and each seat.",
+  "rationale": "No closed-form or solver result settles crash survival of a printed part in a 10-year-old's hands: C15 and C16 are elastic floors that ignore the plastic work, the floor's give and damping. This is the real bar."
 }

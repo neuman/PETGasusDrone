@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "gate": "bom.currency",
+  "rho": "6fcd78685999ae72be4ce01e02e3b2d6365d56e7db1569348026584c18c4d5c4",
+  "code": {
+    "digest": "26353b36327fd465326e534787902a7b3dcc50366d362e6b0f944a70978731a9",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "0a3c767a38473e1c5e535642cb5772ce44ba2864238f3adf912d5dac3763ea1f"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "lines",
+    "comparator": "<=",
+    "settles": "price currency coherence",
+    "detail": "0 of 7 line(s) priced in a currency this document cannot convert (limit 0) — base USD (the document's 'currency'), every line quoted in the base currency",
+    "evidence": [
+      "<out>/bom_currency.json"
+    ],
+    "locators": [],
+    "claims": [
+      "currency",
+      "fx",
+      "price-currency",
+      "cost"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "51f9b45e5d11cd303e9094055d214706bae21beb0c10489cb5d1afb4d430bdff"
+}

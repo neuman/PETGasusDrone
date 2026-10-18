@@ -1,0 +1,24 @@
+{
+  "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "guard height",
+    "comparator": "<=",
+    "limit": 4.5,
+    "units": "mm"
+  },
+  "rationale": "The r/diydrones review: v0.1's ducts were too tall ('no more than 4mm high') and their windows made propwash and added weight. Each guard is drawn as a 4 mm solid arc round the prop's outer half (guard_h, guard_arc_deg), spanning the prop's +-1.5 mm band; measured on the printed shape, the optimiser's rim under each band and the smoothing make it 4.15-4.9 mm (median 4.2). That extra sits below the band and outside the prop's disc, so it adds no duct; the author set the limit to 4.5 mm (2026-10-17), still well short of v0.1's 10.9 mm ducts. Nothing the optimiser draws may stand above the guards' top.",
+  "tags": [
+    "guard-height"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "the printed frame's band height at points round each guard's arc (median)",
+    "evaluators": [
+      "petgasus.guard_height"
+    ]
+  },
+  "requirements": [
+    "R8"
+  ]
+}

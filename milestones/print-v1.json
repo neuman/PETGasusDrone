@@ -1,13 +1,15 @@
 {
-  "description": "Print the frame in PETG on the Snapmaker U1",
+  "description": "Print the frame on the Snapmaker U1, in the everyday filament (PETG)",
   "requires": [
-    "C4",
     "C5",
     "C6",
     "C7",
     "C8",
     "C9",
     "C11",
+    "C13",
+    "C14",
+    "C17",
     "A3",
     "A4"
   ],

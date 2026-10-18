@@ -76,7 +76,7 @@
         "BetaFPV store"
       ],
       "alternate_qualified": true,
-      "note": "Sold by BetaFPV on Amazon, 20 left on 2026-10-07. The LAVA II 480 4-pack ($21.99, BetaFPV store) also fits the strap: longer flights, thrust-to-weight 2.85 instead of ~3.1."
+      "note": "Sold by BetaFPV on Amazon, 20 left on 2026-10-07. The 480 (15.5 mm wide) does not fit the v0.2 frame: it keeps only 12 mm clear under the hub, and its limbs run beside that space."
     },
     {
       "ref": "CHG",

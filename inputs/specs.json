@@ -1,0 +1,18 @@
+{
+  "url": "https://www.snapmaker.com/en-US/snapmaker-u1/specs",
+  "kind": "link",
+  "description": "Snapmaker U1 specifications: 270 mm cube, 4 toolheads, 300 C nozzle, open frame",
+  "sha256": "5069689263c6d19310574a92ee8b960717d551f4256e9021a11272e67497e4d0",
+  "added": "2026-10-17T09:52:06Z",
+  "extractions": [
+    {
+      "what": "Snapmaker U1: 270 mm cube, 4 toolheads, 300 C nozzle, open frame (top cover optional); PETG, PLA, TPU, PVA print open; PA and ASA need the cover; CF needs a hardened nozzle",
+      "grounds": [
+        "bed_x_mm",
+        "bed_y_mm",
+        "bed_z_mm",
+        "material"
+      ]
+    }
+  ]
+}

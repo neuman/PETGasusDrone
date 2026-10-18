@@ -1,0 +1,19 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-7307a1ba1c.png",
+  "kind": "data",
+  "description": "3D SIMP field, PETG frame and hoops, 12 g budget, 9 load cases, 5 mm filter, on problem 7307a1ba: the cells above the hoops' top are void (on 5c64a12f the optimiser filled them and the hoops stood 4.8 mm tall). Run directly with --out and filed by hand, as the 5c64a12f fields were",
+  "sha256": "6f26f96ece0bab0955c6767ae49f3f857edf7d540e063d77609204d99c46c290",
+  "added": "2026-10-17T16:31:14Z",
+  "extractions": [
+    {
+      "what": "side view: nothing above z 14 (the hoops' top layer) where the 5c64a12f field had a solid band to 16",
+      "grounds": [
+        "topology_field",
+        "C13"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-12g",
+  "proposer": "fea.topopt3d"
+}

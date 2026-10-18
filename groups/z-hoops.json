@@ -1,0 +1,9 @@
+{
+  "kind": "zone",
+  "title": "Guard hoops",
+  "members": [
+    "prop_tip_gap",
+    "guard_wall",
+    "guard_h"
+  ]
+}

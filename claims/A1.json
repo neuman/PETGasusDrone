@@ -1,6 +1,6 @@
 {
-  "statement": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
+  "statement": "The guards and the limbs under the props cost at most 7.5 % of the open-prop static thrust (guard_thrust_factor 0.925)",
   "kind": "assumption",
   "owner": "Eric Neuman",
-  "rationale": "Tight ducts can add 10-20% thrust; a printed duct with a 1 mm tip gap and no shaped inlet lip may add nothing or lose some. 0.9 is the cautious middle. Replace with a scale measurement: quad upside down on a kitchen scale, full throttle, props on (P5)."
+  "rationale": "Low guard arcs about 1.1-2 mm outside the tips (2 mm drawn exactly, about 1.1 mm as printed) neither add (no shaped duct lip) nor take much; the frame's shadow on the discs is capped at 15 % by C14, and blockage costs roughly half its area fraction. Replace with a scale measurement: quad upside down on a kitchen scale, full throttle, props on (P5)."
 }

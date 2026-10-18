@@ -10,5 +10,15 @@
   "rationale": "Under ~1 mm (less than two threads of M1.4) the screw strips out of the motor base in the first hard crash.",
   "tags": [
     "motor-screws"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "screw length less the seat's thickness",
+    "evaluators": [
+      "petgasus.motor_screws"
+    ]
+  },
+  "requirements": [
+    "R2"
   ]
 }

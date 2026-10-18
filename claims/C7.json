@@ -4,5 +4,17 @@
   "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
   "tags": [
     "mesh"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
+    "evaluators": [
+      "cad.watertight",
+      "cad.is_volume",
+      "cad.degenerate_faces"
+    ]
+  },
+  "requirements": [
+    "R5"
   ]
 }

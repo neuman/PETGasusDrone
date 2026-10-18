@@ -1,0 +1,41 @@
+{
+  "title": "Guards are outer arcs; the optimiser draws the rest",
+  "when": "2026-10-17T17:57:42Z",
+  "summary": "Each prop's guard must be solid only round the half facing away from the frame's centre (guard_arc_deg 180), the side that meets walls and furniture; the rest is the optimiser's design space, and it is hit from nine directions across the arc in 3D. Given that, the optimiser closed the four guards into one rounded rim and tied each seat to it with V-shaped spokes. Nothing is drawn above the guards' top (a keep-out in the drawing and in the optimiser's grid); C13 judges the bands' height as printed, and C14 still judges the shadow on the props.",
+  "rejected": [
+    {
+      "value": "four full guard hoops, fixed",
+      "why": "a third of the frame's mass and its whole look: the optimiser could only bridge between four given circles, and the author found the result 'rings and bars' (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "a full ring of any shape, designed by the optimiser",
+      "why": "the author chose outer arcs only (2026-10-17): the inner halves face the other props and the body",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "a bigger drone, 2.5 to 3 inch props",
+      "why": "more room for organic structure, but new motors, board, props and battery, and the kit's no-solder parts gone; kept as the next thread to pull",
+      "type": "unevaluated",
+      "returns_if": {
+        "text": "the arc design, refined, still looks primitive to the author or fails its CalculiX checks by a wide margin"
+      }
+    }
+  ],
+  "params_changed": [
+    "guard_arc_deg",
+    "topo_crash_spread_deg",
+    "topo_w_crash",
+    "topo_w_crash_up",
+    "topo_w_top"
+  ],
+  "claims_changed": [
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "A1"
+  ]
+}

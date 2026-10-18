@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-tpu-12g-a2ac5a2df6.npz",
+  "kind": "data",
+  "description": "3D SIMP field, PETG frame with TPU 95A hoops, 12 g budget, 9 load cases, 5 mm filter; problem a2ac5a2d. Run by hand (output outside the project) so the agent could keep building; it ended oscillating between two states",
+  "sha256": "954256a0055685636f6e3fd1baa0a1508ac994ce8d0d079e30ab384eb6111436",
+  "added": "2026-10-17T14:21:52Z",
+  "extractions": [
+    {
+      "what": "the same problem with the hoops as TPU 95A (problem a2ac5a2d): 120 iterations still oscillating at the end (objective 102.3, move limit at its 0.1 cap); not used as it stands, only as the warm start for the settled run",
+      "grounds": [
+        "guard_material"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem-petg-tpu.npz --variant petg-tpu-12g --iters 120",
+  "proposer": "fea.topopt3d"
+}

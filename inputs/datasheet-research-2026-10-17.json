@@ -1,0 +1,39 @@
+{
+  "path": "inputs/datasheets/datasheet-research-2026-10-17.md",
+  "kind": "datasheet",
+  "description": "published numbers for the 1102 (2026) motor, Matrix 1S 3IN1, GF 1811 prop, LAVA II 320, Snapmaker U1, each with its source URL",
+  "sha256": "a352e54e59c81174870ca091caef84967060cbe2e9292e9bed3b12017f877b1c",
+  "added": "2026-10-17T09:52:04Z",
+  "extractions": [
+    {
+      "what": "Matrix 1S 3IN1: 25.5 mm pattern, 1.0 mm board, 4.2 g with lead; outline about 40 mm tip to tip, arms 10.5 and 13.4 mm, holes about 3.6 mm (scaled from photos)",
+      "grounds": [
+        "fc_hole_spacing",
+        "fc_pcb_t",
+        "fc_mass_g",
+        "fc_arm_tip_r",
+        "fc_arm_w_fb",
+        "fc_arm_w_side",
+        "fc_hole_d",
+        "A4"
+      ],
+      "confidence": "scaled"
+    },
+    {
+      "what": "GF 1811: 45 mm, 0.32 g, 1.5 mm hole, hub 4.4 mm tall, widest blade 8.7 mm; hub about 6.5 mm across (scaled)",
+      "grounds": [
+        "prop_d",
+        "prop_mass_g",
+        "prop_hub_h",
+        "prop_chord",
+        "prop_hub_d"
+      ]
+    },
+    {
+      "what": "the 46.3 g row v0.1 used is the 1102 22000KV on a GF-1635-3B (40 mm) at 4.0 V, not the kit's motor or prop",
+      "grounds": [
+        "motor_thrust_max_g"
+      ]
+    }
+  ]
+}

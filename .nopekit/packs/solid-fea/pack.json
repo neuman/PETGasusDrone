@@ -1,0 +1,64 @@
+{
+  "name": "solid-fea",
+  "version": "0.1.0",
+  "description": "3D structure of printed parts: a SIMP topology optimiser that proposes where material goes, and a CalculiX wrapper (gmsh tets, fTetWild where gmsh fails, mesh quality checks, an equilibrium check independent of the solver) that evaluators use on the printed shape.",
+  "settles": [
+    "topology",
+    "material layout",
+    "load path",
+    "natural frequency",
+    "first mode",
+    "stress",
+    "impact",
+    "crash survival",
+    "stiffness"
+  ],
+  "claim_classes": [
+    "structural",
+    "stiffness",
+    "vibration",
+    "impact",
+    "topology",
+    "additive"
+  ],
+  "provides_gates": [],
+  "provides_views": [],
+  "provides_generators": [],
+  "requires_tools": [],
+  "requires_python": [
+    "numpy",
+    "scipy",
+    "numba",
+    "pyamg",
+    "gmsh",
+    "wildmeshing"
+  ],
+  "max_tier": 2,
+  "lenses": [
+    "the load case nobody wrote down",
+    "where the optimiser's grid is coarser than the part",
+    "what the field says against what was printed",
+    "layer direction against the stress",
+    "the joint: fillet, or stress concentrator",
+    "mesh dependence of a peak stress",
+    "the solve that does not balance its loads",
+    "the run that stopped, not converged"
+  ],
+  "licence": "Apache-2.0",
+  "origin": "built by the extension protocol in the PETGasus drone project (2026-10-17), after a flat 2.5D plate frame was reviewed as 'a 2D design' on r/diydrones",
+  "basis": "sourced",
+  "provides_proposers": [
+    {
+      "id": "fea.topopt3d",
+      "basis": "sourced",
+      "description": "3D SIMP topology optimisation of a voxel problem the model writes: density filter, projection, OC; direct solves (PARDISO or SuperLU) where memory allows, AMG-CG beyond; proposes a density field",
+      "run": "proposers/topopt3d.py"
+    },
+    {
+      "id": "fea.print_orientation",
+      "basis": "model-only",
+      "description": "scans build directions of a part: surface needing support, and how much of the worst crash stress acts across the layers",
+      "run": "proposers/print_orientation.py"
+    }
+  ]
+}

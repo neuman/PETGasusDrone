@@ -1,0 +1,9 @@
+{
+  "kind": "zone",
+  "title": "Filament",
+  "members": [
+    "material",
+    "guard_material",
+    "strength_knockdown"
+  ]
+}

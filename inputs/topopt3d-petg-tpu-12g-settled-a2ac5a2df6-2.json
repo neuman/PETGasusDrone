@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-tpu-12g-settled-a2ac5a2df6.png",
+  "kind": "data",
+  "description": "the PETG + TPU-hoop field settled: 40 more iterations from topopt3d-petg-tpu-12g-a2ac5a2df6 at beta 16 with a damped move limit; objective 18.0",
+  "sha256": "6445470294039ed870952f56b76ef524ead418e432c11303d1d5bc1425088836",
+  "added": "2026-10-17T14:36:10Z",
+  "extractions": [
+    {
+      "what": "preview: the layout matches the all-PETG field (two limbs per seat, posts tied in), with the hoop band softer and the limb nodes on the hoops slightly heavier",
+      "grounds": [
+        "guard_material"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem-petg-tpu.npz --variant petg-tpu-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-tpu-12g-a2ac5a2df6.npz",
+  "proposer": "fea.topopt3d"
+}

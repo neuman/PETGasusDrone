@@ -10,5 +10,15 @@
   "rationale": "US FAA recreational threshold: under 250 g no registration is needed (the TRUST certificate still is). Also the ceiling for being a safe indoor toy.",
   "tags": [
     "auw"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass",
+    "evaluators": [
+      "petgasus.auw"
+    ]
+  },
+  "requirements": [
+    "R1"
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-tpu-12g-settled-a2ac5a2df6.json",
+  "kind": "data",
+  "description": "the PETG + TPU-hoop field settled: 40 more iterations from topopt3d-petg-tpu-12g-a2ac5a2df6 at beta 16 with a damped move limit; objective 18.0",
+  "sha256": "0dcffdf1b5b54a72f866c938c2657f9aca15358c26762dc0d320089f9c4aba60",
+  "added": "2026-10-17T14:36:10Z",
+  "extractions": [
+    {
+      "what": "final relative compliance: thrust 1.90, prop strike 1.95 / 1.56, crash 2.31 / 2.80 / 2.81, side 3.97 / 3.95, battery 0.37 (against its own uniform start, which is itself softer than the PETG one)",
+      "grounds": [
+        "guard_material"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem-petg-tpu.npz --variant petg-tpu-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-tpu-12g-a2ac5a2df6.npz",
+  "proposer": "fea.topopt3d"
+}

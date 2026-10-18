@@ -1,0 +1,24 @@
+{
+  "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "prop disc blockage",
+    "comparator": "<=",
+    "limit": 0.15,
+    "units": "ratio"
+  },
+  "rationale": "Material under a prop blocks its downwash and costs thrust; the review's propwash point. Each seat sits in the middle of its disc, so whatever holds it stiffly crosses the disc: the stiffest organic frame covered 22 %, and one held to 8.5 % was 2.9x less stiff. The author chose the middle (2026-10-17): 15 %, which costs about 7.5 % of static thrust (blockage costs roughly half its area fraction), A1's figure.",
+  "tags": [
+    "downwash"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "the frame cut by each prop's annulus and projected onto the plane",
+    "evaluators": [
+      "petgasus.prop_blockage"
+    ]
+  },
+  "requirements": [
+    "R8"
+  ]
+}

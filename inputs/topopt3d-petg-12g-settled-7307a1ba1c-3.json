@@ -1,0 +1,19 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-settled-7307a1ba1c.json",
+  "kind": "data",
+  "description": "the 7307a1ba PETG field settled: 40 more iterations at beta 16 warm-started from topopt3d-petg-12g-7307a1ba1c, with its own starting compliances; objective 12.21 -> 11.76",
+  "sha256": "1351652cc1b0165b610dab0c2c00c99ad5727f070ffabc26656ef57d7382d356",
+  "added": "2026-10-17T16:31:16Z",
+  "extractions": [
+    {
+      "what": "final relative compliance: thrust 1.09, prop strike 1.07 / 0.95, crash 1.83 / 2.30 / 1.75, side 2.72 / 2.61, battery 0.31; objective 11.76; 776 s for 40 iterations",
+      "grounds": [
+        "topology_field",
+        "C4"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-12g-7307a1ba1c.npz",
+  "proposer": "fea.topopt3d"
+}

@@ -1,0 +1,90 @@
+{
+  "title": "The frame is drawn from a 3D topology field",
+  "when": "2026-10-17T15:04:14Z",
+  "summary": "The frame is no longer a plate with spokes. A 3D SIMP optimiser (the solid-fea pack's fea.topopt3d) finds where a 12 g cost-weighted budget of plastic (about 10.7 g placed) carries the loads between the motor seats, the guard arcs and the FC posts: thrust, two prop strikes, nine guard crashes from across the arc in 3D, and the battery. It is solved on a 2 mm grid (5 mm filter) and refined on a 1.33 mm one (3.5 mm filter), with 12 mm of depth free under the seats and material under a prop charged extra, the extra shared down its column. The model draws the refined field (topology_field) as one smooth function, cut, opened and filleted, and one level set. CalculiX on that drawn surface, not the optimiser, judges it (C4, C15, C16); C17 refuses a field solved for another problem.",
+  "rejected": [
+    {
+      "value": "the v0.1 plate: ribbed spokes and webs from a 2.5D optimiser, flat at the bed",
+      "why": "the r/diydrones review: a 2D design of flat planks meeting at right angles with no gussets, the corners where printed PETG cracks, and expected to break after a couple of crashes",
+      "type": "dominated",
+      "input": "diydrones-feedback-2026-10-17"
+    },
+    {
+      "value": "carbon rods or tubes joined by printed nodes",
+      "why": "the author chose a printed-only frame in the interview (2026-10-17): no cut rods for a kid to build, no second supply",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "the field solved with the part-cell above the hoops designable (problem 5c64a12f)",
+      "why": "the grid rounds up 1.4 mm past the hoops' top and the optimiser filled that layer over every hoop (a deeper hoop is a stiffer one): the drawn hoops stood 4.8 mm tall against C13's 4 mm limit then, and C13's gate, reading the height from the parameters, passed it. Cells above the guards are now void, the drawing is capped there, and C13 measures the bands as printed",
+      "type": "infeasible",
+      "input": "topopt3d-petg-12g-settled-5c64a12f7f"
+    },
+    {
+      "value": "a 120-iteration field without the settle",
+      "why": "on problem 5c64a12f the objective was still swinging between 41.5 and 51.1 at a 0.1 move limit; 40 damped iterations from it settled at 13.6 with the same layout, so every field is settled the same way",
+      "type": "dominated",
+      "input": "topopt3d-petg-12g-5c64a12f7f"
+    },
+    {
+      "value": "a 3 mm density filter",
+      "why": "on the 2 mm grid it broke the field into one-cell members that the surface blur erased, leaving seats on strands; 5 mm gives limbs at least two cells wide there (the 1.33 mm refinement uses 3.5 mm, 2.6 cells)",
+      "type": "dominated"
+    },
+    {
+      "value": "void stiffness 1e-3 of solid",
+      "why": "the empty cells carried load between the seats and the hoops, so the optimiser left seats floating with nothing joining them; 1e-6 with direct solves",
+      "type": "infeasible"
+    },
+    {
+      "value": "the field cut at its midpoint, iso 0.5",
+      "why": "half-dense limbs were cut away and the frame fell into 9 separate pieces; iso 0.36 keeps one piece with the same budget",
+      "type": "infeasible"
+    },
+    {
+      "value": "a 1 mm grid",
+      "why": "~840k unknowns: MKL PARDISO's factors took 18 GB and ran the 21 GB machine out of memory, and SuperLU or multigrid would take hours an iteration; 1.33 mm (~360k, 7 GB, 30 s an iteration) refines instead",
+      "type": "infeasible"
+    },
+    {
+      "value": "the full downwash cost on every cell under a prop",
+      "why": "a deep web under a prop paid the downwash cost for every cell of its depth, though it casts one thin shadow; with 12 mm of depth free the optimiser stayed shallow, objective 32.5 at iteration 89 against 11.4 with the extra shared down each column",
+      "type": "dominated"
+    },
+    {
+      "value": "the field drawn with a 0.7 mm blur",
+      "why": "it erased limbs one cell thick (the thin flanges, the diagonal staircases) and left stubs the author circled; CalculiX found the drawn seat 1.25 N/mm against the optimiser's 15.3, and at 0.35 mm 15.7",
+      "type": "dominated"
+    },
+    {
+      "value": "the 2 mm field, drawn as it is",
+      "why": "its thinnest limbs are one cell wide, grey, and draw as beads; refined at 1.33 mm they are two to three cells thick and continuous (objective 9.97 -> 9.12)",
+      "type": "dominated",
+      "input": "topopt3d-petg-deep2-ebd95b68bf"
+    }
+  ],
+  "params_changed": [
+    "surface_blur_mm",
+    "surface_clearance_mm",
+    "surface_iso",
+    "surface_open_mm",
+    "surface_simplify_mm",
+    "topo_below",
+    "topo_design_g",
+    "topo_h",
+    "topo_prop_cost",
+    "topo_rmin",
+    "topology_field"
+  ],
+  "claims_changed": [
+    "C17",
+    "C4",
+    "C15",
+    "C16",
+    "C11"
+  ],
+  "evidence": [
+    "inputs/data/topopt3d-petg-deep2-133-98012a8052.png"
+  ]
+}

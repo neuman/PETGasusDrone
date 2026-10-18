@@ -1,0 +1,19 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-settled-5c64a12f7f.json",
+  "kind": "data",
+  "description": "the PETG field settled: 40 more iterations from topopt3d-petg-12g-5c64a12f7f at beta 16 with the move limit cut to 0.025 and halved on each zig-zag (the parent stopped oscillating between objective 41.5 and 51.1); objective 13.6",
+  "sha256": "9ef4755c44cf128f189546ffa5c5c80f9a07ceb06c422b647e1a99b70c676103",
+  "added": "2026-10-17T14:36:10Z",
+  "extractions": [
+    {
+      "what": "final compliance per load case relative to the uniform start: thrust 1.31, prop strike radial 1.28 / tangential 1.09, crash radial 2.26 / tangential 2.45 / vertical 2.05, side x 2.78 / y 2.93, battery 0.36; objective 13.57; 837 s for 40 iterations",
+      "grounds": [
+        "topology_field",
+        "C17"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-12g-5c64a12f7f.npz",
+  "proposer": "fea.topopt3d"
+}

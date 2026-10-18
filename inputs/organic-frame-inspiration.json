@@ -1,0 +1,16 @@
+{
+  "path": "inputs/references/organic-frame-inspiration.md",
+  "kind": "reference",
+  "description": "the author's inspiration: two organic, bone-like printed quad frames with partial prop guards",
+  "sha256": "d11d30e9b628344a628a866d1964e2b2552d06625beafba9f2c6ed0b3e863e17",
+  "added": "2026-10-17T09:52:04Z",
+  "extractions": [
+    {
+      "what": "organic branching limbs blend into partial prop guards with large fillets; arms triangulated in 3D, no flat plates",
+      "grounds": [
+        "R6",
+        "surface_fillet_mm"
+      ]
+    }
+  ]
+}

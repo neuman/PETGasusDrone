@@ -1,0 +1,8 @@
+{
+  "kind": "zone",
+  "title": "Battery",
+  "members": [
+    "battery_mah",
+    "battery_mass_g"
+  ]
+}

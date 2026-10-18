@@ -1,0 +1,24 @@
+{
+  "statement": "The frame is drawn from a topology field computed for this design's problem",
+  "kind": "measurable",
+  "acceptance": {
+    "quantity": "topology proposal current",
+    "comparator": ">=",
+    "limit": 1,
+    "units": "bool"
+  },
+  "rationale": "Method rule 6. The field is a proposal computed once for a set of seats, guard arcs, keep-outs and loads; a design that moved since puts limbs where it no longer wants them, and no other check would see it.",
+  "tags": [
+    "topology-current"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "the proposal's recorded problem hash against this design's",
+    "evaluators": [
+      "petgasus.topology_current"
+    ]
+  },
+  "requirements": [
+    "R6"
+  ]
+}

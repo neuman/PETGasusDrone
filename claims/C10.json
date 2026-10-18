@@ -4,5 +4,15 @@
   "rationale": "The user's budget. Settled by the sourcing pack over bom/bom.json - whose prices are a dated snapshot, not live stock.",
   "tags": [
     "budget"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "sourcing pack: the BOM's prices rolled up against the budget",
+    "evaluators": [
+      "bom.cost"
+    ]
+  },
+  "requirements": [
+    "R4"
   ]
 }

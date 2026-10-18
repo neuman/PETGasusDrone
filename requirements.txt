@@ -5,3 +5,11 @@ manifold3d>=3.0
 trimesh>=4.0
 matplotlib>=3.8
 contourpy>=1.2
+# the solid-fea pack: the topology optimiser (numba, pyamg) and the CalculiX
+# gates' meshers (gmsh; fTetWild where gmsh fails). CalculiX itself: sudo apt install calculix-ccx
+numba>=0.60
+pyamg==5.2.1
+gmsh==4.13.1
+wildmeshing==0.4.1
+# optional: MKL PARDISO for the topology optimiser's solves (12x faster; ~800 MB of MKL)
+# pypardiso==0.4.7

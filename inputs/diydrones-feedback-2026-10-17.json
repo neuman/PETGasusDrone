@@ -1,0 +1,33 @@
+{
+  "path": "inputs/references/diydrones-feedback-2026-10-17.md",
+  "kind": "reference",
+  "description": "r/diydrones critique of PETGasus v0.1, paraphrased: tall ducts, cutouts, flat planks, no gussets, crash durability, filament choice",
+  "sha256": "7feb6de0aefe9f1a4f642232bd6470369865f8ab9460cb55b88402d04f05f388",
+  "added": "2026-10-17T09:52:04Z",
+  "extractions": [
+    {
+      "what": "ducts too tall (keep a guard to 4 mm or less), windows make propwash and add weight",
+      "grounds": [
+        "guard_h",
+        "C13",
+        "R8"
+      ]
+    },
+    {
+      "what": "flat planks and right angles with no gussets: stress concentrators at every joint; fillet horizontally, chamfer vertically",
+      "grounds": [
+        "surface_fillet_mm",
+        "R6"
+      ]
+    },
+    {
+      "what": "it will fly but break after a couple of crashes; PETG-CF too brittle, PETG too soft; choose the filament as part of the design",
+      "grounds": [
+        "material",
+        "C15",
+        "C16",
+        "R11"
+      ]
+    }
+  ]
+}

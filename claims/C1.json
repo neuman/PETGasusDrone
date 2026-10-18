@@ -10,5 +10,15 @@
   "rationale": "A first-time pilot in angle mode hovers at 1/TW of full thrust; at 3:1 that is a third of the stick, leaving room to arrest a fall and push through a gust. At ~2:1 the quad wallows and a beginner's late correction cannot catch it. Commercial 1S whoops run 3.5-5:1.",
   "tags": [
     "thrust-margin"
+  ],
+  "mechanism": {
+    "by": "datasheet",
+    "how": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight",
+    "evaluators": [
+      "petgasus.thrust_to_weight"
+    ]
+  },
+  "requirements": [
+    "R3"
   ]
 }

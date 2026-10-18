@@ -24,8 +24,9 @@ def _with(ctx, **overrides):
 
 
 def heavy_battery(ctx):
-    """petgasus.thrust_to_weight — pack mass x4, nothing else."""
-    return _with(ctx, battery_mass_g=known_good.CONFIG["battery_mass_g"] * 4)
+    """petgasus.thrust_to_weight — pack mass x8, nothing else: the 66.6 g motors
+    carry x4 with thrust to spare."""
+    return _with(ctx, battery_mass_g=known_good.CONFIG["battery_mass_g"] * 8)
 
 
 def brick_battery(ctx):
@@ -38,25 +39,15 @@ def tiny_pack(ctx):
     return _with(ctx, battery_mah=100.0)
 
 
-def hand_drawn_plate(ctx):
-    """petgasus.frame_mode — the hand-drawn arms, ribs and spokes in place of the
-    optimised plate, everything else unchanged. It bounces at ~160 Hz, under C4's
-    200 Hz, which is the printed-frame vibration complaint the optimiser fixed."""
-    return _with(ctx, plate_layout="arms")
-
-
 def oversize_props(ctx):
-    """petgasus.interference — props 3 mm larger in diameter than the ducts allow.
-
-    The duct radius derives from prop_d, so growing prop_d alone would grow the
-    ducts with it; the gap is cut by the same amount instead, which is what
-    fitting the wrong props to a printed frame does.
-    """
-    return _with(ctx, prop_tip_gap=known_good.CONFIG["prop_tip_gap"] - 1.5 - 0.5)
+    """petgasus.interference — the prop tip gap cut by 2.5 mm, to -0.5: the guards
+    are drawn round the props (guard_r_in = prop radius + prop_tip_gap), so their
+    inner face moves 2.5 mm in and the prop tips now cut 0.5 mm into it."""
+    return _with(ctx, prop_tip_gap=known_good.CONFIG["prop_tip_gap"] - 2.5)
 
 
 def long_fc_screws(ctx):
-    """petgasus.fc_screws — M1.4 x 12 in the known-good stack: the tip pokes out below."""
+    """petgasus.fc_screws — M1.4 x 12 through the grommets: the tip pokes out below."""
     return _with(ctx, fc_screw_len=12.0)
 
 
@@ -65,11 +56,51 @@ def thick_seat(ctx):
     return _with(ctx, plate_t=2.5)
 
 
-def no_spokes(ctx):
-    """petgasus.one_piece — zero spokes: the four motor seats float free in their ducts."""
-    return _with(ctx, spoke_count=0)
+def no_field(ctx):
+    """petgasus.one_piece — no topology field: four seats, four guard arcs, four
+    posts and the strap saddle with nothing joining them."""
+    return _with(ctx, topology_field="")
 
 
 def short_leads(ctx):
-    """petgasus.motor_leads — 20 mm motor leads: the route needs ~21 mm."""
+    """petgasus.motor_leads — 20 mm motor leads: the straight run needs ~23 mm."""
     return _with(ctx, motor_lead_len=20.0)
+
+
+def tall_guards(ctx):
+    """petgasus.guard_height — v0.1's duct height, 10.9 mm."""
+    return _with(ctx, guard_h=10.9)
+
+
+def fat_limbs(ctx):
+    """petgasus.prop_blockage — the same field drawn at density 0.15 instead of
+    0.36: every limb fattens, and those under the props fill the discs."""
+    return _with(ctx, surface_iso=0.15)
+
+
+def moved_motors(ctx):
+    """petgasus.topology_current — the guards 1 mm further out (wider tip gap), so
+    the motors move out with them: the field was computed for the old keep-outs."""
+    return _with(ctx, prop_tip_gap=known_good.CONFIG["prop_tip_gap"] + 1.0)
+
+
+def coarse_fea_mesh(ctx):
+    """petgasus.fea_converged — the analysis surface at a 3 mm edge, coarser than
+    the 3-4 mm limbs it describes: its numbers and the fine surface's (2.1 mm)
+    disagree. (5 mm tets alone lost: gmsh's mesh followed the surface's
+    triangles whatever the tet size, and stayed converged.)"""
+    return _with(ctx, fea_surface_mm=3.0)
+
+
+def tpu_frame(ctx):
+    """petgasus.frame_mode — the same shape in TPU 95A (33.6 MPa against PETG's
+    1810): its first mode falls by sqrt(54), ~7x."""
+    return _with(ctx, material="TPU95A", guard_material="TPU95A")
+
+
+def weak_layers(ctx):
+    """petgasus.crash_drop, petgasus.crash_wall — strength at a tenth of the data
+    sheet's (a damp spool, a cold print), in the strong filament the crashes are
+    judged in too: the energy the frame takes before it breaks falls 100x, the
+    drop height and wall speed 100x and 10x."""
+    return _with(ctx, strength_knockdown=0.1)

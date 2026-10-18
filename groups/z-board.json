@@ -1,0 +1,10 @@
+{
+  "kind": "zone",
+  "title": "Board mount",
+  "members": [
+    "fc_post_h",
+    "fc_post_od",
+    "fc_screw_len",
+    "fc_grommet_h"
+  ]
+}

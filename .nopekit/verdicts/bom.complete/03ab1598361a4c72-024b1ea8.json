@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "gate": "bom.complete",
+  "rho": "03ab1598361a4c7200f4f3dd39df51159cf651ea60cf445ecf47b4177e73fb53",
+  "code": {
+    "digest": "bc2b1ff651af4709a63d0f997cf8a4562f4cb7a7182906599c292fdb07a8f10d",
+    "files": [
+      "<pack:sourcing>/bomlib.py",
+      "<pack:sourcing>/gates/sourcing.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bom_path"
+        ],
+        "b54672216ad61528fe8bfddc4f04216f249b0767ca9c6a00b5b32b270708af8c",
+        "bom/bom.json"
+      ],
+      [
+        [
+          "sourcing"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "sourcing.bom_path"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "bom/bom.json": "0a3c767a38473e1c5e535642cb5772ce44ba2864238f3adf912d5dac3763ea1f"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "lines",
+    "comparator": "<=",
+    "settles": "bill of materials completeness",
+    "detail": "0 of 7 lines not orderable (limit 0) — every line has a part number, a quantity and a usable price",
+    "evidence": [
+      "<out>/bom_complete.json"
+    ],
+    "locators": [],
+    "claims": [
+      "sourcing",
+      "procurement",
+      "bom",
+      "cost",
+      "availability",
+      "supply-chain"
+    ],
+    "tier": 0,
+    "pack": "sourcing"
+  },
+  "digest": "f19ba4b6e7b7bb27c4865793c45625fb0d1398523d707b4d77cf002920c7b76f"
+}

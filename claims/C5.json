@@ -7,8 +7,18 @@
     "limit": 0.0,
     "units": "mm3"
   },
-  "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their real route out through the duct's port window. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
+  "rationale": "Measured by boolean intersection of every placed part with every other (model/assembly.py), not of boxes standing in for them: the props as blades, the motor leads along their straight run from the motor's base to the plug under the board. Allowed overlaps are listed with their reasons in assembly.ALLOWED_OVERLAPS. Overlaps under 1e-4 mm3 (faces that touch) are not counted. REVISED 2026-10-07 from bought-part envelopes, which could not see a wire.",
   "tags": [
     "envelope-clearance"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap",
+    "evaluators": [
+      "petgasus.interference"
+    ]
+  },
+  "requirements": [
+    "R1"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "kind": "zone",
+  "title": "Motor seat",
+  "members": [
+    "plate_t",
+    "motor_screw_len",
+    "screw_access_d"
+  ]
+}

@@ -1,26 +1,51 @@
-"""geometry.py — the printed parts, built from the Config in petgasus.py.
+"""geometry.py — the printed frame: the topology proposal's load paths as one smooth
+solid, fused to the exact features the bought parts need.
 
-Frame: millimetres. +x forward, +y left, +z up. Origin at the centre of the frame
-on the BED: z=0 is the underside of the base plate. The frame is the only printed
-part and it prints in the pose it flies in, so the assembly frame IS the print
-frame. (A battery tray was the second part until decisions/battery-hangs-under-the-hub-on-a-strap.)
+Same frame as petgasus.py: millimetres, +x forward, +y left, +z up, z=0 under the
+motor seats.
 
-Every dimension here is read from `c` (the Config) or from `d` (the derived dict
-petgasus.build() computes before calling in). Nothing is typed twice: if a number
-in this file is not 0, 1, 2 or a count, it is a construction detail with its
-reason beside it.
+How the solid is made (frame()):
+  1. The proposer's density field (model/topopt3d.py's problem, solved by the
+     solid-fea pack's fea.topopt3d) is resampled onto a fine grid and blurred, so
+     its cells (topo_h) become round limbs instead of stairs. Where a limb meets a
+     seat, guard arc or post, the field is carried into that feature's cells, so the
+     limb reaches it instead of stopping a cell short.
+  2. The exact features (motor seats, guard arcs, FC posts, the strap's saddle)
+     are added as signed distance functions with a SMOOTH union of radius
+     surface_fillet_mm: every joint gets a fillet. The reddit review's sharpest
+     point was the opposite —
+     flat planks butting into each other with no gusset, a stress concentrator at
+     every joint.
+  3. Everything that must be empty is cut from that function (topopt3d.keepouts:
+     the props' bands, the motor bodies, the board, the battery, the leads, the
+     screwdriver's way to each motor screw, the space above the guards), grown
+     by surface_clearance_mm; whatever the cut leaves thinner than
+     2 x surface_open_mm is opened away; the exact features go back in sharp,
+     and the holes come out.
+  4. manifold3d's level set turns that one function into a closed, manifold mesh.
 
-Needs manifold3d (watertight booleans, deterministic).
+One function and one level set, no mesh booleans: booleans between the field's
+surface and the exact solids left 0.01 mm skins where a limb grazed a keep-out
+and pinched vertices 0.00004 mm apart where a fillet grazed a guard, which the
+print mesh checks (cad.wall_thickness, cad.degenerate_faces) rightly refused.
+The planes a part sits on (the seats' and posts' tops) come out exact, because
+a linear function's level set is exact; sharp edges are rounded by under half
+an edge. CalculiX's surface is the same drawing at its own edge length.
+
+The surface is a function of the field file and the Config fields above, and it
+takes ~30 s, so frame() caches it by a hash of both (build/frame_cache/).
 """
 from __future__ import annotations
 
+import hashlib
+import json
 import math
+import os
 
 import manifold3d as m3d
+import numpy as np
 
 CIRCLE_SEGMENTS = 96
-"""Facets on a full circle. 96 keeps the chord error on the 43 mm duct under
-0.03 mm — far below one 0.42 mm bead — without making the STL heavy."""
 
 
 def _cyl(h, r, z0=0.0, seg=CIRCLE_SEGMENTS):
@@ -31,340 +56,437 @@ def _box(sx, sy, sz, cx=0.0, cy=0.0, z0=0.0):
     return m3d.Manifold.cube((sx, sy, sz), True).translate((cx, cy, z0 + sz / 2))
 
 
-def _bar(p0, p1, width, height, z0=0.0, round_end=True):
-    """A flat bar of `width` from p0 to p1 (xy), `height` tall from z0.
-
-    Round at p0; round at p1 too unless round_end is False - a member ending INSIDE
-    a duct wall ends flat, because a round cap there poked out of the wall's outer
-    face as a 0.2 mm nub."""
-    (x0, y0), (x1, y1) = p0, p1
-    length = math.hypot(x1 - x0, y1 - y0)
-    ang = math.degrees(math.atan2(y1 - y0, x1 - x0))
-    body = _box(length, width, height).rotate((0, 0, ang)).translate(
-        ((x0 + x1) / 2, (y0 + y1) / 2, z0))
-    caps = _cyl(height, width / 2, z0).translate((x0, y0, 0))
-    if round_end:
-        caps = caps + _cyl(height, width / 2, z0).translate((x1, y1, 0))
-    return body + caps
+def _ring(r_in, r_out, z0, z1, seg=CIRCLE_SEGMENTS):
+    return _cyl(z1 - z0, r_out, z0, seg) - _cyl(z1 - z0 + 2, r_in, z0 - 1, seg)
 
 
 def motor_centres(d):
-    a = d["motor_offset"]
-    # FL, FR, BL, BR — quadrant order used by every per-motor list in the model
-    return [(a, a), (a, -a), (-a, a), (-a, -a)]
+    return [tuple(p) for p in d["motor_xy"]]
 
 
-def lattice(c, d):
-    """The duct lattice's cell layout: dict(z0, z1, n, qh, qv) or None (no lattice).
-
-    Cells tile with horizontal pitch p = hl * tan(theta); take the most cells that
-    keep theta at or under the overhang limit, then size them for strut width w.
-    Pitch is taken at the INNER face, where the circumference is shortest: sized at
-    mid-wall, the struts measured 1.09 mm on the inside.
-    """
-    r_in = d["duct_r_in"]
-    z0 = c.plate_t + c.lattice_margin
-    if c.lattice_above_members:
-        # start above everything that joins the wall: no joint needs a solid patch
-        z0 = max(c.web_h, c.topopt_member_h) + c.lattice_margin
-    z1 = d["prop_z"] - c.duct_band_below_prop
-    hl = z1 - z0
-    w = c.lattice_strut_w
-    if not c.duct_lattice or hl <= 3 * w:
-        return None
-    th_max = math.radians(c.lattice_overhang_deg)
-    n = max(6, math.ceil(2 * math.pi * r_in / (hl * math.tan(th_max))))
-    th = math.atan(2 * math.pi * r_in / n / hl)
-    k = 1 / (1 - w / (hl * math.sin(th)))            # cell half-diagonals = hl/(2k)
-    qv = hl / (2 * k)
-    return dict(z0=z0, z1=z1, hl=hl, n=n, qv=qv, qh=qv * math.tan(th))
+def motor_screw_xy(c, mx, my):
+    """The three M1.4 holes of one seat: one pointing away from the hub, two at
+    +-60 deg either side of the hub direction, so the lead (which leaves the
+    motor's base between two screws) points at the board."""
+    toward = math.atan2(-my, -mx)
+    r = c.motor_hole_circle_d / 2
+    return [(mx + r * math.cos(toward + math.radians(60 + 120 * k)),
+             my + r * math.sin(toward + math.radians(60 + 120 * k))) for k in range(3)]
 
 
-def _duct(c, d, cx, cy, solid_at=(), port_deg=None):
-    """One duct: a solid band where the prop runs, a diamond lattice below it.
-
-    Below the prop band the wall is a row of diamond windows over a row of
-    half-diamonds standing on the foot band. Every window edge is at most
-    `lattice_overhang_deg` from vertical, and every window's TOP is a point: there
-    is no flat ceiling anywhere, so nothing needs support and nothing bridges.
-    (A row of half-diamonds hanging from the prop band was tried: its flat tops were
-    3 mm cantilevered ceilings. Square-diamond cells were tried: their 45.0 deg
-    edges sat exactly on the overhang limit.) Struts are `lattice_strut_w` wide,
-    measured square to their own length. A solid wall was 14 g of ducts; at 1S
-    that is the whole thrust budget.
-
-    `port_deg` (degrees, from this duct's centre) phases the pattern so a full
-    window is centred there: the motor's lead leaves the duct through it, toward
-    the AIO. Without it, whether a window faced the hub was an accident of n.
-    """
-    r_in, r_out, h = d["duct_r_in"], d["duct_r_out"], d["duct_h"]
-    wall = _cyl(h, r_out) - _cyl(h + 2, r_in, -1)
-    lat = lattice(c, d)
-    if lat:
-        z0, hl, n, qv, qh = lat["z0"], lat["hl"], lat["n"], lat["qv"], lat["qh"]
-        r_mid = (r_in + r_out) / 2
-        cell = (m3d.Manifold.cube((math.sqrt(2), (r_out - r_in) * 6, math.sqrt(2)), True)
-                .rotate((0, 45, 0)).scale((qh, 1, qv)))
-        # no window where a spoke or a web meets the wall: the joint gets solid wall,
-        # and no member end is left half in a window (sliver faces, 0.17 mm walls)
-        half_cell = math.degrees(qh / r_in)
-        def clear(ang_deg):
-            if c.lattice_above_members:
-                return True
-            for (a_deg, half_w) in solid_at:
-                gap = abs((ang_deg - a_deg + 180) % 360 - 180)
-                if gap < half_cell + math.degrees((half_w + c.joint_margin) / r_in):
-                    return False
-            return True
-        phase = (port_deg - 90.0) if port_deg is not None else 0.0
-        cuts = []
-        for j in range(n):
-            # cell centres sit at local +y (90 deg) before the rotation about z
-            a_mid = phase + 360.0 * j / n
-            a_off = phase + 360.0 * (j + 0.5) / n
-            if clear(90 + a_mid):
-                cuts.append(cell.translate((0, r_mid, z0 + hl / 2)).rotate((0, 0, a_mid)))
-            if clear(90 + a_off):
-                cuts.append(cell.translate((0, r_mid, z0)).rotate((0, 0, a_off)))
-        lattice_cut = m3d.Manifold.batch_boolean(cuts, m3d.OpType.Add) if cuts else m3d.Manifold()
-        # the half-cells at z0 open only upward, into the lattice band
-        lattice_cut = lattice_cut ^ _cyl(hl, r_out + 1, z0)
-        wall = wall - lattice_cut
-    return wall.translate((cx, cy, 0))
+# --------------------------------------------------------------------------- #
+# exact features
+# --------------------------------------------------------------------------- #
+def seats(c, d):
+    return [_cyl(c.plate_t, d["mount_r"]).translate((mx, my, 0)) for (mx, my) in motor_centres(d)]
 
 
-def _motor_mount(c, d, cx, cy, toward_centre_deg):
-    """Motor seat: a disc with 3 screw holes, a centre relief and a wire notch."""
-    seat = _cyl(c.plate_t, d["mount_r"])
-    holes = [_cyl(c.plate_t + 2, c.motor_screw_clear_d / 2, -1).translate(
-        (c.motor_hole_circle_d / 2 * math.cos(math.radians(toward_centre_deg + 60 + 120 * k)),
-         c.motor_hole_circle_d / 2 * math.sin(math.radians(toward_centre_deg + 60 + 120 * k)), 0))
-        for k in range(3)]
-    relief = _cyl(c.plate_t + 2, c.motor_centre_relief_d / 2, -1)
-    return seat, m3d.Manifold.batch_boolean(holes + [relief], m3d.OpType.Add), (cx, cy)
-
-
-def members(c, d):
-    """The plate's members for the chosen layout: one list both the mesh and the FE
-    are built from, so the frequency reported is the frame that prints (rule 6).
-
-    Each member: dict(p0, p1, w = flat width at plate_t, rib = None or (q0, q1) the
-    stretch carrying a rib_w x member_h rib).
-
-    'arms'   - the hand-drawn first layout: hub-to-motor arms with a rib, and three
-               flat spokes per seat. Bounces at ~160 Hz.
-    'spoked' - the layout the topology optimiser found (tools/run_topopt.py):
-               no hub-to-motor arms at all; each seat hangs on `spoke_count` ribbed
-               spokes from its own duct ring, and the hub reaches out to the four
-               duct-to-duct webs on short ribbed bridges. The ring of ducts and webs
-               is the stiff wheel; the motors are its hubs.
-    """
+def guards(c, d):
+    """Each prop's guard arc: a solid band with no windows, guard_h tall, centred
+    on the prop plane (the review: windows make propwash and ADD weight), round
+    guard_arc_deg of the prop facing away from the frame's centre. The rest of
+    each ring is the optimiser's to draw."""
     out = []
-    a = d["motor_offset"]
     for (mx, my) in motor_centres(d):
-        toward = math.atan2(-my, -mx)
-        if c.plate_layout == "arms":
-            f = d["rib_end_frac"]
-            out.append(dict(p0=(0, 0), p1=(mx, my), w=c.arm_w, rib=((0, 0), (mx * f, my * f)),
-                            rib_h=c.rib_h))
-            for k in range(3):
-                ang = toward + math.pi + (k - 1) * 2 * math.pi / 3
-                r = d["duct_r_in"] + 0.5
-                out.append(dict(p0=(mx, my), p1=(mx + r * math.cos(ang), my + r * math.sin(ang)),
-                                w=c.spoke_w, rib=None))
-        elif c.plate_layout == "spoked":
-            for k in range(c.spoke_count):
-                ang = toward + math.radians(c.spoke_phase_deg) + 2 * math.pi * k / c.spoke_count
-                ux, uy = math.cos(ang), math.sin(ang)
-                r0 = c.motor_body_d / 2 + c.member_clear
-                r1 = d["duct_r_in"] + c.duct_wall / 2          # mid-wall, flat end
-                out.append(dict(p0=(mx, my), p1=(mx + r1 * ux, my + r1 * uy), w=c.spoke_w,
-                                rib=((mx + r0 * ux, my + r0 * uy), (mx + r1 * ux, my + r1 * uy)),
-                                rib_h=c.topopt_member_h - c.plate_t, flat_end=True,
-                                duct=(mx, my), ang=math.degrees(ang)))
-        else:
-            raise ValueError(f"plate_layout must be 'arms' or 'spoked', not {c.plate_layout!r}")
-    if c.plate_layout == "spoked":
-        # bridges run from each FC post straight out to the web in front of it, ribbed
-        # all the way: the rib top (topopt_member_h) stays fc_rib_clear below
-        # the AIO, which only overhangs them at its corners, and the strap crosses the
-        # hub between the slots, nowhere near them
-        s_post = max(math.hypot(*p) for p in d["fc_post_xy"])
-        # the rib starts at the post's CENTRE and runs through it (the post is taller):
-        # started at the post's surface, its round end was tangent to the post and the
-        # boolean left sliver triangles (cad.degenerate_faces)
-        r0 = s_post
-        for ang in (0, 90, 180, 270):
-            ux, uy = math.cos(math.radians(ang)), math.sin(math.radians(ang))
-            # flat ends on the web's centre line: a round cap ran past the web into the
-            # V between two ducts and left 0.17 mm walls there
-            out.append(dict(p0=(s_post * ux, s_post * uy), p1=(a * ux, a * uy), w=c.bridge_w,
-                            rib=((r0 * ux, r0 * uy), (a * ux, a * uy)),
-                            rib_h=c.topopt_member_h - c.plate_t, flat_end=True))
+        ring = _ring(d["guard_r_in"], d["guard_r_out"], d["guard_z0"], d["guard_z1"])
+        if c.guard_arc_deg < 360:
+            ring = ring ^ _wedge(math.atan2(my, mx), math.radians(c.guard_arc_deg / 2), d["guard_r_out"] + 2,
+                                 d["guard_z0"] - 1, d["guard_z1"] + 1)
+        out.append(ring.translate((mx, my, 0)))
     return out
 
 
-def frame(c, d):
-    """The one-piece frame: hub, plate members, motor seats, ducts, webs, FC posts,
-    strap slots. The plate members come from members(c, d)."""
-    solids, cuts = [], []
-    centres = motor_centres(d)
+def _wedge(mid, half, r, z0, z1, seg=CIRCLE_SEGMENTS):
+    """A pie slice about the z axis: angles mid +- half, radius r, z0 to z1."""
+    n = max(2, int(seg * half / math.pi))
+    pts = [(0.0, 0.0)] + [(r * math.cos(mid - half + 2 * half * k / n), r * math.sin(mid - half + 2 * half * k / n))
+                          for k in range(n + 1)]
+    return m3d.CrossSection([pts]).extrude(z1 - z0).translate((0, 0, z0))
 
-    # hub plate: hub_t thin - it carries the strap and shields the AIO, not the arms
-    solids.append(m3d.Manifold.extrude(_hub_cs(c, d), c.hub_t))
 
-    mems = members(c, d)
-    for mem in mems:
-        flat = mem.get("flat_end", False)
-        solids.append(_bar(mem["p0"], mem["p1"], mem["w"], c.plate_t, round_end=not flat))
-        if mem["rib"]:
-            solids.append(_bar(mem["rib"][0], mem["rib"][1], c.rib_w, c.plate_t + mem["rib_h"],
-                               round_end=not flat))
+def posts(c, d):
+    return [_cyl(d["z_post_top"], c.fc_post_od / 2).translate((px, py, 0)) for (px, py) in d["fc_post_xy"]]
 
-    for (mx, my) in centres:
-        toward = math.degrees(math.atan2(-my, -mx))
-        seat, holes, _ = _motor_mount(c, d, mx, my, toward)
-        solids.append(seat.translate((mx, my, 0)))
-        cuts.append(holes.translate((mx, my, 0)))
-        if c.foot_w > c.duct_wall:
-            # a flange inside the duct's foot; at foot_w == duct_wall it would be the
-            # wall itself, and two coincident cylinders export as non-manifold edges
-            solids.append((_cyl(c.plate_t, d["duct_r_out"]) - _cyl(c.plate_t + 2, d["duct_r_out"] - c.foot_w, -1))
-                          .translate((mx, my, 0)))
-        # angles (deg, from this duct's centre) where something joins the wall: its
-        # spokes, and the webs to its two neighbours
-        solid_at = [(m_["ang"], max(m_["w"], c.rib_w) / 2) for m_ in mems if m_.get("duct") == (mx, my)]
-        solid_at += [(0.0 if mx < 0 else 180.0, c.duct_wall / 2), (90.0 if my < 0 else 270.0, c.duct_wall / 2)]
-        solids.append(_duct(c, d, mx, my, solid_at, port_deg=toward))
 
-    # webs joining neighbouring ducts across the gap between them: four ducts become
-    # one closed ring, which is most of the frame's stiffness for little mass
-    a = d["motor_offset"]
-    for (x0, y0), (x1, y1) in (((a, a), (a, -a)), ((-a, a), (-a, -a)),
-                               ((a, a), (-a, a)), ((a, -a), (-a, -a))):
-        ux, uy = (x1 - x0) / (2 * a), (y1 - y0) / (2 * a)
-        r = d["duct_r_out"] - c.duct_wall / 2
-        solids.append(_bar((x0 + ux * r, y0 + uy * r), (x1 - ux * r, y1 - uy * r),
-                           c.duct_wall, c.web_h))
+def saddle(c, d):
+    """The strap's saddle (topopt3d.saddle_cells): the hub between the slots."""
+    return [_box(d["strap_slot_len"], 2 * (d["strap_slot_y"] - c.strap_slot_w / 2), c.hub_t)]
 
-    # FC posts, on the 45-deg-rotated hole square when fc_yaw_deg is 45
+
+def exact_features(c, d):
+    """Everything the bought parts need exactly: seats, guard arcs, posts, saddle."""
+    return m3d.Manifold.batch_boolean(seats(c, d) + guards(c, d) + posts(c, d) + saddle(c, d), m3d.OpType.Add)
+
+
+def holes(c, d):
+    """Through-cuts made last: motor screw clearance, the shaft's relief, the FC
+    posts' pilots, the strap slots."""
+    cuts = []
+    for (mx, my) in motor_centres(d):
+        for (hx, hy) in d["motor_screw_xy"][(mx, my)]:
+            cuts.append(_cyl(c.plate_t + 2, c.motor_screw_clear_d / 2, -1).translate((hx, hy, 0)))
+        cuts.append(_cyl(c.plate_t + 2, c.motor_centre_relief_d / 2, -1).translate((mx, my, 0)))
     for (px, py) in d["fc_post_xy"]:
-        solids.append(_cyl(c.plate_t + c.fc_post_h, c.fc_post_od / 2).translate((px, py, 0)))
-        cuts.append(_cyl(c.plate_t + c.fc_post_h + 2, c.fc_pilot_d / 2, -1)
-                    .translate((px, py, 0)))
-
-    # battery strap: the pack hangs under the hub along x, and a 10 mm strap wraps
-    # it across y, up through one slot, over the hub under the AIO, down the other
+        cuts.append(_cyl(d["z_post_top"] + 2, c.fc_pilot_d / 2, -1).translate((px, py, 0)))
     for sy in (1, -1):
-        cuts.append(_box(d["strap_slot_len"], c.strap_slot_w, c.plate_t + 2,
-                         cy=sy * d["strap_slot_y"], z0=-1))
+        cuts.append(_box(d["strap_slot_len"], c.strap_slot_w, d["z_post_top"] + 40,
+                         cy=sy * d["strap_slot_y"], z0=-20))
+    return m3d.Manifold.batch_boolean(cuts, m3d.OpType.Add)
 
-    body = m3d.Manifold.batch_boolean(solids, m3d.OpType.Add)
-    return body - m3d.Manifold.batch_boolean(cuts, m3d.OpType.Add)
+
+# --------------------------------------------------------------------------- #
+# the field -> one smooth signed function -> a manifold
+# --------------------------------------------------------------------------- #
+def _smax(a, b, k):
+    """Polynomial smooth maximum (union, positive inside), blend width k."""
+    if k <= 0:
+        return np.maximum(a, b)
+    h = np.maximum(k - np.abs(a - b), 0.0) / k
+    return np.maximum(a, b) + h * h * k / 4.0
+
+
+def _reach_into_features(rho, region):
+    """Design densities with each passive-solid cell set to the densest of its six
+    design neighbours: a limb that ends at a seat, guard or post continues into it
+    and meets the exact feature, instead of stopping one cell short. The guard
+    arcs' cells get it too, so the resampled field, and the fillet's smooth union
+    after it, draw each arc 0.2-0.4 mm proud of its exact faces; only the prop's
+    keep-out and the cap over the guards stop it (petgasus.frame_solids)."""
+    out = np.where(region == 0, rho, 0.0).astype(np.float32)
+    nb = np.zeros_like(out)
+    for axis in range(3):
+        for shift in (1, -1):
+            nb = np.maximum(nb, np.roll(out, shift, axis=axis))
+    return np.where(region == 1, nb, out)
+
+
+def _field_sdf(c, d, rho, g, region, step):
+    """The smooth signed function of the whole body (positive inside) on a grid of
+    spacing `step`: the field, resampled and blurred, smooth-unioned with the
+    exact features' distance functions. Returns (F (nz, ny, nx), lo, n, axes)."""
+    from scipy import ndimage
+    field = _reach_into_features(rho, region)
+    lo = np.array(g["origin"], float) - 1.0
+    hi = lo + 2.0 + np.array([g["nx"], g["ny"], g["nz"]]) * g["h"]
+    n = np.ceil((hi - lo) / step).astype(int) + 1
+    n += (n - 1) % 2                   # an even number of steps: see _level_set
+    xs, ys, zs = (np.float32(lo[k]) + np.float32(step) * np.arange(n[k], dtype=np.float32) for k in range(3))
+    # trilinear resample of the cell-centred densities onto the fine grid (an
+    # axis-aligned scale and shift: fine index o -> cell index (lo - origin)/h - 1/2
+    # + o * step/h), then a Gaussian blur
+    offset = [(lo[k] - g["origin"][k]) / g["h"] - 0.5 for k in (2, 1, 0)]
+    fine = ndimage.affine_transform(field, [step / g["h"]] * 3, offset=offset, output_shape=(n[2], n[1], n[0]),
+                                    order=1, mode="constant", cval=0.0).astype(np.float32)
+    fine = ndimage.gaussian_filter(fine, c.surface_blur_mm / step).astype(np.float32)
+    F = (fine - c.surface_iso) * np.float32(c.surface_scale_mm)
+    axes = (zs[:, None, None], ys[None, :, None], xs[None, None, :])
+    F = _smax(F, _features_sdf(c, d, *axes), c.surface_fillet_mm).astype(np.float32)
+    return F, lo, n, axes
+
+
+def _features_sdf(c, d, Z, Y, X):
+    feat = np.full(np.broadcast(Z, Y, X).shape, -1e3, np.float32)
+    for (mx, my) in motor_centres(d):
+        r = np.hypot(X - mx, Y - my)
+        seat = np.minimum(np.minimum(d["mount_r"] - r, Z - 0.0), c.plate_t - Z)
+        ring = np.minimum(np.minimum(r - d["guard_r_in"], d["guard_r_out"] - r),
+                          np.minimum(Z - d["guard_z0"], d["guard_z1"] - Z))
+        if c.guard_arc_deg < 360:
+            # the arc: the ring between two rays from the motor; up to 180 deg the
+            # wedge is where both rays' inner half-planes agree, past it where either does
+            a, half = math.atan2(my, mx), math.radians(c.guard_arc_deg / 2)
+            n1 = np.float32(math.sin(a + half)) * (X - mx) - np.float32(math.cos(a + half)) * (Y - my)
+            n2 = -np.float32(math.sin(a - half)) * (X - mx) + np.float32(math.cos(a - half)) * (Y - my)
+            ring = np.minimum(ring, np.minimum(n1, n2) if half <= math.pi / 2 else np.maximum(n1, n2))
+        feat = np.maximum(feat, np.maximum(seat, ring))
+    for (px, py) in d["fc_post_xy"]:
+        r = np.hypot(X - px, Y - py)
+        feat = np.maximum(feat, np.minimum(np.minimum(c.fc_post_od / 2 - r, Z - 0.0), d["z_post_top"] - Z))
+    feat = np.maximum(feat, _box_sdf(X, Y, Z, 0, 0, d["strap_slot_len"] / 2, d["strap_slot_y"] - c.strap_slot_w / 2,
+                                     0.0, c.hub_t))
+    return feat.astype(np.float32)
+
+
+def _level_set(F, lo, n, step, edge):
+    F[:, :, 0] = F[:, :, -1] = F[:, 0, :] = F[:, -1, :] = F[0] = F[-1] = -1.0   # closed at the box
+    inv = 1.0 / step
+    nx, ny, nz = n
+
+    def sdf(x, y, z):
+        i = int((x - lo[0]) * inv + 0.5)
+        j = int((y - lo[1]) * inv + 0.5)
+        k = int((z - lo[2]) * inv + 0.5)
+        if i < 0 or j < 0 or k < 0 or i >= nx or j >= ny or k >= nz:
+            return -1.0
+        return float(F[k, j, i])
+
+    # manifold spaces its lattice at (bounds / floor(bounds / edge)), so it lands
+    # on this grid (step = edge / 2) only when each axis spans an even number of
+    # steps, and a hair over, so the floor cannot round down. Off the grid, the
+    # nearest-point lookup above moved flat faces by up to half a step: the FC
+    # posts' tops came out 0.19 mm low at a 0.8 mm edge, and the structure gates
+    # found nothing to hold the frame by.
+    return m3d.Manifold.level_set(sdf, [*lo, *(lo + step * (n - 1) + 1e-6)], edge, 0.0)
+
+
+def _open(F, step, r):
+    """F with every part thinner than 2r removed, and nothing else touched: a
+    morphological opening by a ball of radius r mm used only as a MASK. Depth is
+    measured to the surface (the distance to the nearest outside sample, less
+    half a step), the eroded core is grown back by r plus a step, and F is cut
+    (by that grown core's own distance) only where the grown core does not reach.
+    The first version took min(F, D) everywhere, and D's grid-quantised surface
+    cut into thick limbs too: the CalculiX surface (a 0.4 mm step) came out 4-6 %
+    thinner than the printed one (0.25 mm), so the checks judged a weaker frame.
+    What counts as thin still moves by a step with the grid, so drawn() opens
+    on the print's grid only and resamples the result for every other edge."""
+    from scipy import ndimage
+    if r <= 0:
+        return F
+    depth = ndimage.distance_transform_edt(F > 0, sampling=step) - 0.5 * step
+    core = depth > r
+    D = (r + 1.5 * step) - ndimage.distance_transform_edt(~core, sampling=step)
+    return np.where(D > 0, F, np.minimum(F, D)).astype(np.float32)
+
+
+def _smin(a, b, k):
+    """Polynomial smooth minimum (intersection, positive inside), blend width k."""
+    if k <= 0:
+        return np.minimum(a, b)
+    h = np.maximum(k - np.abs(a - b), 0.0) / k
+    return np.minimum(a, b) - h * h * k / 4.0
+
+
+def _keepout_sdf(c, d, Z, Y, X):
+    """topopt3d.keepouts as one function, positive inside any keep-out, each
+    keep-out's edges rounded by surface_cut_round_mm: where a cut meets the body
+    the frame gets a fillet, as a 0.4 mm nozzle prints it. Sharp, those re-entrant
+    edges were stress singularities, and the crash checks' peak sat on one (where
+    the battery's and the strap's keep-outs met the saddle's underside)."""
+    big = 200.0
+    k = np.float32(c.surface_cut_round_mm)
+    K = np.full(np.broadcast(Z, Y, X).shape, -1e3, np.float32)
+    z_band = d["prop_z"] - c.prop_sweep_half_h - c.prop_clear
+    for (mx, my) in motor_centres(d):
+        K = np.maximum(K, _cyl_sdf(X, Y, Z, mx, my, d["prop_r"] + c.prop_clear, z_band, big, k))
+        K = np.maximum(K, _cyl_sdf(X, Y, Z, mx, my, c.motor_body_d / 2 + c.motor_clear, c.plate_t, big, k))
+        K = np.maximum(K, _cyl_sdf(X, Y, Z, mx, my, c.motor_centre_relief_d / 2 + c.motor_clear, -big, 0.0, k))
+        for (hx, hy) in d["motor_screw_xy"][(mx, my)]:
+            K = np.maximum(K, _cyl_sdf(X, Y, Z, hx, hy, c.screw_access_d / 2, -big, 0.0, k))
+    gclr = c.fc_board_clear
+    tip = c.fc_arm_tip_r + gclr
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, tip, c.fc_arm_w_fb / 2 + gclr, c.hub_t, big, k))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.fc_arm_w_side / 2 + gclr, tip, c.hub_t, big, k))
+    for (p0, p1) in d["lead_path"].values():
+        K = np.maximum(K, _capsule_sdf(X, Y, Z, p0, p1, c.lead_d / 2 + c.lead_clear))
+    pig = d["pigtail_path"]
+    for p0, p1 in zip(pig, pig[1:]):
+        K = np.maximum(K, _capsule_sdf(X, Y, Z, p0, p1, c.lead_d / 2 + c.lead_clear))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.battery_l / 2 + 1, c.battery_w / 2 + 1, -big, 0.0, k))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, d["strap_slot_len"] / 2, d["strap_slot_y"] + c.strap_slot_w / 2,
+                               -big, 0.0, k))
+    K = np.maximum(K, Z - np.float32(d["guard_z1"]))              # nothing above the guards (C13)
+    return K
+
+
+def _holes_sdf(c, d, Z, Y, X):
+    """holes() as one function, positive inside any hole."""
+    H = np.full(np.broadcast(Z, Y, X).shape, -1e3, np.float32)
+    for (mx, my) in motor_centres(d):
+        for (hx, hy) in d["motor_screw_xy"][(mx, my)]:
+            H = np.maximum(H, _cyl_sdf(X, Y, Z, hx, hy, c.motor_screw_clear_d / 2, -1.0, c.plate_t + 1))
+        H = np.maximum(H, _cyl_sdf(X, Y, Z, mx, my, c.motor_centre_relief_d / 2, -1.0, c.plate_t + 1))
+    for (px, py) in d["fc_post_xy"]:
+        H = np.maximum(H, _cyl_sdf(X, Y, Z, px, py, c.fc_pilot_d / 2, -1.0, d["z_post_top"] + 1))
+    for sy in (1, -1):
+        H = np.maximum(H, _box_sdf(X, Y, Z, 0, sy * d["strap_slot_y"], d["strap_slot_len"] / 2, c.strap_slot_w / 2,
+                                   -20.0, d["z_post_top"] + 20))
+    return H
+
+
+def _cyl_sdf(X, Y, Z, cx, cy, r, z0, z1, k=0.0):
+    """A cylinder, positive inside; k > 0 rounds its edges (a keep-out's)."""
+    return _smin(_smin(r - np.hypot(X - cx, Y - cy), Z - z0, k), z1 - Z, k)
+
+
+def _box_sdf(X, Y, Z, cx, cy, hx, hy, z0, z1, k=0.0):
+    """An upright box, positive inside; k > 0 rounds its edges (a keep-out's)."""
+    return _smin(_smin(hx - np.abs(X - cx), hy - np.abs(Y - cy), k), _smin(Z - z0, z1 - Z, k), k)
+
+
+def _capsule_sdf(X, Y, Z, p0, p1, r):
+    p0, p1 = np.asarray(p0, np.float32), np.asarray(p1, np.float32)
+    s = p1 - p0
+    t = np.clip(((X - p0[0]) * s[0] + (Y - p0[1]) * s[1] + (Z - p0[2]) * s[2]) / float(s @ s), 0, 1)
+    return r - np.sqrt((X - p0[0] - t * s[0]) ** 2 + (Y - p0[1] - t * s[1]) ** 2 + (Z - p0[2] - t * s[2]) ** 2)
+
+
+def _opened(c, d, field):
+    """The field cut by the keep-outs, with the exact features in, opened: on the
+    print's grid (step surface_edge_mm / 2) whatever edge the caller draws at, so
+    the printed frame and every CalculiX surface lose the same thin parts. The
+    first version opened on each surface's own grid, and at a 0.4 mm step the
+    analysis surface lost 1.8 mm members the printed frame kept."""
+    rho, g, region = field
+    key = _cache_key(c, d, rho.tobytes() + region.tobytes())
+    if key not in _OPENED:
+        step = c.surface_edge_mm / 2
+        F, lo, n, axes = _field_sdf(c, d, rho, g, region, step)
+        F = np.minimum(F, -(_keepout_sdf(c, d, *axes) + np.float32(c.surface_clearance_mm)))
+        _OPENED.clear()                                # one design at a time: ~70 MB each
+        _OPENED[key] = (_open(np.maximum(F, _features_sdf(c, d, *axes)), step, c.surface_open_mm), lo, n, step)
+    return _OPENED[key]
+
+
+_OPENED: dict = {}
+
+
+def drawn(c, d, field, edge):
+    """The printed frame drawn from `field` (rho, grid, region) at `edge` mm, as
+    ONE signed function and one level set: the opened body (_opened), resampled
+    to this edge's lattice, with the exact features and holes put back exact on
+    it (opened and left, the 1.4 mm saddle's and arcs' faces were shaved by up to
+    a grid step, and the gates found no node on the saddle)."""
+    from scipy import ndimage
+    O, lo, n0, step0 = _opened(c, d, field)
+    step = edge / 2                                    # the level set samples a BCC lattice at edge/2
+    if abs(step - step0) < 1e-9:
+        n = n0
+    else:
+        n = np.ceil(step0 * (n0 - 1) / step).astype(int) + 1
+        n += (n - 1) % 2                               # an even number of steps: see _level_set
+        O = ndimage.affine_transform(O, [step / step0] * 3, offset=0.0, output_shape=(n[2], n[1], n[0]),
+                                     order=1, mode="nearest").astype(np.float32)
+    xs, ys, zs = (np.float32(lo[k]) + np.float32(step) * np.arange(n[k], dtype=np.float32) for k in range(3))
+    axes = (zs[:, None, None], ys[None, :, None], xs[None, None, :])
+    F = np.maximum(O, _features_sdf(c, d, *axes))
+    F = np.minimum(F, -_holes_sdf(c, d, *axes)).astype(np.float32)
+    exact = exact_features(c, d)
+    # the level set snaps lattice points onto the surface, which can leave
+    # zero-length edges (gmsh: 'overlapping facets'); simplifying removes them
+    solid = _drop_floaters(_level_set(F, lo, n, step, edge), exact).simplify(c.surface_simplify_mm)
+    # ...and can leave zero-volume specks where a guard meets a limb
+    parts = [p for p in solid.decompose() if p.volume() > 1.0]
+    return _unpinch(m3d.Manifold.batch_boolean(parts, m3d.OpType.Add) if parts else solid)
+
+
+#: mm: vertices closer than this are one vertex to a mesh checker (the cad-solid
+#: pack welds at 1e-4 mm), so two of the body's sheets that meet there pinch it
+PINCH_MM = 1e-4
+
+
+def _unpinch(body):
+    """Part every pinch: where the level set snapped two separate sheets onto one
+    lattice point (the drawing has 1-2, at the 0.15 mm ledge between a seat's rim
+    and its motor's keep-out), move each sheet's vertex 2 x PINCH_MM into its own
+    faces. A checker that welds near vertices would otherwise join the sheets and
+    find edges with four faces. Nothing moves further than that."""
+    from scipy.spatial import cKDTree
+    mesh = body.to_mesh64()
+    v = np.array(mesh.vert_properties, dtype=np.float64)
+    pairs = cKDTree(v[:, :3]).query_pairs(PINCH_MM)
+    if not pairs:
+        return body
+    t = np.array(mesh.tri_verts, dtype=np.uint64)            # a copy: nanobind refuses the read-only view
+    for i in {k for pair in pairs for k in pair}:
+        fan = v[t[(t == i).any(axis=1)], :3].mean(axis=1).mean(axis=0) - v[i, :3]
+        v[i, :3] += 2 * PINCH_MM * fan / max(np.linalg.norm(fan), 1e-12)
+    return m3d.Manifold(m3d.Mesh64(vert_properties=np.ascontiguousarray(v), tri_verts=t))
+
+
+def analysis_surface(c, d, field, edge):
+    """The printed frame for CalculiX: frame()'s drawing at `edge` mm, so gmsh or
+    fTetWild meshes the shape that is printed, at the analysis's resolution."""
+    return drawn(c, d, field, edge)
+
+
+#: Bumped whenever the drawing changes for the same Config and field: it keys
+#: frame()'s cache and the analysis surfaces build() writes (build/fea/<key>/).
+DRAWING_VERSION = 17
+
+
+def _cache_key(c, d, field_bytes):
+    keys = ("surface_edge_mm", "surface_blur_mm", "surface_iso", "surface_scale_mm", "surface_fillet_mm",
+            "surface_simplify_mm", "surface_open_mm", "surface_clearance_mm", "surface_cut_round_mm",
+            "guard_arc_deg", "plate_t", "fc_post_od",
+            "prop_clear", "motor_clear", "motor_body_d", "motor_centre_relief_d", "screw_access_d",
+            "fc_board_clear", "fc_arm_tip_r", "fc_arm_w_fb", "fc_arm_w_side", "lead_d", "lead_clear", "battery_l", "battery_w", "strap_slot_w", "hub_t",
+            "motor_screw_clear_d", "fc_pilot_d", "prop_sweep_half_h")
+    dk = ("motor_xy", "mount_r", "guard_r_in", "guard_r_out", "guard_z0", "guard_z1", "fc_post_xy", "z_post_top",
+          "prop_r", "prop_z", "strap_slot_len", "strap_slot_y", "lead_path", "pigtail_path", "motor_screw_xy")
+    blob = json.dumps({"c": {k: getattr(c, k) for k in keys},
+                       "d": {k: (repr(d[k]) if isinstance(d[k], dict) else d[k]) for k in dk},
+                       "v": DRAWING_VERSION}, sort_keys=True, default=str)
+    return hashlib.sha256(blob.encode() + field_bytes).hexdigest()[:16]
+
+
+def frame(c, d, field=None, cache_dir=None):
+    """The one-piece printed frame. `field`: (rho, grid, region) from the chosen
+    proposal, or None (then the frame is its exact features alone: four seats,
+    four guard arcs, four posts and the saddle with nothing joining them, which the one-piece gate
+    refuses)."""
+    exact = exact_features(c, d)
+    if field is None:
+        return exact - holes(c, d)
+    rho, g, region = field
+    key = _cache_key(c, d, rho.tobytes() + region.tobytes() + json.dumps(
+        {k: (list(v) if hasattr(v, "__len__") else v) for k, v in g.items()}).encode())
+    path = os.path.join(cache_dir, key + ".npz") if cache_dir else None
+    if path and os.path.exists(path):
+        z = np.load(path)
+        body = m3d.Manifold(m3d.Mesh64(vert_properties=np.ascontiguousarray(z["v"], dtype=np.float64),
+                                       tri_verts=np.ascontiguousarray(z["t"], dtype=np.uint64)))
+        if body.status() == m3d.Error.NoError and not body.is_empty():
+            return body
+    body = drawn(c, d, field, c.surface_edge_mm)
+    if path:
+        os.makedirs(cache_dir, exist_ok=True)
+        mesh = body.to_mesh64()                        # lossless: a cached frame IS the fresh one
+        np.savez_compressed(path, v=np.asarray(mesh.vert_properties, np.float64),
+                            t=np.asarray(mesh.tri_verts, np.uint64))
+    return body
+
+
+def print_rotation(c):
+    """3x3 rotation taking the frame from its flight pose to its print pose: tilted
+    by print_tilt_deg about the horizontal axis at print_azimuth_deg."""
+    import numpy as np
+    a, t = math.radians(c.print_azimuth_deg), math.radians(c.print_tilt_deg)
+    Rz = np.array([[math.cos(a), -math.sin(a), 0], [math.sin(a), math.cos(a), 0], [0, 0, 1]])
+    Rx = np.array([[1, 0, 0], [0, math.cos(t), -math.sin(t)], [0, math.sin(t), math.cos(t)]])
+    return Rz @ Rx @ Rz.T
+
+
+def to_print_pose(c, solids):
+    """The solids rotated into the print pose and moved together so the lowest
+    point sits on the bed (z=0) and the plate's centre on the bed's centre line."""
+    R = print_rotation(c)
+    m = [[float(R[i, j]) for j in range(3)] + [0.0] for i in range(3)]
+    turned = [s.transform(m) for s in solids]
+    whole = m3d.Manifold.batch_boolean(turned, m3d.OpType.Add)
+    x0, y0, z0, x1, y1, _ = whole.bounding_box()
+    return [s.translate((-(x0 + x1) / 2, -(y0 + y1) / 2, -z0)) for s in turned]
+
+
+def _drop_floaters(body, exact):
+    """The body less every piece that touches no seat, guard or post: blobs the
+    surface draws round grey cells of the field, held by nothing and holding
+    nothing. A seat, guard or post cut off from the rest is NOT dropped (it
+    touches itself), so the one-piece gate still sees it."""
+    parts = body.decompose()
+    if len(parts) <= 1:
+        return body
+    keep = [p for p in parts if not (p ^ exact).is_empty() and (p ^ exact).volume() > 1e-3]
+    return m3d.Manifold.batch_boolean(keep, m3d.OpType.Add) if keep else body
 
 
 def prop_sweeps(c, d):
-    """The volume each spinning prop sweeps, with its tip gap and a height band.
+    """The volume each spinning prop sweeps, a height band at the prop plane.
 
     Not cut from the frame: a frame that intrudes here is a design error, and
-    cutting it away would hide the error. build() intersects this with the frame
-    and publishes the overlap for a gate to refuse.
+    cutting it away would hide the error. The assembly check intersects it with
+    the frame and publishes the overlap for a gate to refuse.
     """
     return m3d.Manifold.batch_boolean(
         [_cyl(2 * c.prop_sweep_half_h, d["prop_r"], d["prop_z"] - c.prop_sweep_half_h)
          .translate((mx, my, 0)) for (mx, my) in motor_centres(d)], m3d.OpType.Add)
-
-
-def _hub_cs(c, d):
-    """The hub plate's outline: hull of the post discs, less four lightening holes.
-
-    The holes sit in the four quadrants between the post-to-post bars, clear of
-    the strap's path (|x| < strap_w/2 + 1, between the slots) by hub_hole_margin.
-    The strap slots are cut once, through everything, in frame(); cutting them here
-    as well left two coincident slot walls - non-manifold edges in the export.
-    """
-    hub = m3d.CrossSection.batch_hull(
-        [m3d.CrossSection.circle(c.fc_post_od / 2 + c.hub_margin, CIRCLE_SEGMENTS).translate((px, py))
-         for (px, py) in d["fc_post_xy"]])
-    if c.hub_holes:
-        reach = max(abs(px) + abs(py) for (px, py) in d["fc_post_xy"]) \
-            + (c.fc_post_od / 2 + c.hub_margin) * math.sqrt(2)          # diamond |x|+|y| <= reach
-        x0 = d["strap_slot_len"] / 2 + c.hub_hole_margin                  # clear of the strap path
-        y0 = c.hub_hole_margin
-        top = reach - c.hub_hole_margin * math.sqrt(2)
-        if top - x0 - y0 > 2.0:
-            tri = m3d.CrossSection([[(x0, y0), (top - y0, y0), (x0, top - x0)]])
-            holes = [tri.mirror((1, 0)) if sx < 0 else tri for sx in (1, -1)]
-            holes = [h.mirror((0, 1)) if sy < 0 else h for h in holes for sy in (1, -1)]
-            hub = hub - m3d.CrossSection.batch_boolean(holes, m3d.OpType.Add)
-    return hub
-
-
-def _fixed_cs(c, d):
-    """2D footprint of everything the optimiser may not move (seats, ducts, webs, hub)."""
-    parts = [_hub_cs(c, d)]
-    a = d["motor_offset"]
-    for (mx, my) in motor_centres(d):
-        parts.append(m3d.CrossSection.circle(d["mount_r"], CIRCLE_SEGMENTS).translate((mx, my)))
-        parts.append((m3d.CrossSection.circle(d["duct_r_out"], CIRCLE_SEGMENTS) -
-                      m3d.CrossSection.circle(d["duct_r_in"], CIRCLE_SEGMENTS)).translate((mx, my)))
-    for (x0, y0), (x1, y1) in (((a, a), (a, -a)), ((-a, a), (-a, -a)), ((a, a), (-a, a)), ((a, -a), (-a, -a))):
-        L = math.hypot(x1 - x0, y1 - y0)
-        parts.append(m3d.CrossSection.square((L, c.duct_wall), True)
-                     .rotate(math.degrees(math.atan2(y1 - y0, x1 - x0)))
-                     .translate(((x0 + x1) / 2, (y0 + y1) / 2)))
-    return m3d.CrossSection.batch_boolean(parts, m3d.OpType.Add)
-
-
-def plate_cs_from_density(c, d, grid, rho):
-    """The optimiser's layout as a clean 2D outline, ready to extrude.
-
-    1. the rho = 0.5 contour (field padded with zeros so every contour closes);
-    2. an OPEN at min_member_w/2 - every member narrower than min_member_w is
-       deleted rather than printed as a thread (the first extraction printed the
-       grey spokes as dashes);
-    3. a CLOSE at topopt_smooth - rounds re-entrant corners;
-    4. only the part connected to the fixed structure is kept: a member that the
-       open cut loose is debris on the bed, not structure.
-    """
-    import contourpy
-    import numpy as np
-
-    n = grid.n
-    field = np.zeros((n + 2, n + 2))
-    field[1:-1, 1:-1] = rho.reshape(n, n)
-    coords = (np.arange(n + 2) - 0.5) * grid.h - grid.half
-    gen = contourpy.contour_generator(coords, coords, field, fill_type="OuterOffset")
-    polys = []
-    for verts, offsets in zip(*gen.filled(0.5, 2.0)):
-        for i in range(len(offsets) - 1):
-            ring = verts[offsets[i]:offsets[i + 1]]
-            polys.append([(float(x), float(y)) for x, y in ring[:-1]])
-    cs = m3d.CrossSection(polys, m3d.FillRule.EvenOdd)
-    r_open = c.min_member_w / 2
-    cs = cs.offset(-r_open, m3d.JoinType.Round).offset(r_open, m3d.JoinType.Round)
-    s = c.topopt_smooth
-    cs = cs.offset(s, m3d.JoinType.Round).offset(-s, m3d.JoinType.Round)
-    fixed = _fixed_cs(c, d)
-    whole = cs + fixed
-    comps = sorted(whole.decompose(), key=lambda k: -k.area())
-    keep = comps[0]
-    cs = (cs ^ keep).simplify(0.02)
-    return cs
-
-
-def plate_from_density(c, d, grid, rho):
-    """Extrude the clean outline: plate_t everywhere, members deep where allowed.
-
-    Deep (topopt_member_h) except within member_clear of a motor base and of the
-    AIO footprint, where the plate stays plate_t - the same zones the FE used.
-    """
-    cs = plate_cs_from_density(c, d, grid, rho)
-    flat = [m3d.CrossSection.circle(c.motor_body_d / 2 + c.member_clear, CIRCLE_SEGMENTS).translate((mx, my))
-            for (mx, my) in motor_centres(d)]
-    half = c.fc_board_side + 2 * c.member_clear
-    flat.append(m3d.CrossSection.square((half, half), True).rotate(c.fc_yaw_deg))
-    deep_cs = cs - m3d.CrossSection.batch_boolean(flat, m3d.OpType.Add)
-    plate = m3d.Manifold.extrude(cs, c.plate_t)
-    deep = m3d.Manifold.extrude(deep_cs, c.topopt_member_h)
-    return plate + deep, cs

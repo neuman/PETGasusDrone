@@ -1,0 +1,9 @@
+{
+  "kind": "board",
+  "title": "Survives crashes",
+  "members": [
+    "C15",
+    "C16",
+    "P1"
+  ]
+}

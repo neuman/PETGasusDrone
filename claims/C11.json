@@ -10,5 +10,16 @@
   "rationale": "A motor seat or a member that is not joined to the rest is debris on the bed and a motor held by nothing. Counted on the generated mesh. Added after an optimised layout whose cleaned outline cut the seats loose (first mode 7 Hz).",
   "tags": [
     "one-piece"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "the printed frame mesh decomposed into connected solids",
+    "evaluators": [
+      "petgasus.one_piece"
+    ]
+  },
+  "requirements": [
+    "R5",
+    "R10"
   ]
 }

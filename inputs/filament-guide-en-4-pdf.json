@@ -1,0 +1,15 @@
+{
+  "url": "https://cdn1.bambulab.com/filament/a5e185aed14e6/filament-guide-en-4.pdf",
+  "kind": "link",
+  "description": "Bambu Lab filament guide: enclosure, drying and nozzle needs per filament",
+  "sha256": "0ba237bba0ddc60aed6ef578c4eb8905cdb9db07d5fff0d125105c2ecaf22db6",
+  "added": "2026-10-17T09:52:06Z",
+  "extractions": [
+    {
+      "what": "PLA, PETG, TPU need no enclosure; PAHT-CF and PA6-CF need an enclosure, drying, and a hardened nozzle",
+      "grounds": [
+        "material"
+      ]
+    }
+  ]
+}

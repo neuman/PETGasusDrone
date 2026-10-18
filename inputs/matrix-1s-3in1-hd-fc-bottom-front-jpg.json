@@ -1,0 +1,19 @@
+{
+  "url": "https://cdn.shopify.com/s/files/1/1778/6615/files/Matrix_1S_3IN1_HD_FC_bottom_front.jpg",
+  "kind": "link",
+  "description": "BetaFPV Matrix 1S 3IN1 bottom pin-out photo: cross-shaped board, ESC sockets on the bottom of the side arms",
+  "sha256": "4b7cc464fe96f11561b17d145bed25c02c846bb55c9e653c09627ea65f1c2d7e",
+  "added": "2026-10-17T09:52:06Z",
+  "extractions": [
+    {
+      "what": "the 3IN1 is a cross with a mounting hole at each arm tip; ESC1-4 sockets on the bottom face of the side arms, openings facing out; USB on the rear arm",
+      "grounds": [
+        "fc_arm_tip_r",
+        "socket_x",
+        "socket_y",
+        "A4"
+      ],
+      "confidence": "scaled"
+    }
+  ]
+}

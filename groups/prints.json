@@ -1,0 +1,10 @@
+{
+  "kind": "board",
+  "title": "Prints on the U1",
+  "members": [
+    "C6",
+    "C7",
+    "C17",
+    "P6"
+  ]
+}

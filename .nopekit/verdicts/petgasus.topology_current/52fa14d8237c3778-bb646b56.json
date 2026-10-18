@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "gate": "petgasus.topology_current",
+  "rho": "52fa14d8237c37780d57de62b7fd311436c898ea51797f44e9d9e9972e0a8757",
+  "code": {
+    "digest": "c12ab6b86968aa6f356b4aff2945c6105e93c3a16b66ff1c06bc6ade5c5a7867",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "topology_current"
+        ],
+        "ed219f47c82b99858f79f7575c1585d96e008afd7c0451d15bc8ad29a081f6c0",
+        true
+      ],
+      [
+        [
+          "topology_field"
+        ],
+        "25819db3519f19f6416987f5269d9370d9e3c4727f408af34648060eaf7a654a",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz"
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C17": "2efe4d1ee7b3116c10a5e1a25f183d211578e002f3b0fc1317daf51d0bdc07dc",
+      "acceptance:C17": "da21fc849ee58c9a201009963026c48de79ac917d4a1a6ee0cfdd62eed342cac"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 1,
+    "limit": 1,
+    "units": "bool",
+    "comparator": ">=",
+    "settles": "topology proposal current",
+    "detail": "field inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz was computed for this problem",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "topology-current"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "71b056ee7706909d28438a90bf236459d35fe7f0ba3f445b8d95c81a2e6f9ee7"
+}

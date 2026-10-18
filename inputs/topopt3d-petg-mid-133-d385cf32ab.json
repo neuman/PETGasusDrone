@@ -1,0 +1,23 @@
+{
+  "path": "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz",
+  "kind": "data",
+  "description": "the 098cc70c field refined at 1.33 mm (problem d385cf32, 3.5 mm filter), 60 iterations warm-started from it and normalised by its starting compliances. Drawn: one piece, 15.2 g, 14.2 % shadow (C14 15 %)",
+  "sha256": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d",
+  "added": "2026-10-17T20:16:19Z",
+  "extractions": [
+    {
+      "what": "the live field: the 098cc70c field refined at 1.33 mm, objective 26.6 -> 16.3 in 60 iterations; drawn, one piece of 15.2 g covering 14.2 % of a prop's disc (C14 15 %), top at the guards' top",
+      "grounds": [
+        "topology_field",
+        "topo_h",
+        "topo_rmin",
+        "C11",
+        "C14",
+        "C17"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-mid-133 --iters 60 --warm inputs/data/topopt3d-petg-mid-098cc70c64.npz --c0-from inputs/data/topopt3d-petg-mid-098cc70c64.npz",
+  "proposer": "fea.topopt3d"
+}

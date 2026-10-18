@@ -1,0 +1,13 @@
+{
+  "_description": "A printed part a project hands to solid-fea: the voxel problem its proposer solves, and the exported surface its CalculiX wrapper meshes. The pack ships no gates (a pack gate cannot read a claim's limit yet), so nothing here is judged; the keys document the interface.",
+  "_notes": {
+    "fea.problem_path": "the model's topology problem (numpy .npz, keys in PACK.md), relative to the project",
+    "fea.mesh_path": "the printed part's closed surface (STL), mm, in the frame its loads and supports are given in",
+    "fea.mesh_mm": "target quadratic-tet edge for CalculiX, mm",
+    "fea.layer_normal": "the print's build direction in the part's frame: the material's weak axis"
+  },
+  "fea.problem_path": "build/topopt3d/problem.npz",
+  "fea.mesh_path": "build/fea/part.stl",
+  "fea.mesh_mm": 1.2,
+  "fea.layer_normal": [0.0, 0.0, 1.0]
+}

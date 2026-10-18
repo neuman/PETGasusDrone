@@ -1,0 +1,28 @@
+{
+  "title": "Thrust and hover efficiency from the kit motor's own load table",
+  "when": "2026-10-17T11:16:17Z",
+  "summary": "BetaFPV publishes a load table for the 1102 21000KV (2026) on the GF 1811-3: 66.6 g at full throttle, 3.81 V, and the efficiency at each throttle step. The model uses it for C1's thrust and reads C3's hover efficiency off it at the hover thrust. Assumptions A2, A5 and A6 are retired.",
+  "rejected": [
+    {
+      "value": "46.3 g per motor as a floor (v0.1, A5/A6)",
+      "why": "a different motor (1102 22000KV) on a 40 mm prop, tested at 4.0 V, not the 4.2 V v0.1 assumed; the kit motor's own table exists",
+      "type": "dominated",
+      "input": "datasheet-research-2026-10-17"
+    },
+    {
+      "value": "3.0 g/W hover efficiency (v0.1, A2)",
+      "why": "a guess from 0802-class motors; the table gives 2.5-3.05 g/W across the thrusts a hover needs",
+      "type": "dominated",
+      "input": "1102-brushless-motors-2026-load-performance-jpg"
+    }
+  ],
+  "params_changed": [
+    "motor_thrust_max_g",
+    "motor_thrust_test_v",
+    "motor_eff_table"
+  ],
+  "claims_changed": [
+    "C1",
+    "C3"
+  ]
+}

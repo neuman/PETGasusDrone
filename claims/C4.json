@@ -1,5 +1,5 @@
 {
-  "statement": "The frame's first out-of-plane mode (duct pods bouncing on the arms) is at or above 200 Hz",
+  "statement": "The PETG frame's first vibration mode, held at the FC posts and the strap saddle with the motors on it, is at or above 200 Hz",
   "kind": "measurable",
   "acceptance": {
     "quantity": "first frame mode",
@@ -7,8 +7,20 @@
     "limit": 200.0,
     "units": "Hz"
   },
-  "rationale": "The printed-frame vibration complaint is a soft structural mode low enough to sit inside the flight controller's control loop: the gyro sees it, the PID loop amplifies it, the motors get hot. Betaflight's dynamic notch and gyro low-pass handle a resonance above ~200 Hz with little delay; below ~150 Hz filtering it costs control. Measured by a 2.5D plate FE of the generated layout, hub clamped at the FC posts, motor+prop as point masses (conservative: a free-flying hub moves and raises the mode). REVISED 2026-10-07 from 'arm cantilever frequency above hover motor rotation frequency': that estimate ignored the duct's own mass (it put the arm at 452 Hz; the FE with the ducts on it says ~190 Hz), and the criterion would have failed every commercial whoop frame, which fly well on RPM filtering.",
+  "rationale": "The printed-frame vibration complaint is a soft structural mode low enough to sit inside the flight controller's control loop: the gyro sees it, the PID loop amplifies it, the motors get hot. Betaflight's dynamic notch and gyro low-pass handle a resonance above ~200 Hz with little delay; below ~150 Hz filtering it costs control. REVISED 2026-10-17: settled by CalculiX on the printed 3D frame (quadratic tets, transversely isotropic printed PETG, the everyday filament), held at the FC posts' top faces and the strap saddle, with each motor + prop as a mass on its seat's top face; no longer by the optimiser's own 2.5D plate model. The hold is an approximation, not a bound: a free-flying body moves too, which raises the mode, but holding the saddle rigid and lumping each motor on one face both raise the computed mode above what a real flight sees. The author kept the 200 Hz limit (2026-10-17) though the PETG frame is expected to fall short of it; P2's hover settles whether that matters.",
   "tags": [
     "arm-vibration"
+  ],
+  "mechanism": {
+    "by": "solver",
+    "how": "CalculiX eigenfrequencies of the printed frame mesh in the everyday filament, held at the FC posts' top faces and the strap saddle, each motor + prop as a mass on its seat; checked on a finer surface and mesh (fea_converged)",
+    "evaluators": [
+      "petgasus.frame_mode",
+      "petgasus.fea_converged"
+    ]
+  },
+  "requirements": [
+    "R6",
+    "R11"
   ]
 }

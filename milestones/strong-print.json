@@ -1,0 +1,19 @@
+{
+  "description": "Print the frame in the strong filament (nylon-CF, strong_material) for anyone serious about crashes: everything the everyday print needs, and the crash floors judged in that filament",
+  "requires": [
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C11",
+    "C13",
+    "C14",
+    "C17",
+    "A3",
+    "A4",
+    "C15",
+    "C16"
+  ],
+  "generator": ""
+}

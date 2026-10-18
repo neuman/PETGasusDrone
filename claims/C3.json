@@ -10,5 +10,15 @@
   "rationale": "Under ~3 minutes a 10-year-old spends more time swapping packs than flying; a 4-pack session should be 12+ minutes of air time.",
   "tags": [
     "endurance"
+  ],
+  "mechanism": {
+    "by": "datasheet",
+    "how": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy",
+    "evaluators": [
+      "petgasus.flight_time"
+    ]
+  },
+  "requirements": [
+    "R1"
   ]
 }

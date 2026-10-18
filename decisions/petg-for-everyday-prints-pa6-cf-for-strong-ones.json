@@ -1,0 +1,51 @@
+{
+  "title": "PETG for everyday prints, PA6-CF for strong ones",
+  "when": "2026-10-18T08:51:44Z",
+  "summary": "The frame prints in either filament. PETG is the everyday one: it needs nothing extra on the U1, and on this frame it weighs 16.2 g, its first mode is 143 Hz, and it survives a 2.04 m drop (C15 asks 1 m) and a 1.67 m/s wall hit. The crash claims C15 and C16 are judged in PA6-CF (strong_material), the filament for anyone serious about strength: 13.8 g, 196 Hz, 8.12 m and 3.66 m/s. Of the seven filaments CalculiX checked on the same shape, only it and PAHT-CF clear both crash floors. The owner's brief: most people print PETG casually, nylon is for hardcore builders, and PETG breakability is not a worry.",
+  "rejected": [
+    {
+      "value": "PAHT-CF as the strong filament",
+      "why": "clears both floors too (7.76 m, 3.44 m/s, 193 Hz, 13.4 g) but by less, with the same drying, hardened nozzle and top cover",
+      "type": "dominated",
+      "input": "material-comparison"
+    },
+    {
+      "value": "PETG-CF",
+      "why": "weaker than plain PETG on this frame (1.62 m, 1.61 m/s, 146 Hz) and needs a hardened nozzle",
+      "type": "dominated",
+      "input": "material-comparison"
+    },
+    {
+      "value": "PLA",
+      "why": "the weakest in a crash (1.57 m, 1.46 m/s) to save half a gram (15.7 g), and it softens in a hot car",
+      "type": "dominated",
+      "input": "material-comparison"
+    },
+    {
+      "value": "PETG with TPU95A guard arcs",
+      "why": "the soft arcs lower the first mode to 136 Hz and gain nothing in a crash (1.94 m, 1.61 m/s)",
+      "type": "dominated",
+      "input": "material-comparison"
+    },
+    {
+      "value": "ASA as the everyday filament",
+      "why": "stiffer (176 Hz) and lighter (13.3 g) with about PETG's crash numbers (1.97 m, 1.61 m/s), but it needs the U1's top cover and gives off styrene: the everyday filament needs nothing extra",
+      "type": "preferred_against",
+      "by": "Eric Neuman",
+      "input": "material-comparison"
+    }
+  ],
+  "params_changed": [
+    "material",
+    "strong_material",
+    "guard_material"
+  ],
+  "claims_changed": [
+    "C4",
+    "C15",
+    "C16"
+  ],
+  "evidence": [
+    "inputs/data/material-comparison.json"
+  ]
+}

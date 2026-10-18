@@ -1,0 +1,11 @@
+{
+  "kind": "zone",
+  "title": "Frame shape",
+  "members": [
+    "topology_field",
+    "topo_design_g",
+    "topo_w_crash",
+    "topo_w_thrust",
+    "surface_fillet_mm"
+  ]
+}

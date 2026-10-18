@@ -1,0 +1,19 @@
+{
+  "path": "inputs/data/topopt3d-petg-mid-133-d385cf32ab.json",
+  "kind": "data",
+  "description": "the 098cc70c field refined at 1.33 mm (problem d385cf32, 3.5 mm filter), 60 iterations warm-started from it and normalised by its starting compliances. Drawn: one piece, 15.2 g, 14.2 % shadow (C14 15 %)",
+  "sha256": "32062ecbe9b68cc65db9dbdc3f47fb3081148b42d52cba210e59c7c0ad889c73",
+  "added": "2026-10-17T20:16:19Z",
+  "extractions": [
+    {
+      "what": "final relative compliance: thrust 1.34, prop strikes 0.81 / 0.79, crash in/up at -75 deg 3.60 / 3.72, at 0 deg 1.71 / 2.08, at +75 deg 2.71 / 4.60, along the arc 1.81, from below 2.32, from above 2.32, battery 6.26; 2061 s",
+      "grounds": [
+        "topology_field",
+        "C4"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-mid-133 --iters 60 --warm inputs/data/topopt3d-petg-mid-098cc70c64.npz --c0-from inputs/data/topopt3d-petg-mid-098cc70c64.npz",
+  "proposer": "fea.topopt3d"
+}

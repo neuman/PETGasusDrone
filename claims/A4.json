@@ -1,6 +1,6 @@
 {
-  "statement": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
+  "statement": "The Matrix 1S 3IN1 is a 40 mm cross, its ESC sockets sit 12.3 mm out on the side arms' undersides, and its grommets are 2.6 mm tall and 4.6 mm across",
   "kind": "assumption",
   "owner": "Eric Neuman",
-  "rationale": "Not published. It sets the wheelbase (the board must clear the ducts). Measure before printing; if larger, change fc_board_side and re-run."
+  "rationale": "BetaFPV publishes the 25.5 mm mounting pattern, the 1 mm board and the weight; the outline, socket positions and grommets are scaled from its photos against the 7 mm MCU. Measure the board when it arrives (P4)."
 }

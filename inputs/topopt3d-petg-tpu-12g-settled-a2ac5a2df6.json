@@ -1,0 +1,19 @@
+{
+  "path": "inputs/data/topopt3d-petg-tpu-12g-settled-a2ac5a2df6.npz",
+  "kind": "data",
+  "description": "the PETG + TPU-hoop field settled: 40 more iterations from topopt3d-petg-tpu-12g-a2ac5a2df6 at beta 16 with a damped move limit; objective 18.0",
+  "sha256": "123141b9a122a48f4c625e29eb30f208207201c63324fb790d5514663ed6e1bd",
+  "added": "2026-10-17T14:36:10Z",
+  "extractions": [
+    {
+      "what": "PETG frame with TPU 95A hoops, settled (40 iterations, objective 17.98): the same limb layout as the all-PETG field, but in absolute compliance it is 1.52x as flexible under thrust, 1.43-1.55x under prop strikes and crashes, and 1.78-1.85x under side loads; the PETG hoops are part of the frame's stiffness, not just guards",
+      "grounds": [
+        "guard_material",
+        "C4"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem-petg-tpu.npz --variant petg-tpu-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-tpu-12g-a2ac5a2df6.npz",
+  "proposer": "fea.topopt3d"
+}

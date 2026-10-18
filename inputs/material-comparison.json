@@ -1,0 +1,28 @@
+{
+  "path": "inputs/data/material-comparison.json",
+  "kind": "data",
+  "description": "The same 3D-topology frame (field topopt3d-petg-mid-133-d385cf32ab, drawn at DRAWING_VERSION 17, surface_open_mm 0.3, fea_surface_mm 0.5) put through gates/structure.py's CalculiX checks in each filament the Snapmaker U1 can print: first mode held at the FC posts and saddle, drop and wall-hit floors with the drone as a free body. Every row converged (base 307559 tets vs fine 302050; mode within 5 %, crashes within 10 %), every solve in equilibrium (residual under 0.05 N).",
+  "sha256": "38ec1dd3342085d4ca8f2c5ee4b45ce2448a2283f21cab4a5c8a56d0bf65e90c",
+  "added": "2026-10-18T08:46:04Z",
+  "extractions": [
+    {
+      "what": "On this frame only PA6-CF (drop 8.12 m, wall 3.66 m/s, 196 Hz, 13.8 g) and PAHT-CF (7.76 m, 3.44 m/s, 193 Hz, 13.4 g) clear both crash floors (1 m, 3 m/s); PA6-CF clears them by the most",
+      "grounds": [
+        "strong_material",
+        "C15",
+        "C16"
+      ],
+      "confidence": "inferred",
+      "note": "CalculiX floors: first point to reach the printed strength, no plastic work, no floor give; P1 settles the real number."
+    },
+    {
+      "what": "Of the filaments that need nothing extra on the U1, PETG survives the most: drop 2.04 m (clears 1 m), wall 1.67 m/s (misses 3 m/s), at 16.2 g and 143 Hz. PLA is weaker (1.57 m, 1.46 m/s); ASA (1.97 m, 176 Hz) needs the top cover; PETG-CF (1.62 m) a hardened nozzle; TPU95A guard arcs lower the mode (136 Hz) and gain nothing in a crash (1.94 m, 1.61 m/s)",
+      "grounds": [
+        "material",
+        "guard_material"
+      ],
+      "confidence": "inferred"
+    }
+  ],
+  "note": "Written by the scratchpad's compare_multi.py + collect.py on 2026-10-18; crash rows use each filament as its own strong material."
+}

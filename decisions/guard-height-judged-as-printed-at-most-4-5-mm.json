@@ -1,0 +1,25 @@
+{
+  "title": "Guard height judged as printed, at most 4.5 mm",
+  "when": "2026-10-17T23:11:17Z",
+  "summary": "C13 measures the guard bands on the printed shape (petgasus._guard_band_heights: the solid's vertical run through the prop plane at points round each arc, median), not as guard_z1 - guard_z0, which read 4.00 whatever was drawn. Printed, the bands are 4.15-4.9 mm (median 4.2): the optimiser's rim sits just under each 4 mm band. The author set the limit to 4.5 mm: the extra is below the band and outside the prop's disc, no duct.",
+  "rejected": [
+    {
+      "value": "4 mm, as printed",
+      "why": "fails by 0.2 mm on rim material under the band that adds no duct effect; the author chose 4.5 mm (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "re-solving with nothing allowed under the bands",
+      "why": "~45 min of optimiser runs and re-validation, with the limbs forced to join the bands from the sides; the author chose to restate the claim instead",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    }
+  ],
+  "params_changed": [
+    "guard_h"
+  ],
+  "claims_changed": [
+    "C13"
+  ]
+}

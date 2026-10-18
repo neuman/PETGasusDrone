@@ -1,0 +1,20 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-7307a1ba1c.npz",
+  "kind": "data",
+  "description": "3D SIMP field, PETG frame and hoops, 12 g budget, 9 load cases, 5 mm filter, on problem 7307a1ba: the cells above the hoops' top are void (on 5c64a12f the optimiser filled them and the hoops stood 4.8 mm tall). Run directly with --out and filed by hand, as the 5c64a12f fields were",
+  "sha256": "c5743b719fafe011ff241c4f86ab8b26ef3b1fd53ae55c6251e92ac7dc1c8758",
+  "added": "2026-10-17T16:31:14Z",
+  "extractions": [
+    {
+      "what": "120 iterations on problem 7307a1ba (nothing above the hoops): objective 12.21 and still falling smoothly at the 0.0063 move limit, no oscillation; the same layout as on 5c64a12f, with the material that sat on the hoops' tops moved into the limbs and a deeper column under the hub; 9375 mm3 of budget used",
+      "grounds": [
+        "topology_field",
+        "C13",
+        "C17"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-12g",
+  "proposer": "fea.topopt3d"
+}

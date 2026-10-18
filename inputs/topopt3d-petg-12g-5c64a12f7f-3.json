@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-5c64a12f7f.json",
+  "kind": "data",
+  "description": "3D SIMP field, PETG frame and hoops, 12 g budget, 9 load cases (thrust, two prop strikes, five hoop crashes, the battery), 5 mm filter; problem 5c64a12f. Filed by hand: nopekit propose refused it because the agent's own model builds wrote build/ files during the run",
+  "sha256": "ad8d22c22ebc23a400f891e14b671b2121d30c340d3f8065907dd91b62eba508",
+  "added": "2026-10-17T13:46:57Z",
+  "extractions": [
+    {
+      "what": "at iteration 119 the move limit was still at its 0.1 cap and the objective swung between 41.5 and 51.1 (ended 51.1): the run had not converged, hence the settled continuation",
+      "grounds": [
+        "topology_field"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "nopekit propose fea.topopt3d -- --problem build/topopt3d/problem.npz --variant petg-12g --iters 120",
+  "proposer": "fea.topopt3d"
+}

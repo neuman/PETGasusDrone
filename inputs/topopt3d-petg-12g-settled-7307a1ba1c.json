@@ -1,0 +1,22 @@
+{
+  "path": "inputs/data/topopt3d-petg-12g-settled-7307a1ba1c.npz",
+  "kind": "data",
+  "description": "the 7307a1ba PETG field settled: 40 more iterations at beta 16 warm-started from topopt3d-petg-12g-7307a1ba1c, with its own starting compliances; objective 12.21 -> 11.76",
+  "sha256": "43366f0c6e9c57774d6a0a9a65a68c60c48eb340e800c155ed6b5b1e9313f983",
+  "added": "2026-10-17T16:31:16Z",
+  "extractions": [
+    {
+      "what": "the live field: 40 settling iterations took the objective from 12.21 to 11.76 (last change 0.005) with the layout unchanged; each seat is tied along the frame's side to its neighbour by a curved limb at seat level, to the posts by straight members, and to the hoops above it, with thin flanges in the grid's bottom layer that give the limbs depth. Its own hex model gives seat 1 15.3 N/mm vertically (the 120-iteration field, held at the posts)",
+      "grounds": [
+        "topology_field",
+        "C4",
+        "C11",
+        "C13",
+        "C17"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-12g-settled --iters 40 --warm inputs/data/topopt3d-petg-12g-7307a1ba1c.npz",
+  "proposer": "fea.topopt3d"
+}

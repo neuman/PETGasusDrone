@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.motor_screws",
+  "rho": "74844f2c2526dd1dabba4c56d92d3498a1b8890396ce79b5e6b2869f807458d1",
+  "static": "f62576739f295fdfda6eb1a09dbddca43ad559df8e8720bbe771bc8e371a3c60",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "b3a03161e59cc4985e98fc877cd5d0df4692ac3ffeb07df7057e76d5764ce5b9",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "8bd4f9bd4fe9a83e13cc76b4d5613cd1a50c4da19d7fcda0691df89e30059f41",
+      "files": {
+        "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+        "selftest/known_good.py": "90e0972b03587b1b90b1427cf8344f8e6772a19173e9e13911578dede8c38df4"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:thick_seat",
+      "expect": "fail",
+      "note": "a 2.5 mm motor seat with the same supplied M1.4 x 3 screws",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "226eb36199514a81aacfb3b7993fbf32d94227dce8fa6926ccb0c11866ea9522",
+    "files": {
+      "model/petgasus.py": "8772a68bcf7b1a335f387d03e85162476133cf9a5d06a4094ce137fd4beb7afa",
+      "selftest/bad_configs.py": "f890062e8bbc71918e44e056c95d05f1281598a34a98ead2e5cb32230dda64df",
+      "selftest/known_good.py": "90e0972b03587b1b90b1427cf8344f8e6772a19173e9e13911578dede8c38df4"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_screw_engagement_mm"
+        ],
+        "8e29c97e40473267183acc8265cb574b1fb4dfcd9c281f368e487cf0a285a865",
+        0.5
+      ],
+      [
+        [
+          "motor_screw_len"
+        ],
+        "55da3374d16bff02ddd713a81a8663b51507102a3f0dec673f2946d98d64be93",
+        3.0
+      ],
+      [
+        [
+          "plate_t"
+        ],
+        "2034a44889655f1ed1c1c26dff15e350610e006a093e39a0ab8e421505845012",
+        2.5
+      ]
+    ],
+    "files": {
+      "build": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/c2d0eb09b218/frame-fine.msh": "9e1d6d36ea1ef3c6c1dc0bd0608a520538c8882ce43044530bd884b5a32660e0",
+      "build/fea/c2d0eb09b218/frame.msh": "ea6cbedbb9cc55f2a484ab5ea13bccd403d871ce5faac981b0df6294c9370553",
+      "build/fea/d7d3696083d3": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache/37c127ae0c02b725.npz": "a29aeacaaa1d51829bde00e0a8bcb8321e6dd34cc1ad5bb80d2cb0b93f381968",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C9": "a981a328dc1e81e4bd8a59a166787fb98c104e1cccc31a071d6e5e37bc42143a",
+      "acceptance:C9": "1d562d032faadbcb534b06186320c180b7a744242417a3cc0ca6c9e155d295b3"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/d7d3696083d3/frame-fine.msh",
+      "self-modified:<root>/build/fea/d7d3696083d3/frame.msh",
+      "self-modified:<root>/build/frame_cache/d9f8aff3870f9342.npz"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "motor_screw_engagement_mm"
+          ],
+          "e0036ec891dc393d61176adbce8c552c241fe17ef71e0b3eb7b7f59194a43387",
+          1.2
+        ],
+        [
+          [
+            "motor_screw_len"
+          ],
+          "55da3374d16bff02ddd713a81a8663b51507102a3f0dec673f2946d98d64be93",
+          3.0
+        ],
+        [
+          [
+            "plate_t"
+          ],
+          "c40f2e2abfe59857bdea0eb863945b238ffd4a9a541f8757f0fa3387b7d344ab",
+          1.8
+        ]
+      ],
+      "files": {
+        "build/fea/c2d0eb09b218/frame-fine.msh": "9e1d6d36ea1ef3c6c1dc0bd0608a520538c8882ce43044530bd884b5a32660e0",
+        "build/fea/c2d0eb09b218/frame.msh": "ea6cbedbb9cc55f2a484ab5ea13bccd403d871ce5faac981b0df6294c9370553",
+        "build/frame_cache/37c127ae0c02b725.npz": "a29aeacaaa1d51829bde00e0a8bcb8321e6dd34cc1ad5bb80d2cb0b93f381968",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C9": "a981a328dc1e81e4bd8a59a166787fb98c104e1cccc31a071d6e5e37bc42143a",
+        "acceptance:C9": "1d562d032faadbcb534b06186320c180b7a744242417a3cc0ca6c9e155d295b3"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 1.2,
+    "limit": 1.0,
+    "units": "mm",
+    "detail": "3.0 mm screw through a 1.8 mm seat",
+    "goalpost": [
+      {
+        "key": "C9",
+        "measured": 1.2,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.1,
+            "outcome": "pass",
+            "measured": 1.2,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 0.5,
+            "outcome": "pass",
+            "measured": 1.2,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 2.0,
+            "outcome": "fail",
+            "measured": 1.2,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 10.0,
+            "outcome": "fail",
+            "measured": 1.2,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 57,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "motor_screw_engagement_mm"
+        ],
+        "before": 1.2,
+        "after": 0.854,
+        "outcome": "fail",
+        "measured": 0.85,
+        "limit": 1.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "motor_screw_len"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "plate_t"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:thick_seat (a 2.5 mm motor seat with the same supplied M1.4 x 3 screws): 3.0 mm screw through a 2.5 mm seat",
+  "measured": 0.5,
+  "limit": 1.0,
+  "units": "mm",
+  "digest": "5f063901f34ec3e1a11a230599979049f48157f1398f7f0f6bd219dc6d0662c5"
+}

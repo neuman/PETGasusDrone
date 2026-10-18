@@ -1,5 +1,5 @@
 {
-  "statement": "AIO screws (M1.4 x 6) bite at least 3 mm into the printed posts and do not poke out under the plate",
+  "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
   "kind": "measurable",
   "acceptance": {
     "quantity": "FC screw protrusion below plate",
@@ -7,8 +7,18 @@
     "limit": 0.0,
     "units": "mm"
   },
-  "rationale": "A screw tip below the plate scratches the battery it rests on. Engagement is reported alongside.",
+  "rationale": "A screw tip that pokes out under the posts scratches the battery strapped under the hub. Engagement is reported alongside.",
   "tags": [
     "fc-screws"
+  ],
+  "mechanism": {
+    "by": "closed_form",
+    "how": "screw length less the grommet stack, against the post's height",
+    "evaluators": [
+      "petgasus.fc_screws"
+    ]
+  },
+  "requirements": [
+    "R2"
   ]
 }

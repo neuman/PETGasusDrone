@@ -1,0 +1,8 @@
+{
+  "kind": "zone",
+  "title": "Print pose",
+  "members": [
+    "print_tilt_deg",
+    "print_azimuth_deg"
+  ]
+}

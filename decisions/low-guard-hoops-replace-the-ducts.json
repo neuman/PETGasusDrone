@@ -1,0 +1,41 @@
+{
+  "title": "Low guard hoops replace the ducts",
+  "when": "2026-10-17T11:16:16Z",
+  "summary": "Each prop has a low solid guard 4 mm tall (guard_h), centred on the prop plane, 2 mm outside the tips, 1.4 mm wall, with no windows. It was decided as a full hoop; a later decision ('Guards are outer arcs') fixed only the outer half and left the rest to the optimiser (guard_arc_deg 180). The frame's limbs reach each guard from below; nothing covers the prop from above. Settled by C13 (guard height: 4 mm when decided, at most 4.5 mm as printed since) and C14 (the frame's shadow on a prop's disc: at most 10 % when decided, 15 % since).",
+  "rejected": [
+    {
+      "value": "tall ducts with lattice windows (v0.1)",
+      "why": "the r/diydrones review: the 10.9 mm ducts make propwash in climbs and rolls, and their windows add layer perimeter, so weight, instead of removing it",
+      "type": "dominated",
+      "input": "diydrones-feedback-2026-10-17"
+    },
+    {
+      "value": "half ducts",
+      "why": "more mass than hoops for protection a kid indoors does not need; the author chose low hoops in the interview (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "open props, toothpick style",
+      "why": "props exposed to fingers and furniture indoors (R1, R3); the author chose low hoops in the interview (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "full ducts, redesigned",
+      "why": "the heaviest option, and any thrust gain from a duct is unconfirmed (v0.1's A1 took the ducts to cost 10 % of thrust); the author chose low hoops in the interview (2026-10-17)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    }
+  ],
+  "params_changed": [
+    "guard_h",
+    "prop_tip_gap",
+    "guard_wall"
+  ],
+  "claims_changed": [
+    "C13",
+    "C14",
+    "A1"
+  ]
+}

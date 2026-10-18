@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-deep2-ebd95b68bf.png",
+  "kind": "data",
+  "description": "3D SIMP field at 2 mm on problem ebd95b68: guards required only on each prop's outer half (guard_arc_deg 180), nine crash cases across the arc in 3D, 12 mm of designable depth under the seats, and the downwash cost charged per column's shadow, not per cell; 12 g budget, 5 mm filter. Run directly with PARDISO and filed by hand",
+  "sha256": "34ae8ab70ec209e4b87a3f1a36d881fdebd6f5265aba7024056c9a55bcc8045f",
+  "added": "2026-10-17T17:56:38Z",
+  "extractions": [
+    {
+      "what": "top view: a continuous rim round all four props, two spokes from each seat to the rim and a V from the rim at each mid-side to the board's side post; the thinnest of them are grey, one cell wide",
+      "grounds": [
+        "topology_field"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-deep2 (Config with topo_h 2.0, topo_rmin 5.0)",
+  "proposer": "fea.topopt3d"
+}

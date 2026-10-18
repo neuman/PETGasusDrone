@@ -14,10 +14,11 @@ import json
 from nopekit.models import View, ViewKind
 from nopekit.site import ViewContext, viewgen
 
-#: How the 27 placed parts read to a person. Prefix -> group key. Order matters:
+#: How the placed parts read to a person. Prefix -> group key. Order matters:
 #: the first match wins.
 GROUPS = [
-    ("frame", "frame"), ("motor_screws_", "hardware"), ("motor_lead_", "hardware"),
+    ("frame", "frame"), ("guards", "frame"), ("fc_grommet_", "hardware"),
+    ("motor_screws_", "hardware"), ("motor_lead_", "hardware"),
     ("motor_", "motors"), ("prop_", "props"), ("fc_screw_", "hardware"),
     ("flight_controller", "electronics"), ("motor_sockets", "electronics"),
     ("power_pigtail", "electronics"), ("battery_strap", "hardware"),
@@ -69,26 +70,32 @@ def story(ctx: ViewContext) -> View | None:
         "flight_min": p["flight_time_min"],
         "battery_mah": p["battery_mah"],
         "frame_g": p["frame_mass_g"],
-        "mode_hz": p["frame_mode1_hz"],
-        "arms_mode_hz": p.get("arms_mode1_hz"),
-        "crash_gain": p.get("crash_stiffness_gain"),
-        "bounce_gain": p.get("bounce_stiffness_gain"),
+        "guard_g": p["guard_mass_g"],
+        "material": p["material"],
+        "guard_material": p["guard_material"],
+        "material_name": p["material_name"],
+        "material_needs": p["material_needs"],
+        # the crash claims (C15, C16) are judged with the frame in the strong filament
+        "strong_material": p.get("fea.strong_name"),
+        "strong_frame_g": p.get("strong_frame_mass_g"),
+        "strong_auw_g": p.get("strong_auw_g"),
+        "guard_h_mm": p["guard_h_mm"],
+        "blockage": p["prop_blockage_frac"],
+        "hover_eff": p["hover_eff_g_per_w"],
         "motor_hover_hz": p["motor_freq_hover_hz"],
         "wheelbase_mm": p["wheelbase_mm"],
         "bbox_mm": p["frame_bbox_mm"],
         "lead_needed_mm": p["motor_lead_needed_mm"],
         "lead_len_mm": p["motor_lead_len"],
         "parts": parts,
-        "layout": p.get("layout_2d"),
-        "field": p.get("topopt_field"),
-        "spoke_count": p["spoke_count"],
-        "plate_g": p.get("plate_mass_fe_g"),
-        "arms_plate_g": p.get("arms_plate_mass_fe_g"),
+        "topology_field": p["topology_field"],
+        "topology_variant": p.get("topology_variant"),
+        "topology_current": p["topology_current"],
     }
     src = ctx.write_asset("story.json", json.dumps(data, separators=(",", ":")))
     rows = [{"what": "all-up weight", "value": f"{p['auw_g']:.1f} g"},
             {"what": "lift", "value": f"{p['thrust_total_g']:.0f} g"},
-            {"what": "first frame mode", "value": f"{p['frame_mode1_hz']:.0f} Hz"}]
+            {"what": "frame", "value": f"{p['frame_mass_g']:.1f} g {p['material']}"}]
     return View(id="story", kind=ViewKind.TABLE, title="Front-page numbers", src=src,
                 data={"columns": [{"key": "what", "label": "What", "align": "left"},
                                   {"key": "value", "label": "Value", "align": "right"}],

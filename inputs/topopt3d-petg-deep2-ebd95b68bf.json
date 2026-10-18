@@ -1,0 +1,21 @@
+{
+  "path": "inputs/data/topopt3d-petg-deep2-ebd95b68bf.npz",
+  "kind": "data",
+  "description": "3D SIMP field at 2 mm on problem ebd95b68: guards required only on each prop's outer half (guard_arc_deg 180), nine crash cases across the arc in 3D, 12 mm of designable depth under the seats, and the downwash cost charged per column's shadow, not per cell; 12 g budget, 5 mm filter. Run directly with PARDISO and filed by hand",
+  "sha256": "8f8ea01e40b03093e45c50017261c6ab673f8f1fadb6ab219ec6cef1d80bf259",
+  "added": "2026-10-17T17:56:38Z",
+  "extractions": [
+    {
+      "what": "120 iterations at 2 mm: objective 9.97 (the fixed-hoop field on 7307a1ba: 12.2 at the same point); with only the outer half of each guard required, the optimiser closed the guards into one rounded rim and ran V-shaped spokes from each seat to it; with under-prop material charged by its shadow, its objective at iteration 89 was 11.4 against 32.5 when charged by volume",
+      "grounds": [
+        "topology_field",
+        "guard_arc_deg",
+        "topo_prop_cost",
+        "topo_below"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-deep2 (Config with topo_h 2.0, topo_rmin 5.0)",
+  "proposer": "fea.topopt3d"
+}

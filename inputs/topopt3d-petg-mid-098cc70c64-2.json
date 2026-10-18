@@ -1,0 +1,18 @@
+{
+  "path": "inputs/data/topopt3d-petg-mid-098cc70c64.png",
+  "kind": "data",
+  "description": "3D SIMP field at 2 mm on problem 098cc70c: outer guard arcs, nine crash cases, the strap saddle and seats at the bell's edge as required solids, 12 mm of depth, a prop's shadow charged at 10 cells a column; 12 g budget, 5 mm filter. Drawn: 14.5 g, 13.7 % shadow, 2 pieces (one-cell limbs)",
+  "sha256": "bc3e91723ec8924b30fc5158d7b18471fc53f2841e0e10015d81e86143cc34bb",
+  "added": "2026-10-17T20:16:19Z",
+  "extractions": [
+    {
+      "what": "top view: the rounded rim round all four props, two curved limbs from each seat to it, a ring of members round the board tied to the posts and the saddle; the side posts reached by Vs from the rim",
+      "grounds": [
+        "topology_field"
+      ],
+      "confidence": "measured"
+    }
+  ],
+  "note": "python3 .nopekit/packs/solid-fea/proposers/topopt3d.py --problem build/topopt3d/problem.npz --variant petg-mid (Config with topo_h 2.0, topo_rmin 5.0, topo_rmin_z 5.0)",
+  "proposer": "fea.topopt3d"
+}
