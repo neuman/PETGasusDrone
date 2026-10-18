@@ -486,9 +486,9 @@ class Config:
     """deg the frame is tilted on the bed from flying-level, about the horizontal
     axis at print_azimuth_deg. The layers lie square to the build direction, so
     this sets which way the printed part is weak (fea.layer_normal). Flat, as it
-    flies: the orientation scan on CalculiX's crash stresses found no pose loses
-    strength to the layers, and flat stands 20 mm tall with support under 22 % of
-    its surface. On edge (90-105 deg) lost: 10 % support, but 111 mm tall on its
+    flies: the orientation scan on CalculiX's crash stresses found that flat loses
+    no strength to the layers (tilts of 75-105 deg lose up to 14 % at some
+    headings), and flat stands 20 mm tall with support under 22 % of its surface. On edge (90-105 deg) lost: 10 % support, but 111 mm tall on its
     rim, five times the layers."""
     print_azimuth_deg: float = 0.0
     """deg, the tilt axis's direction from +x (forward)."""

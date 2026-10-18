@@ -1,17 +1,17 @@
 {
   "title": "Print flat, as it flies",
   "when": "2026-10-17T21:23:33Z",
-  "summary": "The frame prints flat on its underside, as it flies (print_tilt_deg 0), with tree supports. The orientation scan (fea.print_orientation, on CalculiX's PETG crash stresses) found no pose loses strength to the layers: the frame's worst crash tension runs along them in every candidate near flat or on edge. Flat needs support under 22 % of its surface (support_area_max_frac allows 35 %) and stands 20 mm tall.",
+  "summary": "The frame prints flat on its underside, as it flies (print_tilt_deg 0), with tree supports. The orientation scan (fea.print_orientation, on CalculiX's PETG crash stresses) found that flat loses no strength to the layers: the frame's worst crash tension runs along them. Tilts of 75-105 deg lose up to 14 % at some headings; every other tilt loses none. Flat needs support under 22 % of its surface (support_area_max_frac allows 35 %) and stands 20 mm tall.",
   "rejected": [
     {
       "value": "standing on edge (tilt 90-105 deg)",
-      "why": "about half the support (10 %), but a 111 mm tall part balanced on a 20-38 mm rim: five times the layers, a wobbling print for a kid to babysit, and no strength gained",
+      "why": "about half the support (10 %), but a 111 mm tall part balanced on a 20-38 mm rim: five times the layers, a wobbling print for a kid to babysit, and no strength gained (up to 14 % lost at some headings)",
       "type": "dominated",
       "input": "print-orientation-petg-v02"
     },
     {
       "value": "tilted 30-75 deg",
-      "why": "support 12-15 % but up to 14 % of the strength lost across the layers, and an awkward pose",
+      "why": "support 12-15 % but up to 10 % of the strength lost across the layers at 75 deg, and an awkward pose",
       "type": "dominated",
       "input": "print-orientation-petg-v02"
     }
