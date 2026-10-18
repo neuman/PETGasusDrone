@@ -3,7 +3,7 @@
     "A1": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "flies",
       "cause": "owner-unattributed",
       "cause_text": "The owner of this assumption did not record it in their own shell.",
       "claim_kind": "assumption",
@@ -32,44 +32,7 @@
         ],
         "text": "A1 is an assumption. Its owner records it in their own shell."
       },
-      "statement": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
-      "token": "gap",
-      "values": [],
-      "word": "gap"
-    },
-    "A2": {
-      "acceptance": "",
-      "amber": null,
-      "board": "other",
-      "cause": "owner-unattributed",
-      "cause_text": "The owner of this assumption did not record it in their own shell.",
-      "claim_kind": "assumption",
-      "critical": true,
-      "errored": false,
-      "evaluators": [],
-      "hint": "Nothing can settle this claim yet.",
-      "id": "A2",
-      "kind_word": "Assumption",
-      "limit_text": "",
-      "marks": [],
-      "mechanism": {
-        "by": "none",
-        "by_word": "Nothing settles it. It is accepted for now.",
-        "evaluators": [],
-        "how": ""
-      },
-      "physical": null,
-      "requirements": [],
-      "resolved_by": [],
-      "resolves": [],
-      "rests_on": [],
-      "settle": {
-        "commands": [
-          "nopekit claim physical A2 assume"
-        ],
-        "text": "A2 is an assumption. Its owner records it in their own shell."
-      },
-      "statement": "Hover efficiency is 3.0 g of thrust per watt",
+      "statement": "The guards and the limbs under the props cost at most 7.5 % of the open-prop static thrust (guard_thrust_factor 0.925)",
       "token": "gap",
       "values": [],
       "word": "gap"
@@ -77,7 +40,7 @@
     "A3": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "fits",
       "cause": "owner-unattributed",
       "cause_text": "The owner of this assumption did not record it in their own shell.",
       "claim_kind": "assumption",
@@ -106,7 +69,7 @@
         ],
         "text": "A3 is an assumption. Its owner records it in their own shell."
       },
-      "statement": "The 1102 (2026) motor needs a 14 mm diameter, 13.8 mm tall envelope, and its shaft C-clip clears a 2.3 mm hole",
+      "statement": "The 1102 (2026) motor's shaft C-clip clears a 2.3 mm hole, and its base is 11 mm across and 2 mm tall",
       "token": "gap",
       "values": [],
       "word": "gap"
@@ -114,7 +77,7 @@
     "A4": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "fits",
       "cause": "owner-unattributed",
       "cause_text": "The owner of this assumption did not record it in their own shell.",
       "claim_kind": "assumption",
@@ -143,81 +106,7 @@
         ],
         "text": "A4 is an assumption. Its owner records it in their own shell."
       },
-      "statement": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
-      "token": "gap",
-      "values": [],
-      "word": "gap"
-    },
-    "A5": {
-      "acceptance": "",
-      "amber": null,
-      "board": "other",
-      "cause": "owner-unattributed",
-      "cause_text": "The owner of this assumption did not record it in their own shell.",
-      "claim_kind": "assumption",
-      "critical": true,
-      "errored": false,
-      "evaluators": [],
-      "hint": "Nothing can settle this claim yet.",
-      "id": "A5",
-      "kind_word": "Assumption",
-      "limit_text": "",
-      "marks": [],
-      "mechanism": {
-        "by": "none",
-        "by_word": "Nothing settles it. It is accepted for now.",
-        "evaluators": [],
-        "how": ""
-      },
-      "physical": null,
-      "requirements": [],
-      "resolved_by": [],
-      "resolves": [],
-      "rests_on": [],
-      "settle": {
-        "commands": [
-          "nopekit claim physical A5 assume"
-        ],
-        "text": "A5 is an assumption. Its owner records it in their own shell."
-      },
-      "statement": "The 1102 22000KV's 46.3 g thrust on 40 mm props is a floor for the kit's 1102 21000KV on 45 mm props",
-      "token": "gap",
-      "values": [],
-      "word": "gap"
-    },
-    "A6": {
-      "acceptance": "",
-      "amber": null,
-      "board": "other",
-      "cause": "owner-unattributed",
-      "cause_text": "The owner of this assumption did not record it in their own shell.",
-      "claim_kind": "assumption",
-      "critical": true,
-      "errored": false,
-      "evaluators": [],
-      "hint": "Nothing can settle this claim yet.",
-      "id": "A6",
-      "kind_word": "Assumption",
-      "limit_text": "",
-      "marks": [],
-      "mechanism": {
-        "by": "none",
-        "by_word": "Nothing settles it. It is accepted for now.",
-        "evaluators": [],
-        "how": ""
-      },
-      "physical": null,
-      "requirements": [],
-      "resolved_by": [],
-      "resolves": [],
-      "rests_on": [],
-      "settle": {
-        "commands": [
-          "nopekit claim physical A6 assume"
-        ],
-        "text": "A6 is an assumption. Its owner records it in their own shell."
-      },
-      "statement": "That 46.3 g thrust test was run at 4.2 V",
+      "statement": "The Matrix 1S 3IN1 is a 40 mm cross, its ESC sockets sit 12.3 mm out on the side arms' undersides, and its grommets are 2.6 mm tall and 4.6 mm across",
       "token": "gap",
       "values": [],
       "word": "gap"
@@ -225,48 +114,54 @@
     "C1": {
       "acceptance": "thrust to weight >= 3.0 ratio",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "flies",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "136 g thrust / 45.1 g AUW; hover at 33% of full thrust",
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "245 g thrust / 42.9 g AUW; hover at 18% of full thrust",
           "evidence": [],
           "id": "petgasus.thrust_to_weight",
-          "order": 29,
+          "order": 34,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "auw_g 42.87 -> 43.29, hover_throttle_frac 0.175 -> 0.177, thrust_to_weight 5.718 -> 5.663 (+1 more)"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C1",
       "kind_word": "Automated",
       "limit_text": "3 ratio",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "datasheet",
+        "by_word": "A datasheet settles it.",
+        "evaluators": [
+          "petgasus.thrust_to_weight"
+        ],
+        "how": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R3"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -275,18 +170,18 @@
           "gate": "petgasus.thrust_to_weight",
           "limit": 3.0,
           "limit_hi": null,
-          "margin": 0.008,
-          "measured": 3.024,
+          "margin": 0.906,
+          "measured": 5.718,
           "units": "ratio",
-          "value_text": "3.024 ratio against a limit of 3 ratio, 0.80% inside the limit"
+          "value_text": "5.718 ratio against a limit of 3 ratio, 91% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C10": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "budget",
       "cause": "failed",
       "cause_text": "An evaluator failed the current design.",
       "claim_kind": "measurable",
@@ -300,7 +195,7 @@
           "detail": "167.15 USD/unit at qty 1 vs 150.00 USD budget; parts 167.15 USD + minimums 0.00 USD + one-time 0.00 USD (0.00 USD/unit amortised) = 167.15 USD run",
           "evidence": [
             {
-              "href": "assets/evidence/bom.cost/65f587488affbf9a-2cdea635/bom_cost.json",
+              "href": "assets/evidence/bom.cost/9b7a85ba1173afb6-2cdea635/bom_cost.json",
               "missing": "",
               "name": "bom_cost.json",
               "source": "<out>/bom_cost.json"
@@ -319,13 +214,17 @@
       "limit_text": "",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "bom.cost"
+        ],
+        "how": "sourcing pack: the BOM's prices rolled up against the budget"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R4"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
@@ -357,48 +256,55 @@
     "C11": {
       "acceptance": "frame pieces <= 1 count",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "fits",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
           "detail": "1 connected solid(s) in the frame mesh",
           "evidence": [],
           "id": "petgasus.one_piece",
-          "order": 28,
+          "order": 32,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "gate code changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C11",
       "kind_word": "Automated",
       "limit_text": "1 count",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.one_piece"
+        ],
+        "how": "the printed frame mesh decomposed into connected solids"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R5",
+        "R10"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "The printed frame is one connected piece",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -413,53 +319,59 @@
           "value_text": "1 count against a limit of 1 count, at the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C12": {
       "acceptance": "motor lead spare >= 3.0 mm",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "fits",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "route lengths, mm: back_left 20.7, back_right 20.7, front_left 20.7, front_right 20.7; lead 37 mm",
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "route lengths, mm: back_left 22.6, back_right 22.6, front_left 22.6, front_right 22.6; lead 37 mm",
           "evidence": [],
           "id": "petgasus.motor_leads",
-          "order": 26,
+          "order": 30,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "gate code changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C12",
       "kind_word": "Automated",
       "limit_text": "3 mm",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.motor_leads"
+        ],
+        "how": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R2"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -468,59 +380,402 @@
           "gate": "petgasus.motor_leads",
           "limit": 3.0,
           "limit_hi": null,
-          "margin": 4.42667,
-          "measured": 16.28,
+          "margin": 3.78333,
+          "measured": 14.35,
           "units": "mm",
-          "value_text": "16.28 mm against a limit of 3 mm, 443% inside the limit"
+          "value_text": "14.35 mm against a limit of 3 mm, 378% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
-    "C2": {
-      "acceptance": "all-up weight <= 250.0 g",
+    "C13": {
+      "acceptance": "guard height <= 4.5 mm",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "guards",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "frame 18.0 g printed PETG + bought parts",
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "median 4.25 mm, tallest 4.90 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
           "evidence": [],
-          "id": "petgasus.auw",
-          "order": 21,
+          "id": "petgasus.guard_height",
+          "order": 28,
           "outcome": "pass",
           "outcome_word": "pass",
+          "stale_reason": "gate code changed"
+        }
+      ],
+      "hint": "The design changed after the result.",
+      "id": "C13",
+      "kind_word": "Automated",
+      "limit_text": "4.5 mm",
+      "marks": [],
+      "mechanism": {
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.guard_height"
+        ],
+        "how": "the printed frame's band height at points round each guard's arc (median)"
+      },
+      "physical": null,
+      "requirements": [
+        "R8"
+      ],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
+      },
+      "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
+      "token": "stale",
+      "values": [
+        {
+          "binding": true,
+          "comparator": "<=",
+          "compared": true,
+          "gate": "petgasus.guard_height",
+          "limit": 4.5,
+          "limit_hi": null,
+          "margin": 0.0555556,
+          "measured": 4.25,
+          "units": "mm",
+          "value_text": "4.25 mm against a limit of 4.5 mm, 6% inside the limit"
+        }
+      ],
+      "word": "stale"
+    },
+    "C14": {
+      "acceptance": "prop disc blockage <= 0.15 ratio",
+      "amber": null,
+      "board": "guards",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "evaluators": [
+        {
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "14.8% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+          "evidence": [],
+          "id": "petgasus.prop_blockage",
+          "order": 33,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": "prop_blockage_frac 0.1479 -> 0.1481, gate code changed"
+        }
+      ],
+      "hint": "The design changed after the result.",
+      "id": "C14",
+      "kind_word": "Automated",
+      "limit_text": "0.15 ratio",
+      "marks": [],
+      "mechanism": {
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.prop_blockage"
+        ],
+        "how": "the frame cut by each prop's annulus and projected onto the plane"
+      },
+      "physical": null,
+      "requirements": [
+        "R8"
+      ],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
+      },
+      "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
+      "token": "stale",
+      "values": [
+        {
+          "binding": true,
+          "comparator": "<=",
+          "compared": true,
+          "gate": "petgasus.prop_blockage",
+          "limit": 0.15,
+          "limit_hi": null,
+          "margin": 0.014,
+          "measured": 0.1479,
+          "units": "ratio",
+          "value_text": "0.1479 ratio against a limit of 0.15 ratio, 1% inside the limit"
+        }
+      ],
+      "word": "stale"
+    },
+    "C15": {
+      "acceptance": "survivable drop height >= 1.0 m",
+      "amber": null,
+      "board": "crashes",
+      "cause": "unqualified",
+      "cause_text": "An evaluator did not show that it can fail, so its result does not count.",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "evaluators": [
+        {
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "",
+          "evidence": [],
+          "id": "petgasus.crash_drop",
+          "order": 3,
+          "outcome": "unqualified",
+          "outcome_word": "does not count",
+          "stale_reason": ""
+        },
+        {
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "",
+          "evidence": [],
+          "id": "petgasus.fea_converged",
+          "order": 5,
+          "outcome": "unqualified",
+          "outcome_word": "does not count",
           "stale_reason": ""
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "Nothing can settle this claim yet.",
+      "id": "C15",
+      "kind_word": "Automated",
+      "limit_text": "1 m",
+      "marks": [],
+      "mechanism": {
+        "by": "solver",
+        "by_word": "A solver settles it.",
+        "evaluators": [
+          "petgasus.crash_drop",
+          "petgasus.fea_converged"
+        ],
+        "how": "CalculiX on the free drone (inertia relief), in the strong filament: a 1 N hit on a guard's outermost underside along the floor's normal, banked so that point lands first; the energy at which the worst stress, averaged over 0.3 mm, reaches strength along or across the layers, as a drop height for Goldsmith's effective mass; each solve checked for equilibrium, the result on a finer mesh (fea_converged)"
+      },
+      "physical": null,
+      "requirements": [
+        "R11",
+        "R9"
+      ],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit check --tier 2"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
+      },
+      "statement": "A drop onto a guard from 1 m keeps the strong (nylon-CF) frame under its printed strength",
+      "token": "gap",
+      "values": [],
+      "word": "gap"
+    },
+    "C16": {
+      "acceptance": "survivable wall speed >= 3.0 m/s",
+      "amber": null,
+      "board": "crashes",
+      "cause": "unqualified",
+      "cause_text": "An evaluator did not show that it can fail, so its result does not count.",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "evaluators": [
+        {
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "",
+          "evidence": [],
+          "id": "petgasus.crash_wall",
+          "order": 4,
+          "outcome": "unqualified",
+          "outcome_word": "does not count",
+          "stale_reason": ""
+        },
+        {
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "",
+          "evidence": [],
+          "id": "petgasus.fea_converged",
+          "order": 5,
+          "outcome": "unqualified",
+          "outcome_word": "does not count",
+          "stale_reason": ""
+        }
+      ],
+      "hint": "Nothing can settle this claim yet.",
+      "id": "C16",
+      "kind_word": "Automated",
+      "limit_text": "3 m/s",
+      "marks": [],
+      "mechanism": {
+        "by": "solver",
+        "by_word": "A solver settles it.",
+        "evaluators": [
+          "petgasus.crash_wall",
+          "petgasus.fea_converged"
+        ],
+        "how": "As C15, for a 1 N hit square on a guard's outer face where it faces forward and one head on through the centre; the slower, as a wall speed"
+      },
+      "physical": null,
+      "requirements": [
+        "R11",
+        "R9"
+      ],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit check --tier 2"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
+      },
+      "statement": "A hit on a wall at 3 m/s keeps the strong (nylon-CF) frame under its printed strength",
+      "token": "gap",
+      "values": [],
+      "word": "gap"
+    },
+    "C17": {
+      "acceptance": "topology proposal current >= 1 bool",
+      "amber": null,
+      "board": "prints",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "evaluators": [
+        {
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "field inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz was computed for this problem",
+          "evidence": [],
+          "id": "petgasus.topology_current",
+          "order": 35,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": "gate code changed"
+        }
+      ],
+      "hint": "The design changed after the result.",
+      "id": "C17",
+      "kind_word": "Automated",
+      "limit_text": "1 bool",
+      "marks": [],
+      "mechanism": {
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.topology_current"
+        ],
+        "how": "the proposal's recorded problem hash against this design's"
+      },
+      "physical": null,
+      "requirements": [
+        "R6"
+      ],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
+      },
+      "statement": "The frame is drawn from a topology field computed for this design's problem",
+      "token": "stale",
+      "values": [
+        {
+          "binding": true,
+          "comparator": ">=",
+          "compared": true,
+          "gate": "petgasus.topology_current",
+          "limit": 1,
+          "limit_hi": null,
+          "margin": 0.0,
+          "measured": 1,
+          "units": "bool",
+          "value_text": "1 bool against a limit of 1 bool, at the limit"
+        }
+      ],
+      "word": "stale"
+    },
+    "C2": {
+      "acceptance": "all-up weight <= 250.0 g",
+      "amber": null,
+      "board": "flies",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
+      "claim_kind": "measurable",
+      "critical": true,
+      "errored": false,
+      "evaluators": [
+        {
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "frame 15.8 g printed PETG + bought parts",
+          "evidence": [],
+          "id": "petgasus.auw",
+          "order": 24,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": "auw_g 42.87 -> 43.29, frame_mass_g 15.79 -> 16.21, gate code changed"
+        }
+      ],
+      "hint": "The design changed after the result.",
       "id": "C2",
       "kind_word": "Automated",
       "limit_text": "250 g",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.auw"
+        ],
+        "how": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R1"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "All-up weight stays under 250 g",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -529,59 +784,65 @@
           "gate": "petgasus.auw",
           "limit": 250.0,
           "limit_hi": null,
-          "margin": 0.81952,
-          "measured": 45.12,
+          "margin": 0.82852,
+          "measured": 42.87,
           "units": "g",
-          "value_text": "45.12 g against a limit of 250 g, 82% inside the limit"
+          "value_text": "42.87 g against a limit of 250 g, 83% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C3": {
       "acceptance": "hover flight time >= 3.0 min",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "flies",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "15.0 W hover from the pack's usable energy (efficiency is assumption A2)",
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "15.6 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
           "evidence": [],
           "id": "petgasus.flight_time",
-          "order": 23,
+          "order": 26,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "flight_time_min 3.74 -> 3.7, hover_eff_g_per_w 2.972 -> 2.967, hover_power_w 15.6 -> 15.77 (+1 more)"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C3",
       "kind_word": "Automated",
       "limit_text": "3 min",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "datasheet",
+        "by_word": "A datasheet settles it.",
+        "evaluators": [
+          "petgasus.flight_time"
+        ],
+        "how": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R1"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "Estimated hover flight time is at least 3 minutes per pack",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -590,62 +851,82 @@
           "gate": "petgasus.flight_time",
           "limit": 3.0,
           "limit_hi": null,
-          "margin": 0.293333,
-          "measured": 3.88,
+          "margin": 0.246667,
+          "measured": 3.74,
           "units": "min",
-          "value_text": "3.88 min against a limit of 3 min, 29% inside the limit"
+          "value_text": "3.74 min against a limit of 3 min, 25% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C4": {
       "acceptance": "first frame mode >= 200.0 Hz",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "flies",
+      "cause": "unqualified",
+      "cause_text": "An evaluator did not show that it can fail, so its result does not count.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
+          "basis": "sourced",
+          "basis_word": "The logic follows a cited outside source.",
+          "current": false,
+          "detail": "",
+          "evidence": [],
+          "id": "petgasus.fea_converged",
+          "order": 5,
+          "outcome": "unqualified",
+          "outcome_word": "does not count",
+          "stale_reason": ""
+        },
+        {
+          "basis": "established",
+          "basis_word": "An existing tool gives the answer.",
+          "current": false,
           "detail": "modes 282, 290, 290, 316 Hz (spoked plate); motors turn at ~612 Hz in a hover",
           "evidence": [],
           "id": "petgasus.frame_mode",
-          "order": 24,
+          "order": 27,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 475.3 (+2 more)"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "Nothing can settle this claim yet.",
       "id": "C4",
       "kind_word": "Automated",
       "limit_text": "200 Hz",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "solver",
+        "by_word": "A solver settles it.",
+        "evaluators": [
+          "petgasus.frame_mode",
+          "petgasus.fea_converged"
+        ],
+        "how": "CalculiX eigenfrequencies of the printed frame mesh in the everyday filament, held at the FC posts' top faces and the strap saddle, each motor + prop as a mass on its seat; checked on a finer surface and mesh (fea_converged)"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R6",
+        "R11"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check --tier 2"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
-      "statement": "The frame's first out-of-plane mode (duct pods bouncing on the arms) is at or above 200 Hz",
-      "token": "checked",
+      "statement": "The PETG frame's first vibration mode, held at the FC posts and the strap saddle with the motors on it, is at or above 200 Hz",
+      "token": "gap",
       "values": [
         {
-          "binding": true,
+          "binding": false,
           "comparator": ">=",
           "compared": true,
           "gate": "petgasus.frame_mode",
@@ -657,53 +938,59 @@
           "value_text": "282 Hz against a limit of 200 Hz, 41% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "gap"
     },
     "C5": {
       "acceptance": "interference volume <= 0.0 mm3",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "fits",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "27 placed parts, every pair intersected: no undeclared overlap",
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "31 placed parts, every pair intersected: no undeclared overlap",
           "evidence": [],
           "id": "petgasus.interference",
-          "order": 25,
+          "order": 29,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "gate code changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C5",
       "kind_word": "Automated",
       "limit_text": "0 mm3",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.interference"
+        ],
+        "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R1"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -718,14 +1005,14 @@
           "value_text": "0 mm3 against a limit of 0 mm3"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C6": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "prints",
+      "cause": "failed",
+      "cause_text": "An evaluator failed the current design.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
@@ -733,155 +1020,171 @@
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.41x the usable build volume in XY (107x107x14 mm as modelled); 0 of 1 past the limit; 260x260 usable (270x270 bed - 2x5.0 brim) x 270 Z",
+          "current": false,
+          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
           "evidence": [
             {
-              "href": "assets/evidence/fdm.bed_fit/88d4e7bbebbcc054-7cbd97bc/fdm-bed-fit-parts.txt",
+              "href": "assets/evidence/fdm.bridge_span/88091cdb18002a4e-3acae70c/fdm-bridge-span-parts.txt",
+              "missing": "",
+              "name": "fdm-bridge-span-parts.txt",
+              "source": "<out>/fdm-bridge-span-parts.txt"
+            },
+            {
+              "href": "assets/evidence/fdm.bridge_span/88091cdb18002a4e-3acae70c/frame.txt",
+              "missing": "",
+              "name": "frame.txt",
+              "source": "<out>/fdm-bridge-span/frame.txt"
+            }
+          ],
+          "id": "fdm.bridge_span",
+          "order": 2,
+          "outcome": "fail",
+          "outcome_word": "fail",
+          "stale_reason": "build/print/frame.ply changed"
+        },
+        {
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.43x the usable build volume in XY (112x112x20 mm as modelled); 0 of 1 past the limit; 260x260 usable (270x270 bed - 2x5.0 brim) x 270 Z",
+          "evidence": [
+            {
+              "href": "assets/evidence/fdm.bed_fit/0752ef02c200adcb-b5c71de2/fdm-bed-fit-parts.txt",
               "missing": "",
               "name": "fdm-bed-fit-parts.txt",
               "source": "<out>/fdm-bed-fit-parts.txt"
             }
           ],
           "id": "fdm.bed_fit",
-          "order": 14,
+          "order": 18,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame has no ceiling face at or past 80 deg off the bed — nothing to bridge; 0 of 1 past the limit; bridges judged at 30 mm, cantilevers at 2 mm",
-          "evidence": [
-            {
-              "href": "assets/evidence/fdm.bridge_span/efd0cd1da5dfc6d0-7d9b7b90/fdm-bridge-span-parts.txt",
-              "missing": "",
-              "name": "fdm-bridge-span-parts.txt",
-              "source": "<out>/fdm-bridge-span-parts.txt"
-            }
-          ],
-          "id": "fdm.bridge_span",
-          "order": 15,
-          "outcome": "pass",
-          "outcome_word": "pass",
-          "stale_reason": ""
-        },
-        {
-          "basis": "model-only",
-          "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "load at 0 deg to the layer plane (build axis from the model): stress utilisation 0.19 (utilisation) / knockdown 1.00 = 0.19 vs 1.00 (layer-normal strength 0.50x in-plane)",
+          "current": false,
+          "detail": "load at 0 deg to the layer plane (build axis from the model), knockdown 1.00x; ANGLE ONLY — no 'utilisation' in the projection, so the derating was not applied to a margin",
           "evidence": [],
           "id": "fdm.layer_alignment",
-          "order": 16,
+          "order": 19,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "thinnest section 1.30 mm = 3.1 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
+          "current": false,
+          "detail": "thinnest section 1.40 mm = 3.3 beads vs 1.26 mm minimum (3 x 0.42 mm line width)",
           "evidence": [],
           "id": "fdm.min_wall",
-          "order": 17,
+          "order": 20,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "prerequisite fdm.process_model_valid invalidated: fdm.part_volume_mm3 12337.01 -> 12663.6"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.00% of surface past the 45 deg limit vs 0.50% allowed (worst face 39.7 deg, 0 faces, 0.0 mm^2); 0 of 1 past the limit",
+          "current": false,
+          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 14.27% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 45111 faces, 2070.8 mm^2); 0 of 1 past the limit",
           "evidence": [
             {
-              "href": "assets/evidence/fdm.overhang/559a6718dc29064f-009a80c2/fdm-overhang-parts.txt",
+              "href": "assets/evidence/fdm.overhang/52fcfb233bd7b839-ab1e733d/fdm-overhang-parts.txt",
               "missing": "",
               "name": "fdm-overhang-parts.txt",
               "source": "<out>/fdm-overhang-parts.txt"
             }
           ],
           "id": "fdm.overhang",
-          "order": 18,
+          "order": 21,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "build/print/frame.ply changed"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "ESTIMATE ~1.7 h of 3 h, ~18 g of 1000 g (14.2 cm^3 at 100% infill, 3x0.42 mm shell on 26371 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.56 of its ceiling. Not a slice.",
+          "current": false,
+          "detail": "ESTIMATE ~1.5 h of 3 h, ~15 g of 1000 g (12.3 cm^3 at 100% infill, 3x0.42 mm shell on 14516 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.49 of its ceiling. Not a slice.",
           "evidence": [],
           "id": "fdm.print_time_est",
-          "order": 19,
+          "order": 22,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "fdm.part_volume_mm3 12337.01 -> 12663.6, surface_area_mm2 14515.57 -> 15200.34"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "process model applies — extent 107 mm reads as millimetres; volume fills 0.09 of the bbox; layer/nozzle 0.50 inside 0.1-0.75; width/nozzle 1.05 inside 0.8-2.0; thinnest section 3.2 beads wide",
+          "current": false,
+          "detail": "process model applies — extent 112 mm reads as millimetres; volume fills 0.05 of the bbox; layer/nozzle 0.50 inside 0.1-0.75; width/nozzle 1.05 inside 0.8-2.0; thinnest section 3.5 beads wide",
           "evidence": [],
           "id": "fdm.process_model_valid",
-          "order": 20,
+          "order": 23,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "fdm.part_volume_mm3 12337.01 -> 12663.6"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "An evaluator or a test on a built part failed the current design.",
       "id": "C6",
       "kind_word": "Automated",
       "limit_text": "",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "fdm.bed_fit",
+          "fdm.min_wall",
+          "fdm.print_time_est"
+        ],
+        "how": "fdm-print pack: bed fit with brim, minimum wall, print time; the overhang and bridge measurements report how much support the slicer will add"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R5",
+        "R7"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit why C6",
+          "nopekit check --tier 1"
+        ],
+        "text": "Change the design until C6 passes. Then run the check again."
       },
-      "statement": "The frame prints on the Snapmaker U1 in PETG without supports, in one sitting",
-      "token": "checked",
+      "statement": "The frame prints on the Snapmaker U1 in one sitting, with supports where it needs them",
+      "token": "failing",
       "values": [
         {
           "binding": false,
           "comparator": "<=",
           "compared": false,
           "gate": "fdm.overhang",
-          "limit": 0.005,
+          "limit": 0.35,
           "limit_hi": null,
-          "margin": 1.0,
-          "measured": 0.0,
+          "margin": 0.5924,
+          "measured": 0.14266,
           "units": "area fraction",
-          "value_text": "0 area fraction against a limit of 0.005 area fraction, 100% inside the limit"
+          "value_text": "0.1427 area fraction against a limit of 0.35 area fraction, 59% inside the limit"
         },
         {
           "binding": false,
           "comparator": "<=",
           "compared": false,
           "gate": "fdm.bridge_span",
-          "limit": 30.0,
+          "limit": 0.0,
           "limit_hi": null,
-          "margin": 1.0,
-          "measured": 0.0,
+          "margin": null,
+          "measured": 0.71,
           "units": "mm",
-          "value_text": "0 mm against a limit of 30 mm, 100% inside the limit"
+          "value_text": "0.71 mm against a limit of 0 mm"
         },
         {
           "binding": false,
@@ -890,10 +1193,10 @@
           "gate": "fdm.bed_fit",
           "limit": 1.0,
           "limit_hi": null,
-          "margin": 0.587,
-          "measured": 0.413,
+          "margin": 0.571,
+          "measured": 0.429,
           "units": "utilisation",
-          "value_text": "0.413 utilisation against a limit of 1 utilisation, 59% inside the limit"
+          "value_text": "0.429 utilisation against a limit of 1 utilisation, 57% inside the limit"
         },
         {
           "binding": false,
@@ -902,22 +1205,22 @@
           "gate": "fdm.min_wall",
           "limit": 1.26,
           "limit_hi": null,
-          "margin": 0.031746,
-          "measured": 1.3,
+          "margin": 0.111111,
+          "measured": 1.4,
           "units": "mm",
-          "value_text": "1.3 mm against a limit of 1.26 mm, 3% inside the limit"
+          "value_text": "1.4 mm against a limit of 1.26 mm, 11% inside the limit"
         },
         {
           "binding": false,
           "comparator": "<=",
           "compared": false,
           "gate": "fdm.layer_alignment",
-          "limit": 1.0,
+          "limit": 60.0,
           "limit_hi": null,
-          "margin": 0.809,
-          "measured": 0.191,
-          "units": "derated utilisation",
-          "value_text": "0.191 derated utilisation against a limit of 1 derated utilisation, 81% inside the limit"
+          "margin": 1.0,
+          "measured": 0.0,
+          "units": "deg from layer plane",
+          "value_text": "0 deg from layer plane against a limit of 60 deg from layer plane, 100% inside the limit"
         },
         {
           "binding": false,
@@ -926,10 +1229,10 @@
           "gate": "fdm.print_time_est",
           "limit": 1.0,
           "limit_hi": null,
-          "margin": 0.444,
-          "measured": 0.556,
+          "margin": 0.513,
+          "measured": 0.487,
           "units": "of limit",
-          "value_text": "0.556 of limit against a limit of 1 of limit, 44% inside the limit"
+          "value_text": "0.487 of limit against a limit of 1 of limit, 51% inside the limit"
         },
         {
           "binding": false,
@@ -944,14 +1247,14 @@
           "value_text": "0 problems against a limit of 0 problems"
         }
       ],
-      "word": "checked"
+      "word": "failing"
     },
     "C7": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "prints",
+      "cause": "failed",
+      "cause_text": "An evaluator failed the current design.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
@@ -959,81 +1262,90 @@
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "0 repair(s) needed across 1 part(s), limit 0 — worst frame: welded 0 vertex/vertices at 0.0001 mm, dropped 0 face(s) below 1e-08 mm^2 over 1 pass(es)",
-          "evidence": [],
-          "id": "cad.degenerate_faces",
-          "order": 10,
-          "outcome": "pass",
-          "outcome_word": "pass",
-          "stale_reason": ""
-        },
-        {
-          "basis": "established",
-          "basis_word": "An existing tool gives the answer.",
-          "current": true,
-          "detail": "0 of 1 part(s) are not volumes, limit 0 (total 14206 mm^3 enclosed)",
-          "evidence": [],
-          "id": "cad.is_volume",
-          "order": 11,
-          "outcome": "pass",
-          "outcome_word": "pass",
-          "stale_reason": ""
-        },
-        {
-          "basis": "model-only",
-          "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "thinnest wall 1.299 mm on frame at (26.201, -53.541, 4.7) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
+          "current": false,
+          "detail": "thinnest wall 0.992 mm on frame at (-29.801, 28.411, 5.626) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
           "evidence": [
             {
-              "href": "assets/evidence/cad.wall_thickness/69200409646807ea-fa8394f2/wall_thickness.json",
+              "href": "assets/evidence/cad.wall_thickness/498cdb0f96ab32ef-16296333/wall_thickness.json",
               "missing": "",
               "name": "wall_thickness.json",
               "source": "<out>/cad-solid/wall_thickness.json"
             }
           ],
           "id": "cad.wall_thickness",
-          "order": 12,
-          "outcome": "pass",
-          "outcome_word": "pass",
-          "stale_reason": ""
+          "order": 1,
+          "outcome": "fail",
+          "outcome_word": "fail",
+          "stale_reason": "build/print/frame.ply changed"
         },
         {
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
-          "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 24740 faces",
+          "current": false,
+          "detail": "0 repair(s) needed across 1 part(s), limit 0 — worst frame: welded 0 vertex/vertices at 0.0001 mm, dropped 0 face(s) below 1e-08 mm^2 over 1 pass(es)",
           "evidence": [],
-          "id": "cad.watertight",
-          "order": 13,
+          "id": "cad.degenerate_faces",
+          "order": 15,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "build/print/frame.ply changed"
+        },
+        {
+          "basis": "established",
+          "basis_word": "An existing tool gives the answer.",
+          "current": false,
+          "detail": "0 of 1 part(s) are not volumes, limit 0 (total 12337 mm^3 enclosed)",
+          "evidence": [],
+          "id": "cad.is_volume",
+          "order": 16,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": "build/print/frame.ply changed"
+        },
+        {
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 277454 faces",
+          "evidence": [],
+          "id": "cad.watertight",
+          "order": 17,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": "build/print/frame.ply changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "An evaluator or a test on a built part failed the current design.",
       "id": "C7",
       "kind_word": "Automated",
       "limit_text": "",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "cad.watertight",
+          "cad.is_volume",
+          "cad.degenerate_faces"
+        ],
+        "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R5"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit why C7",
+          "nopekit check --tier 1"
+        ],
+        "text": "Change the design until C7 passes. Then run the check again."
       },
       "statement": "The exported frame mesh is a clean closed solid",
-      "token": "checked",
+      "token": "failing",
       "values": [
         {
           "binding": false,
@@ -1078,59 +1390,67 @@
           "gate": "cad.wall_thickness",
           "limit": 1.26,
           "limit_hi": null,
-          "margin": 0.0311905,
-          "measured": 1.2993,
+          "margin": -0.21246,
+          "measured": 0.9923,
           "units": "mm",
-          "value_text": "1.299 mm against a limit of 1.26 mm, 3% inside the limit"
+          "value_text": "0.9923 mm against a limit of 1.26 mm, 21% past the limit"
         }
       ],
-      "word": "checked"
+      "word": "failing"
     },
     "C8": {
       "acceptance": "FC screw protrusion below plate <= 0.0 mm",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "fits",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
-          "detail": "5.0 mm engaged (>= 3.0 needed) in a 7.3 mm stack",
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
+          "detail": "3.4 mm engaged (>= 3.0 needed) under a 2.6 mm grommet, in 9.4 mm of post and grommet",
           "evidence": [],
           "id": "petgasus.fc_screws",
-          "order": 22,
+          "order": 25,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "gate code changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C8",
       "kind_word": "Automated",
       "limit_text": "0 mm",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.fc_screws"
+        ],
+        "how": "screw length less the grommet stack, against the post's height"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R2"
+      ],
       "resolved_by": [],
       "resolves": [],
-      "rests_on": [],
+      "rests_on": [
+        "A4"
+      ],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
-      "statement": "AIO screws (M1.4 x 6) bite at least 3 mm into the printed posts and do not poke out under the plate",
-      "token": "checked",
+      "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -1140,58 +1460,64 @@
           "limit": 0.0,
           "limit_hi": null,
           "margin": null,
-          "measured": -1.3,
+          "measured": -3.4,
           "units": "mm",
-          "value_text": "-1.3 mm against a limit of 0 mm"
+          "value_text": "-3.4 mm against a limit of 0 mm"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "C9": {
       "acceptance": "motor screw engagement >= 1.0 mm",
       "amber": null,
-      "board": "other",
-      "cause": "checked",
-      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "board": "fits",
+      "cause": "invalidated",
+      "cause_text": "The design changed after the result.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
       "evaluators": [
         {
-          "basis": "undeclared",
-          "basis_word": "The evaluator does not say where its answers come from.",
-          "current": true,
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": false,
           "detail": "3.0 mm screw through a 1.8 mm seat",
           "evidence": [],
           "id": "petgasus.motor_screws",
-          "order": 27,
+          "order": 31,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": ""
+          "stale_reason": "gate code changed"
         }
       ],
-      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
+      "hint": "The design changed after the result.",
       "id": "C9",
       "kind_word": "Automated",
       "limit_text": "1 mm",
       "marks": [],
       "mechanism": {
-        "by": "automated",
-        "by_word": "An evaluator settles it.",
-        "evaluators": [],
-        "how": ""
+        "by": "closed_form",
+        "by_word": "A formula settles it.",
+        "evaluators": [
+          "petgasus.motor_screws"
+        ],
+        "how": "screw length less the seat's thickness"
       },
       "physical": null,
-      "requirements": [],
+      "requirements": [
+        "R2"
+      ],
       "resolved_by": [],
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [],
-        "text": ""
+        "commands": [
+          "nopekit check"
+        ],
+        "text": "Run the check. It runs the evaluators and shows that each one can fail."
       },
       "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
-      "token": "checked",
+      "token": "stale",
       "values": [
         {
           "binding": true,
@@ -1206,12 +1532,12 @@
           "value_text": "1.2 mm against a limit of 1 mm, 20% inside the limit"
         }
       ],
-      "word": "checked"
+      "word": "stale"
     },
     "P1": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "crashes",
       "cause": "no-article",
       "cause_text": "No test on a built part is recorded.",
       "claim_kind": "physical",
@@ -1227,7 +1553,7 @@
         "by": "measurement",
         "by_word": "A measurement on a built part settles it.",
         "evaluators": [],
-        "how": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a duct edge, from 2 m onto tile/concrete, 5 times. Pass: no crack or whitening at the arms, spokes or duct joints. Photograph each duct."
+        "how": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a guard's edge, from 2 m onto tile or concrete, 5 times. Then throw or fly it guard-first into a wall at a jog, 5 times, side-on and head-on. Pass: no crack or whitening at the limbs, the seats, the posts or where a limb meets a guard. Photograph each guard and each seat."
       },
       "physical": null,
       "requirements": [],
@@ -1236,11 +1562,12 @@
       "rests_on": [],
       "settle": {
         "commands": [
+          "nopekit export flight-proven",
           "nopekit claim physical P1 pass --evidence <file>"
         ],
-        "text": "P1 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P1 in a milestone file."
+        "text": "P1 needs a test on a built part. Build the part, test it and record the result in your own shell."
       },
-      "statement": "Frame survives five drops from 2 m onto a hard floor without a crack",
+      "statement": "Frame survives five drops from 2 m onto a hard floor and five hits into a wall at a jog (about 3 m/s) without a crack",
       "token": "pending_build",
       "values": [],
       "word": "pending build"
@@ -1248,7 +1575,7 @@
     "P2": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "flies",
       "cause": "no-article",
       "cause_text": "No test on a built part is recorded.",
       "claim_kind": "physical",
@@ -1273,9 +1600,10 @@
       "rests_on": [],
       "settle": {
         "commands": [
+          "nopekit export flight-proven",
           "nopekit claim physical P2 pass --evidence <file>"
         ],
-        "text": "P2 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P2 in a milestone file."
+        "text": "P2 needs a test on a built part. Build the part, test it and record the result in your own shell."
       },
       "statement": "Hovers steadily in angle mode with no audible or visible oscillation",
       "token": "pending_build",
@@ -1285,7 +1613,7 @@
     "P3": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "fits",
       "cause": "no-article",
       "cause_text": "No test on a built part is recorded.",
       "claim_kind": "physical",
@@ -1301,7 +1629,7 @@
         "by": "measurement",
         "by_word": "A measurement on a built part settles it.",
         "evaluators": [],
-        "how": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 45). Pass: all four correct."
+        "how": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 0: the board's arrow points forward, along its front arm). Pass: all four correct."
       },
       "physical": null,
       "requirements": [],
@@ -1314,7 +1642,7 @@
         ],
         "text": "P3 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P3 in a milestone file."
       },
-      "statement": "Pre-flight setup is correct: board alignment yaw 45, motor order and directions, angle mode on a switch",
+      "statement": "Pre-flight setup is correct: board alignment yaw 0 (front arm forward), motor order and directions, angle mode on a switch",
       "token": "pending_build",
       "values": [],
       "word": "pending build"
@@ -1322,7 +1650,7 @@
     "P4": {
       "acceptance": "",
       "amber": null,
-      "board": "other",
+      "board": "fits",
       "cause": "no-article",
       "cause_text": "No test on a built part is recorded.",
       "claim_kind": "physical",
@@ -1338,7 +1666,7 @@
         "by": "measurement",
         "by_word": "A measurement on a built part settles it.",
         "evaluators": [],
-        "how": "Fit the AIO, motors, props and a battery. Spin each prop by hand: it must not touch anything."
+        "how": "Fit the board, motors, props and a battery. Spin each prop by hand: it must not touch anything."
       },
       "physical": null,
       "requirements": [],
@@ -1351,7 +1679,7 @@
         ],
         "text": "P4 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P4 in a milestone file."
       },
-      "statement": "The AIO drops onto its posts and the battery straps on without touching any duct or prop",
+      "statement": "The board drops onto its grommets and the battery straps on without touching any guard or prop; the motors' clip and base fit their seats",
       "token": "pending_build",
       "values": [],
       "word": "pending build"
@@ -1359,7 +1687,7 @@
     "P5": {
       "acceptance": "measured thrust to weight >= 3.0 ratio",
       "amber": null,
-      "board": "other",
+      "board": "flies",
       "cause": "no-article",
       "cause_text": "No test on a built part is recorded.",
       "claim_kind": "physical",
@@ -1375,7 +1703,7 @@
         "by": "measurement",
         "by_word": "A measurement on a built part settles it.",
         "evaluators": [],
-        "how": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1, A5, A6."
+        "how": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1."
       },
       "physical": null,
       "requirements": [],
@@ -1384,11 +1712,49 @@
       "rests_on": [],
       "settle": {
         "commands": [
+          "nopekit export flight-proven",
           "nopekit claim physical P5 pass --evidence <file>"
         ],
-        "text": "P5 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P5 in a milestone file."
+        "text": "P5 needs a test on a built part. Build the part, test it and record the result in your own shell."
       },
       "statement": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
+      "token": "pending_build",
+      "values": [],
+      "word": "pending build"
+    },
+    "P6": {
+      "acceptance": "",
+      "amber": null,
+      "board": "prints",
+      "cause": "no-article",
+      "cause_text": "No test on a built part is recorded.",
+      "claim_kind": "physical",
+      "critical": true,
+      "errored": false,
+      "evaluators": [],
+      "hint": "Only a test on a built part can settle this claim.",
+      "id": "P6",
+      "kind_word": "Test on a built part",
+      "limit_text": "",
+      "marks": [],
+      "mechanism": {
+        "by": "measurement",
+        "by_word": "A measurement on a built part settles it.",
+        "evaluators": [],
+        "how": ""
+      },
+      "physical": null,
+      "requirements": [],
+      "resolved_by": [],
+      "resolves": [],
+      "rests_on": [],
+      "settle": {
+        "commands": [
+          "nopekit claim physical P6 pass --evidence <file>"
+        ],
+        "text": "P6 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P6 in a milestone file."
+      },
+      "statement": "The supports come off the printed frame by hand, leaving every limb whole",
       "token": "pending_build",
       "values": [],
       "word": "pending build"
@@ -1396,27 +1762,94 @@
   },
   "description": {
     "notice": "",
-    "summary": "Kid-friendly no-solder 3D-printed (PETG) ducted micro drone, line-of-sight, < $150 electronics"
+    "summary": "Kid-friendly no-solder micro drone with a 3D-printed, topology-optimised frame (PETG, or nylon-CF for strength) and low prop guards, line-of-sight, < $150 electronics"
   },
   "generated": "nopekit site build wrote this file from the records, the results in .nopekit/verdicts/ and site/content/. It is not a source. Change those, then build again.",
   "intro": null,
   "meta": {
     "content_digest": "a0cf57e0649a56551c5debcb6bd0134c4730709b624e0ac92d05fb31a5bdedd5",
     "name": "PETGasusDrone",
-    "records_digest": "56cca0f5752fd0e8e139476385048ff52f81d33d3d81e5e62336e69c1b2d8547",
-    "resolution_digest": "3083ba48279cce3a3c4bc4bd89bb8293f7210d5818f9d1b938910de9f6a43000",
-    "revision": "v0.1",
-    "summary": "Kid-friendly no-solder 3D-printed (PETG) ducted micro drone, line-of-sight, < $150 electronics"
+    "records_digest": "2cf41b6df6917620409ea5160dee3b5c19c23990aee28d409a9ad8ffdff74c49",
+    "resolution_digest": "93597dad83bb5547ecfca3f32164208fb558cbf9c80c9c3858143afbab51ce56",
+    "revision": "v0.2",
+    "summary": "Kid-friendly no-solder micro drone with a 3D-printed, topology-optimised frame (PETG, or nylon-CF for strength) and low prop guards, line-of-sight, < $150 electronics"
   },
   "next": {
     "milestones": [
       {
-        "description": "Order the electronics, radio, batteries and charger",
-        "id": "order-parts",
+        "description": "Call the printed drone flight-proven: its frame's first mode, and the hover, thrust and crash tests on the real thing",
+        "id": "flight-proven",
         "missing": [],
         "next": true,
         "ready": false,
-        "sentence": "v0.1 is NOT ready for order-parts, as last evaluated. 5 of 8 required claims are unresolved: 1 failing (C10); 4 gaps (A1, A2, A5, A6). Pending build: 5 claims need a test on a built part (P1, P2, P3, P4, +1 more). No claim is checked on any built part.",
+        "sentence": "v0.2 is NOT ready for flight-proven, as last evaluated. 4 of 4 required claims are unresolved: 1 gap (C4); 3 pending build (P1, P2, P5). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+        "steps": [
+          {
+            "claim": "C4",
+            "commands": [
+              "nopekit check --tier 2"
+            ],
+            "errored": false,
+            "how": "CalculiX eigenfrequencies of the printed frame mesh in the everyday filament, held at the FC posts' top faces and the strap saddle, each motor + prop as a mass on its seat; checked on a finer surface and mesh (fea_converged)",
+            "marks": [],
+            "statement": "The PETG frame's first vibration mode, held at the FC posts and the strap saddle with the motors on it, is at or above 200 Hz",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "gap",
+            "word": "gap"
+          },
+          {
+            "claim": "P1",
+            "commands": [
+              "nopekit export flight-proven",
+              "nopekit claim physical P1 pass --evidence <file>"
+            ],
+            "errored": false,
+            "how": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a guard's edge, from 2 m onto tile or concrete, 5 times. Then throw or fly it guard-first into a wall at a jog, 5 times, side-on and head-on. Pass: no crack or whitening at the limbs, the seats, the posts or where a limb meets a guard. Photograph each guard and each seat.",
+            "marks": [],
+            "statement": "Frame survives five drops from 2 m onto a hard floor and five hits into a wall at a jog (about 3 m/s) without a crack",
+            "text": "P1 needs a test on a built part. Build the part, test it and record the result in your own shell.",
+            "token": "pending_build",
+            "word": "pending build"
+          },
+          {
+            "claim": "P2",
+            "commands": [
+              "nopekit export flight-proven",
+              "nopekit claim physical P2 pass --evidence <file>"
+            ],
+            "errored": false,
+            "how": "After setup, hover 30 s at 1 m indoors. Pass: no buzzing, wobble or hot motors on landing (touch test). Record a blackbox log if possible and keep it as evidence.",
+            "marks": [],
+            "statement": "Hovers steadily in angle mode with no audible or visible oscillation",
+            "text": "P2 needs a test on a built part. Build the part, test it and record the result in your own shell.",
+            "token": "pending_build",
+            "word": "pending build"
+          },
+          {
+            "claim": "P5",
+            "commands": [
+              "nopekit export flight-proven",
+              "nopekit claim physical P5 pass --evidence <file>"
+            ],
+            "errored": false,
+            "how": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1.",
+            "marks": [],
+            "statement": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
+            "text": "P5 needs a test on a built part. Build the part, test it and record the result in your own shell.",
+            "token": "pending_build",
+            "word": "pending build"
+          }
+        ],
+        "token": "not-ready",
+        "word": "not ready"
+      },
+      {
+        "description": "Order the electronics, radio, batteries and charger",
+        "id": "order-parts",
+        "missing": [],
+        "next": false,
+        "ready": false,
+        "sentence": "v0.2 is NOT ready for order-parts, as last evaluated. 5 of 5 required claims are unresolved: 1 failing (C10); 1 gap (A1); 3 stale (C1, C2, C3). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
         "steps": [
           {
             "claim": "C10",
@@ -1425,7 +1858,7 @@
               "nopekit check"
             ],
             "errored": false,
-            "how": "",
+            "how": "sourcing pack: the BOM's prices rolled up against the budget",
             "marks": [],
             "statement": "Everything to buy costs no more than $150 including radio, batteries and charger",
             "text": "Change the design until C10 passes. Then run the check again.",
@@ -1440,62 +1873,90 @@
             "errored": false,
             "how": "",
             "marks": [],
-            "statement": "Ducts are taken to cost 10% of open-prop static thrust (duct_thrust_factor 0.9)",
+            "statement": "The guards and the limbs under the props cost at most 7.5 % of the open-prop static thrust (guard_thrust_factor 0.925)",
             "text": "A1 is an assumption. Its owner records it in their own shell.",
             "token": "gap",
             "word": "gap"
           },
           {
-            "claim": "A2",
+            "claim": "C1",
             "commands": [
-              "nopekit claim physical A2 assume"
+              "nopekit check"
             ],
             "errored": false,
-            "how": "",
+            "how": "4 x the kit motor's full-throttle thrust on the kit prop (BetaFPV load table, 66.6 g at 3.81 V), scaled to 3.8 V and by the guards' factor (A1), over the all-up weight",
             "marks": [],
-            "statement": "Hover efficiency is 3.0 g of thrust per watt",
-            "text": "A2 is an assumption. Its owner records it in their own shell.",
-            "token": "gap",
-            "word": "gap"
+            "statement": "Thrust-to-weight at nominal pack voltage is at least 3:1",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
           },
           {
-            "claim": "A5",
+            "claim": "C2",
             "commands": [
-              "nopekit claim physical A5 assume"
+              "nopekit check"
             ],
             "errored": false,
-            "how": "",
+            "how": "frame mass from the printed mesh's volume and the filament's density, plus each bought part's published mass",
             "marks": [],
-            "statement": "The 1102 22000KV's 46.3 g thrust on 40 mm props is a floor for the kit's 1102 21000KV on 45 mm props",
-            "text": "A5 is an assumption. Its owner records it in their own shell.",
-            "token": "gap",
-            "word": "gap"
+            "statement": "All-up weight stays under 250 g",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
           },
           {
-            "claim": "A6",
+            "claim": "C3",
             "commands": [
-              "nopekit claim physical A6 assume"
+              "nopekit check"
             ],
             "errored": false,
-            "how": "",
+            "how": "hover power from the motor's load table efficiency at the hover thrust (BetaFPV), against the pack's usable energy",
             "marks": [],
-            "statement": "That 46.3 g thrust test was run at 4.2 V",
-            "text": "A6 is an assumption. Its owner records it in their own shell.",
-            "token": "gap",
-            "word": "gap"
+            "statement": "Estimated hover flight time is at least 3 minutes per pack",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
           }
         ],
         "token": "not-ready",
         "word": "not ready"
       },
       {
-        "description": "Print the frame in PETG on the Snapmaker U1",
+        "description": "Print the frame on the Snapmaker U1, in the everyday filament (PETG)",
         "id": "print-v1",
         "missing": [],
         "next": false,
         "ready": false,
-        "sentence": "v0.1 is NOT ready for print-v1, as last evaluated. 2 of 9 required claims are unresolved: 2 gaps (A3, A4). Pending build: 5 claims need a test on a built part (P1, P2, P3, P4, +1 more). No claim is checked on any built part.",
+        "sentence": "v0.2 is NOT ready for print-v1, as last evaluated. 11 of 11 required claims are unresolved: 2 failing (C6, C7); 2 gaps (A3, A4); 7 stale (C5, C8, C9, C11, +3 more). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
         "steps": [
+          {
+            "claim": "C6",
+            "commands": [
+              "nopekit why C6",
+              "nopekit check --tier 1"
+            ],
+            "errored": false,
+            "how": "fdm-print pack: bed fit with brim, minimum wall, print time; the overhang and bridge measurements report how much support the slicer will add",
+            "marks": [],
+            "statement": "The frame prints on the Snapmaker U1 in one sitting, with supports where it needs them",
+            "text": "Change the design until C6 passes. Then run the check again.",
+            "token": "failing",
+            "word": "failing"
+          },
+          {
+            "claim": "C7",
+            "commands": [
+              "nopekit why C7",
+              "nopekit check --tier 1"
+            ],
+            "errored": false,
+            "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
+            "marks": [],
+            "statement": "The exported frame mesh is a clean closed solid",
+            "text": "Change the design until C7 passes. Then run the check again.",
+            "token": "failing",
+            "word": "failing"
+          },
           {
             "claim": "A3",
             "commands": [
@@ -1504,7 +1965,7 @@
             "errored": false,
             "how": "",
             "marks": [],
-            "statement": "The 1102 (2026) motor needs a 14 mm diameter, 13.8 mm tall envelope, and its shaft C-clip clears a 2.3 mm hole",
+            "statement": "The 1102 (2026) motor's shaft C-clip clears a 2.3 mm hole, and its base is 11 mm across and 2 mm tall",
             "text": "A3 is an assumption. Its owner records it in their own shell.",
             "token": "gap",
             "word": "gap"
@@ -1517,10 +1978,284 @@
             "errored": false,
             "how": "",
             "marks": [],
-            "statement": "The Matrix 1S 3IN1 PCB is at most 30 mm square",
+            "statement": "The Matrix 1S 3IN1 is a 40 mm cross, its ESC sockets sit 12.3 mm out on the side arms' undersides, and its grommets are 2.6 mm tall and 4.6 mm across",
             "text": "A4 is an assumption. Its owner records it in their own shell.",
             "token": "gap",
             "word": "gap"
+          },
+          {
+            "claim": "C5",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap",
+            "marks": [],
+            "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C8",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "screw length less the grommet stack, against the post's height",
+            "marks": [],
+            "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C9",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "screw length less the seat's thickness",
+            "marks": [],
+            "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C11",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the printed frame mesh decomposed into connected solids",
+            "marks": [],
+            "statement": "The printed frame is one connected piece",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C13",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the printed frame's band height at points round each guard's arc (median)",
+            "marks": [],
+            "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C14",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the frame cut by each prop's annulus and projected onto the plane",
+            "marks": [],
+            "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C17",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the proposal's recorded problem hash against this design's",
+            "marks": [],
+            "statement": "The frame is drawn from a topology field computed for this design's problem",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          }
+        ],
+        "token": "not-ready",
+        "word": "not ready"
+      },
+      {
+        "description": "Print the frame in the strong filament (nylon-CF, strong_material) for anyone serious about crashes: everything the everyday print needs, and the crash floors judged in that filament",
+        "id": "strong-print",
+        "missing": [],
+        "next": false,
+        "ready": false,
+        "sentence": "v0.2 is NOT ready for strong-print, as last evaluated. 13 of 13 required claims are unresolved: 2 failing (C6, C7); 4 gaps (A3, A4, C15, C16); 7 stale (C5, C8, C9, C11, +3 more). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+        "steps": [
+          {
+            "claim": "C6",
+            "commands": [
+              "nopekit why C6",
+              "nopekit check --tier 1"
+            ],
+            "errored": false,
+            "how": "fdm-print pack: bed fit with brim, minimum wall, print time; the overhang and bridge measurements report how much support the slicer will add",
+            "marks": [],
+            "statement": "The frame prints on the Snapmaker U1 in one sitting, with supports where it needs them",
+            "text": "Change the design until C6 passes. Then run the check again.",
+            "token": "failing",
+            "word": "failing"
+          },
+          {
+            "claim": "C7",
+            "commands": [
+              "nopekit why C7",
+              "nopekit check --tier 1"
+            ],
+            "errored": false,
+            "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
+            "marks": [],
+            "statement": "The exported frame mesh is a clean closed solid",
+            "text": "Change the design until C7 passes. Then run the check again.",
+            "token": "failing",
+            "word": "failing"
+          },
+          {
+            "claim": "A3",
+            "commands": [
+              "nopekit claim physical A3 assume"
+            ],
+            "errored": false,
+            "how": "",
+            "marks": [],
+            "statement": "The 1102 (2026) motor's shaft C-clip clears a 2.3 mm hole, and its base is 11 mm across and 2 mm tall",
+            "text": "A3 is an assumption. Its owner records it in their own shell.",
+            "token": "gap",
+            "word": "gap"
+          },
+          {
+            "claim": "A4",
+            "commands": [
+              "nopekit claim physical A4 assume"
+            ],
+            "errored": false,
+            "how": "",
+            "marks": [],
+            "statement": "The Matrix 1S 3IN1 is a 40 mm cross, its ESC sockets sit 12.3 mm out on the side arms' undersides, and its grommets are 2.6 mm tall and 4.6 mm across",
+            "text": "A4 is an assumption. Its owner records it in their own shell.",
+            "token": "gap",
+            "word": "gap"
+          },
+          {
+            "claim": "C15",
+            "commands": [
+              "nopekit check --tier 2"
+            ],
+            "errored": false,
+            "how": "CalculiX on the free drone (inertia relief), in the strong filament: a 1 N hit on a guard's outermost underside along the floor's normal, banked so that point lands first; the energy at which the worst stress, averaged over 0.3 mm, reaches strength along or across the layers, as a drop height for Goldsmith's effective mass; each solve checked for equilibrium, the result on a finer mesh (fea_converged)",
+            "marks": [],
+            "statement": "A drop onto a guard from 1 m keeps the strong (nylon-CF) frame under its printed strength",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "gap",
+            "word": "gap"
+          },
+          {
+            "claim": "C16",
+            "commands": [
+              "nopekit check --tier 2"
+            ],
+            "errored": false,
+            "how": "As C15, for a 1 N hit square on a guard's outer face where it faces forward and one head on through the centre; the slower, as a wall speed",
+            "marks": [],
+            "statement": "A hit on a wall at 3 m/s keeps the strong (nylon-CF) frame under its printed strength",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "gap",
+            "word": "gap"
+          },
+          {
+            "claim": "C5",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "every pair of placed parts intersected (manifold3d booleans); only the declared screwed, plugged and soldered joints may overlap",
+            "marks": [],
+            "statement": "No part of the assembly - frame, flight controller, motors, props, battery, strap, screws, wires - shares material with another, except the declared threaded, plugged and soldered joints",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C8",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "screw length less the grommet stack, against the post's height",
+            "marks": [],
+            "statement": "The board's screws (M1.4 x 6, through its rubber grommets) bite at least 3 mm into the printed posts and do not poke out under the frame",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C9",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "screw length less the seat's thickness",
+            "marks": [],
+            "statement": "Motor screws (M1.4 x 3, supplied) reach at least 1 mm into the motor through the seat",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C11",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the printed frame mesh decomposed into connected solids",
+            "marks": [],
+            "statement": "The printed frame is one connected piece",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C13",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the printed frame's band height at points round each guard's arc (median)",
+            "marks": [],
+            "statement": "The guards are solid bands at most 4.5 mm tall, as printed",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C14",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the frame cut by each prop's annulus and projected onto the plane",
+            "marks": [],
+            "statement": "The frame covers at most 15 % of any prop's disc, seen from above",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
+          },
+          {
+            "claim": "C17",
+            "commands": [
+              "nopekit check"
+            ],
+            "errored": false,
+            "how": "the proposal's recorded problem hash against this design's",
+            "marks": [],
+            "statement": "The frame is drawn from a topology field computed for this design's problem",
+            "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+            "token": "stale",
+            "word": "stale"
           }
         ],
         "token": "not-ready",
@@ -1529,30 +2264,17 @@
     ],
     "open": [
       {
-        "claim": "P1",
+        "claim": "C12",
         "commands": [
-          "nopekit claim physical P1 pass --evidence <file>"
+          "nopekit check"
         ],
         "errored": false,
-        "how": "Bare frame, motors fitted (dummy load OK). Drop flat, then on a duct edge, from 2 m onto tile/concrete, 5 times. Pass: no crack or whitening at the arms, spokes or duct joints. Photograph each duct.",
+        "how": "each lead's straight run from the motor's base to its plug under the board, against its 37 mm",
         "marks": [],
-        "statement": "Frame survives five drops from 2 m onto a hard floor without a crack",
-        "text": "P1 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P1 in a milestone file.",
-        "token": "pending_build",
-        "word": "pending build"
-      },
-      {
-        "claim": "P2",
-        "commands": [
-          "nopekit claim physical P2 pass --evidence <file>"
-        ],
-        "errored": false,
-        "how": "After setup, hover 30 s at 1 m indoors. Pass: no buzzing, wobble or hot motors on landing (touch test). Record a blackbox log if possible and keep it as evidence.",
-        "marks": [],
-        "statement": "Hovers steadily in angle mode with no audible or visible oscillation",
-        "text": "P2 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P2 in a milestone file.",
-        "token": "pending_build",
-        "word": "pending build"
+        "statement": "Each motor's 37 mm lead reaches its socket on the flight controller with at least 3 mm to spare",
+        "text": "Run the check. It runs the evaluators and shows that each one can fail.",
+        "token": "stale",
+        "word": "stale"
       },
       {
         "claim": "P3",
@@ -1560,9 +2282,9 @@
           "nopekit claim physical P3 pass --evidence <file>"
         ],
         "errored": false,
-        "how": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 45). Pass: all four correct.",
+        "how": "Betaflight Configurator, props OFF: Motors tab - spin each motor and check position and direction against the build guide; Setup tab - tilt the quad and check the model follows (board alignment yaw = 0: the board's arrow points forward, along its front arm). Pass: all four correct.",
         "marks": [],
-        "statement": "Pre-flight setup is correct: board alignment yaw 45, motor order and directions, angle mode on a switch",
+        "statement": "Pre-flight setup is correct: board alignment yaw 0 (front arm forward), motor order and directions, angle mode on a switch",
         "text": "P3 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P3 in a milestone file.",
         "token": "pending_build",
         "word": "pending build"
@@ -1573,23 +2295,23 @@
           "nopekit claim physical P4 pass --evidence <file>"
         ],
         "errored": false,
-        "how": "Fit the AIO, motors, props and a battery. Spin each prop by hand: it must not touch anything.",
+        "how": "Fit the board, motors, props and a battery. Spin each prop by hand: it must not touch anything.",
         "marks": [],
-        "statement": "The AIO drops onto its posts and the battery straps on without touching any duct or prop",
+        "statement": "The board drops onto its grommets and the battery straps on without touching any guard or prop; the motors' clip and base fit their seats",
         "text": "P4 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P4 in a milestone file.",
         "token": "pending_build",
         "word": "pending build"
       },
       {
-        "claim": "P5",
+        "claim": "P6",
         "commands": [
-          "nopekit claim physical P5 pass --evidence <file>"
+          "nopekit claim physical P6 pass --evidence <file>"
         ],
         "errored": false,
-        "how": "Props on, quad strapped upside down to a kitchen scale (thrust pushes down). Betaflight Motors tab, all four together at 100% for 2 s. Record grams, divide by the AUW from the scale. Pass: >= 3.0. Replaces A1, A5, A6.",
+        "how": "",
         "marks": [],
-        "statement": "Full-throttle static thrust measured on a scale is at least 3x the all-up weight",
-        "text": "P5 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P5 in a milestone file.",
+        "statement": "The supports come off the printed frame by hand, leaving every limb whole",
+        "text": "P6 needs a test on a built part. Build the part from the current design, test it and record the result in your own shell. To build it with nopekit export, name P6 in a milestone file.",
         "token": "pending_build",
         "word": "pending build"
       }
@@ -1609,92 +2331,226 @@
   "schema": 1,
   "sections": [
     {
-      "board": "other",
+      "board": "budget",
       "claims": [
-        "A1",
-        "A2",
-        "A3",
-        "A4",
-        "A5",
-        "A6",
-        "C1",
-        "C2",
-        "C3",
-        "C4",
-        "C5",
-        "C6",
-        "C7",
-        "C8",
-        "C9",
-        "C10",
-        "C11",
-        "C12",
-        "P1",
-        "P2",
-        "P3",
-        "P4",
-        "P5"
+        "C10"
       ],
       "errored": false,
-      "generated": true,
+      "generated": false,
       "line": "",
       "marks": [],
       "prose": null,
       "tally": [
         {
           "errored": 0,
-          "key": "checked",
-          "label": "11 checked",
-          "n": 11,
-          "status": "pass"
-        },
-        {
-          "errored": 0,
           "key": "failing",
           "label": "1 failing",
           "n": 1,
           "status": "fail"
-        },
+        }
+      ],
+      "title": "Costs what it should",
+      "token": "failing",
+      "word": "failing"
+    },
+    {
+      "board": "crashes",
+      "claims": [
+        "C15",
+        "C16",
+        "P1"
+      ],
+      "errored": false,
+      "generated": false,
+      "line": "",
+      "marks": [],
+      "prose": null,
+      "tally": [
         {
           "errored": 0,
           "key": "gap",
-          "label": "6 gaps",
-          "n": 6,
+          "label": "2 gaps",
+          "n": 2,
           "status": "unclaimed"
         },
         {
           "errored": 0,
           "key": "pending_build",
-          "label": "5 pending build",
-          "n": 5,
+          "label": "1 pending build",
+          "n": 1,
           "status": "unverified"
         }
       ],
-      "title": "Claims",
+      "title": "Survives crashes",
+      "token": "gap",
+      "word": "gap"
+    },
+    {
+      "board": "fits",
+      "claims": [
+        "C5",
+        "C8",
+        "C9",
+        "C11",
+        "C12",
+        "A3",
+        "A4",
+        "P3",
+        "P4"
+      ],
+      "errored": false,
+      "generated": false,
+      "line": "",
+      "marks": [],
+      "prose": null,
+      "tally": [
+        {
+          "errored": 0,
+          "key": "gap",
+          "label": "2 gaps",
+          "n": 2,
+          "status": "unclaimed"
+        },
+        {
+          "errored": 0,
+          "key": "stale",
+          "label": "5 stale",
+          "n": 5,
+          "status": "stale"
+        },
+        {
+          "errored": 0,
+          "key": "pending_build",
+          "label": "2 pending build",
+          "n": 2,
+          "status": "unverified"
+        }
+      ],
+      "title": "Goes together",
+      "token": "gap",
+      "word": "gap"
+    },
+    {
+      "board": "flies",
+      "claims": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "A1",
+        "P2",
+        "P5"
+      ],
+      "errored": false,
+      "generated": false,
+      "line": "",
+      "marks": [],
+      "prose": null,
+      "tally": [
+        {
+          "errored": 0,
+          "key": "gap",
+          "label": "2 gaps",
+          "n": 2,
+          "status": "unclaimed"
+        },
+        {
+          "errored": 0,
+          "key": "stale",
+          "label": "3 stale",
+          "n": 3,
+          "status": "stale"
+        },
+        {
+          "errored": 0,
+          "key": "pending_build",
+          "label": "2 pending build",
+          "n": 2,
+          "status": "unverified"
+        }
+      ],
+      "title": "Flies well",
+      "token": "gap",
+      "word": "gap"
+    },
+    {
+      "board": "guards",
+      "claims": [
+        "C13",
+        "C14"
+      ],
+      "errored": false,
+      "generated": false,
+      "line": "",
+      "marks": [],
+      "prose": null,
+      "tally": [
+        {
+          "errored": 0,
+          "key": "stale",
+          "label": "2 stale",
+          "n": 2,
+          "status": "stale"
+        }
+      ],
+      "title": "Guards the props",
+      "token": "stale",
+      "word": "stale"
+    },
+    {
+      "board": "prints",
+      "claims": [
+        "C6",
+        "C7",
+        "C17",
+        "P6"
+      ],
+      "errored": false,
+      "generated": false,
+      "line": "",
+      "marks": [],
+      "prose": null,
+      "tally": [
+        {
+          "errored": 0,
+          "key": "failing",
+          "label": "2 failing",
+          "n": 2,
+          "status": "fail"
+        },
+        {
+          "errored": 0,
+          "key": "stale",
+          "label": "1 stale",
+          "n": 1,
+          "status": "stale"
+        },
+        {
+          "errored": 0,
+          "key": "pending_build",
+          "label": "1 pending build",
+          "n": 1,
+          "status": "unverified"
+        }
+      ],
+      "title": "Prints on the U1",
       "token": "failing",
       "word": "failing"
     }
   ],
-  "self": "cf9601be37da8a54802b9962704f02985ee7c86d6adc02a381a5cebac506b202",
+  "self": "49c13f47e5e6cf2ad758976d08016c53f2140df014fe05e7c90b9bcf0c438df5",
   "verdict": {
-    "limits": "Checked does not mean true. Its evaluators have shown that they can fail. They have not shown that they are correct or sufficient. Nothing outside these 23 claims is evaluated.",
-    "notice": "",
+    "limits": "Checked does not mean true. Its evaluators have shown that they can fail. They have not shown that they are correct or sufficient. Nothing outside these 26 claims is evaluated.",
+    "notice": "Some results are older than the design. Run nopekit check, then build the site again.",
     "ready": false,
-    "sentence": "v0.1 is NOT ready. 12 of 23 required claims are unresolved: 1 failing (C10); 6 gaps (A1, A2, A3, A4, +2 more); 5 pending build (P1, P2, P3, P4, +1 more). 11 of 23 claims are checked on the current design. Pending build: 5 claims need a test on a built part (P1, P2, P3, P4, +1 more). No claim is checked on any built part.",
-    "stale": false,
+    "sentence": "v0.2 is NOT ready. 26 of 26 required claims are unresolved: 3 failing (C6, C7, C10); 6 gaps (A1, A3, A4, C4, +2 more); 11 stale (C1, C2, C3, C5, +7 more); 6 pending build (P1, P2, P3, P4, +2 more). 0 of 26 claims are checked on the current design. Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+    "stale": true,
     "tally": [
       {
         "errored": 0,
-        "key": "checked",
-        "label": "11 checked",
-        "n": 11,
-        "status": "pass"
-      },
-      {
-        "errored": 0,
         "key": "failing",
-        "label": "1 failing",
-        "n": 1,
+        "label": "3 failing",
+        "n": 3,
         "status": "fail"
       },
       {
@@ -1706,9 +2562,16 @@
       },
       {
         "errored": 0,
+        "key": "stale",
+        "label": "11 stale",
+        "n": 11,
+        "status": "stale"
+      },
+      {
+        "errored": 0,
         "key": "pending_build",
-        "label": "5 pending build",
-        "n": 5,
+        "label": "6 pending build",
+        "n": 6,
         "status": "unverified"
       }
     ],

@@ -151,10 +151,6 @@ details.numbers td, details.numbers th { padding: 3px 12px 3px 0; text-align: le
 .callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; margin: 12px 0; color: var(--ink-2); }
 
 /* topology */
-.multiples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
-.multiples figure { margin: 0; }
-.multiples figcaption { font-size: 14px; margin-top: 8px; }
-.multiples figcaption b { display: block; font-size: 15px; }
 .step-num { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
   background: var(--ink); color: var(--page); font-size: 12px; font-weight: 800; margin-right: 6px; }
 
@@ -197,7 +193,6 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   .tile .v { font-size: 19px; white-space: normal; }
   .tiles { gap: 6px; }
   .hero { padding-top: 44px; }
-  .multiples { grid-template-columns: 1fr; }
   .journey { grid-template-columns: 1fr; gap: 14px; }
   .stop { display: grid; grid-template-columns: 30px 1fr; text-align: left; gap: 0 12px; }
   .stop .dot { margin: 0; grid-row: span 3; }
@@ -219,7 +214,7 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
 <section class="hero">
   <div>
     <h1>PETGasus</h1>
-    <p class="lede">PETGasus is a small quadcopter with a duct around each propeller. You print the frame on a 3D printer. The other parts connect with plugs and screws. No soldering is necessary.</p>
+    <p class="lede">PETGasus is a small quadcopter. A low guard protects the outer side of each propeller. You print the frame on a 3D printer. A computer calculated its shape: the plastic goes where the loads from flying and crashing go. The other parts connect with plugs and screws. No soldering is necessary.</p>
     <p class="verdict" id="verdict">Loading…</p>
     <div class="tiles" id="tiles"></div>
   </div>
@@ -258,23 +253,23 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
   <p class="callout" id="lift-callout"></p>
 
   <h3 style="margin-top:34px">Values and Limits</h3>
-  <p class="small">Each bar shows a value of the design. The black mark shows the limit. Light gray shows the satisfactory range. Dark gray shows the unsatisfactory range.</p>
+  <p class="small">Each bar shows a value of the design. The black mark shows the limit. The gray bands show the range, from dark (poor) to light (good).</p>
   <div class="card bullets" id="bullets"></div>
 </section>
 
 <!-- 5. FRAME DESIGN --------------------------------------->
 <section>
   <h2>Frame Design</h2>
-  <p class="lede">A stiffer frame vibrates less, but more plastic increases the mass. A <i>topology optimizer</i> calculated where the plastic gives the most stiffness. The inputs were the positions of the motors, the ducts and the flight controller.</p>
-  <div class="multiples" id="multiples"></div>
-  <div class="legend" style="margin-top:10px">
-    <span class="chip"><span class="sw" style="background:var(--g-frame)"></span>Plate, 2 mm thick</span>
-    <span class="chip"><span class="sw" style="background:var(--ink);opacity:.6;height:4px"></span>Rib, 5 mm high. The ribs give most of the stiffness.</span>
-    <span class="chip"><span class="sw" style="background:var(--axis)"></span>Ducts, motor seats and center plate. These are the same in each version.</span>
-    <span class="chip"><span class="sw" style="background:var(--seq-7)"></span>Optimizer output. A darker color shows more plastic.</span>
-  </div>
-  <div class="card" style="margin-top:16px"><svg class="chart" id="dumbbell"></svg>
-    <details class="numbers"><summary>Show the data</summary><table id="dumbbell-table"></table></details>
+  <p class="lede">Version 0.1 had a flat plate and tall ducts. Experienced builders said that it was "still a 2D design", with flat planks, right angles and weak joints. In version 0.2, a <i>topology optimizer</i> calculated the shape in 3D. Its inputs were the motor seats, the guards on the outer side of each propeller, the flight controller, the battery, the spaces that must stay empty, and the loads from thrust and from crashes. It put the plastic where the loads go, and it joined the four guards into one rim. Each joint has a fillet.</p>
+  <div class="two">
+    <figure class="card" style="margin:0"><img id="topo-img" style="width:100%;display:block" alt="The optimizer's result from above and from the side. A darker color shows more plastic.">
+      <figcaption class="small" id="topo-cap" style="margin-top:8px"></figcaption></figure>
+    <div class="card">
+      <h3 style="margin-top:0">Filament comparison</h3>
+      <p class="small">The same frame shape in each filament. CalculiX calculated the highest drop and the fastest wall hit that each filament survives. A green bar is at the limit or above it. PETG is for everyday prints. Nylon-CF is for strength, and the crash checks use it. Some filaments need more equipment on the Snapmaker U1.</p>
+      <svg class="chart" id="materials"></svg>
+      <details class="numbers"><summary>Show the data</summary><table id="materials-table"></table></details>
+    </div>
   </div>
 </section>
 
@@ -306,11 +301,11 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
 <!-- 8. HARDWARE TESTS, ASSUMPTIONS ------------------------------------------------------------->
 <section>
   <h2>Hardware Tests</h2>
-  <p class="lede">The automated checks use a model of the drone. These five tests examine the real drone.</p>
+  <p class="lede" id="tests-lede">The automated checks use a model of the drone. These tests examine the real drone.</p>
   <div class="cards" id="tests"></div>
 
   <h2 style="margin-top:44px">Assumptions</h2>
-  <p class="lede">No published data exists for these six values. The design uses an estimate for each value until a measurement replaces it.</p>
+  <p class="lede">No published data exists for these values. The design uses an estimate for each value until a measurement replaces it.</p>
   <div class="cards" id="guesses"></div>
 </section>
 
@@ -338,8 +333,12 @@ footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grid);
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { readBuild, watchBuild } from "./lib/live.js";
 
 // ---------------------------------------------------------------- data
+// Under `nopekit site serve --watch` the framed map redraws on each build; the page around it reloads with it, so
+// the two never show different builds. A published site has no live build, and this stops at once.
+watchBuild(() => location.reload(), null, await readBuild());
 const state = await (await fetch("data/state.json", { cache: "no-store" })).json();
 const view = id => state.views.find(v => v.id === id);
 const story = await (await fetch(view("story").src, { cache: "no-store" })).json();
@@ -356,17 +355,15 @@ const fmt = (v, d = 1) => (+v).toFixed(d);
 // The wording for each hardware test and each assumption. Only the words are here; the status always comes
 // from the generated data.
 const PLAIN = {
-  P1: ["Drop test", "Drop the frame without parts 5 times from 2 m onto a hard floor. Pass: no cracks and no white stress marks."],
-  P2: ["Hover test", "Hover for 30 s at knee height. Pass: no buzz and no wobble, and the motors are only warm after the test."],
+  P1: ["Crash test", "Install the motors on the frame, and nothing else. Drop it 5 times from 2 m onto a hard floor. Then hit a wall with it 5 times at a jog, guard first. Pass: no cracks and no white stress marks."],
+  P2: ["Hover test", "Hover for 30 s at 1 m. Pass: no buzz and no wobble, and the motors are only warm after the test."],
   P3: ["Setup check", "Remove the propellers. In Betaflight, the model on the screen must follow the movement of the drone. Each motor must turn in the correct direction."],
   P4: ["Fit check", "Install the board, the motors, the propellers and the battery. Turn each propeller by hand. Pass: no part touches a propeller."],
   P5: ["Thrust test", "Attach the drone upside down to a kitchen scale. Apply full throttle for 2 s. Pass: the scale shows 3 times the total mass or more."],
-  A1: ["The ducts decrease the thrust by 10%", "Ducts can increase or decrease the thrust. The thrust test measures the effect."],
-  A2: ["Thrust for each watt of battery power", "This value sets the hover time estimate. Measure the time of a real hover."],
-  A3: ["Motor size: 14 mm diameter, 13.8 mm height", "Measure one motor with calipers when the kit arrives."],
-  A4: ["Flight controller size: 30 mm × 30 mm maximum", "Measure the board before you print the frame. The positions of the ducts depend on this size."],
-  A5: ["Motor thrust: data from a related motor", "No published test exists for this motor. The thrust test measures the thrust."],
-  A6: ["Voltage of the vendor thrust test", "The vendor does not give the voltage. The thrust test replaces this estimate."],
+  P6: ["Support removal", "Remove the supports by hand after the print. Pass: each limb of the frame stays whole, with no cracks."],
+  A1: ["The frame decreases the thrust by 7.5% maximum", "Low guards do not add thrust. The plastic below the propellers can decrease it a little. The thrust test measures the effect."],
+  A3: ["Motor base and clip size", "The vendor gives the motor's diameter and height, but not the clip below the base. Measure one motor with calipers when the kit arrives."],
+  A4: ["Flight controller shape", "The vendor gives the hole pattern only. The 40 mm cross shape and the socket positions come from photos. Measure the board before you print the frame."],
 };
 const plain = id => PLAIN[id] || [claims[id]?.statement || id, ""];
 const statusOf = c => c.key === "checked" ? "go" : c.key === "failing" ? "nogo" : c.key === "stale" ? "stale" : "hold";
@@ -376,11 +373,12 @@ const WORD = { go: "GO", nogo: "NO-GO", hold: "WAITING", stale: "RE-CHECKING" };
 // ---------------------------------------------------------------- hero
 const money = state.views.find(v => v.id === "bom")?.data?.rows || [];
 const total = d3.sum(money, r => r.extended || 0);
-const OPTIONAL = new Set(["PROPS", "SCREWS", "STRAP"]);
+// The screws are not optional: the board's own M1.4 × 5 are too short for the printed posts (C8, fc_screw_len).
+const OPTIONAL = new Set(["PROPS", "STRAP"]);
 const essentials = d3.sum(money.filter(r => !OPTIONAL.has(r.ref)), r => r.extended || 0);
 const pending = id => claims[id] && claims[id].key !== "checked";
 {
-  const design = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C11","C12"].map(id => claims[id]?.key);
+  const design = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C11","C12","C13","C14","C15","C16","C17"].map(id => claims[id]?.key);
   const parts = [];
   parts.push(design.every(k => k === "checked") ? "<b>The design passes all automated checks.</b>"
     : design.includes("failing") ? "<b>Some automated checks fail.</b>"
@@ -457,11 +455,11 @@ function makeViewer(el, { auto = false, labels = false } = {}) {
   return api;
 }
 const PART_NAMES = p => ({
-  frame: "Printed frame (PETG)", flight_controller: "Flight controller (BetaFPV Matrix 1S)",
+  frame: `Printed frame (${story.material})`, flight_controller: "Flight controller (BetaFPV Matrix 1S)",
   motor_sockets: "Motor plugs on the board", power_pigtail: "Power lead and plug", battery: "Battery (1S 320 mAh)",
   battery_lead: "Battery plug", battery_strap: "Battery strap",
 }[p] || p.replace(/^motor_screws_/, "3 motor screws, ").replace(/^motor_lead_/, "Motor wire, ")
-       .replace(/^motor_/, "Motor, ").replace(/^prop_/, "Propeller, ").replace(/^fc_screw_/, "Board screw ")
+       .replace(/^motor_/, "Motor, ").replace(/^prop_/, "Propeller, ").replace(/^fc_screw_/, "Board screw ").replace(/^fc_grommet_/, "Rubber grommet ")
        .replace(/_/g, " "));
 
 const hero = makeViewer(document.getElementById("hero3d"), { auto: true });
@@ -488,7 +486,10 @@ let mapW = 0;
 const fitMap = () => { try {
   const doc = mapFrame.contentDocument, root = doc.documentElement.style;
   if (innerWidth !== mapW) { mapW = innerWidth; root.setProperty("--host-h", innerHeight + "px"); }
-  if (doc.body.offsetHeight) mapFrame.style.height = doc.body.offsetHeight + "px";
+  // while the map's drawer is open the map draws narrower and shorter: keep the frame's height until it closes,
+  // so the row that was clicked stays where it was
+  const h = doc.body.offsetHeight;
+  if (h) mapFrame.style.height = (doc.body.classList.contains("drawer-open") ? Math.max(h, mapFrame.offsetHeight) : h) + "px";
   const r = mapFrame.getBoundingClientRect();
   root.setProperty("--vis-top", Math.max(0, 52 - r.top) + "px"); // 52: the theme button stays clear of the panels' close buttons
   root.setProperty("--vis-bottom", Math.max(0, r.bottom - innerHeight) + "px");
@@ -507,14 +508,19 @@ addEventListener("resize", fitMap);
   const printReady = state.readiness.milestones["print-v1"], orderReady = state.readiness.milestones["order-parts"];
   const measureDone = !pending("A3") && !pending("A4");
   const budgetOK = claims.C10?.key === "checked";
+  const DESIGN = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C11","C12","C13","C14","C15","C16","C17"].filter(id => claims[id]);
+  const designOK = DESIGN.every(id => claims[id].key === "checked");
+  const designFails = DESIGN.filter(id => claims[id].key === "failing");
   const stops = [
-    ["Design the frame", "All automated checks are complete", "done"],
+    ["Design the frame", designOK ? "All automated checks pass"
+      : designFails.length ? `${designFails.length} automated ${designFails.length === 1 ? "check fails" : "checks fail"}: ${designFails.join(", ")}`
+      : "Run the automated checks again", designOK ? "done" : "blocked"],
     ["Set the budget", budgetOK ? "The parts cost $150 or less" : `$${fmt(total - 150, 0)} above $150. Remove parts or increase the budget.`, budgetOK ? "done" : "blocked"],
-    ["Order the parts", "Kit, radio, batteries, charger", budgetOK ? "next" : "todo"],
+    ["Order the parts", "Kit, radio, batteries, charger, screws", budgetOK ? "next" : "todo"],
     ["Measure 2 parts", "Flight controller and motor. Use calipers.", measureDone ? "done" : "todo"],
-    ["Print the frame", "Approximately 2 hours. No supports.", printReady.ready ? "next" : "todo"],
-    ["Assemble and configure", "6 assembly steps, then Betaflight", "todo"],
-    ["Test and fly", "5 hardware tests", "todo"],
+    ["Print the frame", "One print, flat on the bed, with supports", printReady.ready ? "next" : "todo"],
+    ["Assemble and configure", "Assembly steps 2 to 5, Betaflight, then the propellers", "todo"],
+    ["Test and fly", `${["P1","P2","P3","P4","P5","P6"].filter(id => claims[id]).length} hardware tests`, "todo"],
   ];
   if (!stops.some(s => s[2] === "next")) { const i = stops.findIndex(s => s[2] === "todo"); if (i >= 0 && stops[i - 1]?.[2] === "done") stops[i][2] = "next"; }
   const lbl = { done: "Done", next: "Next", blocked: "Decision necessary", todo: "Later" };
@@ -573,19 +579,24 @@ function liftChart() {
   const limit = story.thrust_g / 3, spare = limit - story.auw_g;
   document.getElementById("lift-lede").innerHTML = `The four motors give a maximum thrust of approximately <b>${fmt(story.thrust_g, 0)} g</b>. For a beginner, the total mass must be one third of the thrust or less. The bar shows the mass of each part group.`;
   document.getElementById("lift-callout").innerHTML = spare >= 0
-    ? `The total mass is <b>${fmt(spare, 1)} g</b> below the limit. This margin is small. The thrust value is an estimate. The thrust test will confirm it.`
+    ? `The total mass is <b>${fmt(spare, 1)} g</b> below the limit.${spare < 0.1 * limit ? " This margin is small." : ""} The thrust value comes from the motor's published thrust table, less the guards' estimated cost (A1). The thrust test will confirm it.`
     : `The total mass is <b>${fmt(-spare, 1)} g</b> above the limit. Decrease the mass or increase the thrust.`;
 }
 
 // ---------------------------------------------------------------- bullet graphs (Few, 2005)
+const measured = gid => state.verdicts.find(v => v.gate === gid)?.measured;
+const limitOf = id => claims[id]?.acceptance?.limit;
 function bullets() {
   const rows = [
-    { id: "C3", label: "Hover time", sub: "Minutes for each battery", v: story.flight_min, target: 3, max: 6, bands: [3, 4.5], unit: "min", d: 1 },
-    { id: "C4", label: "Frame vibration frequency", sub: "A higher frequency shows a stiffer frame. The gray mark shows a standard X frame.", v: story.mode_hz, target: 200, max: 400, bands: [150, 250], unit: "Hz", d: 0, ghost: story.arms_mode_hz, ghostLabel: "X frame" },
-    { id: "C1", label: "Thrust-to-weight ratio", sub: "The minimum for a beginner is 3.", v: story.thrust_to_weight, target: 3, max: 5, bands: [2, 3.5], unit: "×", d: 2 },
+    { id: "C3", label: "Hover time", sub: "Minutes for each battery", v: story.flight_min, target: limitOf("C3") ?? 3, max: 6, bands: [3, 4.5], unit: "min", d: 1 },
+    { id: "C4", label: "Frame vibration frequency", sub: "A higher frequency shows a stiffer frame. CalculiX calculated it on the printed shape.", v: measured("petgasus.frame_mode"), target: limitOf("C4") ?? 200, max: 800, bands: [150, 250], unit: "Hz", d: 0 },
+    { id: "C15", label: "Drop height the frame survives", sub: `A fall onto one guard, with the frame in ${story.strong_material || "the strong filament"}. No part of the frame gets to the strength of the plastic.`, v: measured("petgasus.crash_drop"), target: limitOf("C15") ?? 1, max: 3, bands: [0.5, 1.5], unit: "m", d: 2 },
+    { id: "C16", label: "Wall speed the frame survives", sub: `A hit on a wall, on one guard, with the frame in ${story.strong_material || "the strong filament"}. No part of the frame gets to the strength of the plastic.`, v: measured("petgasus.crash_wall"), target: limitOf("C16") ?? 3, max: 8, bands: [2, 4], unit: "m/s", d: 1 },
+    { id: "C1", label: "Thrust-to-weight ratio", sub: "The minimum for a beginner is 3.", v: story.thrust_to_weight, target: limitOf("C1") ?? 3, max: 8, bands: [2, 3.5], unit: "×", d: 2 },
+    { id: "C14", label: "Propeller area under the frame", sub: "Plastic below a propeller blocks the air. Less is better.", v: 100 * story.blockage, target: 100 * (limitOf("C14") ?? 0.1), max: 20, bands: null, lowerIsBetter: true, unit: "%", d: 1 },
     { id: "C12", label: "Motor wire length used", sub: `Each wire is ${story.lead_len_mm} mm long. A minimum of 3 mm must stay free.`, v: d3.max(Object.values(story.lead_needed_mm)), target: story.lead_len_mm - 3, max: story.lead_len_mm, bands: null, lowerIsBetter: true, unit: "mm", d: 1 },
     { id: "C2", label: "Total mass", sub: "FAA registration is necessary from 250 g.", v: story.auw_g, target: 250, max: 260, bands: null, lowerIsBetter: true, unit: "g", d: 0 },
-  ];
+  ].filter(r => r.v != null);
   const host = d3.select("#bullets"); host.selectAll("*").remove();
   for (const r of rows) {
     const row = host.append("div").attr("class", "bullet-row");
@@ -615,76 +626,50 @@ function bullets() {
   }
 }
 
-// ---------------------------------------------------------------- topology small multiples
-function multiples() {
-  const L = story.layout, host = d3.select("#multiples"); host.selectAll("*").remove();
-  if (!L) return;
-  const R = L.motor_offset + L.duct_r_out + 2;
-  const panels = [
-    ["1", "Standard X frame", "One arm goes from the center to each motor.", "arms"],
-    ["2", "Optimizer output", "A darker blue shows more plastic. Some spokes in this output are too thin to print.", "field"],
-    ["3", "Printed frame", `${story.spoke_count} spokes with ribs connect each motor to its duct. The ducts connect to each other.`, "spoked"],
-  ];
-  for (const [n, title, text, kind] of panels) {
-    const fig = host.append("figure"), card = fig.append("div").attr("class", "card").style("padding", "8px");
-    const svg = card.append("svg").attr("viewBox", `${-R} ${-R} ${2 * R} ${2 * R}`).attr("class", "chart")
-      .style("aspect-ratio", "1").style("display", "block");
-    const flip = svg.append("g").attr("transform", "scale(1,-1)");
-    if (kind === "field") {
-      if (story.field) {
-        const f = story.field, cell = (2 * f.half) / f.n;
-        const sc = d3.scaleSequential(d3.interpolateRgb(css("--surface"), css("--seq-7"))).domain([0, 1]);
-        const cells = [];
-        f.rho.forEach((v, i) => { if (v > 0.04) cells.push([i % f.n, Math.floor(i / f.n), v]); });
-        flip.selectAll("rect").data(cells).join("rect").attr("x", d => -f.half + d[0] * cell).attr("y", d => -f.half + d[1] * cell)
-          .attr("width", cell + 0.05).attr("height", cell + 0.05).attr("fill", d => sc(d[2]));
-      } else {
-        svg.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").style("font-size", "6px").text("run tools/run_topopt.py");
-      }
-    } else {
-      // fixed parts in gray: ducts, motor seats, hub; designed members in the frame color
-      for (const [mx, my] of L.motors) {
-        flip.append("circle").attr("cx", mx).attr("cy", my).attr("r", (L.duct_r_in + L.duct_r_out) / 2)
-          .attr("fill", "none").attr("stroke", css("--axis")).attr("stroke-width", L.duct_r_out - L.duct_r_in);
-        flip.append("circle").attr("cx", mx).attr("cy", my).attr("r", L.mount_r).attr("fill", css("--axis"));
-      }
-      const hub = L.hub_outline.map(poly => "M" + poly.map(p => p.join(",")).join("L") + "Z").join("");
-      flip.append("path").attr("d", hub).attr("fill", css("--axis")).attr("fill-rule", "evenodd");
-      const mem = L[kind];
-      flip.selectAll("line.m").data(mem).join("line").attr("x1", d => d.p0[0]).attr("y1", d => d.p0[1])
-        .attr("x2", d => d.p1[0]).attr("y2", d => d.p1[1]).attr("stroke", gcol("frame"))
-        .attr("stroke-width", d => d.w).attr("stroke-linecap", "round");
-      flip.selectAll("line.r").data(mem.filter(d => d.rib)).join("line").attr("x1", d => d.rib[0][0]).attr("y1", d => d.rib[0][1])
-        .attr("x2", d => d.rib[1][0]).attr("y2", d => d.rib[1][1]).attr("stroke", css("--ink")).attr("stroke-opacity", 0.55)
-        .attr("stroke-width", L.rib_w * 0.8).attr("stroke-linecap", "round");
-    }
-    fig.append("figcaption").html(`<b><span class="step-num">${n}</span>${title}</b>${text}`);
-  }
+// ---------------------------------------------------------------- the 3D topology and the filaments
+const topo = view("topology") ? await (await fetch(view("topology").src, { cache: "no-store" })).json() : null;
+function topology() {
+  const img = document.getElementById("topo-img"), cap = document.getElementById("topo-cap");
+  if (!topo || !topo.preview) { img.style.display = "none"; cap.textContent = "The optimizer has not run for this design yet."; return; }
+  img.src = topo.preview;
+  cap.innerHTML = `The optimizer's result from above (left) and from the side (right). A darker color shows more plastic. ` +
+    `${topo.iterations ? `${topo.iterations} steps` : ""}${topo.current ? "" : " <b>The design changed after this result. Run the optimizer again.</b>"}`;
 }
-function dumbbell() {
-  const svg = d3.select("#dumbbell"), W = svg.node().clientWidth || 900, H = 170;
-  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H); svg.selectAll("*").remove();
-  const rows = [
-    { label: "Vibration frequency (Hz)", a: story.arms_mode_hz, b: story.mode_hz, max: 340, target: 200, unit: "Hz", d: 0 },
-    { label: "Impact stiffness (× X frame)", a: 1, b: story.crash_gain, max: 4.2, unit: "×", d: 1 },
-    { label: "Mass of the arms and spokes (g)", a: story.arms_plate_g, b: story.plate_g, max: 4.2, unit: "g", d: 1 },
-  ];
-  const lx = 250, x0 = lx + 10, x1 = W - 40;
-  rows.forEach((r, i) => {
-    const y = 34 + i * 48, x = d3.scaleLinear([0, r.max], [x0, x1]);
-    svg.append("text").attr("x", 0).attr("y", y + 4).attr("class", "strong").text(r.label);
-    svg.append("line").attr("x1", x0).attr("x2", x1).attr("y1", y).attr("y2", y).attr("stroke", css("--grid"));
-    if (r.target) { svg.append("line").attr("x1", x(r.target)).attr("x2", x(r.target)).attr("y1", y - 12).attr("y2", y + 12).attr("stroke", css("--ink")).attr("stroke-width", 2);
-      svg.append("text").attr("x", x(r.target)).attr("y", y - 16).attr("text-anchor", "middle").text(`limit ≥ ${r.target}`); }
-    svg.append("line").attr("x1", x(r.a)).attr("x2", x(r.b)).attr("y1", y).attr("y2", y).attr("stroke", css("--axis")).attr("stroke-width", 3);
-    svg.append("circle").attr("cx", x(r.a)).attr("cy", y).attr("r", 7).attr("fill", css("--muted")).attr("stroke", css("--surface")).attr("stroke-width", 2);
-    svg.append("circle").attr("cx", x(r.b)).attr("cy", y).attr("r", 7).attr("fill", gcol("frame")).attr("stroke", css("--surface")).attr("stroke-width", 2);
-    const left = r.a < r.b;
-    svg.append("text").attr("x", x(r.a) + (left ? -12 : 12)).attr("y", y + 4).attr("text-anchor", left ? "end" : "start").text(`X frame ${fmt(r.a, r.d)}`);
-    svg.append("text").attr("x", x(r.b) + (left ? 12 : -12)).attr("y", y + 4).attr("text-anchor", left ? "start" : "end").attr("class", "strong").text(`printed ${fmt(r.b, r.d)}`);
+function materials() {
+  const rows = (topo && topo.materials) || [];
+  const svg = d3.select("#materials"); svg.selectAll("*").remove();
+  if (!rows.length) { svg.attr("height", 0);
+    document.getElementById("materials-table").innerHTML = "<tr><td>The filament comparison is not recorded for this frame yet.</td></tr>"; return; }
+  // two panels, each against its own limit: a filament that clears the drop (C15) can still miss the wall (C16)
+  const W = svg.node().clientWidth || 520, rowH = 28, top = 30, H = top + rows.length * rowH + 22;
+  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+  const role = r => r.guard_material !== r.material ? "" : r.material === story.strong_material ? " (strong)"
+    : r.material === story.material ? " (everyday)" : "";
+  const name = r => (r.guard_material !== r.material ? `${r.material}, ${r.guard_material.replace(/95A$/, "")} arcs` : r.material) + role(r);
+  const probe = svg.append("text");
+  const lw = d3.max(rows, r => probe.attr("class", role(r) ? "strong" : null).text(name(r)).node().getComputedTextLength()) + 12;
+  probe.remove();
+  const gap = 14, pw = (W - lw - gap) / 2;
+  const info = r => `<b>${r.label || r.material}</b><br>survives a ${fmt(r.drop_m, 2)} m drop, a ${fmt(r.wall_m_s, 1)} m/s wall<br>frame ${fmt(r.frame_g, 1)} g, vibration ${fmt(r.mode_hz, 0)} Hz${r.needs ? `<br>needs: ${r.needs}` : ""}`;
+  rows.forEach((r, i) => svg.append("text").attr("x", 0).attr("y", top + i * rowH + 14)
+    .attr("class", role(r) ? "strong" : null).text(name(r)));
+  [["drop_m", limitOf("C15") ?? 1, "Drop", "m", 2], ["wall_m_s", limitOf("C16") ?? 3, "Wall hit", "m/s", 1]].forEach(([key, limit, title, unit, d], k) => {
+    const x0 = lw + k * (pw + gap);
+    const x = d3.scaleLinear([0, Math.max(limit * 1.5, d3.max(rows, r => r[key] || 0))], [x0, x0 + pw - 52]);
+    svg.append("line").attr("x1", x(limit)).attr("x2", x(limit)).attr("y1", top - 4).attr("y2", H - 16)
+      .attr("stroke", css("--ink")).attr("stroke-width", 2);
+    svg.append("text").attr("x", x0).attr("y", 12).attr("class", "strong").text(title);
+    rows.forEach((r, i) => {
+      const y = top + i * rowH, v = r[key] || 0;
+      svg.append("rect").attr("x", x(0)).attr("y", y + 2).attr("height", 16).attr("rx", 3)
+        .attr("width", Math.max(1, x(v) - x(0))).attr("fill", v >= limit ? css("--good-ink") : css("--muted"))
+        .on("pointermove", ev => showTip(info(r), ev)).on("pointerleave", hideTip);
+      svg.append("text").attr("x", x(v) + 5).attr("y", y + 14).text(`${fmt(v, d)} ${unit}`);
+    });
+    svg.append("text").attr("x", x(limit)).attr("y", H - 3).attr("text-anchor", "middle").text(`limit ${fmt(limit, 0)} ${unit}`);
   });
-  document.getElementById("dumbbell-table").innerHTML = "<tr><th></th><th>Standard X frame</th><th>Printed frame</th></tr>" +
-    rows.map(r => `<tr><td>${r.label}</td><td>${fmt(r.a, r.d)}</td><td>${fmt(r.b, r.d)}</td></tr>`).join("");
+  document.getElementById("materials-table").innerHTML = "<tr><th>Filament</th><th>Frame</th><th>Vibration</th><th>Drop</th><th>Wall</th><th>The U1 needs</th></tr>" +
+    rows.map(r => `<tr><td>${r.label || r.material}</td><td>${fmt(r.frame_g, 1)} g</td><td>${fmt(r.mode_hz, 0)} Hz</td><td>${fmt(r.drop_m, 2)} m</td><td>${fmt(r.wall_m_s, 1)} m/s</td><td>${r.needs || "—"}</td></tr>`).join("");
 }
 
 // ---------------------------------------------------------------- cost
@@ -717,16 +702,16 @@ function cost() {
   document.getElementById("cost-table").innerHTML = "<tr><th>Item</th><th>Where</th><th>Price</th><th></th></tr>" +
     rows.map(r => `<tr><td>${NAMES[r.ref] || r.ref}</td><td>${r.vendor}</td><td>$${fmt(r.extended, 2)}</td><td>${OPTIONAL.has(r.ref) ? "optional" : ""}</td></tr>`).join("") +
     `<tr><th>Total</th><th></th><th>$${fmt(total, 2)}</th><th></th></tr>`;
-  document.getElementById("cost-lede").innerHTML = `The budget is $150. The four necessary items cost <b>$${fmt(essentials, 2)}</b>. This price does not include the shipping cost from BetaFPV. With spare propellers, screws and a strap, the total is $${fmt(total, 2)}. A rubber band can hold the battery temporarily.`;
+  document.getElementById("cost-lede").innerHTML = `The budget is $150. The ${["no", "one", "two", "three", "four", "five", "six", "seven"][money.length - money.filter(r => OPTIONAL.has(r.ref)).length] || money.length} necessary items cost <b>$${fmt(essentials, 2)}</b>. This price does not include the shipping cost from BetaFPV. With spare propellers and a strap, the total is $${fmt(total, 2)}. A rubber band can hold the battery temporarily.`;
 }
 
 // ---------------------------------------------------------------- step-by-step builder (IKEA / LEGO)
 const STEPS = [
-  ["Print the frame", "Print the frame in PETG with the flat side down. Do not use supports. The print takes approximately 2 hours. Remove the brim."],
+  ["Print the frame", "Print the frame in PETG, or in nylon-CF (PA6-CF) for hard crashes. Print it as the file is turned, with 3 walls, 100% infill and tree supports. On a printer with two toolheads, use PLA for the support layers that touch a PETG frame. Remove the supports by hand, slowly. Remove the brim."],
   ["Install the four motors", "Put each motor on its round seat. Point the wire to the center of the frame. Install three screws from below. Tighten the screws lightly. The threads are easy to damage."],
-  ["Install the flight controller", "Turn the board 45° and put it on the four posts. The corners must point between the ducts. Point the arrow to the front right duct. Install four screws."],
-  ["Connect the motor wires", "Put each wire through the window in its duct. Connect the plug to the nearest socket on the board. No soldering is necessary."],
-  ["Attach the battery", "Put the strap through the two slots below the frame. Attach the battery with the strap. Connect the battery plug to the power lead at the front."],
+  ["Install the flight controller", "Put a rubber grommet in each of the four holes of the board. Put the board on the four posts with the arrow to the front. Install four screws through the grommets."],
+  ["Connect the motor wires", "Push each motor plug into the nearest socket under the side arms of the board. The sockets open to the side. No soldering is necessary."],
+  ["Attach the battery", "Put the strap up through one slot in the center of the frame, over the center below the board, and down through the other slot. Attach the battery below the frame with the strap, with its plug at the back. Connect the battery plug to the power lead."],
   ["Install the propellers", "Do the setup check in Betaflight first, without the propellers. Then push the propellers onto the motor shafts."],
 ];
 const builder = makeViewer(document.getElementById("build3d"));
@@ -757,7 +742,7 @@ function showStep(s) {
   for (const [name, p] of Object.entries(story.parts)) if (p.step === s) {
     const key = name.startsWith("motor_screws_") ? "Motor screw (M1.4 × 3)" : name.startsWith("motor_lead_") ? "Motor wire plug"
       : name.startsWith("motor_sockets") ? null : name.startsWith("motor_") ? "Motor (1102)" : name.startsWith("prop_") ? "Propeller (45 mm)"
-      : name.startsWith("fc_screw_") ? "Board screw (M1.4 × 6)" : PART_NAMES(name);
+      : name.startsWith("fc_screw_") ? "Board screw (M1.4 × 6)" : name.startsWith("fc_grommet_") ? "Rubber grommet" : PART_NAMES(name);
     if (!key) continue;
     counts[key] = (counts[key] || { n: 0, g: p.person_group }); counts[key].n += name.startsWith("motor_screws_") ? 3 : 1;
   }
@@ -773,15 +758,20 @@ document.getElementById("next").onclick = () => showStep(Math.min(STEPS.length, 
 showStep(Math.min(STEPS.length, Math.max(1, +((location.hash.match(/step=(\d)/) || [])[1] || 1))));
 
 // ---------------------------------------------------------------- tests & guesses
+// Only claims the records hold are drawn: a retired claim drops out instead of stopping the script (and every
+// chart after it). The order is the build's: print, fit, set up, then fly.
 const card = (id, label) => { const c = claims[id], k = statusOf(c), [t, sub] = plain(id);
   return `<div class="tcard"><div class="top"><h3>${t}</h3><span class="status">${label(k, c)}</span></div><p>${sub}</p></div>`; };
-document.getElementById("tests").innerHTML = ["P4", "P3", "P5", "P2", "P1"].map(id => card(id,
+const TESTS = ["P6", "P4", "P3", "P5", "P2", "P1"].filter(id => claims[id]);
+document.getElementById("tests-lede").textContent = `The automated checks use a model of the drone. These ${TESTS.length} tests examine the real drone.`;
+document.getElementById("tests").innerHTML = TESTS.map(id => card(id,
   (k, c) => c.status === "pass" ? "✓ passed" : c.status === "fail" ? "✕ failed" : "not done")).join("");
-document.getElementById("guesses").innerHTML = ["A4", "A3", "A5", "A6", "A1", "A2"].map(id => card(id,
+document.getElementById("guesses").innerHTML = state.claims.filter(c => c.kind === "assumption").map(c => c.id)
+  .sort((a, b) => ((["A4", "A3", "A1"].indexOf(a) + 1) || 99) - ((["A4", "A3", "A1"].indexOf(b) + 1) || 99)).map(id => card(id,
   (k, c) => c.key === "assumed" ? "accepted" : "unconfirmed")).join("");
 
 // ---------------------------------------------------------------- draw + redraw on resize / theme
-function drawAll() { liftChart(); bullets(); multiples(); dumbbell(); cost(); }
+function drawAll() { liftChart(); bullets(); topology(); materials(); cost(); }
 drawAll();
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
 document.getElementById("themebtn").onclick = () => {

@@ -1,5 +1,0 @@
-# fdm.overhang — 1 part(s) from `mesh_paths + bbox_by_part_mm`
-# build axis (0.0, 0.0, 1.0), limit 45.0 deg, allowance 0.50% of surface; faces at or past 80 deg are ceilings and belong to fdm.bridge_span
-# 0 past the limit, 0 not measured
-part	status	score	area_frac	worst_deg	worst_downward_deg	faces_past	area_past_mm2	total_area_mm2	mesh
-frame	measured	0.0000	0.00000	39.68	39.68	0	0.00	26371.4	/home/neuman/Documents/work/PETGasusDrone/build/print/frame.ply

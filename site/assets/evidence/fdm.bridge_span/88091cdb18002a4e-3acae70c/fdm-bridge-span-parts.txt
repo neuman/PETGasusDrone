@@ -1,6 +1,6 @@
 # fdm.bridge_span — 1 part(s) from `mesh_paths + bbox_by_part_mm`
 # build axis (0.0, 0.0, 1.0), ceiling >= 80 deg, bridges judged at 30 mm, cantilevers at 2 mm, unanchored ceilings at 0 mm
 # score is span / the limit that applies to that region, so a bridge and a cantilever are comparable
-# 0 past the limit, 0 not measured
+# 1 past the limit, 0 not measured
 part	status	score	worst_span_mm	its_limit_mm	regions	anchoring	mesh
-frame	measured	0.0000	0.00	30.00	0	no ceiling region	/home/neuman/Documents/work/PETGasusDrone/build/print/frame.ply
+frame	measured	inf	0.71	0.00	919	UNANCHORED	/home/neuman/Documents/work/PETGasusDrone/build/print/frame.ply
