@@ -5,10 +5,10 @@ PETGasus is a small 3D-printed quadcopter for an adult and a 10-year-old to buil
 | | |
 |---|---|
 | Size | 111 × 111 × 20 mm frame, 83 mm motor-to-motor |
-| Weight | ~43 g ready to fly in PETG, ~41 g in nylon-CF (under the FAA's 250 g registration line) |
-| Frame | One print, about 16 g of PETG (13.5 g of nylon-CF) and ~1.5 h, plus supports. |
+| Weight | ~44 g ready to fly in PETG, ~42 g in nylon-CF (under the FAA's 250 g registration line) |
+| Frame | One print, about 17 g of PETG (14.5 g of nylon-CF) and ~1.5 h, plus supports. |
 | Soldering | None. The motors plug into the board and the battery lead is already attached. |
-| Flight time | ~3.7 min per battery in PETG, ~4 min in nylon-CF (estimates) |
+| Flight time | ~3.6 min per battery in PETG, ~3.9 min in nylon-CF (estimates) |
 | Prop guards | A low guard round the outer side of each prop, joined into one rim |
 
 The frame's shape came from a 3D topology optimiser. It was told where the motors, props, board, battery and leads go, what must stay empty, and how the frame gets loaded: full thrust, a prop hitting something, the battery, and crashes on the guards from nine directions. It put about 12 g of plastic where those loads go, and the model drew that as one smooth piece with a fillet at every joint. A separate finite-element program (CalculiX) then checked the printed shape for vibration and crashes. These figures come from simulation only. The real tests are below.

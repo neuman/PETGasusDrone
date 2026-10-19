@@ -8,10 +8,10 @@ A small 3D-printed quadcopter for an adult and a kid to build together. It needs
 
 | | |
 |---|---|
-| Frame | 112 × 112 × 20 mm, one piece, to print with tree supports (not printed yet): ~16 g in PETG, ~14 g in nylon-CF (PA6-CF) |
-| Ready to fly | ~43 g, under the FAA's 250 g registration line |
+| Frame | 112 × 112 × 20 mm, one piece, to print with tree supports (not printed yet): ~17 g in PETG, ~14.5 g in nylon-CF (PA6-CF) |
+| Ready to fly | ~44 g, under the FAA's 250 g registration line |
 | Props | 45 mm, each guarded round its outer side by a solid band about 4 mm tall |
-| Flight time | ~3.7 min per 1S 320 mAh battery (estimate) |
+| Flight time | ~3.6 min per 1S 320 mAh battery (estimate) |
 | Electronics | Taken from a BetaFPV Meteor75 Pro II O4 kit: plug-in motors, no soldering |
 | Control | ExpressLRS radio, Betaflight flight software, self-levelling mode |
 | Cost | $167 for the full parts list, including radio, batteries and charger; $156 for the essentials (everything but the spare props and the strap). Both before shipping, at 7 October 2026 prices |
@@ -41,7 +41,9 @@ Version 0.2 answers it:
 - **Low guards replace the ducts.** Each prop has a solid band about 4 mm tall
   round the side that meets walls. The optimiser decides what joins them: it
   closed the four into one rounded rim and tied each motor seat to it with
-  V-shaped spokes.
+  V-shaped spokes. On the left and right, where its rim narrowed to a thin
+  strand between two guards, the model draws a straight band of the guards'
+  own section instead.
 - **It prints flat, as it flies, with tree supports.** A scan of print poses on
   CalculiX's crash stresses found that printing flat loses no strength to the
   layers: the worst crash tension runs along them. Poses tilted 75-105° would
@@ -68,6 +70,10 @@ Version 0.2 answers it:
 | PLA | 15.7 g | 169 Hz | 1.6 m | 1.5 m/s |
 | *Limit* | | *200 Hz* | *1 m* | *3 m/s* |
 
+These were measured on the drawing before the side bands and the wall
+thickening (the PETG frame was 16.2 g; it is now 17.0 g). A tier-2 check
+measures them again.
+
 PETG is the everyday filament: it needs nothing extra on the U1 and clears the
 1 m drop. Only the two nylon-CF filaments clear both crash limits, so the crash
 claims (C15, C16) are judged in PA6-CF. No filament reaches C4's 200 Hz. The
@@ -91,7 +97,9 @@ path, a screwdriver's way to each motor screw), what plastic under a prop costs
 [`.nopekit/packs/`](.nopekit/packs/solid-fea/) solves it, first on a 2 mm grid and
 then refined on a 1.33 mm one. The field is an input in
 [`inputs/data/`](inputs/data/), and [`model/geometry.py`](model/geometry.py) draws the
-frame from it.
+frame from it. Where the field draws a wall thinner than the three perimeters a
+0.42 mm nozzle lays (1.26 mm), the drawing thickens it to 1.7 mm. Over the
+props it only thickens up and down, so the shadow on the props does not grow.
 
 The optimiser is never asked whether its own design is good. CalculiX, a
 different solver on a different mesh of the printed surface, judges that
@@ -109,16 +117,15 @@ drawing, the guards, the shadow limit, the filaments) is in
 
 Every number above comes from the model ([`model/petgasus.py`](model/petgasus.py)), the parts list ([`bom/bom.json`](bom/bom.json)) or the CalculiX runs ([`inputs/data/material-comparison.json`](inputs/data/material-comparison.json)). Each claim is a file in [`claims/`](claims/). The measurable claims (C1 to C17) each have an automated check, which counts only once it has been shown to fail on a known-bad design. The A claims are assumptions, and the P claims are tests on a real drone. Current state:
 
-- **Pass (datasheets and geometry):** lift (5.7 times the weight), weight, flight time, no clashes between parts, the board's and the motors' screws, motor wire length, one piece, guard height, the shadow on the props (14.8 % of a disc, 15 % allowed), and a topology field solved for this design.
+- **Pass (datasheets and geometry):** lift (5.6 times the weight), weight, flight time, no clashes between parts, the board's and the motors' screws, motor wire length, one piece, a clean solid (every wall the check samples at least the 1.26 mm of the printer's three perimeters), guard height, the shadow on the props (14.6 % of a disc, 15 % allowed), and a topology field solved for this design.
 - **Fail:**
   - **The $150 budget (C10).** The full list is $167. The essentials are $156.
-  - **A clean solid (C7).** Where the guard arcs meet on the left and right sides, the rim narrows to a strand 0.66 mm wide, under the 1.26 mm the printer needs.
-  - **Prints on the U1 (C6).** The bridge check finds small ceilings with nothing under them (the largest 12 mm²), and 42 ledges longer than its 2 mm limit (the longest 9.9 mm). Tree supports should hold both up, but the check does not count supports, and nobody has sliced the frame yet to see.
+  - **Prints on the U1 (C6).** The bridge check finds 78 small ceilings with nothing under them (the largest 24 mm²), 16 ledges longer than its 2 mm limit (the longest 8.1 mm), and one bridge of 33 mm, past its 30 mm limit. Tree supports should hold them all up, but the check does not count supports, and nobody has sliced the frame yet to see.
 - **Not yet counted (C4, C15, C16):** CalculiX's vibration and crash checks. A tier-2 check would count them, but the mesh check they rest on gives a different answer each run, because the tet mesher does not make the same mesh twice. Their numbers so far are in the filament table above.
 - **Assumed, not yet measured (A1, A3, A4):** how much thrust the guards and the limbs under the props cost, and the shape of the kit's motor and board. The build guide's two measurements check the motor and the board before printing.
 - **Not tested on a real drone yet (P1–P6):** crash drops and wall hits, hover, Betaflight setup, fit, thrust, and the supports coming off cleanly. Each test is described in its claim file and in the build guide.
 
-The first print waits on C6 and C7, and on the build guide's two measurements (A3, A4).
+The first print waits on C6, and on the build guide's two measurements (A3, A4).
 
 ## Working on the design
 
