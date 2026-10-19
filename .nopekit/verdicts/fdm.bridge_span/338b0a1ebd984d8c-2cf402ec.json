@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "gate": "fdm.bridge_span",
+  "rho": "338b0a1ebd984d8cebf5de933296f5e0235d28c5fa1e93578c36c39a0c1c4746",
+  "code": {
+    "digest": "d03313e84c37d1cdce67338f15fccfa1777a64cd0f0157c009dd9e95cac2e907",
+    "files": [
+      "<pack:fdm-print>/fdm_print_parts.py",
+      "<pack:fdm-print>/gates/fdm_print_fold.py",
+      "<pack:fdm-print>/gates/mesh.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "bbox_by_part_mm"
+        ],
+        "5b990cb59c3fb55f4210dd01ef4655dca01d336c109dd98fbb162fce0761f3eb"
+      ],
+      [
+        [
+          "bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "bridge_limit_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "build_axis"
+        ],
+        "73ade9ae787ce01265d14871da344e0c3d8d59275f81bc5022686c7f3da32839",
+        "z"
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bbox_mm_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bboxes_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bridge_limit_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.max_bridge_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.max_cantilever_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.mesh_path_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.mesh_paths"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.part_meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.print_bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bbox_mm_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bboxes_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bridge_limit_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.max_bridge_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.max_cantilever_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.mesh_path_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.mesh_paths"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.part_meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.print_bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "max_bridge_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "max_cantilever_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "mesh_paths"
+        ],
+        "9eb0d1404fe6e565b942d5138d9eadad2a3dcd89b1a03b94f97d451997eebee8"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.ply": "6cd46b3ff5225bd23f6e8b7dd4a90815519a27ef4e673c6fa26bf0fd14f7ab2c"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": false,
+    "measured": 1.77,
+    "limit": 0.0,
+    "units": "mm",
+    "comparator": "<=",
+    "settles": "bridge span",
+    "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 1.8 mm unsupported vs no span is acceptable (UNANCHORED) on a 1 mm^2 ceiling at 5.0 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
+    "evidence": [
+      "<out>/fdm-bridge-span-parts.txt",
+      "<out>/fdm-bridge-span/frame.txt"
+    ],
+    "locators": [
+      {
+        "view": "print_part",
+        "target": "frame__0",
+        "kind": "part",
+        "label": "1.8 mm unsupported span vs 0 mm (UNANCHORED)",
+        "severity": "",
+        "position": null,
+        "value": 1.77
+      }
+    ],
+    "claims": [
+      "manufacturability",
+      "fdm",
+      "additive",
+      "printability"
+    ],
+    "tier": 1,
+    "pack": "fdm-print"
+  },
+  "digest": "17a094fb167dcaead7ef99dfe35e0c49edb0a3cd6d12120893e8089e850f5104"
+}

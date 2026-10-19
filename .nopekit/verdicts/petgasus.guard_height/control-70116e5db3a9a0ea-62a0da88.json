@@ -1,0 +1,307 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.guard_height",
+  "rho": "70116e5db3a9a0eaec0486da9efad7d01d48814face8b7ae37e13d4bbd1f9a27",
+  "static": "5c2ec5d15827ebeb4c9cc5a3f13214d35824914ed64871609ada2ca9d435e14b",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "25e8631dc5ae51e252a2f6c4d95ddde2ca08899b6dab0f17d4e8fb91e638b25c",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "67cb9bcb06e6b60e7690800404d996b08f43450f3bee92b6a416d57d1f073951",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "904d1ff01a2a2b09efa46c33c4c194202b921f4157260a80300df3ae3c09f51c"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:tall_guards",
+      "expect": "fail",
+      "note": "the known-good design with v0.1's 10.9 mm duct height",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "fe865ecf7d6d57bd082cdf8d9f792cb76336a3ca227cd7b95d884a09398a9d7d",
+    "files": {
+      "model/petgasus.py": "e1f29a63dca741f0f43df38136f10319f9a805bc65ef0cfef621aadc8a263ee5",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "904d1ff01a2a2b09efa46c33c4c194202b921f4157260a80300df3ae3c09f51c"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "frame_top_z"
+        ],
+        "ee4625fc09bd05b123326bd28e21749cb9c19b7b17c1806c12c474878ce4cc63",
+        15.957
+      ],
+      [
+        [
+          "guard_band_h_max_mm"
+        ],
+        "2998c6902577ef88e166b576419961de7026d4e481047e1827d388274ad14527",
+        8.85
+      ],
+      [
+        [
+          "guard_band_h_mm"
+        ],
+        "d776d79c4d5ad4805205b9936083e8a5fa1e6a3a2d343cae68e275db52a6d6b3",
+        8.8
+      ],
+      [
+        [
+          "guard_wall"
+        ],
+        "cbd8fd810325cda8aa98c99a2291f49e206f38ecd05c9d5d02c0ef95290b7d68",
+        1.4
+      ],
+      [
+        [
+          "guard_z0"
+        ],
+        "d6a9cc6a51c01a24a31a0273300a6feb77739abaf0662c1e602f4148073c9ec1",
+        7.15
+      ],
+      [
+        [
+          "guard_z1"
+        ],
+        "56c697e169ce425b1c43b69ec705ed09bdc3304237a3961d6953ee545ca45e0d",
+        18.05
+      ],
+      [
+        [
+          "prop_r"
+        ],
+        "1868dc08bbc8017c21e129c03dfa94c253b28982d838ef87252609673de31136",
+        22.5
+      ],
+      [
+        [
+          "prop_z"
+        ],
+        "c404ad5a4d9975130e3a2d74730d83e04640b4e0fa8b9eaf7382556fb64173c5",
+        12.6
+      ]
+    ],
+    "files": {
+      "build": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/7ec1328c7739/frame-fine.msh": "c806846a8360c990e0e71dd259e1d05f9eee9129ceba517044357c4e1a6214c6",
+      "build/fea/7ec1328c7739/frame.msh": "02dc2f31d1c7c04c9aec75b16482302202fe49ac5c0467796b656eb6f557a83c",
+      "build/fea/e3696c9fd53d": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache/7a651252eb59b841.npz": "59febd11a1b65cf8ac332d2eb123eb35c2c2511621112225d1bf6be464353894",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C13": "b2b59308f82013d8fe06bb0a538ebd03f32ce78987563b018b6477151182f612",
+      "acceptance:C13": "408b18ebee29801bd388815f1a1bfdf55189b47c9f0738ea60a97c0a28a69ba9"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/e3696c9fd53d/frame-fine.msh",
+      "self-modified:<root>/build/fea/e3696c9fd53d/frame.msh",
+      "self-modified:<root>/build/frame_cache/87e96e591d814794.npz"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "frame_top_z"
+          ],
+          "64b09a78a95a12280cddf3f422e0cfb1166443e24b76af35f9e407eb1ecf4c20",
+          14.6
+        ],
+        [
+          [
+            "guard_band_h_max_mm"
+          ],
+          "911b2e55cad846595669258cd2ee5b1184ab196fd4be969fde068f4f994ced92",
+          4.9
+        ],
+        [
+          [
+            "guard_band_h_mm"
+          ],
+          "812b24a857d1d41790da34bac9b5b76cc1e2ddc7c7ed1c7a45a0192d41114078",
+          4.25
+        ],
+        [
+          [
+            "guard_wall"
+          ],
+          "cbd8fd810325cda8aa98c99a2291f49e206f38ecd05c9d5d02c0ef95290b7d68",
+          1.4
+        ],
+        [
+          [
+            "guard_z0"
+          ],
+          "d4ba11bf9c6c1506c943a6b70e1b2046387dd394a2db560290f2c0f8d43a6dca",
+          10.6
+        ],
+        [
+          [
+            "guard_z1"
+          ],
+          "64b09a78a95a12280cddf3f422e0cfb1166443e24b76af35f9e407eb1ecf4c20",
+          14.6
+        ],
+        [
+          [
+            "prop_r"
+          ],
+          "1868dc08bbc8017c21e129c03dfa94c253b28982d838ef87252609673de31136",
+          22.5
+        ],
+        [
+          [
+            "prop_z"
+          ],
+          "c404ad5a4d9975130e3a2d74730d83e04640b4e0fa8b9eaf7382556fb64173c5",
+          12.6
+        ]
+      ],
+      "files": {
+        "build/fea/7ec1328c7739/frame-fine.msh": "c806846a8360c990e0e71dd259e1d05f9eee9129ceba517044357c4e1a6214c6",
+        "build/fea/7ec1328c7739/frame.msh": "02dc2f31d1c7c04c9aec75b16482302202fe49ac5c0467796b656eb6f557a83c",
+        "build/frame_cache/7a651252eb59b841.npz": "59febd11a1b65cf8ac332d2eb123eb35c2c2511621112225d1bf6be464353894",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C13": "b2b59308f82013d8fe06bb0a538ebd03f32ce78987563b018b6477151182f612",
+        "acceptance:C13": "408b18ebee29801bd388815f1a1bfdf55189b47c9f0738ea60a97c0a28a69ba9"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 4.25,
+    "limit": 4.5,
+    "units": "mm",
+    "detail": "median 4.25 mm, tallest 4.90 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
+    "goalpost": [
+      {
+        "key": "C13",
+        "measured": 4.25,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.45,
+            "outcome": "fail",
+            "measured": 4.25,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 2.25,
+            "outcome": "fail",
+            "measured": 4.25,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 9.0,
+            "outcome": "pass",
+            "measured": 4.25,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 45.0,
+            "outcome": "pass",
+            "measured": 4.25,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 146,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "guard_band_h_mm"
+        ],
+        "before": 4.25,
+        "after": 5.18,
+        "outcome": "fail",
+        "measured": 5.18,
+        "limit": 4.5
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "frame_top_z"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "guard_band_h_max_mm"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "guard_wall"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "guard_z0"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "guard_z1"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "prop_r"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "prop_z"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:tall_guards (the known-good design with v0.1's 10.9 mm duct height): median 8.80 mm, tallest 8.85 mm where a limb joins from below; drawn 7.2 to 18.1 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 15.96 mm",
+  "measured": 8.8,
+  "limit": 4.5,
+  "units": "mm",
+  "digest": "0c6bdb45e843237802b0c4dfd9f4567de042b4990991e0b271baced7617aee50"
+}

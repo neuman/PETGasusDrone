@@ -950,8 +950,8 @@
         "C7"
       ],
       "current": true,
-      "outcome": "fail",
-      "outcome_word": "fail",
+      "outcome": "pass",
+      "outcome_word": "pass",
       "pack": "cad-solid",
       "registered": true,
       "tier": 1
@@ -1248,7 +1248,7 @@
   ],
   "legend": [
     {
-      "n": 3,
+      "n": 2,
       "token": "failing"
     },
     {
@@ -1260,7 +1260,7 @@
       "token": "pending_build"
     },
     {
-      "n": 11,
+      "n": 12,
       "token": "checked"
     }
   ],
@@ -2116,7 +2116,7 @@
         "claim:C7"
       ],
       "taps": [],
-      "token": "failing",
+      "token": "checked",
       "unseen": false,
       "values": [
         "cad",
@@ -2190,8 +2190,8 @@
   ],
   "meta": {
     "name": "PETGasusDrone",
-    "records_digest": "a5f0d1fb63cc31a67d13cd73822b5d6f65aefc7bca3198efb9a0c039e81ef2af",
-    "resolution_digest": "dabb1c24e08e25d194c3f977be28e3634d156236241893b72575bb01f6cdce9d"
+    "records_digest": "4b40b11656dc96239510b29a9622b981df5aa0281103e7042f668ce6d467167a",
+    "resolution_digest": "d4c5c448dd241d0d7ec4ebb7cef0a51db3525f53c0e9df5cc1b13e97662d6e61"
   },
   "nodes": [
     {
@@ -2766,7 +2766,7 @@
         "C2": "read"
       },
       "title": "auw_g",
-      "value_text": "43.29 g"
+      "value_text": "44.11 g"
     },
     {
       "claims": [
@@ -2970,15 +2970,15 @@
         {
           "errored": 0,
           "key": "checked",
-          "label": "1 checked",
-          "n": 1,
+          "label": "2 checked",
+          "n": 2,
           "status": "pass"
         },
         {
           "errored": 0,
           "key": "failing",
-          "label": "2 failing",
-          "n": 2,
+          "label": "1 failing",
+          "n": 1,
           "status": "fail"
         },
         {
@@ -3260,7 +3260,7 @@
       "severity": 8,
       "title": "Thrust-to-weight at nominal pack voltage is at least 3:1",
       "token": "checked",
-      "value_text": "5.663 ratio against a limit of 3 ratio, 89% inside the limit",
+      "value_text": "5.557 ratio against a limit of 3 ratio, 85% inside the limit",
       "word": "checked"
     },
     {
@@ -3279,7 +3279,7 @@
       "severity": 8,
       "title": "All-up weight stays under 250 g",
       "token": "checked",
-      "value_text": "43.29 g against a limit of 250 g, 83% inside the limit",
+      "value_text": "44.11 g against a limit of 250 g, 82% inside the limit",
       "word": "checked"
     },
     {
@@ -3298,7 +3298,7 @@
       "severity": 8,
       "title": "Estimated hover flight time is at least 3 minutes per pack",
       "token": "checked",
-      "value_text": "3.7 min against a limit of 3 min, 23% inside the limit",
+      "value_text": "3.62 min against a limit of 3 min, 21% inside the limit",
       "word": "checked"
     },
     {
@@ -3393,7 +3393,7 @@
       "severity": 8,
       "title": "The guards are solid bands at most 4.5 mm tall, as printed",
       "token": "checked",
-      "value_text": "4.25 mm against a limit of 4.5 mm, 6% inside the limit",
+      "value_text": "4.15 mm against a limit of 4.5 mm, 8% inside the limit",
       "word": "checked"
     },
     {
@@ -3412,7 +3412,7 @@
       "severity": 8,
       "title": "The frame covers at most 15 % of any prop's disc, seen from above",
       "token": "checked",
-      "value_text": "0.1481 ratio against a limit of 0.15 ratio, 1% inside the limit",
+      "value_text": "0.1464 ratio against a limit of 0.15 ratio, 2% inside the limit",
       "word": "checked"
     },
     {
@@ -3447,11 +3447,11 @@
       "marks": [],
       "order": 23,
       "row": 1,
-      "severity": 0,
+      "severity": 8,
       "title": "The exported frame mesh is a clean closed solid",
-      "token": "failing",
+      "token": "checked",
       "value_text": "",
-      "word": "failing"
+      "word": "checked"
     },
     {
       "amber": null,
@@ -3493,7 +3493,7 @@
     }
   ],
   "schema": 2,
-  "self": "7762e739ef4ae50ba6a7dbec7eb552fd7eddbe3a37768161a646be8d72eb0b69",
+  "self": "db8baf56dcf117e9ce00c5b861793c4c98b0f53111a0e50ee2b0f86973946ef2",
   "trace": {
     "amber": "none",
     "key": null,
@@ -3535,6 +3535,7 @@
     "fea_surface_mm",
     "guard_arc_deg",
     "guard_h",
+    "guard_link_sides",
     "guard_material",
     "guard_thrust_factor",
     "hub_t",
@@ -3636,7 +3637,7 @@
       "source": "unrecorded",
       "station": "station:@auw_g",
       "units": "g",
-      "value_text": "43.29 g",
+      "value_text": "44.11 g",
       "zone": null
     },
     "battery_mah": {
@@ -5156,7 +5157,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "12664",
+      "value_text": "13305",
       "zone": null
     },
     "fdm.parts": {
@@ -5356,7 +5357,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "min",
-      "value_text": "3.7 min",
+      "value_text": "3.62 min",
       "zone": null
     },
     "frame_mass_g": {
@@ -5366,7 +5367,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "16.21",
+      "value_text": "17.03",
       "zone": null
     },
     "frame_mode1_hz": {
@@ -5416,7 +5417,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "4.9",
+      "value_text": "5.05",
       "zone": null
     },
     "guard_band_h_mm": {
@@ -5426,7 +5427,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "mm",
-      "value_text": "4.25 mm",
+      "value_text": "4.15 mm",
       "zone": null
     },
     "guard_h": {
@@ -5496,7 +5497,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "2.967",
+      "value_text": "2.958",
       "zone": null
     },
     "hover_power_w": {
@@ -5506,7 +5507,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "15.77",
+      "value_text": "16.12",
       "zone": null
     },
     "hover_throttle_frac": {
@@ -5516,7 +5517,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "0.177",
+      "value_text": "0.18",
       "zone": null
     },
     "infill_fraction": {
@@ -5706,7 +5707,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "475.3",
+      "value_text": "479.8",
       "zone": null
     },
     "motor_lead_len": {
@@ -5856,7 +5857,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "ratio",
-      "value_text": "0.1481 ratio",
+      "value_text": "0.1464 ratio",
       "zone": null
     },
     "prop_r": {
@@ -5986,7 +5987,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "",
-      "value_text": "15200",
+      "value_text": "15708",
       "zone": null
     },
     "surface_fillet_mm": {
@@ -6006,7 +6007,7 @@
       "source": "unrecorded",
       "station": null,
       "units": "ratio",
-      "value_text": "5.663 ratio",
+      "value_text": "5.557 ratio",
       "zone": null
     },
     "thrust_total_g": {

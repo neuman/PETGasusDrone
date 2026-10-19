@@ -1,0 +1,6 @@
+# fdm.bed_fit — 1 part(s) from `mesh_paths + bbox_by_part_mm`
+# 260x260 mm usable (270x270 bed - 2x5.0 brim) x 270 mm Z
+# score is the utilisation: the worst of footprint/usable and height/Z, after trying both square rotations
+# 0 past the limit, 0 not measured
+part	status	score	x_mm	y_mm	z_mm	orientation	driver	mesh
+frame	measured	0.4295	111.7	111.6	20.1	as modelled	XY	build/print/frame.ply

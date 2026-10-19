@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.motor_leads",
+  "rho": "ad34bf5845db861cf2b948ff729664000020fa2833de886220e89b5eab3f7b8e",
+  "static": "daf5fb5372e3eba1c30339d92f20536186a05085a864871c63cd9cb2b9d2e52e",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "7b852a1f89af52ce8139680e8cfc866343ab4dd4fac6182e195664dfa6d40bf2",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:short_leads",
+      "expect": "fail",
+      "note": "motors with 20 mm leads on the known-good frame",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "88bba9a6244cfd761d71cdf1d6951c2524b6c675f5348484562d4cc2b4b4812f",
+    "files": {
+      "model/petgasus.py": "3677f4b26359541449628f882422d2fe40cdd31e44e19d1f009c799ce527819d",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_lead_len"
+        ],
+        "e32ac4f280eb7e459d2e927d847f6d6220e60e3d283c60e2b2db853a318e92dd",
+        20.0
+      ],
+      [
+        [
+          "motor_lead_needed_mm"
+        ],
+        "c5b104e6bd17e4358c66ad3cf8c9c743bdf9a8c43bcab636d33d779047f067ee"
+      ],
+      [
+        [
+          "motor_lead_spare_mm"
+        ],
+        "4c76c59fbf7c488fccbcc2b87d783cf7b73d90581993122824b672cd20123f98",
+        -2.65
+      ]
+    ],
+    "files": {
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/c6db231453bd": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+      "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+      "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C12": "66d0e6834d47fc543817dbe840b9dbb47491fb2afe09fd29f38389bf7cc74bcf",
+      "acceptance:C12": "00d5734182990883b1f12473094a3b26b2cf1de551a221b472243cc51f9a801b"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/c6db231453bd/frame-fine.msh",
+      "self-modified:<root>/build/fea/c6db231453bd/frame.msh"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "motor_lead_len"
+          ],
+          "d9c63a1b8b5d167afc92fe576106090e30017177bb820a81201d4d52c1604ae4",
+          37.0
+        ],
+        [
+          [
+            "motor_lead_needed_mm"
+          ],
+          "c5b104e6bd17e4358c66ad3cf8c9c743bdf9a8c43bcab636d33d779047f067ee"
+        ],
+        [
+          [
+            "motor_lead_spare_mm"
+          ],
+          "d2b40bc8dae6aca1bbb0e81c32fc921894c7442870924758d1c9ed090aacd5f3",
+          14.35
+        ]
+      ],
+      "files": {
+        "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+        "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+        "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C12": "66d0e6834d47fc543817dbe840b9dbb47491fb2afe09fd29f38389bf7cc74bcf",
+        "acceptance:C12": "00d5734182990883b1f12473094a3b26b2cf1de551a221b472243cc51f9a801b"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 14.35,
+    "limit": 3.0,
+    "units": "mm",
+    "detail": "route lengths, mm: back_left 22.6, back_right 22.6, front_left 22.6, front_right 22.6; lead 37 mm",
+    "goalpost": [
+      {
+        "key": "C12",
+        "measured": 14.35,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.30000000000000004,
+            "outcome": "pass",
+            "measured": 14.35,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 14.35,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 6.0,
+            "outcome": "pass",
+            "measured": 14.35,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 30.0,
+            "outcome": "fail",
+            "measured": 14.35,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 119,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "motor_lead_spare_mm"
+        ],
+        "before": 14.35,
+        "after": 2.55,
+        "outcome": "fail",
+        "measured": 2.55,
+        "limit": 3.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "motor_lead_len"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "back_left"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "back_right"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "front_left"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "motor_lead_needed_mm",
+          "front_right"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:short_leads (motors with 20 mm leads on the known-good frame): route lengths, mm: back_left 22.6, back_right 22.6, front_left 22.6, front_right 22.6; lead 20 mm",
+  "measured": -2.65,
+  "limit": 3.0,
+  "units": "mm",
+  "digest": "dee93d4820ca928fdc2e07f569b5e0b3c4f127160e55ea19f93cd2b0a6a93420"
+}

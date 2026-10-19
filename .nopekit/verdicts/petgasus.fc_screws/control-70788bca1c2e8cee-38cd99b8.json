@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.fc_screws",
+  "rho": "70788bca1c2e8cee1dcdb5aab61204ceeb28318351d664ba861472fb592852a5",
+  "static": "6551ac4aa855e1cc07f3efd1cb76f5ceac09977a87a9eddffda980ebef125418",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "437f29aed2abe6ff46dceee04c5481be5a4210d4e4847ba72251a8c5c85a577c",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:long_fc_screws",
+      "expect": "fail",
+      "note": "M1.4 x 12 screws in the known-good stack",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "88bba9a6244cfd761d71cdf1d6951c2524b6c675f5348484562d4cc2b4b4812f",
+    "files": {
+      "model/petgasus.py": "3677f4b26359541449628f882422d2fe40cdd31e44e19d1f009c799ce527819d",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "fc_grommet_h"
+        ],
+        "cfb4bed8cf899c7e75e334a3fbfe328a9b41c6928ed8c704fa5b4b3003a15731",
+        2.6
+      ],
+      [
+        [
+          "fc_screw_engagement_mm"
+        ],
+        "d7d5894c18ba032115823b4a16ab4d5787b2f649055a3a34e3e30615b03c991a",
+        9.4
+      ],
+      [
+        [
+          "fc_screw_protrusion_mm"
+        ],
+        "cfb4bed8cf899c7e75e334a3fbfe328a9b41c6928ed8c704fa5b4b3003a15731",
+        2.6
+      ],
+      [
+        [
+          "fc_stack_mm"
+        ],
+        "d7d5894c18ba032115823b4a16ab4d5787b2f649055a3a34e3e30615b03c991a",
+        9.4
+      ]
+    ],
+    "files": {
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/ac48dd43f0b7": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+      "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+      "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C8": "f0bd9811cf2b2c03b5ce03b90c59875769073c19b685ca4b99ee715303537cd4",
+      "acceptance:C8": "b3c3f974e2d15bcd2db2a2ab0d0f5f3b20bbca7dcdfd308f30e0f9733d1be5c2"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/ac48dd43f0b7/frame-fine.msh",
+      "self-modified:<root>/build/fea/ac48dd43f0b7/frame.msh"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "fc_grommet_h"
+          ],
+          "cfb4bed8cf899c7e75e334a3fbfe328a9b41c6928ed8c704fa5b4b3003a15731",
+          2.6
+        ],
+        [
+          [
+            "fc_screw_engagement_mm"
+          ],
+          "64a44eeaf36613062644ca56356efe5d934145ae467f87e48f187cf398def4a1",
+          3.4
+        ],
+        [
+          [
+            "fc_screw_protrusion_mm"
+          ],
+          "c9f2ed0d590d85fa05c7daf2ec335c93755360e8b6305fc28f3bdf589fabad59",
+          -3.4
+        ],
+        [
+          [
+            "fc_stack_mm"
+          ],
+          "d7d5894c18ba032115823b4a16ab4d5787b2f649055a3a34e3e30615b03c991a",
+          9.4
+        ]
+      ],
+      "files": {
+        "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+        "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+        "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C8": "f0bd9811cf2b2c03b5ce03b90c59875769073c19b685ca4b99ee715303537cd4",
+        "acceptance:C8": "b3c3f974e2d15bcd2db2a2ab0d0f5f3b20bbca7dcdfd308f30e0f9733d1be5c2"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": -3.4,
+    "limit": 0.0,
+    "units": "mm",
+    "detail": "3.4 mm engaged (>= 3.0 needed) under a 2.6 mm grommet, in 9.4 mm of post and grommet",
+    "goalpost": [
+      {
+        "key": "C8",
+        "measured": -3.4,
+        "units": "mm",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": -0.9,
+            "outcome": "pass",
+            "measured": -3.4,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": -0.5,
+            "outcome": "pass",
+            "measured": -3.4,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 1.0,
+            "outcome": "pass",
+            "measured": -3.4,
+            "units": "mm"
+          },
+          {
+            "end": "limit",
+            "limit": 9.0,
+            "outcome": "pass",
+            "measured": -3.4,
+            "units": "mm"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 72,
+    "boundary": "",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "fc_grommet_h"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "fc_screw_engagement_mm"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "fc_screw_protrusion_mm"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "fc_stack_mm"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:long_fc_screws (M1.4 x 12 screws in the known-good stack): 9.4 mm engaged (>= 3.0 needed) under a 2.6 mm grommet, in 9.4 mm of post and grommet",
+  "measured": 2.6,
+  "limit": 0.0,
+  "units": "mm",
+  "digest": "0aead68afd7744b8761c82c5a8179bbddcb7d8cf29f2be5726f6c722889fcdd4"
+}

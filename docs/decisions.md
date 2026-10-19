@@ -9,6 +9,49 @@ person (or the next context window) re-proposing it and re-discovering the same
 wall. `nopekit why <name>` pulls one decision's, parameter's or claim's slice of
 this file.
 
+## 2026-10-18 — Thin walls thickened before the drawing is opened
+
+`thin-walls-thickened-before-the-drawing-is-opene`
+
+The drawing grows every section thinner than its opening keeps at every grid phase (1.75 mm on its 0.25 mm grid) where it can, with balls 1.7 mm across, then opens at 0.65 mm (surface_open_mm: half of C7's 1.26 mm wall and a hair over), sparing the 1.4 mm hub (geometry._thicken, geometry._open). It leaves the exact features' own sections alone: drawn() puts them back at their size. Over the props' discs it grows outward only within the plan the frame already covers there, and up and down where a ball does not fit, so it adds nothing to the shadow (14.6 %; C14 allows 15 %); nowhere does it grow further than 1 mm from the body as first drawn. What it grows are the sheets the field's grey top cell layer draws, 0.35 mm where they join the front and back limbs to the rim, and those the props' keep-out leaves of the layer under it, 0.47-0.61 mm under the guard arcs. On cad.wall_thickness's own ray from every face, all but 32 of about 320,000 faces read at least 1.26 mm: 8 slanted facets at the bottom edge of each seat's centre hole read 0.99 mm (the seat is 1.3 mm between its holes), 8 at the bottom corners of the guard arcs' ends 1.05-1.07 mm (the arc is 1.4 mm), 12 under the guard arcs 1.12-1.23 mm, and 4 at the hub's bottom edge by the side posts 1.19 mm. The gate's 4000 evenly spaced faces read 1.33 mm and miss them; a rebuild that moves its sample has about one chance in three of landing on one. The guards read 4.15 mm tall, as before (C13). The PETG frame is 17.03 g against 16.87 g before. The opening also takes about 480 mm^3 of the body as first drawn, in some 5,900 skims and fringes of at most 20 mm^3 (the largest are the field's fillets along the side bands).
+
+**Rejected**
+
+- **open at 0.63-0.7 mm with nothing thickened first** — it deleted the rim's bridges and cut limbs off the rim, and still left walls of 0.05-0.47 mm where the exact features went back in — infeasible
+- **thicken after an opening at 0.3 mm** — the opening had punched pinholes through the 0.35 mm sheets, and their rims stayed 0.5-0.6 mm (C7) — infeasible
+- **grow freely over the props' discs** — the sheets under the guard arcs' ends spread into the discs: the shadow went from 14.8 % to 15.06 %, over C14's 15 % — infeasible
+- **grow with no reach limit** — measured only when the thickening ran after a 0.3 mm opening: a ball grown against a keep-out's wall left a new thin edge for the next pass, and fins 0.57 mm thick climbed 3.5 mm up each motor's keep-out (45.5 mm^2 of walls under 1.26 mm, against 31 with a 1 mm reach) — unevaluated · returns if (not machine-checkable) "a run in the adopted order, with no reach limit, that leaves no fins"
+- **a final opening of 0.6 mm** — 2 x 0.6 = 1.2 mm is under 1.26: it left 1.3 mm^2 of walls at 1.14-1.25 mm where it rounded edges (C7), on a drawing whose sections under 1.46 mm were grown to 1.56 — infeasible
+- **square the corner facets with mesh booleans after the level set** — booleans between the field's surface and exact solids left 0.01 mm skins and pinched vertices before (geometry.py's notes); the facets are the level set rounding sharp edges by under half an edge — unevaluated · returns if (not machine-checkable) "a boolean that squares the corners without leaving skins"
+- **solve the optimiser again so its top and bottom layers come out solid or empty** — about 45 minutes a run, and no change to the problem is yet known to make the grey layer come out solid or empty (topopt3d: known limitations, 5) — unevaluated · returns if (not machine-checkable) "an optimiser run whose field has no grey top and bottom layers"
+- **look for sections only under 1.55 mm (twice the opening plus a step)** — the opening keeps a section at every grid phase only from 1.75 mm: sections drawn 1.55-1.75 mm across were not grown and could be opened away (on test sheets 1.56-1.74 mm thick the opening left nothing) — infeasible
+- **thicken the exact features' own sections too** — with the fillet the guard bands are 1.75 mm across at their foot, under the 1.77 mm looked for: grown there, their balls reached 0.65 mm under the bands, and the guards' printed height went from 4.15 mm to 4.6, over C13's 4.5 — infeasible
+- **grow nothing under the guards (within 0-0.5 mm of their plan)** — the sheets under the guard arcs run into that zone: cut short there, they left walls of 0.26-0.69 mm (C7) — infeasible
+
+**Params:** `surface_open_mm`  
+**Claims:** `C7`, `C13`, `C14`
+
+---
+
+## 2026-10-18 — Guard arcs joined by straight bands on the left and right
+
+`guard-arcs-joined-by-straight-bands-on-the-left`
+
+On the left and right sides the two guard arcs are joined by a straight band of the arcs' own section (1.4 mm wall, 4 mm tall) along their outer tangent (guard_link_sides); where a band leaves its arc, the slot between them is filled until it is 2 mm wide. There the optimiser's rim narrowed to a strand 0.66 mm wide and 1.13 mm tall, under C7's 1.26 mm wall. The band holds it whole: 6.4 mm^2 of section at the side's middle, where the drawing's thickening alone (decisions/thin-walls-thickened-before-the-drawing-is-opene.json) makes the strand about 1.5 x 2 mm, 2.7 mm^2. The PETG frame weighs 17.03 g, 0.43 g more than without the bands. At the front and back the thickening grows the rim's thin sheets instead. The bands are drawn, not part of the optimiser's problem.
+
+**Rejected**
+
+- **open the side bridges (surface_open_mm 0.35 or more, with nothing thickened first and no bands)** — the sides open between the guards, which then end in stubs; the author chose to keep the rim closed and thicken it (2026-10-18) — preferred against, naming Eric Neuman — nopekit why guard-arcs-joined-by-straight-bands-on-the-left says whether they recorded it
+- **the optimiser's rim alone, thickened** — 0.43 g lighter (16.60 g) and over C7's wall, but at the sides' middle the strand comes out about 1.5 x 2 mm (2.7 mm^2) between rims the field drew 4.2 mm tall; with the band the section is 6.4 mm^2 — unevaluated · returns if (not machine-checkable) "CalculiX finds the thickened strand holds a side hit (C16) as well as the band"
+- **bands on all four sides** — 0.43 g more plastic (17.46 g against 17.03 g in PETG) at the front and back, where the rim's thin parts were the sheets joining it to the limbs, mostly inside a band's line; the thickening grows those — dominated
+- **a band 2 mm tall on the prop plane** — the strand runs at 12.8-14.0 mm, above the band's 11.6-13.6 mm: its top would stand out of the band as a fin, for the thickening to grow again — dominated
+- **the bands in the optimiser's problem** — its hash changes, so the field must be solved again (about 45 minutes), and C17 refuses the current field until then — unevaluated · returns if (not machine-checkable) "the next optimiser run"
+
+**Params:** `guard_link_sides`  
+**Claims:** `C7`
+
+---
+
 ## 2026-10-18 — PETG for everyday prints, PA6-CF for strong ones
 
 `petg-for-everyday-prints-pa6-cf-for-strong-ones`

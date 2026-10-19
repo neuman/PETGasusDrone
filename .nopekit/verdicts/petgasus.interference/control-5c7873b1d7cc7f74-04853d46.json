@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.interference",
+  "rho": "5c7873b1d7cc7f74a6a9ad8a17196a5eb49e1db47c25b242cf10372ff075b9bf",
+  "static": "47445c0755c299e062b888baf2dc0f45e672b62891a43eb2d300167a3e3488e0",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "7538e5d388a9160ef9d5f781662a34dbf64febbf9574ca62a656f42400566a29",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:oversize_props",
+      "expect": "fail",
+      "note": "the prop tip gap cut by 2.5 mm to -0.5: the guards drawn 2.5 mm further in, into the props' tips",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "0771104d49423de293dbc3fbbe64ad37db6a18c7a02c2ee3635da3985f9ad853",
+    "files": {
+      "model/petgasus.py": "7b1019234fe828f83e5a3d75a5045a70684bb6583e5a897273af6e8320f750db",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "assembly_parts"
+        ],
+        "c9e6e621b2af4d0729a551ae0475cc9a803bf18e345edf707760ae76d757bf09"
+      ],
+      [
+        [
+          "interference_mm3"
+        ],
+        "92225a8bd5feb4638f5ff0b1958105d7e0d247cd6bc48ef78ec4568022279134"
+      ],
+      [
+        [
+          "interference_total_mm3"
+        ],
+        "8773a4509a6dd86d2fd1ba600ca263c8377ec6771216faf4f81a67aba2a57257",
+        35.561
+      ]
+    ],
+    "files": {
+      "build": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/60d15972a3fe": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/8e0844ebf9ee/frame-fine.msh": "6401bab9276d366eaf9f94241ec412a53b1eb2cffee8d51fb9694b035ade7333",
+      "build/fea/8e0844ebf9ee/frame.msh": "8a674b315e9ae74015eafad160cab5c4610b5bff8f3ddc48aee1ea2d82b1c17f",
+      "build/frame_cache": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache/5972dc373f0b4f68.npz": "c7751882ec7869a15fb10371483139fb1e683b635d57c1c2d2b37389e6f4bb32",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C5": "195f1a62b60d1986731b48261962927d3ce8bf44b5fc5fa5c2b9ab18c58eff3e",
+      "acceptance:C5": "0e02f7cbb3e8fbd152f3375f3877c24e12bec9b184cbf14a557007d57699d956"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/60d15972a3fe/frame-fine.msh",
+      "self-modified:<root>/build/fea/60d15972a3fe/frame.msh",
+      "self-modified:<root>/build/frame_cache/c633c7c906a77e1d.npz"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "assembly_parts"
+          ],
+          "c9e6e621b2af4d0729a551ae0475cc9a803bf18e345edf707760ae76d757bf09"
+        ],
+        [
+          [
+            "interference_mm3"
+          ],
+          "f2bc1e957042813c8df26ef1e0a0443fa2e1b6107d7977374466fba16c2f934e"
+        ],
+        [
+          [
+            "interference_total_mm3"
+          ],
+          "cb33559e51d9336cdbf86ce55c499c1b74750d592d1cb8b6ac3317b6b814a8e4",
+          0
+        ]
+      ],
+      "files": {
+        "build/fea/8e0844ebf9ee/frame-fine.msh": "6401bab9276d366eaf9f94241ec412a53b1eb2cffee8d51fb9694b035ade7333",
+        "build/fea/8e0844ebf9ee/frame.msh": "8a674b315e9ae74015eafad160cab5c4610b5bff8f3ddc48aee1ea2d82b1c17f",
+        "build/frame_cache/5972dc373f0b4f68.npz": "c7751882ec7869a15fb10371483139fb1e683b635d57c1c2d2b37389e6f4bb32",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C5": "195f1a62b60d1986731b48261962927d3ce8bf44b5fc5fa5c2b9ab18c58eff3e",
+        "acceptance:C5": "0e02f7cbb3e8fbd152f3375f3877c24e12bec9b184cbf14a557007d57699d956"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "mm3",
+    "detail": "31 placed parts, every pair intersected: no undeclared overlap",
+    "goalpost": [
+      {
+        "key": "C5",
+        "measured": 0.0,
+        "units": "mm3",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": -0.9,
+            "outcome": "fail",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": -0.5,
+            "outcome": "fail",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": 1.0,
+            "outcome": "pass",
+            "measured": 0.0,
+            "units": "mm3"
+          },
+          {
+            "end": "limit",
+            "limit": 9.0,
+            "outcome": "pass",
+            "measured": 0.0,
+            "units": "mm3"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 0,
+    "boundary": "at-limit",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": []
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:oversize_props (the prop tip gap cut by 2.5 mm to -0.5: the guards drawn 2.5 mm further in, into the props' tips): 31 placed parts, every pair intersected: overlaps (mm3) frame|prop_back_left 8.890, frame|prop_back_right 8.890, frame|prop_front_left 8.890, frame|prop_front_right 8.890",
+  "measured": 35.561,
+  "limit": 0.0,
+  "units": "mm3",
+  "digest": "5301cc3db6c55e51f9b8c6f7d1faa371e2d8b6df1a5484b2d188a227d5e2a450"
+}

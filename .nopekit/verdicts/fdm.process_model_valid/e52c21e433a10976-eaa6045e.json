@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "gate": "fdm.process_model_valid",
+  "rho": "e52c21e433a109760f2362679d0ed24242efefe707e84084e4510012256e2fad",
+  "code": {
+    "digest": "67ce92184f259df0550450ef0d01748e4ede3c625f523bf017b8365254b210ee",
+    "files": [
+      "<pack:fdm-print>/fdm_print_parts.py",
+      "<pack:fdm-print>/gates/_process_model.py",
+      "<pack:fdm-print>/gates/fdm_print_fold.py",
+      "<pack:fdm-print>/gates/printability.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "extrusion_width_mm"
+        ],
+        "2761fa6332d4c0574c19a14e91d975b9cf7042c64a62fc53ca714c5bf5dd84a4",
+        0.42
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_h_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_height"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_height_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.extrusion_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_h_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_height"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_height_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.line_width_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_d_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.nozzle_diameter_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.part_bbox_mm"
+        ],
+        "5deb3b7359f0c62743d5063ce64bac1c68ac51c71f7d96e8d8a7e225dfde260a"
+      ],
+      [
+        [
+          "fdm.part_min_wall_mm"
+        ],
+        "cbd8fd810325cda8aa98c99a2291f49e206f38ecd05c9d5d02c0ef95290b7d68",
+        1.4
+      ],
+      [
+        [
+          "fdm.part_volume_mm3"
+        ],
+        "fdd30bc610cf87fc331c22346f6d37f13819a881f90aa6be9e076f29432d0362",
+        13162.81
+      ],
+      [
+        [
+          "layer_height_mm"
+        ],
+        "127909532a5e24f347add2b67044be692cea62932cbdb08ebb1ef9f0d2a0cfbe",
+        0.2
+      ],
+      [
+        [
+          "nozzle_d_mm"
+        ],
+        "cbffa691b0145b8938393dfedf84cb1ee0c9a35d2e6647f4668d86e6e0f52ce1",
+        0.4
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 0.0,
+    "limit": 0.0,
+    "units": "problems",
+    "comparator": "<=",
+    "settles": "process model validity",
+    "detail": "process model applies — extent 112 mm reads as millimetres; volume fills 0.05 of the bbox; layer/nozzle 0.50 inside 0.1-0.75; width/nozzle 1.05 inside 0.8-2.0; thinnest section 3.5 beads wide",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "manufacturability",
+      "fdm",
+      "additive",
+      "printability",
+      "structural",
+      "process-validity"
+    ],
+    "tier": 0,
+    "pack": "fdm-print"
+  },
+  "digest": "0a3f09a7e7330dee04cbab27e13a6a6834acb7ecdd270add81f00202c31f9259"
+}

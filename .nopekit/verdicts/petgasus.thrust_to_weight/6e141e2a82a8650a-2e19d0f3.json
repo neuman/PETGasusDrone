@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "gate": "petgasus.thrust_to_weight",
+  "rho": "6e141e2a82a8650a4c83f31480edad525238263965a331b407f09fa25e5ad93e",
+  "code": {
+    "digest": "7352f34e34887351648f71176176c9b533d22a65504d5883dedcb74c1876587e",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "auw_g"
+        ],
+        "25bff6de9c033bed0dd73973697bfa84864bd79959c6da18acb59c7eb09eb570",
+        44.36
+      ],
+      [
+        [
+          "hover_throttle_frac"
+        ],
+        "0e409f4698cb31bed11c6de4fa640fef5193a60622920211b022ff6e80271798",
+        0.181
+      ],
+      [
+        [
+          "thrust_to_weight"
+        ],
+        "cea678b254bfd87aebd46ba331055dea582a905196969e0a6e6bf10aab4291fc",
+        5.526
+      ],
+      [
+        [
+          "thrust_total_g"
+        ],
+        "aee196903d5cc9bf271d8a311f40a89f089970631b4900bad659cd97b3295079",
+        245.1
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C1": "3b029b832934ce4576a66c7fe38f19642edca9073d8aee7f4d26e9b52fad1bd2",
+      "acceptance:C1": "cb2fef3fada9eb3c1ace02b8ec64342d4c5f9991705bd85ee7884c8e088b02f6"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": 5.526,
+    "limit": 3.0,
+    "units": "ratio",
+    "comparator": ">=",
+    "settles": "thrust to weight",
+    "detail": "245 g thrust / 44.4 g AUW; hover at 18% of full thrust",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "thrust-margin"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "67da919bf19c27435f1a4dd9f9479752eff6c0bd581aa0131b1647566ee7d4d5"
+}

@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.flight_time",
+  "rho": "8c0c1dad67f4d4b65f00c277f0c36558c0ffcd41163b91a1c7af6cb4d22b1aec",
+  "static": "733834f3bedb791f4f12d2ca5041f5432c6e6d32fd28ee3f0227d76ea15e4a74",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "35ef2912f1be9fd208151db38c42e85165069f648fd7fbfd5b319e444cfbe21b",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:tiny_pack",
+      "expect": "fail",
+      "note": "the known-good quad on a 100 mAh pack of the same mass",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "88bba9a6244cfd761d71cdf1d6951c2524b6c675f5348484562d4cc2b4b4812f",
+    "files": {
+      "model/petgasus.py": "3677f4b26359541449628f882422d2fe40cdd31e44e19d1f009c799ce527819d",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "flight_time_min"
+        ],
+        "87d4fbf51afc51adb9166e63fc6caac9ffe4e451bc2b01096dc56b3103e54919",
+        1.13
+      ],
+      [
+        [
+          "hover_eff_g_per_w"
+        ],
+        "f4f04e8a3928fde4b0c1935c08a111feb90aaaef83685f7e6e4ecbf13e911c17",
+        2.958
+      ],
+      [
+        [
+          "hover_power_w"
+        ],
+        "af5afab697ef694a0a78d7b87ab5c4aea110aa7331426b8114b75577aaf2f642",
+        16.12
+      ]
+    ],
+    "files": {
+      "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+      "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+      "build/fea/e69a4760f16f/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+      "build/fea/e69a4760f16f/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+      "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C3": "7543b340f4ad6014d301af69c2f0ea744ff26b6c88778b0ff22dfdd67d3fb918",
+      "acceptance:C3": "35da20dbcbb43272cc42d552353265352c154201ad212a365ba9231c2e83e7fd"
+    },
+    "host": [],
+    "opaque": []
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "flight_time_min"
+          ],
+          "7e3f5b49e6743aec13e3225502d939f2ec3bb451fc3bd5ac22a711e1cdb8e901",
+          3.62
+        ],
+        [
+          [
+            "hover_eff_g_per_w"
+          ],
+          "f4f04e8a3928fde4b0c1935c08a111feb90aaaef83685f7e6e4ecbf13e911c17",
+          2.958
+        ],
+        [
+          [
+            "hover_power_w"
+          ],
+          "af5afab697ef694a0a78d7b87ab5c4aea110aa7331426b8114b75577aaf2f642",
+          16.12
+        ]
+      ],
+      "files": {
+        "build/fea/dace53dfc2b8/frame-fine.msh": "18f33c5f471ff323c50b34b66e2d7836513b4cdbfe46db2841b2b5340418e4ed",
+        "build/fea/dace53dfc2b8/frame.msh": "ad78c5d0e522cf6c95d695ce18329cbf63622cfb3a405864e747d1ed8a2f7069",
+        "build/frame_cache/f51289c68e33ce5d.npz": "13d02200fae6a39d37d7b3d6acd90842f08c4f4b57531f341d93a2889f6dc3e9",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C3": "7543b340f4ad6014d301af69c2f0ea744ff26b6c88778b0ff22dfdd67d3fb918",
+        "acceptance:C3": "35da20dbcbb43272cc42d552353265352c154201ad212a365ba9231c2e83e7fd"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 3.62,
+    "limit": 3.0,
+    "units": "min",
+    "detail": "16.1 W hover at 2.96 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+    "goalpost": [
+      {
+        "key": "C3",
+        "measured": 3.62,
+        "units": "min",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.30000000000000004,
+            "outcome": "pass",
+            "measured": 3.62,
+            "units": "min"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 3.62,
+            "units": "min"
+          },
+          {
+            "end": "limit",
+            "limit": 6.0,
+            "outcome": "fail",
+            "measured": 3.62,
+            "units": "min"
+          },
+          {
+            "end": "limit",
+            "limit": 30.0,
+            "outcome": "fail",
+            "measured": 3.62,
+            "units": "min"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 57,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "flight_time_min"
+        ],
+        "before": 3.62,
+        "after": 2.55,
+        "outcome": "fail",
+        "measured": 2.55,
+        "limit": 3.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "hover_eff_g_per_w"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "hover_power_w"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:tiny_pack (the known-good quad on a 100 mAh pack of the same mass): 16.1 W hover at 2.96 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+  "measured": 1.13,
+  "limit": 3.0,
+  "units": "min",
+  "digest": "974a033de8693d8274c43284d32c339fbeb56624d5bb65877e17bbc62c207402"
+}

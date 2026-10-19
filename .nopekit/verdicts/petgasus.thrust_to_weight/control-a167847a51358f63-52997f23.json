@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.thrust_to_weight",
+  "rho": "a167847a51358f639499cf690de84fbf5ae49d77e64cfa1cfeb7aceeb60ea295",
+  "static": "0614d347178d058eafb7911512454fff55fbddeed3275fd4692e0d053158af3b",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "7352f34e34887351648f71176176c9b533d22a65504d5883dedcb74c1876587e",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:heavy_battery",
+      "expect": "fail",
+      "note": "the known-good quad carrying a pack 8x as heavy; nothing else changes",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "1c341fc9a99a457bdc61fbb9bf3e3ac5c1db3c1c940cacada944b53dc15a5356",
+    "files": {
+      "model/petgasus.py": "334305453153dfb8152985143f91825b16f64091aaf037551fe8d26c98396b19",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "auw_g"
+        ],
+        "b723840054903968f512051a2f6e1425dbdc0f2a18a3da43931cc871d820816b",
+        101.76
+      ],
+      [
+        [
+          "hover_throttle_frac"
+        ],
+        "be7dda7ac2e6d75b2495d826fd8fd819c2366835d63ae8d756d94b55f5f48995",
+        0.415
+      ],
+      [
+        [
+          "thrust_to_weight"
+        ],
+        "02aae929a19574be3e1870d0378e45ec23fc9a71153be7e736b9802190ddb50d",
+        2.409
+      ],
+      [
+        [
+          "thrust_total_g"
+        ],
+        "aee196903d5cc9bf271d8a311f40a89f089970631b4900bad659cd97b3295079",
+        245.1
+      ]
+    ],
+    "files": {
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/82e3476162e0": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/eb051cc147f5/frame-fine.msh": "c57289e7e967284d3c2255583cb2d474c0f08dac964400be7122ef56db020d21",
+      "build/fea/eb051cc147f5/frame.msh": "349dcfd387297e4371cbf939b02c9315a641d21264b05134fa71f4cc4f8a89ff",
+      "build/frame_cache/6d0617d974401b1c.npz": "d4a61ba9d2022e7fe3bd0747fdcdc8824a99452ec4e57dac637f141ead60dd5c",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C1": "3b029b832934ce4576a66c7fe38f19642edca9073d8aee7f4d26e9b52fad1bd2",
+      "acceptance:C1": "cb2fef3fada9eb3c1ace02b8ec64342d4c5f9991705bd85ee7884c8e088b02f6"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/82e3476162e0/frame-fine.msh",
+      "self-modified:<root>/build/fea/82e3476162e0/frame.msh"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "auw_g"
+          ],
+          "25bff6de9c033bed0dd73973697bfa84864bd79959c6da18acb59c7eb09eb570",
+          44.36
+        ],
+        [
+          [
+            "hover_throttle_frac"
+          ],
+          "0e409f4698cb31bed11c6de4fa640fef5193a60622920211b022ff6e80271798",
+          0.181
+        ],
+        [
+          [
+            "thrust_to_weight"
+          ],
+          "cea678b254bfd87aebd46ba331055dea582a905196969e0a6e6bf10aab4291fc",
+          5.526
+        ],
+        [
+          [
+            "thrust_total_g"
+          ],
+          "aee196903d5cc9bf271d8a311f40a89f089970631b4900bad659cd97b3295079",
+          245.1
+        ]
+      ],
+      "files": {
+        "build/fea/eb051cc147f5/frame-fine.msh": "c57289e7e967284d3c2255583cb2d474c0f08dac964400be7122ef56db020d21",
+        "build/fea/eb051cc147f5/frame.msh": "349dcfd387297e4371cbf939b02c9315a641d21264b05134fa71f4cc4f8a89ff",
+        "build/frame_cache/6d0617d974401b1c.npz": "d4a61ba9d2022e7fe3bd0747fdcdc8824a99452ec4e57dac637f141ead60dd5c",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C1": "3b029b832934ce4576a66c7fe38f19642edca9073d8aee7f4d26e9b52fad1bd2",
+        "acceptance:C1": "cb2fef3fada9eb3c1ace02b8ec64342d4c5f9991705bd85ee7884c8e088b02f6"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 5.526,
+    "limit": 3.0,
+    "units": "ratio",
+    "detail": "245 g thrust / 44.4 g AUW; hover at 18% of full thrust",
+    "goalpost": [
+      {
+        "key": "C1",
+        "measured": 5.526,
+        "units": "ratio",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.30000000000000004,
+            "outcome": "pass",
+            "measured": 5.526,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 5.526,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 6.0,
+            "outcome": "fail",
+            "measured": 5.526,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 30.0,
+            "outcome": "fail",
+            "measured": 5.526,
+            "units": "ratio"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 79,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "thrust_to_weight"
+        ],
+        "before": 5.526,
+        "after": 2.55,
+        "outcome": "fail",
+        "measured": 2.55,
+        "limit": 3.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "auw_g"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "hover_throttle_frac"
+        ],
+        "why": "never-lands"
+      },
+      {
+        "key": [
+          "thrust_total_g"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:heavy_battery (the known-good quad carrying a pack 8x as heavy; nothing else changes): 245 g thrust / 101.8 g AUW; hover at 42% of full thrust",
+  "measured": 2.409,
+  "limit": 3.0,
+  "units": "ratio",
+  "digest": "98d32f8dd9018a5c61ee06ad0bb4dd1f1b0c34a95646e0d4a9651339141cf07e"
+}

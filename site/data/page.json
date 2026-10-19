@@ -125,7 +125,7 @@
           "basis": "sourced",
           "basis_word": "The logic follows a cited outside source.",
           "current": true,
-          "detail": "245 g thrust / 43.3 g AUW; hover at 18% of full thrust",
+          "detail": "245 g thrust / 44.1 g AUW; hover at 18% of full thrust",
           "evidence": [],
           "id": "petgasus.thrust_to_weight",
           "order": 34,
@@ -168,10 +168,10 @@
           "gate": "petgasus.thrust_to_weight",
           "limit": 3.0,
           "limit_hi": null,
-          "margin": 0.887667,
-          "measured": 5.663,
+          "margin": 0.852333,
+          "measured": 5.557,
           "units": "ratio",
-          "value_text": "5.663 ratio against a limit of 3 ratio, 89% inside the limit"
+          "value_text": "5.557 ratio against a limit of 3 ratio, 85% inside the limit"
         }
       ],
       "word": "checked"
@@ -396,7 +396,7 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "median 4.25 mm, tallest 4.90 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
+          "detail": "median 4.15 mm, tallest 5.05 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
           "evidence": [],
           "id": "petgasus.guard_height",
           "order": 28,
@@ -439,10 +439,10 @@
           "gate": "petgasus.guard_height",
           "limit": 4.5,
           "limit_hi": null,
-          "margin": 0.0555556,
-          "measured": 4.25,
+          "margin": 0.0777778,
+          "measured": 4.15,
           "units": "mm",
-          "value_text": "4.25 mm against a limit of 4.5 mm, 6% inside the limit"
+          "value_text": "4.15 mm against a limit of 4.5 mm, 8% inside the limit"
         }
       ],
       "word": "checked"
@@ -461,7 +461,7 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "14.8% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+          "detail": "14.6% of the worst disc covered (annulus outside the motor's 14 mm bell)",
           "evidence": [],
           "id": "petgasus.prop_blockage",
           "order": 33,
@@ -504,10 +504,10 @@
           "gate": "petgasus.prop_blockage",
           "limit": 0.15,
           "limit_hi": null,
-          "margin": 0.0126667,
-          "measured": 0.1481,
+          "margin": 0.024,
+          "measured": 0.1464,
           "units": "ratio",
-          "value_text": "0.1481 ratio against a limit of 0.15 ratio, 1% inside the limit"
+          "value_text": "0.1464 ratio against a limit of 0.15 ratio, 2% inside the limit"
         }
       ],
       "word": "checked"
@@ -529,7 +529,7 @@
           "detail": "",
           "evidence": [],
           "id": "petgasus.crash_drop",
-          "order": 3,
+          "order": 2,
           "outcome": "unqualified",
           "outcome_word": "does not count",
           "stale_reason": ""
@@ -541,7 +541,7 @@
           "detail": "",
           "evidence": [],
           "id": "petgasus.fea_converged",
-          "order": 5,
+          "order": 4,
           "outcome": "unqualified",
           "outcome_word": "does not count",
           "stale_reason": ""
@@ -597,7 +597,7 @@
           "detail": "",
           "evidence": [],
           "id": "petgasus.crash_wall",
-          "order": 4,
+          "order": 3,
           "outcome": "unqualified",
           "outcome_word": "does not count",
           "stale_reason": ""
@@ -609,7 +609,7 @@
           "detail": "",
           "evidence": [],
           "id": "petgasus.fea_converged",
-          "order": 5,
+          "order": 4,
           "outcome": "unqualified",
           "outcome_word": "does not count",
           "stale_reason": ""
@@ -727,7 +727,7 @@
           "basis": "sourced",
           "basis_word": "The logic follows a cited outside source.",
           "current": true,
-          "detail": "frame 16.2 g printed PETG + bought parts",
+          "detail": "frame 17.0 g printed PETG + bought parts",
           "evidence": [],
           "id": "petgasus.auw",
           "order": 24,
@@ -770,10 +770,10 @@
           "gate": "petgasus.auw",
           "limit": 250.0,
           "limit_hi": null,
-          "margin": 0.82684,
-          "measured": 43.29,
+          "margin": 0.82356,
+          "measured": 44.11,
           "units": "g",
-          "value_text": "43.29 g against a limit of 250 g, 83% inside the limit"
+          "value_text": "44.11 g against a limit of 250 g, 82% inside the limit"
         }
       ],
       "word": "checked"
@@ -792,7 +792,7 @@
           "basis": "sourced",
           "basis_word": "The logic follows a cited outside source.",
           "current": true,
-          "detail": "15.8 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+          "detail": "16.1 W hover at 2.96 g/W (the motor's load table at hover thrust) from the pack's usable energy",
           "evidence": [],
           "id": "petgasus.flight_time",
           "order": 26,
@@ -835,10 +835,10 @@
           "gate": "petgasus.flight_time",
           "limit": 3.0,
           "limit_hi": null,
-          "margin": 0.233333,
-          "measured": 3.7,
+          "margin": 0.206667,
+          "measured": 3.62,
           "units": "min",
-          "value_text": "3.7 min against a limit of 3 min, 23% inside the limit"
+          "value_text": "3.62 min against a limit of 3 min, 21% inside the limit"
         }
       ],
       "word": "checked"
@@ -860,7 +860,7 @@
           "detail": "",
           "evidence": [],
           "id": "petgasus.fea_converged",
-          "order": 5,
+          "order": 4,
           "outcome": "unqualified",
           "outcome_word": "does not count",
           "stale_reason": ""
@@ -875,7 +875,7 @@
           "order": 27,
           "outcome": "pass",
           "outcome_word": "pass",
-          "stale_reason": "frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 475.3 (+2 more)"
+          "stale_reason": "frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 479.8 (+2 more)"
         }
       ],
       "hint": "Nothing can settle this claim yet.",
@@ -1003,23 +1003,23 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
+          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 1.8 mm unsupported vs no span is acceptable (UNANCHORED) on a 1 mm^2 ceiling at 5.0 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
           "evidence": [
             {
-              "href": "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/fdm-bridge-span-parts.txt",
+              "href": "assets/evidence/fdm.bridge_span/338b0a1ebd984d8c-2cf402ec/fdm-bridge-span-parts.txt",
               "missing": "",
               "name": "fdm-bridge-span-parts.txt",
               "source": "<out>/fdm-bridge-span-parts.txt"
             },
             {
-              "href": "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/frame.txt",
+              "href": "assets/evidence/fdm.bridge_span/338b0a1ebd984d8c-2cf402ec/frame.txt",
               "missing": "",
               "name": "frame.txt",
               "source": "<out>/fdm-bridge-span/frame.txt"
             }
           ],
           "id": "fdm.bridge_span",
-          "order": 2,
+          "order": 1,
           "outcome": "fail",
           "outcome_word": "fail",
           "stale_reason": ""
@@ -1031,7 +1031,7 @@
           "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.43x the usable build volume in XY (112x112x20 mm as modelled); 0 of 1 past the limit; 260x260 usable (270x270 bed - 2x5.0 brim) x 270 Z",
           "evidence": [
             {
-              "href": "assets/evidence/fdm.bed_fit/0752ef02c200adcb-b5c71de2/fdm-bed-fit-parts.txt",
+              "href": "assets/evidence/fdm.bed_fit/7ed7e5993d19dd14-5c858310/fdm-bed-fit-parts.txt",
               "missing": "",
               "name": "fdm-bed-fit-parts.txt",
               "source": "<out>/fdm-bed-fit-parts.txt"
@@ -1071,10 +1071,10 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 14.69% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 48967 faces, 2233.1 mm^2); 0 of 1 past the limit",
+          "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 16.54% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 57812 faces, 2597.6 mm^2); 0 of 1 past the limit",
           "evidence": [
             {
-              "href": "assets/evidence/fdm.overhang/f608a9848c3a5e6f-102d806f/fdm-overhang-parts.txt",
+              "href": "assets/evidence/fdm.overhang/8e6d452761a3d92f-d15ad057/fdm-overhang-parts.txt",
               "missing": "",
               "name": "fdm-overhang-parts.txt",
               "source": "<out>/fdm-overhang-parts.txt"
@@ -1090,7 +1090,7 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "ESTIMATE ~1.5 h of 3 h, ~16 g of 1000 g (12.7 cm^3 at 100% infill, 3x0.42 mm shell on 15200 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.50 of its ceiling. Not a slice.",
+          "detail": "ESTIMATE ~1.6 h of 3 h, ~16 g of 1000 g (13.3 cm^3 at 100% infill, 3x0.42 mm shell on 15708 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.52 of its ceiling. Not a slice.",
           "evidence": [],
           "id": "fdm.print_time_est",
           "order": 22,
@@ -1151,10 +1151,10 @@
           "gate": "fdm.overhang",
           "limit": 0.35,
           "limit_hi": null,
-          "margin": 0.580257,
-          "measured": 0.14691,
+          "margin": 0.527514,
+          "measured": 0.16537,
           "units": "area fraction",
-          "value_text": "0.1469 area fraction against a limit of 0.35 area fraction, 58% inside the limit"
+          "value_text": "0.1654 area fraction against a limit of 0.35 area fraction, 53% inside the limit"
         },
         {
           "binding": false,
@@ -1164,9 +1164,9 @@
           "limit": 0.0,
           "limit_hi": null,
           "margin": null,
-          "measured": 0.71,
+          "measured": 1.77,
           "units": "mm",
-          "value_text": "0.71 mm against a limit of 0 mm"
+          "value_text": "1.77 mm against a limit of 0 mm"
         },
         {
           "binding": false,
@@ -1175,10 +1175,10 @@
           "gate": "fdm.bed_fit",
           "limit": 1.0,
           "limit_hi": null,
-          "margin": 0.571,
-          "measured": 0.429,
+          "margin": 0.57,
+          "measured": 0.43,
           "units": "utilisation",
-          "value_text": "0.429 utilisation against a limit of 1 utilisation, 57% inside the limit"
+          "value_text": "0.43 utilisation against a limit of 1 utilisation, 57% inside the limit"
         },
         {
           "binding": false,
@@ -1211,10 +1211,10 @@
           "gate": "fdm.print_time_est",
           "limit": 1.0,
           "limit_hi": null,
-          "margin": 0.501,
-          "measured": 0.499,
+          "margin": 0.477,
+          "measured": 0.523,
           "units": "of limit",
-          "value_text": "0.499 of limit against a limit of 1 of limit, 50% inside the limit"
+          "value_text": "0.523 of limit against a limit of 1 of limit, 48% inside the limit"
         },
         {
           "binding": false,
@@ -1235,8 +1235,8 @@
       "acceptance": "",
       "amber": null,
       "board": "prints",
-      "cause": "failed",
-      "cause_text": "An evaluator failed the current design.",
+      "cause": "checked",
+      "cause_text": "Every evaluator showed that it can fail, and each one passed on the current design.",
       "claim_kind": "measurable",
       "critical": true,
       "errored": false,
@@ -1245,29 +1245,10 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
-          "evidence": [
-            {
-              "href": "assets/evidence/cad.wall_thickness/8bcdcb526cd9b0d2-7e4956fd/wall_thickness.json",
-              "missing": "",
-              "name": "wall_thickness.json",
-              "source": "<out>/cad-solid/wall_thickness.json"
-            }
-          ],
-          "id": "cad.wall_thickness",
-          "order": 1,
-          "outcome": "fail",
-          "outcome_word": "fail",
-          "stale_reason": ""
-        },
-        {
-          "basis": "model-only",
-          "basis_word": "A model wrote the logic. It has no outside source.",
-          "current": true,
           "detail": "0 repair(s) needed across 1 part(s), limit 0 — worst frame: welded 0 vertex/vertices at 0.0001 mm, dropped 0 face(s) below 1e-08 mm^2 over 1 pass(es)",
           "evidence": [],
           "id": "cad.degenerate_faces",
-          "order": 15,
+          "order": 14,
           "outcome": "pass",
           "outcome_word": "pass",
           "stale_reason": ""
@@ -1276,9 +1257,28 @@
           "basis": "established",
           "basis_word": "An existing tool gives the answer.",
           "current": true,
-          "detail": "0 of 1 part(s) are not volumes, limit 0 (total 12664 mm^3 enclosed)",
+          "detail": "0 of 1 part(s) are not volumes, limit 0 (total 13305 mm^3 enclosed)",
           "evidence": [],
           "id": "cad.is_volume",
+          "order": 15,
+          "outcome": "pass",
+          "outcome_word": "pass",
+          "stale_reason": ""
+        },
+        {
+          "basis": "model-only",
+          "basis_word": "A model wrote the logic. It has no outside source.",
+          "current": true,
+          "detail": "thinnest wall 1.331 mm on frame at (30.167, 27.138, 5.99) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
+          "evidence": [
+            {
+              "href": "assets/evidence/cad.wall_thickness/f9833f055e0285fd-080b4ac3/wall_thickness.json",
+              "missing": "",
+              "name": "wall_thickness.json",
+              "source": "<out>/cad-solid/wall_thickness.json"
+            }
+          ],
+          "id": "cad.wall_thickness",
           "order": 16,
           "outcome": "pass",
           "outcome_word": "pass",
@@ -1288,7 +1288,7 @@
           "basis": "model-only",
           "basis_word": "A model wrote the logic. It has no outside source.",
           "current": true,
-          "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 293442 faces",
+          "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 318256 faces",
           "evidence": [],
           "id": "cad.watertight",
           "order": 17,
@@ -1297,7 +1297,7 @@
           "stale_reason": ""
         }
       ],
-      "hint": "An evaluator or a test on a built part failed the current design.",
+      "hint": "Every evaluator showed that it can fail, and each one passed on the current design.",
       "id": "C7",
       "kind_word": "Automated",
       "limit_text": "",
@@ -1320,14 +1320,11 @@
       "resolves": [],
       "rests_on": [],
       "settle": {
-        "commands": [
-          "nopekit why C7",
-          "nopekit check --tier 1"
-        ],
-        "text": "Change the design until C7 passes. Then run the check again."
+        "commands": [],
+        "text": ""
       },
       "statement": "The exported frame mesh is a clean closed solid",
-      "token": "failing",
+      "token": "checked",
       "values": [
         {
           "binding": false,
@@ -1372,13 +1369,13 @@
           "gate": "cad.wall_thickness",
           "limit": 1.26,
           "limit_hi": null,
-          "margin": -0.72,
-          "measured": 0.3528,
+          "margin": 0.0564286,
+          "measured": 1.3311,
           "units": "mm",
-          "value_text": "0.3528 mm against a limit of 1.26 mm, 72% past the limit"
+          "value_text": "1.331 mm against a limit of 1.26 mm, 6% inside the limit"
         }
       ],
-      "word": "failing"
+      "word": "checked"
     },
     "C8": {
       "acceptance": "FC screw protrusion below plate <= 0.0 mm",
@@ -1751,8 +1748,8 @@
   "meta": {
     "content_digest": "a0cf57e0649a56551c5debcb6bd0134c4730709b624e0ac92d05fb31a5bdedd5",
     "name": "PETGasusDrone",
-    "records_digest": "a5f0d1fb63cc31a67d13cd73822b5d6f65aefc7bca3198efb9a0c039e81ef2af",
-    "resolution_digest": "dabb1c24e08e25d194c3f977be28e3634d156236241893b72575bb01f6cdce9d",
+    "records_digest": "4b40b11656dc96239510b29a9622b981df5aa0281103e7042f668ce6d467167a",
+    "resolution_digest": "d4c5c448dd241d0d7ec4ebb7cef0a51db3525f53c0e9df5cc1b13e97662d6e61",
     "revision": "v0.2",
     "summary": "Kid-friendly no-solder micro drone with a 3D-printed, topology-optimised frame (PETG, or nylon-CF for strength) and low prop guards, line-of-sight, < $150 electronics"
   },
@@ -1870,7 +1867,7 @@
         "missing": [],
         "next": false,
         "ready": false,
-        "sentence": "v0.2 is NOT ready for print-v1, as last evaluated. 4 of 11 required claims are unresolved: 2 failing (C6, C7); 2 gaps (A3, A4). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+        "sentence": "v0.2 is NOT ready for print-v1, as last evaluated. 3 of 11 required claims are unresolved: 1 failing (C6); 2 gaps (A3, A4). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
         "steps": [
           {
             "claim": "C6",
@@ -1883,20 +1880,6 @@
             "marks": [],
             "statement": "The frame prints on the Snapmaker U1 in one sitting, with supports where it needs them",
             "text": "Change the design until C6 passes. Then run the check again.",
-            "token": "failing",
-            "word": "failing"
-          },
-          {
-            "claim": "C7",
-            "commands": [
-              "nopekit why C7",
-              "nopekit check --tier 1"
-            ],
-            "errored": false,
-            "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
-            "marks": [],
-            "statement": "The exported frame mesh is a clean closed solid",
-            "text": "Change the design until C7 passes. Then run the check again.",
             "token": "failing",
             "word": "failing"
           },
@@ -1936,7 +1919,7 @@
         "missing": [],
         "next": false,
         "ready": false,
-        "sentence": "v0.2 is NOT ready for strong-print, as last evaluated. 6 of 13 required claims are unresolved: 2 failing (C6, C7); 4 gaps (A3, A4, C15, C16). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+        "sentence": "v0.2 is NOT ready for strong-print, as last evaluated. 5 of 13 required claims are unresolved: 1 failing (C6); 4 gaps (A3, A4, C15, C16). Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
         "steps": [
           {
             "claim": "C6",
@@ -1949,20 +1932,6 @@
             "marks": [],
             "statement": "The frame prints on the Snapmaker U1 in one sitting, with supports where it needs them",
             "text": "Change the design until C6 passes. Then run the check again.",
-            "token": "failing",
-            "word": "failing"
-          },
-          {
-            "claim": "C7",
-            "commands": [
-              "nopekit why C7",
-              "nopekit check --tier 1"
-            ],
-            "errored": false,
-            "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
-            "marks": [],
-            "statement": "The exported frame mesh is a clean closed solid",
-            "text": "Change the design until C7 passes. Then run the check again.",
             "token": "failing",
             "word": "failing"
           },
@@ -2262,15 +2231,15 @@
         {
           "errored": 0,
           "key": "checked",
-          "label": "1 checked",
-          "n": 1,
+          "label": "2 checked",
+          "n": 2,
           "status": "pass"
         },
         {
           "errored": 0,
           "key": "failing",
-          "label": "2 failing",
-          "n": 2,
+          "label": "1 failing",
+          "n": 1,
           "status": "fail"
         },
         {
@@ -2286,26 +2255,26 @@
       "word": "failing"
     }
   ],
-  "self": "4497786970800dab9164ebf1c7b7ad5efeb12c462903eb3d710e6d4a8902f2d5",
+  "self": "fde0c66ffb2ce9f9d306255c2af7369445c58984fb4c22d64d74434da7695683",
   "verdict": {
     "limits": "Checked does not mean true. Its evaluators have shown that they can fail. They have not shown that they are correct or sufficient. Nothing outside these 26 claims is evaluated.",
     "notice": "Some results are older than the design. Run nopekit check, then build the site again.",
     "ready": false,
-    "sentence": "v0.2 is NOT ready. 15 of 26 required claims are unresolved: 3 failing (C6, C7, C10); 6 gaps (A1, A3, A4, C4, +2 more); 6 pending build (P1, P2, P3, P4, +2 more). 11 of 26 claims are checked on the current design. Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
+    "sentence": "v0.2 is NOT ready. 14 of 26 required claims are unresolved: 2 failing (C6, C10); 6 gaps (A1, A3, A4, C4, +2 more); 6 pending build (P1, P2, P3, P4, +2 more). 12 of 26 claims are checked on the current design. Pending build: 6 claims need a test on a built part (P1, P2, P3, P4, +2 more). No claim is checked on any built part.",
     "stale": true,
     "tally": [
       {
         "errored": 0,
         "key": "checked",
-        "label": "11 checked",
-        "n": 11,
+        "label": "12 checked",
+        "n": 12,
         "status": "pass"
       },
       {
         "errored": 0,
         "key": "failing",
-        "label": "3 failing",
-        "n": 3,
+        "label": "2 failing",
+        "n": 2,
         "status": "fail"
       },
       {

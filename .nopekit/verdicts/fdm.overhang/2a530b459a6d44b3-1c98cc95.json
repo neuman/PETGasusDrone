@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "gate": "fdm.overhang",
+  "rho": "2a530b459a6d44b34dcbfd6e980af78c7f3943842361c71fd2350efb905e57f2",
+  "code": {
+    "digest": "f7410200741ccadee8c8c8743539a61e445f8556302689daf875366f0c1261a1",
+    "files": [
+      "<pack:fdm-print>/fdm_print_parts.py",
+      "<pack:fdm-print>/gates/fdm_print_fold.py",
+      "<pack:fdm-print>/gates/mesh.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "bbox_by_part_mm"
+        ],
+        "9ce57a452714ee2cfd3815bbd575eb0cd4dc17dba868a4ccf77213f8f2ecb32c"
+      ],
+      [
+        [
+          "bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "build_axis"
+        ],
+        "73ade9ae787ce01265d14871da344e0c3d8d59275f81bc5022686c7f3da32839",
+        "z"
+      ],
+      [
+        [
+          "fdm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bbox_mm_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bboxes_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.max_overhang_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.mesh_path_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.mesh_paths"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.overhang_area_allow_frac"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.overhang_limit_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.part_meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm-print.print_bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bbox_mm_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bboxes_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.bridge_ceiling_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.build_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.layer_normal"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.max_overhang_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.mesh_path_by_part"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.mesh_paths"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.overhang_area_allow_frac"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.overhang_limit_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.part_meshes"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.parts"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.print_axis"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "fdm.print_bbox_by_part_mm"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "max_overhang_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ],
+      [
+        [
+          "mesh_paths"
+        ],
+        "9eb0d1404fe6e565b942d5138d9eadad2a3dcd89b1a03b94f97d451997eebee8"
+      ],
+      [
+        [
+          "overhang_area_allow_frac"
+        ],
+        "adff0665d3c29afea4dc48796e292c25fb6692d6417b249a7546653c0e82a1e7",
+        0.35
+      ],
+      [
+        [
+          "overhang_limit_deg"
+        ],
+        "f90507c9e202c31d8d48c448437daae103814dd74a4ef526b3fc2d1d1b998fcb"
+      ]
+    ],
+    "files": {
+      "build/print": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/print/frame.ply": "7d1471f71444b724596b0a9a6d408ad518bc75daf9b35830451e81d018d549b3"
+    },
+    "dirs": {},
+    "ledger": {},
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {
+    "numpy": "2.4.6",
+    "trimesh": "5.1.0"
+  },
+  "verdict": {
+    "passed": true,
+    "measured": 0.13374,
+    "limit": 0.35,
+    "units": "area fraction",
+    "comparator": "<=",
+    "settles": "overhang angle",
+    "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 13.37% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 46314 faces, 2122.0 mm^2); 0 of 1 past the limit",
+    "evidence": [
+      "<out>/fdm-overhang-parts.txt"
+    ],
+    "locators": [],
+    "claims": [
+      "manufacturability",
+      "fdm",
+      "additive",
+      "printability"
+    ],
+    "tier": 1,
+    "pack": "fdm-print"
+  },
+  "digest": "bad6aad6fcda3f64586e5f6198568c0d6bbad1983b6b3a4168b714bc99ef6145"
+}

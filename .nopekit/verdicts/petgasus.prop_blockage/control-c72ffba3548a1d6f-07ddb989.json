@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.prop_blockage",
+  "rho": "c72ffba3548a1d6f863fa3139066d6e66df5a27477026b78c031d523ffdf5fa3",
+  "static": "368ce8e6b4573863c008fce27ff3b600cea2f5ed46d8ec74e859bca02eb5ce82",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "65d639e24b698d386574857676e1be6598118efbff9067732f642ea7bf03ccdc",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:fat_limbs",
+      "expect": "fail",
+      "note": "the known-good field drawn at density 0.15: every limb fattens, and those under the props fill the discs",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "0771104d49423de293dbc3fbbe64ad37db6a18c7a02c2ee3635da3985f9ad853",
+    "files": {
+      "model/petgasus.py": "7b1019234fe828f83e5a3d75a5045a70684bb6583e5a897273af6e8320f750db",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "motor_body_d"
+        ],
+        "708af044090e5dbe86cae60a00529396a4ad653c462a69c2dd736ce8cc9a9cd4",
+        14.0
+      ],
+      [
+        [
+          "prop_blockage_frac"
+        ],
+        "06d849b7f0c7b8c504e58069f5424553615c026b40115e71a418260dfb7d8e11",
+        0.193
+      ]
+    ],
+    "files": {
+      "build": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/4bbdc17eef18": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/8e0844ebf9ee/frame-fine.msh": "6401bab9276d366eaf9f94241ec412a53b1eb2cffee8d51fb9694b035ade7333",
+      "build/fea/8e0844ebf9ee/frame.msh": "8a674b315e9ae74015eafad160cab5c4610b5bff8f3ddc48aee1ea2d82b1c17f",
+      "build/frame_cache": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache/5972dc373f0b4f68.npz": "c7751882ec7869a15fb10371483139fb1e683b635d57c1c2d2b37389e6f4bb32",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C14": "c6eaaa2da844a4d9172c77ea72c1f2247fa445e6badfc5b058b07df366b57437",
+      "acceptance:C14": "41ca4802b0a7917335d2c3fc0bc9d49e52ca3c855d717099d0491e73489592a8"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/4bbdc17eef18/frame-fine.msh",
+      "self-modified:<root>/build/fea/4bbdc17eef18/frame.msh",
+      "self-modified:<root>/build/frame_cache/833f9dcec9d7b305.npz"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "motor_body_d"
+          ],
+          "708af044090e5dbe86cae60a00529396a4ad653c462a69c2dd736ce8cc9a9cd4",
+          14.0
+        ],
+        [
+          [
+            "prop_blockage_frac"
+          ],
+          "55e18cc70cc31f0850cad9ea9a1f734d829fb4b5302c4a12803c0cf1da9f697c",
+          0.1463
+        ]
+      ],
+      "files": {
+        "build/fea/8e0844ebf9ee/frame-fine.msh": "6401bab9276d366eaf9f94241ec412a53b1eb2cffee8d51fb9694b035ade7333",
+        "build/fea/8e0844ebf9ee/frame.msh": "8a674b315e9ae74015eafad160cab5c4610b5bff8f3ddc48aee1ea2d82b1c17f",
+        "build/frame_cache/5972dc373f0b4f68.npz": "c7751882ec7869a15fb10371483139fb1e683b635d57c1c2d2b37389e6f4bb32",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C14": "c6eaaa2da844a4d9172c77ea72c1f2247fa445e6badfc5b058b07df366b57437",
+        "acceptance:C14": "41ca4802b0a7917335d2c3fc0bc9d49e52ca3c855d717099d0491e73489592a8"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 0.1463,
+    "limit": 0.15,
+    "units": "ratio",
+    "detail": "14.6% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+    "goalpost": [
+      {
+        "key": "C14",
+        "measured": 0.1463,
+        "units": "ratio",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.015,
+            "outcome": "fail",
+            "measured": 0.1463,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 0.075,
+            "outcome": "fail",
+            "measured": 0.1463,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 0.3,
+            "outcome": "pass",
+            "measured": 0.1463,
+            "units": "ratio"
+          },
+          {
+            "end": "limit",
+            "limit": 1.5,
+            "outcome": "pass",
+            "measured": 0.1463,
+            "units": "ratio"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 38,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "prop_blockage_frac"
+        ],
+        "before": 0.1463,
+        "after": 0.173,
+        "outcome": "fail",
+        "measured": 0.173,
+        "limit": 0.15
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "motor_body_d"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:fat_limbs (the known-good field drawn at density 0.15: every limb fattens, and those under the props fill the discs): 19.3% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+  "measured": 0.193,
+  "limit": 0.15,
+  "units": "ratio",
+  "digest": "193b136f4580202b2e86fd6fa50e45b4ecc9ff689330c4baeebf5716498d692e"
+}

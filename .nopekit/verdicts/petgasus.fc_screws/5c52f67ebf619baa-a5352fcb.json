@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "gate": "petgasus.fc_screws",
+  "rho": "5c52f67ebf619baaa67e56de7d4c11a7915093e22f5dc5bce8cb4b3155c1afc4",
+  "code": {
+    "digest": "437f29aed2abe6ff46dceee04c5481be5a4210d4e4847ba72251a8c5c85a577c",
+    "files": [
+      "gates/flight.py"
+    ],
+    "fallback": ""
+  },
+  "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+  "reads": {
+    "params": [
+      [
+        [
+          "fc_grommet_h"
+        ],
+        "cfb4bed8cf899c7e75e334a3fbfe328a9b41c6928ed8c704fa5b4b3003a15731",
+        2.6
+      ],
+      [
+        [
+          "fc_screw_engagement_mm"
+        ],
+        "64a44eeaf36613062644ca56356efe5d934145ae467f87e48f187cf398def4a1",
+        3.4
+      ],
+      [
+        [
+          "fc_screw_protrusion_mm"
+        ],
+        "c9f2ed0d590d85fa05c7daf2ec335c93755360e8b6305fc28f3bdf589fabad59",
+        -3.4
+      ],
+      [
+        [
+          "fc_stack_mm"
+        ],
+        "d7d5894c18ba032115823b4a16ab4d5787b2f649055a3a34e3e30615b03c991a",
+        9.4
+      ]
+    ],
+    "files": {},
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C8": "f0bd9811cf2b2c03b5ce03b90c59875769073c19b685ca4b99ee715303537cd4",
+      "acceptance:C8": "b3c3f974e2d15bcd2db2a2ab0d0f5f3b20bbca7dcdfd308f30e0f9733d1be5c2"
+    },
+    "model": null,
+    "opaque": []
+  },
+  "instruments": {},
+  "verdict": {
+    "passed": true,
+    "measured": -3.4,
+    "limit": 0.0,
+    "units": "mm",
+    "comparator": "<=",
+    "settles": "FC screw protrusion below plate",
+    "detail": "3.4 mm engaged (>= 3.0 needed) under a 2.6 mm grommet, in 9.4 mm of post and grommet",
+    "evidence": [],
+    "locators": [],
+    "claims": [
+      "fc-screws"
+    ],
+    "tier": 0,
+    "pack": ""
+  },
+  "digest": "3f46de1b0ca8c5c6b5bd154c3451b7789e255580fe2344b7c6f803371279ac3f"
+}

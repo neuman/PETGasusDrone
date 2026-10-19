@@ -62,7 +62,7 @@
       "owner": "",
       "physical_result": null,
       "rationale": "A kid at the printer: one plate, an afternoon. REVISED 2026-10-17: supports are allowed (R7); the 3D frame is not drawn to the 45 degree rule, so the no-support overhang check no longer judges it. It prints flat, as it flies (print_tilt_deg 0), with tree supports. The frame must fit the 270 mm bed with its brim, every wall must be printable at the U1's 0.4 mm nozzle, and the whole job must fit the 3 h ceiling.",
-      "reason": "fdm.bridge_span : worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
+      "reason": "fdm.bridge_span : worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 1.8 mm unsupported vs no span is acceptable (UNANCHORED) on a 1 mm^2 ceiling at 5.0 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
       "requirements": [
         "R5",
         "R7"
@@ -81,7 +81,7 @@
       "unproven": [
         {
           "gate": "fdm.bridge_span",
-          "why": "fail: worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm"
+          "why": "fail: worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 1.8 mm unsupported vs no span is acceptable (UNANCHORED) on a 1 mm^2 ceiling at 5.0 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm"
         }
       ],
       "verdicts": [
@@ -92,88 +92,6 @@
         "fdm.layer_alignment",
         "fdm.print_time_est",
         "fdm.process_model_valid"
-      ],
-      "word": "failing"
-    },
-    {
-      "acceptance": {
-        "comparator": "<=",
-        "limit": null,
-        "limit_hi": null,
-        "quantity": "",
-        "units": ""
-      },
-      "acceptance_render": "",
-      "article": "",
-      "authority": "",
-      "board": "prints",
-      "cause": "failed",
-      "compared": [],
-      "contradicts": [],
-      "critical": true,
-      "disagree": false,
-      "errored": false,
-      "evidence": [
-        "<out>/cad-solid/wall_thickness.json"
-      ],
-      "expected_latency": {},
-      "fallback": "",
-      "gates": [
-        "cad.degenerate_faces",
-        "cad.is_volume",
-        "cad.wall_thickness",
-        "cad.watertight"
-      ],
-      "grounded_by": [],
-      "id": "C7",
-      "key": "failing",
-      "kind": "measurable",
-      "latency": {
-        "article": "",
-        "seconds": null,
-        "source": "none"
-      },
-      "limit_text": "",
-      "mechanism": {
-        "by": "closed_form",
-        "evaluators": [
-          "cad.watertight",
-          "cad.is_volume",
-          "cad.degenerate_faces"
-        ],
-        "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces"
-      },
-      "not_compared": [],
-      "note": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
-      "owner": "",
-      "physical_result": null,
-      "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
-      "reason": "cad.wall_thickness : thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
-      "requirements": [
-        "R5"
-      ],
-      "resolves": [],
-      "source": "",
-      "standing": "",
-      "statement": "The exported frame mesh is a clean closed solid",
-      "status": "fail",
-      "superseded": [],
-      "tags": [
-        "mesh"
-      ],
-      "terminal": "closed_form",
-      "terminal_word": "automated",
-      "unproven": [
-        {
-          "gate": "cad.wall_thickness",
-          "why": "fail: thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)"
-        }
-      ],
-      "verdicts": [
-        "cad.watertight",
-        "cad.is_volume",
-        "cad.degenerate_faces",
-        "cad.wall_thickness"
       ],
       "word": "failing"
     },
@@ -1281,6 +1199,83 @@
     {
       "acceptance": {
         "comparator": "<=",
+        "limit": null,
+        "limit_hi": null,
+        "quantity": "",
+        "units": ""
+      },
+      "acceptance_render": "",
+      "article": "",
+      "authority": "",
+      "board": "prints",
+      "cause": "checked",
+      "compared": [],
+      "contradicts": [],
+      "critical": true,
+      "disagree": false,
+      "errored": false,
+      "evidence": [
+        "<out>/cad-solid/wall_thickness.json"
+      ],
+      "expected_latency": {},
+      "fallback": "",
+      "gates": [
+        "cad.degenerate_faces",
+        "cad.is_volume",
+        "cad.wall_thickness",
+        "cad.watertight"
+      ],
+      "grounded_by": [],
+      "id": "C7",
+      "key": "checked",
+      "kind": "measurable",
+      "latency": {
+        "article": "",
+        "seconds": null,
+        "source": "none"
+      },
+      "limit_text": "",
+      "mechanism": {
+        "by": "closed_form",
+        "evaluators": [
+          "cad.watertight",
+          "cad.is_volume",
+          "cad.degenerate_faces"
+        ],
+        "how": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces"
+      },
+      "not_compared": [],
+      "note": "cad-solid pack: the exported mesh is watertight, a valid volume, with no degenerate faces",
+      "owner": "",
+      "physical_result": null,
+      "rationale": "A slicer guesses on a mesh with holes or doubled faces, and every mass and overhang number read off it is fiction.",
+      "reason": "—",
+      "requirements": [
+        "R5"
+      ],
+      "resolves": [],
+      "source": "",
+      "standing": "",
+      "statement": "The exported frame mesh is a clean closed solid",
+      "status": "pass",
+      "superseded": [],
+      "tags": [
+        "mesh"
+      ],
+      "terminal": "closed_form",
+      "terminal_word": "automated",
+      "unproven": [],
+      "verdicts": [
+        "cad.watertight",
+        "cad.is_volume",
+        "cad.degenerate_faces",
+        "cad.wall_thickness"
+      ],
+      "word": "checked"
+    },
+    {
+      "acceptance": {
+        "comparator": "<=",
         "limit": 0.0,
         "limit_hi": null,
         "quantity": "FC screw protrusion below plate",
@@ -1764,6 +1759,146 @@
     }
   ],
   "decisions": [
+    {
+      "body": "",
+      "claims_changed": [
+        "C7",
+        "C13",
+        "C14"
+      ],
+      "evidence": [],
+      "id": "thin-walls-thickened-before-the-drawing-is-opene",
+      "params_changed": [
+        "surface_open_mm"
+      ],
+      "rejected": [
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "open at 0.63-0.7 mm with nothing thickened first",
+          "why": "it deleted the rim's bridges and cut limbs off the rim, and still left walls of 0.05-0.47 mm where the exact features went back in"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "thicken after an opening at 0.3 mm",
+          "why": "the opening had punched pinholes through the 0.35 mm sheets, and their rims stayed 0.5-0.6 mm (C7)"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "grow freely over the props' discs",
+          "why": "the sheets under the guard arcs' ends spread into the discs: the shadow went from 14.8 % to 15.06 %, over C14's 15 %"
+        },
+        {
+          "evidence": "",
+          "returns_if": {
+            "text": "a run in the adopted order, with no reach limit, that leaves no fins"
+          },
+          "type": "unevaluated",
+          "value": "grow with no reach limit",
+          "why": "measured only when the thickening ran after a 0.3 mm opening: a ball grown against a keep-out's wall left a new thin edge for the next pass, and fins 0.57 mm thick climbed 3.5 mm up each motor's keep-out (45.5 mm^2 of walls under 1.26 mm, against 31 with a 1 mm reach)"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "a final opening of 0.6 mm",
+          "why": "2 x 0.6 = 1.2 mm is under 1.26: it left 1.3 mm^2 of walls at 1.14-1.25 mm where it rounded edges (C7), on a drawing whose sections under 1.46 mm were grown to 1.56"
+        },
+        {
+          "evidence": "",
+          "returns_if": {
+            "text": "a boolean that squares the corners without leaving skins"
+          },
+          "type": "unevaluated",
+          "value": "square the corner facets with mesh booleans after the level set",
+          "why": "booleans between the field's surface and exact solids left 0.01 mm skins and pinched vertices before (geometry.py's notes); the facets are the level set rounding sharp edges by under half an edge"
+        },
+        {
+          "evidence": "",
+          "returns_if": {
+            "text": "an optimiser run whose field has no grey top and bottom layers"
+          },
+          "type": "unevaluated",
+          "value": "solve the optimiser again so its top and bottom layers come out solid or empty",
+          "why": "about 45 minutes a run, and no change to the problem is yet known to make the grey layer come out solid or empty (topopt3d: known limitations, 5)"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "look for sections only under 1.55 mm (twice the opening plus a step)",
+          "why": "the opening keeps a section at every grid phase only from 1.75 mm: sections drawn 1.55-1.75 mm across were not grown and could be opened away (on test sheets 1.56-1.74 mm thick the opening left nothing)"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "thicken the exact features' own sections too",
+          "why": "with the fillet the guard bands are 1.75 mm across at their foot, under the 1.77 mm looked for: grown there, their balls reached 0.65 mm under the bands, and the guards' printed height went from 4.15 mm to 4.6, over C13's 4.5"
+        },
+        {
+          "evidence": "",
+          "type": "infeasible",
+          "value": "grow nothing under the guards (within 0-0.5 mm of their plan)",
+          "why": "the sheets under the guard arcs run into that zone: cut short there, they left walls of 0.26-0.69 mm (C7)"
+        }
+      ],
+      "summary": "The drawing grows every section thinner than its opening keeps at every grid phase (1.75 mm on its 0.25 mm grid) where it can, with balls 1.7 mm across, then opens at 0.65 mm (surface_open_mm: half of C7's 1.26 mm wall and a hair over), sparing the 1.4 mm hub (geometry._thicken, geometry._open). It leaves the exact features' own sections alone: drawn() puts them back at their size. Over the props' discs it grows outward only within the plan the frame already covers there, and up and down where a ball does not fit, so it adds nothing to the shadow (14.6 %; C14 allows 15 %); nowhere does it grow further than 1 mm from the body as first drawn. What it grows are the sheets the field's grey top cell layer draws, 0.35 mm where they join the front and back limbs to the rim, and those the props' keep-out leaves of the layer under it, 0.47-0.61 mm under the guard arcs. On cad.wall_thickness's own ray from every face, all but 32 of about 320,000 faces read at least 1.26 mm: 8 slanted facets at the bottom edge of each seat's centre hole read 0.99 mm (the seat is 1.3 mm between its holes), 8 at the bottom corners of the guard arcs' ends 1.05-1.07 mm (the arc is 1.4 mm), 12 under the guard arcs 1.12-1.23 mm, and 4 at the hub's bottom edge by the side posts 1.19 mm. The gate's 4000 evenly spaced faces read 1.33 mm and miss them; a rebuild that moves its sample has about one chance in three of landing on one. The guards read 4.15 mm tall, as before (C13). The PETG frame is 17.03 g against 16.87 g before. The opening also takes about 480 mm^3 of the body as first drawn, in some 5,900 skims and fringes of at most 20 mm^3 (the largest are the field's fillets along the side bands).",
+      "title": "Thin walls thickened before the drawing is opened",
+      "when": "2026-10-18T22:25:04Z"
+    },
+    {
+      "body": "",
+      "claims_changed": [
+        "C7"
+      ],
+      "evidence": [],
+      "id": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "params_changed": [
+        "guard_link_sides"
+      ],
+      "rejected": [
+        {
+          "by": "Eric Neuman",
+          "evidence": "",
+          "type": "preferred_against",
+          "value": "open the side bridges (surface_open_mm 0.35 or more, with nothing thickened first and no bands)",
+          "why": "the sides open between the guards, which then end in stubs; the author chose to keep the rim closed and thicken it (2026-10-18)"
+        },
+        {
+          "evidence": "",
+          "returns_if": {
+            "text": "CalculiX finds the thickened strand holds a side hit (C16) as well as the band"
+          },
+          "type": "unevaluated",
+          "value": "the optimiser's rim alone, thickened",
+          "why": "0.43 g lighter (16.60 g) and over C7's wall, but at the sides' middle the strand comes out about 1.5 x 2 mm (2.7 mm^2) between rims the field drew 4.2 mm tall; with the band the section is 6.4 mm^2"
+        },
+        {
+          "evidence": "",
+          "type": "dominated",
+          "value": "bands on all four sides",
+          "why": "0.43 g more plastic (17.46 g against 17.03 g in PETG) at the front and back, where the rim's thin parts were the sheets joining it to the limbs, mostly inside a band's line; the thickening grows those"
+        },
+        {
+          "evidence": "",
+          "type": "dominated",
+          "value": "a band 2 mm tall on the prop plane",
+          "why": "the strand runs at 12.8-14.0 mm, above the band's 11.6-13.6 mm: its top would stand out of the band as a fin, for the thickening to grow again"
+        },
+        {
+          "evidence": "",
+          "returns_if": {
+            "text": "the next optimiser run"
+          },
+          "type": "unevaluated",
+          "value": "the bands in the optimiser's problem",
+          "why": "its hash changes, so the field must be solved again (about 45 minutes), and C17 refuses the current field until then"
+        }
+      ],
+      "summary": "On the left and right sides the two guard arcs are joined by a straight band of the arcs' own section (1.4 mm wall, 4 mm tall) along their outer tangent (guard_link_sides); where a band leaves its arc, the slot between them is filled until it is 2 mm wide. There the optimiser's rim narrowed to a strand 0.66 mm wide and 1.13 mm tall, under C7's 1.26 mm wall. The band holds it whole: 6.4 mm^2 of section at the side's middle, where the drawing's thickening alone (decisions/thin-walls-thickened-before-the-drawing-is-opene.json) makes the strand about 1.5 x 2 mm, 2.7 mm^2. The PETG frame weighs 17.03 g, 0.43 g more than without the bands. At the front and back the thickening grows the rim's thin sheets instead. The bands are drawn, not part of the optimiser's problem.",
+      "title": "Guard arcs joined by straight bands on the left and right",
+      "when": "2026-10-18T18:53:58Z"
+    },
     {
       "body": "",
       "claims_changed": [
@@ -3451,12 +3586,12 @@
       "cad-solid",
       "sourcing"
     ],
-    "records_digest": "a5f0d1fb63cc31a67d13cd73822b5d6f65aefc7bca3198efb9a0c039e81ef2af",
-    "resolution_digest": "dabb1c24e08e25d194c3f977be28e3634d156236241893b72575bb01f6cdce9d",
+    "records_digest": "4b40b11656dc96239510b29a9622b981df5aa0281103e7042f668ce6d467167a",
+    "resolution_digest": "d4c5c448dd241d0d7ec4ebb7cef0a51db3525f53c0e9df5cc1b13e97662d6e61",
     "revision": "v0.2",
     "spine_version": "0.1.0",
     "stale": true,
-    "stale_reason": "petgasus.frame_mode: frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 475.3 (+2 more)",
+    "stale_reason": "petgasus.frame_mode: frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 479.8 (+2 more)",
     "summary": "Kid-friendly no-solder micro drone with a 3D-printed, topology-optimised frame (PETG, or nylon-CF for strength) and low prop guards, line-of-sight, < $150 electronics"
   },
   "outcome_words": {
@@ -4964,6 +5099,48 @@
       "value": 180.0
     },
     {
+      "changed_in": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "defended": true,
+      "derived": false,
+      "derived_from": [],
+      "gates": [],
+      "grounded_by": [],
+      "home": "model/petgasus.py Config.guard_link_sides",
+      "model_error": "",
+      "name": "guard_link_sides",
+      "rationale": "The sides of the frame (\"front\", \"back\", \"left\", \"right\") where the two neighbouring guard arcs are joined by a straight band of the arcs' own section (guard_wall x guard_h) along their outer tangent, drawn exact (geometry.guard_links). The optimiser drew a bridge on every side, but on the left and right its rim narrowed to a strand 0.66 mm wide and 1.13 mm tall, under cad.wall_thickness's 1.26 mm (C7). The band holds that strand whole and matches the rim either side of it, which the field drew 4.2 mm tall. The drawing's thickening (geometry._thicken) now grows that strand over the limit too, but to about 1.5 x 2 mm (2.7 mm^2 at the side's middle); with the band the section there is 6.4 mm^2 (the band alone is 1.4 x 4 mm), and the band adds 0.43 g in PETG (17.03 g against 16.60 g). Where the band leaves its arc, the slot between them is filled until it is 2 mm wide (geometry.LINK_SLOT_MM). At the front and back the rim's thin parts were the sheets that join it to the limbs, most of them inside a band's line, which the thickening grows instead. The bands are drawn, not part of the optimiser's problem: adding them there changes the problem's hash, so the field must be solved again (topopt3d: known limitations).",
+      "read_by": [],
+      "record": "",
+      "rejected": [
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "none: the optimiser's rim alone, thickened",
+          "why": "0.43 g lighter (16.60 g) and over the 1.26 mm wall (C7), but at the sides' middle the strand comes out about 1.5 x 2 mm (2.7 mm^2) between rims the field drew 4.2 mm tall; with the band the section is 6.4 mm^2. Whether the strand holds a side hit as well is unjudged (C16, tier 2)"
+        },
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "all four sides",
+          "why": "0.43 g more plastic (17.46 g against 17.03 g in PETG) at the front and back, where the rim's thin parts were the sheets joining it to the limbs, mostly inside a band's line; the drawing's thickening grows those"
+        },
+        {
+          "evidence": "",
+          "origin": "model/petgasus.py PARAMS",
+          "value": "a band 2 mm tall on the prop plane",
+          "why": "the field's strand runs at 12.8-14.0 mm, above a 2 mm band's 11.6-13.6: its top would stand out of the band as a fin, for the thickening to grow again"
+        }
+      ],
+      "source": "",
+      "sourced_from": [],
+      "tags": [],
+      "units": "",
+      "value": [
+        "left",
+        "right"
+      ]
+    },
+    {
       "changed_in": "",
       "defended": true,
       "derived": false,
@@ -5845,7 +6022,7 @@
       "value": 1e-05
     },
     {
-      "changed_in": "the-frame-is-drawn-from-a-3d-topology-field",
+      "changed_in": "thin-walls-thickened-before-the-drawing-is-opene",
       "defended": true,
       "derived": false,
       "derived_from": [],
@@ -5854,7 +6031,7 @@
       "home": "model/petgasus.py Config.surface_open_mm",
       "model_error": "",
       "name": "surface_open_mm",
-      "rationale": "mm, radius of the morphological opening of the drawn frame (geometry._open), after the keep-outs are cut and the exact features added: any part thinner than about twice this goes. Where the field met a keep-out at a grazing angle the cut left a feathered edge down to 0.01 mm, and where its ring ran past a guard arc's end, a 0.4 mm lip. 0.63 (half of cad.wall_thickness's 1.26 mm) lost: it also deleted the rim's four bridges between neighbouring guards, walls ~1.2 mm thick that the optimiser drew, and left the arcs ending in stubs (the author's 'nubs', 2026-10-17). 0.75 lost on a 2 mm field: it broke the frame apart.",
+      "rationale": "mm, radius of the morphological opening of the drawn frame (geometry._open): any part thinner than about twice this goes. Half of cad.wall_thickness's 1.26 mm (perimeters x extrusion_width_mm) and a hair over, so it leaves no section under that: change it with either. Every section it would take is first grown where it can (geometry._thicken), so it takes what could not grow: the feathered edges, down to 0.01 mm, where the field met a keep-out at a grazing angle, the lips a cut leaves, and sections cut on both faces (the hub, 1.4 mm between two cuts, is spared). 0.3, opening before any thickening, left the rim's 0.35 mm sheets (C7). 0.63 lost when nothing was thickened first: it also deleted the rim's four bridges between neighbouring guards that the optimiser drew, and left the arcs ending in stubs (the author's 'nubs', 2026-10-17). 0.75 lost on a 2 mm field: it broke the frame apart.",
       "read_by": [],
       "record": "",
       "rejected": [],
@@ -5862,7 +6039,7 @@
       "sourced_from": [],
       "tags": [],
       "units": "",
-      "value": 0.3
+      "value": 0.65
     },
     {
       "changed_in": "",
@@ -5894,7 +6071,7 @@
       "home": "model/petgasus.py Config.surface_clearance_mm",
       "model_error": "",
       "name": "surface_clearance_mm",
-      "rationale": "mm the drawn field stands off every keep-out: the level set interpolates the cut linearly and the simplification moves faces, each by hundredths of a millimetre, and the fit check counts any overlap past 1e-4 mm^3 (C5).",
+      "rationale": "mm the drawn field stands off every keep-out: the level set interpolates the cut linearly and the simplification moves faces, each by hundredths of a millimetre, and the fit check counts any overlap past 1e-4 mm^3 (C5). Not on the hub's two faces: there the battery's and the strap's keep-outs end this far below z = 0 and the board's start this far above hub_t, so the hub is hub_t thick (geometry._keepout_sdf); a plane's level set is exact, so the fit check finds no overlap on them.",
       "read_by": [],
       "record": "",
       "rejected": [],
@@ -6410,15 +6587,14 @@
       "A4",
       "C4",
       "C6",
-      "C7",
       "C10",
       "C15",
       "C16"
     ],
     "by_key": {
       "assumed": 0,
-      "checked": 11,
-      "failing": 3,
+      "checked": 12,
+      "failing": 2,
       "gap": 6,
       "open": 0,
       "pending_build": 6,
@@ -6428,8 +6604,8 @@
     "counts": {
       "asserted": 0,
       "blocked": 0,
-      "fail": 3,
-      "pass": 11,
+      "fail": 2,
+      "pass": 12,
       "pending": 0,
       "refuted": 0,
       "stale": 0,
@@ -6499,7 +6675,6 @@
         ],
         "unresolved": [
           "C6",
-          "C7",
           "A3",
           "A4"
         ]
@@ -6526,7 +6701,6 @@
         ],
         "unresolved": [
           "C6",
-          "C7",
           "A3",
           "A4",
           "C15",
@@ -6543,15 +6717,15 @@
       {
         "errored": 0,
         "key": "checked",
-        "label": "11 checked",
-        "n": 11,
+        "label": "12 checked",
+        "n": 12,
         "status": "pass"
       },
       {
         "errored": 0,
         "key": "failing",
-        "label": "3 failing",
-        "n": 3,
+        "label": "2 failing",
+        "n": 2,
         "status": "fail"
       },
       {
@@ -6575,7 +6749,6 @@
       "A4",
       "C4",
       "C6",
-      "C7",
       "C10",
       "C15",
       "C16",
@@ -6586,10 +6759,310 @@
       "P5",
       "P6"
     ],
-    "verdict": "v0.2 is NOT ready: 15 of 26 required claims are unresolved — 3 failing (C6, C7, C10); 6 gaps (A1, A3, A4, C4, +2 more); 6 pending build (P1, P2, P3, P4, +2 more). 11 of 26 claims are checked against the current inputs. Pending build: 6 claims need an article (P1, P2, P3, P4, +2 more). No claim is checked on any article."
+    "verdict": "v0.2 is NOT ready: 14 of 26 required claims are unresolved — 2 failing (C6, C10); 6 gaps (A1, A3, A4, C4, +2 more); 6 pending build (P1, P2, P3, P4, +2 more). 12 of 26 claims are checked against the current inputs. Pending build: 6 claims need an article (P1, P2, P3, P4, +2 more). No claim is checked on any article."
   },
   "rebuild": [],
   "rejections": [
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 0,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "open at 0.63-0.7 mm with nothing thickened first"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 1,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "thicken after an opening at 0.3 mm"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 2,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "grow freely over the props' discs"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 3,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "not-machine-checkable",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": {
+        "text": "a run in the adopted order, with no reach limit, that leaves no fins"
+      },
+      "type": "unevaluated",
+      "value": "grow with no reach limit"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 4,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "a final opening of 0.6 mm"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 5,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "not-machine-checkable",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": {
+        "text": "a boolean that squares the corners without leaving skins"
+      },
+      "type": "unevaluated",
+      "value": "square the corner facets with mesh booleans after the level set"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 6,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "not-machine-checkable",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": {
+        "text": "an optimiser run whose field has no grey top and bottom layers"
+      },
+      "type": "unevaluated",
+      "value": "solve the optimiser again so its top and bottom layers come out solid or empty"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 7,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "look for sections only under 1.55 mm (twice the opening plus a step)"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 8,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "thicken the exact features' own sections too"
+    },
+    {
+      "by": null,
+      "decision": "thin-walls-thickened-before-the-drawing-is-opene",
+      "index": 9,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "infeasible",
+      "value": "grow nothing under the guards (within 0-0.5 mm of their plan)"
+    },
+    {
+      "by": "Eric Neuman",
+      "decision": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "index": 0,
+      "input": null,
+      "preference": {
+        "name": "Eric Neuman",
+        "state": "not-recorded",
+        "when": "",
+        "who": ""
+      },
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "preferred_against",
+      "value": "open the side bridges (surface_open_mm 0.35 or more, with nothing thickened first and no bands)"
+    },
+    {
+      "by": null,
+      "decision": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "index": 1,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "not-machine-checkable",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": {
+        "text": "CalculiX finds the thickened strand holds a side hit (C16) as well as the band"
+      },
+      "type": "unevaluated",
+      "value": "the optimiser's rim alone, thickened"
+    },
+    {
+      "by": null,
+      "decision": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "index": 2,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "dominated",
+      "value": "bands on all four sides"
+    },
+    {
+      "by": null,
+      "decision": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "index": 3,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "none",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": null,
+      "type": "dominated",
+      "value": "a band 2 mm tall on the prop plane"
+    },
+    {
+      "by": null,
+      "decision": "guard-arcs-joined-by-straight-bands-on-the-left",
+      "index": 4,
+      "input": null,
+      "preference": null,
+      "returns": {
+        "claim": "",
+        "detail": "",
+        "gate": "",
+        "observed": null,
+        "state": "not-machine-checkable",
+        "status": "",
+        "why": ""
+      },
+      "returns_if": {
+        "text": "the next optimiser run"
+      },
+      "type": "unevaluated",
+      "value": "the bands in the optimiser's problem"
+    },
     {
       "by": null,
       "decision": "petg-for-everyday-prints-pa6-cf-for-strong-ones",
@@ -7563,8 +8036,7 @@
       "status": "fail",
       "word": "failing",
       "worst": [
-        "C6",
-        "C7"
+        "C6"
       ]
     },
     {
@@ -7692,27 +8164,27 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 14.69% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 48967 faces, 2233.1 mm^2); 0 of 1 past the limit",
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 16.54% of surface past the 45 deg limit vs 35.00% allowed (worst face 80.0 deg, 57812 faces, 2597.6 mm^2); 0 of 1 past the limit",
       "duration_s": 0.0,
       "error": "",
       "evidence": [
         "<out>/fdm-overhang-parts.txt"
       ],
       "evidence_assets": [
-        "assets/evidence/fdm.overhang/f608a9848c3a5e6f-102d806f/fdm-overhang-parts.txt"
+        "assets/evidence/fdm.overhang/8e6d452761a3d92f-d15ad057/fdm-overhang-parts.txt"
       ],
       "fresh": true,
       "gate": "fdm.overhang",
       "limit": 0.35,
       "locators": [],
-      "margin": 0.580257,
+      "margin": 0.527514,
       "margin_why": "",
-      "measured": 0.14691,
+      "measured": 0.16537,
       "ok": true,
       "order": 21,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "f608a9848c3a5e6fd438bb030fd6efff34eb56edc52ccf6fc045582b09b172d4",
+      "rho": "8e6d452761a3d92fcfa44d34e0f09edd6dc09e62e57d33a220cf25f20f848825",
       "settles": "overhang angle",
       "skip_reason": "",
       "skipped": false,
@@ -7736,7 +8208,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 0.7 mm unsupported vs no span is acceptable (UNANCHORED) on a 0 mm^2 ceiling at 2.8 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
+      "detail": "worst of 1 in `mesh_paths + bbox_by_part_mm`: frame at 1.8 mm unsupported vs no span is acceptable (UNANCHORED) on a 1 mm^2 ceiling at 5.0 mm; 1 of 1 past the limit (frame); bridges judged at 30 mm, cantilevers at 2 mm",
       "duration_s": 0.0,
       "error": "",
       "evidence": [
@@ -7744,8 +8216,8 @@
         "<out>/fdm-bridge-span/frame.txt"
       ],
       "evidence_assets": [
-        "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/fdm-bridge-span-parts.txt",
-        "assets/evidence/fdm.bridge_span/4b48a48842efc269-3acae70c/frame.txt"
+        "assets/evidence/fdm.bridge_span/338b0a1ebd984d8c-2cf402ec/fdm-bridge-span-parts.txt",
+        "assets/evidence/fdm.bridge_span/338b0a1ebd984d8c-2cf402ec/frame.txt"
       ],
       "fresh": true,
       "gate": "fdm.bridge_span",
@@ -7753,22 +8225,22 @@
       "locators": [
         {
           "kind": "part",
-          "label": "0.7 mm unsupported span vs 0 mm (UNANCHORED)",
+          "label": "1.8 mm unsupported span vs 0 mm (UNANCHORED)",
           "position": null,
           "severity": "",
           "target": "frame__0",
-          "value": 0.71,
+          "value": 1.77,
           "view": "print_part"
         }
       ],
       "margin": null,
       "margin_why": "zero-limit",
-      "measured": 0.71,
+      "measured": 1.77,
       "ok": false,
-      "order": 2,
+      "order": 1,
       "pack": "fdm-print",
       "passed": false,
-      "rho": "4b48a48842efc269b05275ef0300775302c38fc17e37d02f8d792fa5abef5ba1",
+      "rho": "338b0a1ebd984d8cebf5de933296f5e0235d28c5fa1e93578c36c39a0c1c4746",
       "settles": "bridge span",
       "skip_reason": "",
       "skipped": false,
@@ -7801,20 +8273,20 @@
         "<out>/fdm-bed-fit-parts.txt"
       ],
       "evidence_assets": [
-        "assets/evidence/fdm.bed_fit/0752ef02c200adcb-b5c71de2/fdm-bed-fit-parts.txt"
+        "assets/evidence/fdm.bed_fit/7ed7e5993d19dd14-5c858310/fdm-bed-fit-parts.txt"
       ],
       "fresh": true,
       "gate": "fdm.bed_fit",
       "limit": 1.0,
       "locators": [],
-      "margin": 0.571,
+      "margin": 0.57,
       "margin_why": "",
-      "measured": 0.429,
+      "measured": 0.43,
       "ok": true,
       "order": 18,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "0752ef02c200adcb3ed426d9ca8cb6bb6efdab3910e7ee388e9f64d251de7469",
+      "rho": "7ed7e5993d19dd14730e47efecaab21bf2a21d531bab6422873516506026dd7c",
       "settles": "bed fit",
       "skip_reason": "",
       "skipped": false,
@@ -7920,7 +8392,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "ESTIMATE ~1.5 h of 3 h, ~16 g of 1000 g (12.7 cm^3 at 100% infill, 3x0.42 mm shell on 15200 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.50 of its ceiling. Not a slice.",
+      "detail": "ESTIMATE ~1.6 h of 3 h, ~16 g of 1000 g (13.3 cm^3 at 100% infill, 3x0.42 mm shell on 15708 mm^2) — 0.20 mm layers at 60 mm/s x 0.55 duty; time is the binding one at 0.52 of its ceiling. Not a slice.",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -7929,14 +8401,14 @@
       "gate": "fdm.print_time_est",
       "limit": 1.0,
       "locators": [],
-      "margin": 0.501,
+      "margin": 0.477,
       "margin_why": "",
-      "measured": 0.499,
+      "measured": 0.523,
       "ok": true,
       "order": 22,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "ed23239a282b091e218a5ec2e3b05a5308be3ca0d83b70625e04666b62d96c99",
+      "rho": "a683c6bb579851d12e3980c43568da5f7c77d6f7e59c0b33bfe618d6f639fe81",
       "settles": "print time",
       "skip_reason": "",
       "skipped": false,
@@ -7978,7 +8450,7 @@
       "order": 23,
       "pack": "fdm-print",
       "passed": true,
-      "rho": "72dff835bff611492df35a72857c6791fba833b51913077771a7f524fc2d0fe5",
+      "rho": "947a26d4a338c1c462b88792cff2b6bc42b7469918a11d3df5b0745b9f5a2d54",
       "settles": "process model validity",
       "skip_reason": "",
       "skipped": false,
@@ -8004,7 +8476,7 @@
       "comparator": "",
       "cpu_s": 0.0,
       "detail": "",
-      "duration_s": 0.001924,
+      "duration_s": 0.00196,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8016,7 +8488,7 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 8,
+      "order": 7,
       "pack": "cad-solid",
       "passed": false,
       "rho": "0cb78a4626d43d5b5a102bf20edf0456f9c97704e441e6db9092d65b36fdc769",
@@ -8044,7 +8516,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 293442 faces",
+      "detail": "0 bad edge(s) across 1 part(s), limit 0 — worst frame: 0 open, 0 non-manifold of 318256 faces",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8060,7 +8532,7 @@
       "order": 17,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "080840af9c5bb3384bf6a6c6dc90c7412a4ab27a140f73e3d9fdacc38800fcda",
+      "rho": "066963ee28e957ed22926c4bb9e1aebe6fba29d71b79bd1eb593cf33355e608f",
       "settles": "mesh watertightness",
       "skip_reason": "",
       "skipped": false,
@@ -8084,7 +8556,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "0 of 1 part(s) are not volumes, limit 0 (total 12664 mm^3 enclosed)",
+      "detail": "0 of 1 part(s) are not volumes, limit 0 (total 13305 mm^3 enclosed)",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8097,10 +8569,10 @@
       "margin_why": "zero-limit",
       "measured": 0.0,
       "ok": true,
-      "order": 16,
+      "order": 15,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "53d76175725bf3d41727108cfe9232386003fdaa5ec61c9cb9fabe988156fc43",
+      "rho": "c24336d9751b4f6b734894aee9dd70307f38e1935cffbafe3da3c9d8f0f304fc",
       "settles": "solid validity",
       "skip_reason": "",
       "skipped": false,
@@ -8137,10 +8609,10 @@
       "margin_why": "zero-limit",
       "measured": 0.0,
       "ok": true,
-      "order": 15,
+      "order": 14,
       "pack": "cad-solid",
       "passed": true,
-      "rho": "bcf50f080f25dbbc78e4320aa6f99a807949a64e0e04e1d4a49da960a3488a03",
+      "rho": "70720b5f45c5c8a49c2d101fc8ba369bc65f325a18c43e458f7089f81f9dc781",
       "settles": "degenerate faces",
       "skip_reason": "",
       "skipped": false,
@@ -8165,52 +8637,36 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "thinnest wall 0.353 mm on frame at (-0.544, 54.806, 18.369) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
+      "detail": "thinnest wall 1.331 mm on frame at (30.167, 27.138, 5.99) vs 1.260 mm minimum [cad.process_min_wall_mm] (4000/4000 inward face-normal rays hit; sampler, not a proof)",
       "duration_s": 0.0,
       "error": "",
       "evidence": [
         "<out>/cad-solid/wall_thickness.json"
       ],
       "evidence_assets": [
-        "assets/evidence/cad.wall_thickness/8bcdcb526cd9b0d2-7e4956fd/wall_thickness.json"
+        "assets/evidence/cad.wall_thickness/f9833f055e0285fd-080b4ac3/wall_thickness.json"
       ],
       "fresh": true,
       "gate": "cad.wall_thickness",
       "limit": 1.26,
-      "locators": [
-        {
-          "kind": "point",
-          "label": "0.353 mm wall vs 1.260 mm minimum (4000 rays sampled)",
-          "position": [
-            -0.544,
-            54.806,
-            18.369
-          ],
-          "severity": "",
-          "target": "frame",
-          "value": 0.3528,
-          "view": "assembly"
-        }
-      ],
-      "margin": -0.72,
+      "locators": [],
+      "margin": 0.0564286,
       "margin_why": "",
-      "measured": 0.3528,
-      "ok": false,
-      "order": 1,
+      "measured": 1.3311,
+      "ok": true,
+      "order": 16,
       "pack": "cad-solid",
-      "passed": false,
-      "rho": "8bcdcb526cd9b0d27bd7e4a08fe117e85ba4e956779aeb9cc27ec1097fc85648",
+      "passed": true,
+      "rho": "f9833f055e0285fdb18d4e992d033f6f6952e01d26ae524f76be3359437c2cdf",
       "settles": "minimum wall thickness",
       "skip_reason": "",
       "skipped": false,
       "stale_reason": "",
-      "status": "fail",
+      "status": "pass",
       "tier": 1,
       "units": "mm",
       "unqualified": "",
-      "views": [
-        "assembly"
-      ]
+      "views": []
     },
     {
       "basis": "model-only",
@@ -8226,9 +8682,9 @@
         "cad"
       ],
       "comparator": "",
-      "cpu_s": 0.03,
+      "cpu_s": 0.04,
       "detail": "",
-      "duration_s": 0.030334,
+      "duration_s": 0.038715,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8240,10 +8696,10 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 9,
+      "order": 8,
       "pack": "cad-solid",
       "passed": false,
-      "rho": "da5bba97fe8675a067cc289fa99db2b8ef9106397354a8830c47415ebd4318db",
+      "rho": "57e2305ac01ce03d141498721c2b8a503e3d59455cb20f9dd90a390cbc0d3c59",
       "settles": "part interference",
       "skip_reason": "only 1 part(s) in the projection — interference needs at least two placed solids; a single-part check would pass vacuously",
       "skipped": true,
@@ -8270,9 +8726,9 @@
         "cad"
       ],
       "comparator": "",
-      "cpu_s": 0.03,
+      "cpu_s": 0.05,
       "detail": "",
-      "duration_s": 0.031706,
+      "duration_s": 0.041366,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8284,10 +8740,10 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 7,
+      "order": 6,
       "pack": "cad-solid",
       "passed": false,
-      "rho": "a4574a51749ccb75397c70a3d8165e6da821378c52410f63f39be34a12181009",
+      "rho": "72d33d5034cc600952f26741f71b1695c73c5dffaaa829d2ec994802ebb435ba",
       "settles": "assembly connectivity",
       "skip_reason": "the assembly has 1 part(s); connectivity is a relation between parts and there is nothing to measure below two of them. Export every placed solid into the projection's mesh map, not just the one be...",
       "skipped": true,
@@ -8331,7 +8787,7 @@
       "margin_why": "zero-limit",
       "measured": 0.0,
       "ok": true,
-      "order": 11,
+      "order": 10,
       "pack": "sourcing",
       "passed": true,
       "rho": "03ab1598361a4c7200f4f3dd39df51159cf651ea60cf445ecf47b4177e73fb53",
@@ -8420,7 +8876,7 @@
       "margin_why": "",
       "measured": 2.0,
       "ok": true,
-      "order": 10,
+      "order": 9,
       "pack": "sourcing",
       "passed": true,
       "rho": "409914252f768337e9a6f8c6a8dd0f497ab7bdd8ba6c6caf49676807423c7aa4",
@@ -8464,7 +8920,7 @@
       "margin_why": "",
       "measured": 0.0,
       "ok": true,
-      "order": 13,
+      "order": 12,
       "pack": "sourcing",
       "passed": true,
       "rho": "62b0598d71c1168c41a8c4fbca61b1b8311e935504998fe5fea345bd1f1d3c36",
@@ -8490,9 +8946,9 @@
         "dfm"
       ],
       "comparator": "",
-      "cpu_s": 0.01,
+      "cpu_s": 0.0,
       "detail": "",
-      "duration_s": 0.0016,
+      "duration_s": 0.001755,
       "error": "",
       "evidence": [],
       "evidence_assets": [],
@@ -8504,7 +8960,7 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 6,
+      "order": 5,
       "pack": "sourcing",
       "passed": false,
       "rho": "51ee9499840175c36bd25f2cfbaa27266cc2c9b22aa1495534391e4370d801f6",
@@ -8549,7 +9005,7 @@
       "margin_why": "",
       "measured": 0.0,
       "ok": true,
-      "order": 14,
+      "order": 13,
       "pack": "sourcing",
       "passed": true,
       "rho": "4d3f1e49504ec309a1139b8ff8d9988aa6dbe626e31d089f91979246f79e4b89",
@@ -8593,7 +9049,7 @@
       "margin_why": "zero-limit",
       "measured": 0.0,
       "ok": true,
-      "order": 12,
+      "order": 11,
       "pack": "sourcing",
       "passed": true,
       "rho": "6fcd78685999ae72be4ce01e02e3b2d6365d56e7db1569348026584c18c4d5c4",
@@ -8617,7 +9073,7 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "245 g thrust / 43.3 g AUW; hover at 18% of full thrust",
+      "detail": "245 g thrust / 44.1 g AUW; hover at 18% of full thrust",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8626,14 +9082,14 @@
       "gate": "petgasus.thrust_to_weight",
       "limit": 3.0,
       "locators": [],
-      "margin": 0.887667,
+      "margin": 0.852333,
       "margin_why": "",
-      "measured": 5.663,
+      "measured": 5.557,
       "ok": true,
       "order": 34,
       "pack": "",
       "passed": true,
-      "rho": "e1fc6979d0ff4c6587a1a59e530cb45f64b135551c87b47089062bdcef19137b",
+      "rho": "cd01d9a26ef3abd0d2c649e3f2dd86892f354ec1a0ad38d9ecc4ec712f207607",
       "settles": "thrust to weight",
       "skip_reason": "",
       "skipped": false,
@@ -8654,7 +9110,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "frame 16.2 g printed PETG + bought parts",
+      "detail": "frame 17.0 g printed PETG + bought parts",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8663,14 +9119,14 @@
       "gate": "petgasus.auw",
       "limit": 250.0,
       "locators": [],
-      "margin": 0.82684,
+      "margin": 0.82356,
       "margin_why": "",
-      "measured": 43.29,
+      "measured": 44.11,
       "ok": true,
       "order": 24,
       "pack": "",
       "passed": true,
-      "rho": "0658b2fb2b088a3f70b98e841b45f3101087e68e9ad901d433bb283f968c591e",
+      "rho": "f8693163110969b7a7037a9aaea649675f676cedbfe5f01efd2c64871f5820ac",
       "settles": "all-up weight",
       "skip_reason": "",
       "skipped": false,
@@ -8691,7 +9147,7 @@
       ],
       "comparator": ">=",
       "cpu_s": 0.0,
-      "detail": "15.8 W hover at 2.97 g/W (the motor's load table at hover thrust) from the pack's usable energy",
+      "detail": "16.1 W hover at 2.96 g/W (the motor's load table at hover thrust) from the pack's usable energy",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8700,14 +9156,14 @@
       "gate": "petgasus.flight_time",
       "limit": 3.0,
       "locators": [],
-      "margin": 0.233333,
+      "margin": 0.206667,
       "margin_why": "",
-      "measured": 3.7,
+      "measured": 3.62,
       "ok": true,
       "order": 26,
       "pack": "",
       "passed": true,
-      "rho": "31a1a161faf0121edaab878dd1f2c8d7892115382f88757113557e37cc66b544",
+      "rho": "bb8f6ac812d46a7b5653150b7fcd32ae1eae575c4390c90451af8d85fc2e6269",
       "settles": "hover flight time",
       "skip_reason": "",
       "skipped": false,
@@ -8744,7 +9200,7 @@
       "order": 29,
       "pack": "",
       "passed": true,
-      "rho": "a34d1d959e03b08c5f66c0f401c7cfb0ab55f7ed8c94baca496df46083326132",
+      "rho": "35898011812eba2bab2e0fc08184a07c5727a9090e480d5b9543ef79e6884dc1",
       "settles": "interference volume",
       "skip_reason": "",
       "skipped": false,
@@ -8781,7 +9237,7 @@
       "order": 25,
       "pack": "",
       "passed": true,
-      "rho": "118ccb865b5833ec3288c409e0353e7a3591c4af27ded3e88f6205495aabe726",
+      "rho": "5c52f67ebf619baaa67e56de7d4c11a7915093e22f5dc5bce8cb4b3155c1afc4",
       "settles": "FC screw protrusion below plate",
       "skip_reason": "",
       "skipped": false,
@@ -8818,7 +9274,7 @@
       "order": 31,
       "pack": "",
       "passed": true,
-      "rho": "1372e9a044620a5d3dc1381750213d94f277f1aa8328bd6eca0c8ede42c2f9a9",
+      "rho": "d90ec92f00d95b820e2489bbec88f73e8aebd61ca6cbfa5501636b58facc71f6",
       "settles": "motor screw engagement",
       "skip_reason": "",
       "skipped": false,
@@ -8855,7 +9311,7 @@
       "order": 32,
       "pack": "",
       "passed": true,
-      "rho": "e5a6e56d21787340748a4fd3c8adcba9a292edacce401d01aa0f2eb157ff9a3e",
+      "rho": "4dc0f34068b742ff972e217bcf18f2d84438ec4be2f53a9b001b8359c222b5f6",
       "settles": "frame pieces",
       "skip_reason": "",
       "skipped": false,
@@ -8892,7 +9348,7 @@
       "order": 30,
       "pack": "",
       "passed": true,
-      "rho": "5e791aa938a42b06c288a4a63f5dbd59c5b739b07c6f4aeed6d7e371ab0caa31",
+      "rho": "95f6787080e2ff53ac595ac2fdc94c68a4150b4c2fe377d27e0709b927042dfb",
       "settles": "motor lead spare",
       "skip_reason": "",
       "skipped": false,
@@ -8913,7 +9369,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "median 4.25 mm, tallest 4.90 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
+      "detail": "median 4.15 mm, tallest 5.05 mm where a limb joins from below; drawn 10.6 to 14.6 mm, 1.4 mm wall, round a 45 mm prop at 12.6 mm; the frame's top at 14.60 mm",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8922,14 +9378,14 @@
       "gate": "petgasus.guard_height",
       "limit": 4.5,
       "locators": [],
-      "margin": 0.0555556,
+      "margin": 0.0777778,
       "margin_why": "",
-      "measured": 4.25,
+      "measured": 4.15,
       "ok": true,
       "order": 28,
       "pack": "",
       "passed": true,
-      "rho": "4b550a39539b8c026cc0d709a0b4592a92074fa9480e4e2b21acb6fcc8405556",
+      "rho": "75787977557bcfe7be656081d6e2dcb980b69dd58deba35613fa670d3ae3ebc1",
       "settles": "guard height",
       "skip_reason": "",
       "skipped": false,
@@ -8950,7 +9406,7 @@
       ],
       "comparator": "<=",
       "cpu_s": 0.0,
-      "detail": "14.8% of the worst disc covered (annulus outside the motor's 14 mm bell)",
+      "detail": "14.6% of the worst disc covered (annulus outside the motor's 14 mm bell)",
       "duration_s": 0.0,
       "error": "",
       "evidence": [],
@@ -8959,14 +9415,14 @@
       "gate": "petgasus.prop_blockage",
       "limit": 0.15,
       "locators": [],
-      "margin": 0.0126667,
+      "margin": 0.024,
       "margin_why": "",
-      "measured": 0.1481,
+      "measured": 0.1464,
       "ok": true,
       "order": 33,
       "pack": "",
       "passed": true,
-      "rho": "5db33ea234d4d7ed01f641da96a39052176f7faa4d9a16c3058545080089f4d5",
+      "rho": "8d998e34c321b63ce253c5a8c31b57138a59527b8e2f400a806d6caf772bea22",
       "settles": "prop disc blockage",
       "skip_reason": "",
       "skipped": false,
@@ -9003,7 +9459,7 @@
       "order": 35,
       "pack": "",
       "passed": true,
-      "rho": "6911dc850db28fe2166a6d3dd9f66930a63e50e55707fb3aa47ca440246d96d0",
+      "rho": "0d2794b1441af4655e1d8c2660aa093e9d6381f41574cce6c4e26889d4f05e84",
       "settles": "topology proposal current",
       "skip_reason": "",
       "skipped": false,
@@ -9039,7 +9495,7 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 5,
+      "order": 4,
       "pack": "",
       "passed": false,
       "qualification": {
@@ -9089,7 +9545,7 @@
       "settles": "first frame mode",
       "skip_reason": "",
       "skipped": false,
-      "stale_reason": "frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 475.3 (+2 more)",
+      "stale_reason": "frame_mode1_hz 282.0 -> absent, frame_modes_hz changed, motor_freq_hover_hz 611.9 -> 479.8 (+2 more)",
       "status": "pass",
       "tier": 0,
       "units": "Hz",
@@ -9119,7 +9575,7 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 3,
+      "order": 2,
       "pack": "",
       "passed": false,
       "qualification": {
@@ -9162,7 +9618,7 @@
       "margin_why": "no-verdict",
       "measured": null,
       "ok": false,
-      "order": 4,
+      "order": 3,
       "pack": "",
       "passed": false,
       "qualification": {
@@ -9196,9 +9652,9 @@
       "meta": {
         "explode": {
           "axes": {
-            "height": 0,
+            "height": 1,
             "thick": 2,
-            "width": 1
+            "width": 0
           },
           "center": [
             0.0,
@@ -9206,8 +9662,8 @@
             3.95
           ],
           "extent": [
-            111.5995,
-            111.6107,
+            111.6739,
+            111.63,
             22.9
           ],
           "movers": {
@@ -9760,19 +10216,19 @@
         ],
         "explode": {
           "axes": {
-            "height": 0,
+            "height": 1,
             "thick": 2,
-            "width": 1
+            "width": 0
           },
           "center": [
             0.0,
             0.0,
-            10.0459
+            10.0451
           ],
           "extent": [
-            111.5995,
-            111.6107,
-            20.0919
+            111.6739,
+            111.63,
+            20.0902
           ],
           "movers": {
             "frame": {
@@ -9787,7 +10243,7 @@
               "rank": 0
             }
           },
-          "step": 23.1057
+          "step": 23.1038
         },
         "frame": "print orientation, untransformed — a locator position in the model's coordinates addresses the same point in this GLB",
         "mesh": "build/print/frame.ply",
@@ -9818,19 +10274,19 @@
       "meta": {
         "explode": {
           "axes": {
-            "height": 0,
+            "height": 1,
             "thick": 2,
-            "width": 1
+            "width": 0
           },
           "center": [
             0.0,
             0.0,
-            10.0459
+            10.0451
           ],
           "extent": [
-            111.5995,
-            111.6107,
-            20.0919
+            111.6739,
+            111.63,
+            20.0902
           ],
           "movers": {
             "frame": {
@@ -9845,7 +10301,7 @@
               "rank": 0
             }
           },
-          "step": 23.1057
+          "step": 23.1038
         },
         "frame": "model frame, untransformed — a locator position in the model's coordinates addresses the same point in this GLB",
         "nodes": [
@@ -10131,7 +10587,7 @@
         ],
         "rows": [
           {
-            "value": "43.3 g",
+            "value": "44.1 g",
             "what": "all-up weight"
           },
           {
@@ -10139,7 +10595,7 @@
             "what": "lift"
           },
           {
-            "value": "16.2 g PETG",
+            "value": "17.0 g PETG",
             "what": "frame"
           }
         ]

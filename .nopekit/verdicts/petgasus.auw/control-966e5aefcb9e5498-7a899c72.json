@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.auw",
+  "rho": "966e5aefcb9e5498638e829375ac0200c584b4edd17a9501144f9819c25e0c30",
+  "static": "404a9a58226072b9b7b25c511e8663d120b2b74b06747dcba7e3b7a61c3d0aa3",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "2885221d1dd85fa40cad5141dfab588eb6eb60a65bdd2d75442343751c0f6fd8",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "67cb9bcb06e6b60e7690800404d996b08f43450f3bee92b6a416d57d1f073951",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "904d1ff01a2a2b09efa46c33c4c194202b921f4157260a80300df3ae3c09f51c"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:brick_battery",
+      "expect": "fail",
+      "note": "a 300 g pack strapped under the known-good quad",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "fe865ecf7d6d57bd082cdf8d9f792cb76336a3ca227cd7b95d884a09398a9d7d",
+    "files": {
+      "model/petgasus.py": "e1f29a63dca741f0f43df38136f10319f9a805bc65ef0cfef621aadc8a263ee5",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "904d1ff01a2a2b09efa46c33c4c194202b921f4157260a80300df3ae3c09f51c"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "auw_g"
+        ],
+        "727a276a9952f5a7af83585a0e1438f9de1dec6d0a604f22255494f2c575c19e",
+        335.73
+      ],
+      [
+        [
+          "frame_mass_g"
+        ],
+        "1b8802d79565f6d7ab81b43528eebd4c84a9a6a84d1f5a4ba9484969bab1549c",
+        16.85
+      ]
+    ],
+    "files": {
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/58bf2b0ff841": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/7ec1328c7739/frame-fine.msh": "c806846a8360c990e0e71dd259e1d05f9eee9129ceba517044357c4e1a6214c6",
+      "build/fea/7ec1328c7739/frame.msh": "02dc2f31d1c7c04c9aec75b16482302202fe49ac5c0467796b656eb6f557a83c",
+      "build/frame_cache/7a651252eb59b841.npz": "59febd11a1b65cf8ac332d2eb123eb35c2c2511621112225d1bf6be464353894",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C2": "35a09483b73634bce1511d5b04e920353a71c9106ae7544ca51893320fb34b0a",
+      "acceptance:C2": "278b1d7642100e5cab5d3e625bf8d08741cf5055a5bc7e92a47a6afbfbb18693"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/58bf2b0ff841/frame-fine.msh",
+      "self-modified:<root>/build/fea/58bf2b0ff841/frame.msh"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "auw_g"
+          ],
+          "64627e59ed7bd18e1d72bc4b35714208361865128295d0727827c75ae63e1802",
+          43.93
+        ],
+        [
+          [
+            "frame_mass_g"
+          ],
+          "1b8802d79565f6d7ab81b43528eebd4c84a9a6a84d1f5a4ba9484969bab1549c",
+          16.85
+        ]
+      ],
+      "files": {
+        "build/fea/7ec1328c7739/frame-fine.msh": "c806846a8360c990e0e71dd259e1d05f9eee9129ceba517044357c4e1a6214c6",
+        "build/fea/7ec1328c7739/frame.msh": "02dc2f31d1c7c04c9aec75b16482302202fe49ac5c0467796b656eb6f557a83c",
+        "build/frame_cache/7a651252eb59b841.npz": "59febd11a1b65cf8ac332d2eb123eb35c2c2511621112225d1bf6be464353894",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C2": "35a09483b73634bce1511d5b04e920353a71c9106ae7544ca51893320fb34b0a",
+        "acceptance:C2": "278b1d7642100e5cab5d3e625bf8d08741cf5055a5bc7e92a47a6afbfbb18693"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 43.93,
+    "limit": 250.0,
+    "units": "g",
+    "detail": "frame 16.9 g printed PETG + bought parts",
+    "goalpost": [
+      {
+        "key": "C2",
+        "measured": 43.93,
+        "units": "g",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 25.0,
+            "outcome": "fail",
+            "measured": 43.93,
+            "units": "g"
+          },
+          {
+            "end": "limit",
+            "limit": 125.0,
+            "outcome": "pass",
+            "measured": 43.93,
+            "units": "g"
+          },
+          {
+            "end": "limit",
+            "limit": 500.0,
+            "outcome": "pass",
+            "measured": 43.93,
+            "units": "g"
+          },
+          {
+            "end": "limit",
+            "limit": 2500.0,
+            "outcome": "pass",
+            "measured": 43.93,
+            "units": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 46,
+    "boundary": "",
+    "results": [
+      {
+        "key": [
+          "auw_g"
+        ],
+        "before": 43.93,
+        "after": 288.0,
+        "outcome": "fail",
+        "measured": 288.0,
+        "limit": 250.0
+      }
+    ],
+    "inconclusive": [],
+    "not_mutated": [
+      {
+        "key": [
+          "frame_mass_g"
+        ],
+        "why": "never-lands"
+      }
+    ]
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:brick_battery (a 300 g pack strapped under the known-good quad): frame 16.9 g printed PETG + bought parts",
+  "measured": 335.73,
+  "limit": 250.0,
+  "units": "g",
+  "digest": "9aa1cbe411db922183406ba5e29806c190dc44c68509b8c05ab3bb9265aa50a2"
+}

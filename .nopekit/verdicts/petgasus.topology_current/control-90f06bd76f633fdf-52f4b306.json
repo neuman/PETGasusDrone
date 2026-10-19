@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "kind": "control",
+  "gate": "petgasus.topology_current",
+  "rho": "90f06bd76f633fdfe534e35d0f4fa458a1be992ea10865963ad954065bbe8d77",
+  "static": "38d756fa99b88f41c0be34772e42c15744edcacab2dfbe81f40767ec211e5781",
+  "static_parts": {
+    "spine": "7ab6dbc3100d6390a74d563bf51c097d5b6d02524e8f43c2ab74f71f9df237d4",
+    "code": {
+      "digest": "a88412fc2e4416e6ca308a7efe9f2da646acd79ec45dbfb1d8738a558bd18ad6",
+      "files": [
+        "gates/flight.py"
+      ]
+    },
+    "selftest": {
+      "digest": "5e8abbdacab3488f991327a8e2b66ae6d61a44e38894067dab29d6dad8fb9d93",
+      "files": {
+        "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+        "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+      }
+    },
+    "nc": {
+      "fixture": "selftest/bad_configs.py:moved_motors",
+      "expect": "fail",
+      "note": "the known-good field with the guards moved 1 mm out: the field was computed for other keep-outs",
+      "good": "",
+      "mutation": true
+    }
+  },
+  "host": "known-good",
+  "fixture": {
+    "digest": "1c341fc9a99a457bdc61fbb9bf3e3ac5c1db3c1c940cacada944b53dc15a5356",
+    "files": {
+      "model/petgasus.py": "334305453153dfb8152985143f91825b16f64091aaf037551fe8d26c98396b19",
+      "selftest/bad_configs.py": "8de6f6eb69f6738dc007a8a82795036df87ff5f726894ca9698390ad083c8636",
+      "selftest/known_good.py": "b9557df1892cfbf274758a2c97846b1a0751a2b6e5934b0ae4a2ad2f29584a5b"
+    }
+  },
+  "reads": {
+    "params": [
+      [
+        [
+          "problem_hash"
+        ],
+        "a752cbaf4bbd205a410ea539d7a3452768ba1a82d07bef74b741672556b5dc46",
+        "6fc5ec87eccfc826"
+      ],
+      [
+        [
+          "topology_current"
+        ],
+        "3e6d34694d06b348877bb97cf8b818e7457cff42404e2409e670ef364190d6b9",
+        false
+      ],
+      [
+        [
+          "topology_field"
+        ],
+        "25819db3519f19f6416987f5269d9370d9e3c4727f408af34648060eaf7a654a",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz"
+      ]
+    ],
+    "files": {
+      "build": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/e7b5857919c1": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/fea/eb051cc147f5/frame-fine.msh": "c57289e7e967284d3c2255583cb2d474c0f08dac964400be7122ef56db020d21",
+      "build/fea/eb051cc147f5/frame.msh": "349dcfd387297e4371cbf939b02c9315a641d21264b05134fa71f4cc4f8a89ff",
+      "build/frame_cache": "4433de9af2b8baf71915620e53c8394f6197fca3d7570a1845627532ad1f7a0f",
+      "build/frame_cache/6d0617d974401b1c.npz": "d4a61ba9d2022e7fe3bd0747fdcdc8824a99452ec4e57dac637f141ead60dd5c",
+      "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+    },
+    "dirs": {},
+    "ledger": {
+      "acceptance-shape:C17": "2efe4d1ee7b3116c10a5e1a25f183d211578e002f3b0fc1317daf51d0bdc07dc",
+      "acceptance:C17": "da21fc849ee58c9a201009963026c48de79ac917d4a1a6ee0cfdd62eed342cac"
+    },
+    "host": [],
+    "opaque": [
+      "self-modified:<root>/build/fea/e7b5857919c1/frame-fine.msh",
+      "self-modified:<root>/build/fea/e7b5857919c1/frame.msh",
+      "self-modified:<root>/build/frame_cache/35c5db6028c73834.npz"
+    ]
+  },
+  "bad": "fail",
+  "bad_extra": [],
+  "good": {
+    "outcome": "pass",
+    "reads": {
+      "params": [
+        [
+          [
+            "topology_current"
+          ],
+          "ed219f47c82b99858f79f7575c1585d96e008afd7c0451d15bc8ad29a081f6c0",
+          true
+        ],
+        [
+          [
+            "topology_field"
+          ],
+          "25819db3519f19f6416987f5269d9370d9e3c4727f408af34648060eaf7a654a",
+          "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz"
+        ]
+      ],
+      "files": {
+        "build/fea/eb051cc147f5/frame-fine.msh": "c57289e7e967284d3c2255583cb2d474c0f08dac964400be7122ef56db020d21",
+        "build/fea/eb051cc147f5/frame.msh": "349dcfd387297e4371cbf939b02c9315a641d21264b05134fa71f4cc4f8a89ff",
+        "build/frame_cache/6d0617d974401b1c.npz": "d4a61ba9d2022e7fe3bd0747fdcdc8824a99452ec4e57dac637f141ead60dd5c",
+        "inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz": "813a7ebaf304b68821db2ba6b8e1ce9cc22ea69ac6a5113bbef8120633f3f42d"
+      },
+      "dirs": {},
+      "ledger": {
+        "acceptance-shape:C17": "2efe4d1ee7b3116c10a5e1a25f183d211578e002f3b0fc1317daf51d0bdc07dc",
+        "acceptance:C17": "da21fc849ee58c9a201009963026c48de79ac917d4a1a6ee0cfdd62eed342cac"
+      },
+      "host": [],
+      "opaque": []
+    },
+    "extra": [],
+    "measured": 1,
+    "limit": 1,
+    "units": "bool",
+    "detail": "field inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz was computed for this problem",
+    "goalpost": [
+      {
+        "key": "C17",
+        "measured": 1,
+        "units": "bool",
+        "runs": [
+          {
+            "end": "limit",
+            "limit": 0.1,
+            "outcome": "pass",
+            "measured": 1,
+            "units": "bool"
+          },
+          {
+            "end": "limit",
+            "limit": 0.5,
+            "outcome": "pass",
+            "measured": 1,
+            "units": "bool"
+          },
+          {
+            "end": "limit",
+            "limit": 2.0,
+            "outcome": "fail",
+            "measured": 1,
+            "units": "bool"
+          },
+          {
+            "end": "limit",
+            "limit": 10.0,
+            "outcome": "fail",
+            "measured": 1,
+            "units": "bool"
+          }
+        ]
+      }
+    ]
+  },
+  "mutation": {
+    "runs": 0,
+    "boundary": "at-limit",
+    "results": [],
+    "inconclusive": [],
+    "not_mutated": []
+  },
+  "admitted": "paired",
+  "detail": "correctly failed on selftest/bad_configs.py:moved_motors (the known-good field with the guards moved 1 mm out: the field was computed for other keep-outs): field inputs/data/topopt3d-petg-mid-133-d385cf32ab.npz was NOT computed for this problem (6fc5ec87eccfc826): re-run fea.topopt3d",
+  "measured": 0,
+  "limit": 1,
+  "units": "bool",
+  "digest": "996d305fe8406792cd7155580af7b3077c721aacaaba7bff5b919743cc718f21"
+}
