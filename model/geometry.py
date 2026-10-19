@@ -10,8 +10,9 @@ How the solid is made (frame()):
      its cells (topo_h) become round limbs instead of stairs. Where a limb meets a
      seat, guard arc or post, the field is carried into that feature's cells, so the
      limb reaches it instead of stopping a cell short.
-  2. The exact features (motor seats, guard arcs, FC posts, the strap's saddle)
-     are added as signed distance functions with a SMOOTH union of radius
+  2. The exact features (motor seats, guard arcs and the links between them, FC
+     posts, the strap's saddle) are added as signed distance functions with a
+     SMOOTH union of radius
      surface_fillet_mm: every joint gets a fillet. The reddit review's sharpest
      point was the opposite —
      flat planks butting into each other with no gusset, a stress concentrator at
@@ -19,9 +20,16 @@ How the solid is made (frame()):
   3. Everything that must be empty is cut from that function (topopt3d.keepouts:
      the props' bands, the motor bodies, the board, the battery, the leads, the
      screwdriver's way to each motor screw, the space above the guards), grown
-     by surface_clearance_mm; whatever the cut leaves thinner than
-     2 x surface_open_mm is opened away; the exact features go back in sharp,
-     and the holes come out.
+     by surface_clearance_mm, the exact features go back in sharp, and the
+     holes come out. Every section thinner than the opening keeps is grown
+     where it can (over the props' discs only within the plan the frame
+     already covers there); then whatever is still thinner than 2 x
+     surface_open_mm (the cuts' feathered edges and lips, and what could not
+     grow) is opened away, all but the hub. drawn() puts the exact features
+     and holes back exact on that. On cad.wall_thickness's ray from every
+     face, all but a few corner facets read at least its 1.26 mm; the level
+     set rounds the sharp corners of exact parts there (see
+     decisions/thin-walls-thickened-before-the-drawing-is-opene.json).
   4. manifold3d's level set turns that one function into a closed, manifold mesh.
 
 One function and one level set, no mesh booleans: booleans between the field's
@@ -96,6 +104,75 @@ def guards(c, d):
     return out
 
 
+#: Each side of the frame by its outward direction (+x forward, +y left).
+SIDES = {"front": (1.0, 0.0), "back": (-1.0, 0.0), "left": (0.0, 1.0), "right": (0.0, -1.0)}
+
+
+def _links(c, d):
+    """[(a, b, ux, uy, nx, ny, length)] for each side in c.guard_link_sides: the
+    two neighbouring motors on that side (the square's side, not a diagonal), the
+    unit vector from a to b, the unit normal pointing away from the frame's centre,
+    and the distance between them."""
+    ms = motor_centres(d)
+    pairs = [(a, b) for i, a in enumerate(ms) for b in ms[i + 1:]]
+    short = min(math.dist(a, b) for a, b in pairs)
+    out = []
+    for a, b in pairs:
+        length = math.dist(a, b)
+        if length > short + 1e-6:
+            continue
+        ux, uy = (b[0] - a[0]) / length, (b[1] - a[1]) / length
+        nx, ny = uy, -ux
+        if nx * (a[0] + b[0]) + ny * (a[1] + b[1]) < 0:
+            nx, ny = -nx, -ny
+        side = max(SIDES, key=lambda k: SIDES[k][0] * nx + SIDES[k][1] * ny)
+        if side in c.guard_link_sides:
+            out.append((a, b, ux, uy, nx, ny, length))
+    return out
+
+
+#: mm: where the band leaves its arc, the arc curves on under it and the two leave
+#: a slot between them that widens from nothing; the band is drawn on down to the
+#: arc until the slot is this wide (_link_fill)
+LINK_SLOT_MM = 2.0
+
+
+def _link_fill(d):
+    """(s0, s1, rc): along a band from a motor's centre line, the slot between the
+    band's inner face and its arc's outer face opens at s0 and is LINK_SLOT_MM
+    wide at s1; the band is filled down to a circle of radius rc there, a hair
+    inside the arc's outer face so the two overlap."""
+    rc = d["guard_r_out"] - 0.05
+    return (math.sqrt(rc ** 2 - d["guard_r_in"] ** 2),
+            math.sqrt(rc ** 2 - (d["guard_r_in"] - LINK_SLOT_MM) ** 2), rc)
+
+
+def guard_links(c, d):
+    """The rim's bridges on the sides in Config.guard_link_sides: between the two
+    neighbouring guards on that side, a straight band of the arcs' own section
+    along their outer tangent, from one motor's centre line to the other's. Each
+    end meets its arc square at the arc's outermost point, so the band continues
+    the arc's faces. Past that point the arc curves on under the band, and the
+    slot between them opens from nothing: the band fills it down to the arc
+    until it is LINK_SLOT_MM wide (_link_fill). Left open, the field filled its
+    tip partly, and the slot came out 0.3-0.5 mm wide, under the drawing's grid,
+    with a skin over it 0.11 mm thick (C7). Drawn in the frame's filament even
+    when the arcs are a second one."""
+    out = []
+    s0, s1, rc = _link_fill(d)
+    ri, ro = d["guard_r_in"], d["guard_r_out"]
+    for a, b, ux, uy, nx, ny, length in _links(c, d):
+        arc = [(s, math.sqrt(rc ** 2 - s ** 2)) for s in np.linspace(s0, s1, 12)]
+        st = ([(0.0, ro), (0.0, ri)] + arc + [(s1, ri), (length - s1, ri)]
+              + [(length - s, t) for s, t in reversed(arc)] + [(length, ri), (length, ro)])
+        pts = [(a[0] + s * ux + t * nx, a[1] + s * uy + t * ny) for s, t in st]
+        area = sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1) in zip(pts, pts[1:] + pts[:1]))
+        if area < 0:
+            pts.reverse()                              # counter-clockwise, as CrossSection wants
+        out.append(m3d.CrossSection([pts]).extrude(d["guard_z1"] - d["guard_z0"]).translate((0, 0, d["guard_z0"])))
+    return out
+
+
 def _wedge(mid, half, r, z0, z1, seg=CIRCLE_SEGMENTS):
     """A pie slice about the z axis: angles mid +- half, radius r, z0 to z1."""
     n = max(2, int(seg * half / math.pi))
@@ -114,8 +191,9 @@ def saddle(c, d):
 
 
 def exact_features(c, d):
-    """Everything the bought parts need exactly: seats, guard arcs, posts, saddle."""
-    return m3d.Manifold.batch_boolean(seats(c, d) + guards(c, d) + posts(c, d) + saddle(c, d), m3d.OpType.Add)
+    """Everything drawn exactly: seats, guard arcs and their links, posts, saddle."""
+    return m3d.Manifold.batch_boolean(seats(c, d) + guards(c, d) + guard_links(c, d) + posts(c, d) + saddle(c, d),
+                                      m3d.OpType.Add)
 
 
 def holes(c, d):
@@ -199,6 +277,19 @@ def _features_sdf(c, d, Z, Y, X):
             n2 = -np.float32(math.sin(a - half)) * (X - mx) + np.float32(math.cos(a - half)) * (Y - my)
             ring = np.minimum(ring, np.minimum(n1, n2) if half <= math.pi / 2 else np.maximum(n1, n2))
         feat = np.maximum(feat, np.maximum(seat, ring))
+    links = _links(c, d)
+    if links:
+        zband = np.minimum(Z - d["guard_z0"], d["guard_z1"] - Z)
+        s0, s1, rc = (np.float32(v) for v in _link_fill(d))
+        for a, b, *axes in links:
+            ux, uy, nx, ny, length = (np.float32(v) for v in axes)
+            s = (X - np.float32(a[0])) * ux + (Y - np.float32(a[1])) * uy
+            t = (X - np.float32(a[0])) * nx + (Y - np.float32(a[1])) * ny
+            band = np.minimum(np.minimum(s, length - s), np.minimum(t - d["guard_r_in"], d["guard_r_out"] - t))
+            for e in (s, length - s):                  # the slot's tip at each end, filled (guard_links)
+                band = np.maximum(band, np.minimum(np.minimum(e - s0, s1 - e),
+                                                   np.minimum(np.minimum(t, d["guard_r_out"] - t), np.hypot(e, t) - rc)))
+            feat = np.maximum(feat, np.minimum(band, zband))
     for (px, py) in d["fc_post_xy"]:
         r = np.hypot(X - px, Y - py)
         feat = np.maximum(feat, np.minimum(np.minimum(c.fc_post_od / 2 - r, Z - 0.0), d["z_post_top"] - Z))
@@ -229,15 +320,22 @@ def _level_set(F, lo, n, step, edge):
     return m3d.Manifold.level_set(sdf, [*lo, *(lo + step * (n - 1) + 1e-6)], edge, 0.0)
 
 
-def _open(F, step, r):
-    """F with every part thinner than 2r removed, and nothing else touched: a
-    morphological opening by a ball of radius r mm used only as a MASK. Depth is
+def _open(F, step, r, spare=None):
+    """F with every part thinner than 2r removed, except where `spare` is
+    positive or within r plus half a step of it, and thick faces skimmed by
+    under half a step: a morphological opening by a ball of radius r mm used
+    only as a MASK. Depth is
     measured to the surface (the distance to the nearest outside sample, less
-    half a step), the eroded core is grown back by r plus a step, and F is cut
-    (by that grown core's own distance) only where the grown core does not reach.
+    half a step), the eroded core is grown back by r plus half a step, and F is
+    cut (by that grown core's own distance) only where the grown core does not
+    reach.
     The first version took min(F, D) everywhere, and D's grid-quantised surface
     cut into thick limbs too: the CalculiX surface (a 0.4 mm step) came out 4-6 %
     thinner than the printed one (0.25 mm), so the checks judged a weaker frame.
+    Grown back by r plus a step and a half, the core kept every nub and fringe
+    within that of a thick part: on one thickened drawing opened at 0.6 mm,
+    5.9 mm^2 of faces read under cad.wall_thickness's 1.26 mm, 3.4 with a
+    step, 1.9 with half a step, which took 0.2 g more of the frame.
     What counts as thin still moves by a step with the grid, so drawn() opens
     on the print's grid only and resamples the result for every other edge."""
     from scipy import ndimage
@@ -245,8 +343,157 @@ def _open(F, step, r):
         return F
     depth = ndimage.distance_transform_edt(F > 0, sampling=step) - 0.5 * step
     core = depth > r
-    D = (r + 1.5 * step) - ndimage.distance_transform_edt(~core, sampling=step)
+    if spare is not None:
+        core |= spare > 0
+    D = (r + 0.5 * step) - ndimage.distance_transform_edt(~core, sampling=step)
+    if spare is not None:
+        D = np.maximum(D, spare)
     return np.where(D > 0, F, np.minimum(F, D)).astype(np.float32)
+
+
+#: mm _thicken's balls reach past the opening's keep radius (_opened), so their
+#: centres stay in its core
+THICKEN_MARGIN_MM = 0.075
+#: mm _thicken grows from the body as first drawn, at most. Unbounded, when the
+#: thickening ran after a 0.3 mm opening, a ball grown against a keep-out's wall left
+#: a new thin edge on it, the next pass grew another there, and a fin 0.57 mm thick
+#: climbed 3.5 mm up each motor's keep-out
+THICKEN_REACH_MM = 1.0
+#: mm from a cut's face within which _thicken takes a ray's end to lie on it
+ON_CUT_MM = 0.1
+#: mm off an exact feature's face within which _thicken takes a ray's end to lie on it:
+#: the fillet stands up to ~0.2 mm off the guard bands' faces
+ON_EXACT_MM = 0.3
+
+
+def _thicken(F, lo, step, find, radius, keep, room, exact, passes=8):
+    """F (the body as drawn, positive inside) with every section thinner than
+    `find` grown where it can: about 2 x `radius` thick, nowhere `keep` is
+    negative (the keep-outs and the holes), never more than THICKEN_REACH_MM
+    from F, and over the props' discs only within the plan `room` gives it
+    (_shadow_room). It takes nothing away.
+
+    From each point on the surface (the grid points within a step of it, moved
+    onto it along the gradient) a ray goes inward and stops where it leaves the
+    body: the wall cad.wall_thickness measures there. Where that is under
+    `find`, a ball of `radius` goes on the ray: at its midpoint, so a free
+    section grows on both sides, or one radius in from whichever end lies on a
+    cut's face, so a section a cut left grows away from the cut. Where the ball
+    would not fit the room, a vertical segment as long as the ball is wide goes
+    in its place, no higher in value than its column was before, so the
+    column's edge does not move: there a section grows up and down only. A
+    section cut on both faces has no room and is left as it is (grown anyway,
+    its balls crept sideways a ball a pass, and left a 0.07 mm fin where the
+    creep met a post), and so is one between two faces of `exact` (the exact
+    features' function), which drawn() puts back at its own size. Each pass
+    finds the edges the last one left; they stop when none grows, or after
+    `passes`.
+
+    What it grows: the sheets the field's grey top cell layer draws, 0.35 mm
+    where they join the front and back limbs to the rim, and the sheets the
+    props' keep-out leaves of the cell layer under it (its floor at z 10.0
+    halves a 1.33 mm cell), 0.47-0.61 mm under the guard arcs. Grown after the
+    opening instead of before, the 0.35 mm sheets came with the pinholes the
+    opening had punched through them, and their rims stayed 0.5-0.6 mm."""
+    from scipy import ndimage
+    colmax = F.max(axis=0)
+    keep = np.minimum(keep, np.float32(THICKEN_REACH_MM)
+                      - ndimage.distance_transform_edt(F <= 0, sampling=step).astype(np.float32))
+    for _ in range(passes):
+        grown = _thicken_pass(F, lo, step, find, radius, keep, room, exact, colmax)
+        if grown is None:
+            break
+        F = grown
+    return F
+
+
+def _thicken_pass(F, lo, step, find, radius, keep, room, exact, colmax):
+    """One pass of _thicken: the grown F, or None when nothing grew."""
+    from scipy import ndimage
+    gz, gy, gx = np.gradient(F, step)
+    g = np.sqrt(gx * gx + gy * gy + gz * gz)
+    near = (F > 0) & (F < step * g) & (g > 1e-6)
+    k, j, i = np.nonzero(near)
+    if not len(k):
+        return None
+    u = np.stack([gx[k, j, i], gy[k, j, i], gz[k, j, i]], axis=1) / g[k, j, i][:, None]   # inward
+    p = (np.stack([i, j, k], axis=1) * step + lo) - u * (F[k, j, i] / g[k, j, i])[:, None]
+    del gx, gy, gz, g
+
+    def at(A, q, cval):
+        return ndimage.map_coordinates(A, [(q[:, 2] - lo[2]) / step, (q[:, 1] - lo[1]) / step,
+                                           (q[:, 0] - lo[0]) / step], order=1, mode="constant", cval=cval)
+    thick = np.full(len(p), np.inf)
+    entered = np.zeros(len(p), bool)
+    for s in np.arange(0.01, find + 0.02, 0.02):
+        inn = at(F, p + u * s, -1.0) > 0
+        left = entered & ~inn & ~np.isfinite(thick)
+        thick[left] = s
+        entered |= inn
+    thin = thick < find
+    p, u, thick = p[thin], u[thin], thick[thin]
+    exit_ = p + u * thick[:, None]
+    cut_far = at(keep, exit_, 1.0) < ON_CUT_MM           # the far face is a cut's: grow back from it
+    cut_near = at(keep, p, 1.0) < ON_CUT_MM              # this face is a cut's: grow in from it
+    # a section between two faces of the exact features is theirs, drawn to its size (the guard
+    # arcs' and links' 1.4 mm wall, the saddle's 1.4 mm) and put back exact by drawn(); with the
+    # fillet the guard band is 1.75 mm across at its foot, and grown there, its ball reached 0.65 mm
+    # under it, lengthening the guards' printed height (C13) from 4.15 mm to 4.6
+    own = (at(exact, exit_, -1.0) > -ON_EXACT_MM) & (at(exact, p, -1.0) > -ON_EXACT_MM)
+    free = ~(cut_far & cut_near) & ~own
+    if not free.any():
+        return None
+    p, u, thick, exit_, cut_far, cut_near = p[free], u[free], thick[free], exit_[free], cut_far[free], cut_near[free]
+    r = radius
+    centre = p + u * (thick / 2)[:, None]
+    centre[cut_far] = exit_[cut_far] - u[cut_far] * r
+    centre[cut_near] = p[cut_near] + u[cut_near] * r
+    idx = np.rint((centre - lo) / step).astype(int)
+    idx = idx[np.all((idx >= 0) & (idx < np.array(F.shape[::-1])), axis=1)]
+    fits = room[idx[:, 1], idx[:, 0]] >= r
+    new = np.full(F.shape, -1e3, np.float32)
+    for sel, sampling in ((fits, step), (~fits, (step, 1e3, 1e3))):    # balls; vertical segments
+        if not sel.any():
+            continue
+        mark = np.zeros(F.shape, bool)
+        mark[idx[sel, 2], idx[sel, 1], idx[sel, 0]] = True
+        grow = r - ndimage.distance_transform_edt(~mark, sampling=sampling).astype(np.float32)
+        new = np.maximum(new, np.minimum(grow, room[None] if sel is fits else colmax[None]))
+    new = np.minimum(new, keep)
+    if not (new > F).any():
+        return None
+    return np.maximum(F, new).astype(np.float32)
+
+
+def _shadow_room(c, d, F, step, Y, X):
+    """Where _thicken may grow outward, in plan (mm, positive where it may):
+    anywhere clear of the props' discs (outside each motor's own shadow, as C14
+    counts them), and on a disc only over what the frame F already covers there.
+    Both hold back two steps, as far as the level set can carry a surface from
+    the grid point that moved it. On a disc, where a ball would not fit that, a
+    section grows up and down instead, and the frame's shadow on the props
+    (C14) is no more than the field drew. Grown freely, the sheets under the
+    guard arcs spread into the discs and the shadow went from 14.8 % to
+    15.06 %, over C14's 15."""
+    from scipy import ndimage
+    inside = ndimage.distance_transform_edt((F > 0).any(axis=0), sampling=step)   # to the nearest bare column
+    r0 = c.motor_body_d / 2 + c.motor_clear
+    disc = np.full(inside.shape, -1e3, np.float32)
+    for (mx, my) in motor_centres(d):
+        r = np.hypot(X - mx, Y - my)[0]
+        disc = np.maximum(disc, np.minimum(r - r0, d["prop_r"] - r))
+    return (np.maximum(-disc, inside) - 2 * step).astype(np.float32)
+
+
+def _hub_sdf(c, d, Z, Y, X):
+    """The hub, positive inside: the board's footprint between z = 0 and hub_t.
+    Over the battery's and the strap's keep-outs it is the plate they and the
+    board's leave exactly hub_t thick (_keepout_sdf); elsewhere in the
+    footprint the field's limbs run on below it."""
+    gclr = c.fc_board_clear
+    tip = c.fc_arm_tip_r + gclr
+    return np.maximum(_box_sdf(X, Y, Z, 0, 0, tip, c.fc_arm_w_fb / 2 + gclr, 0.0, c.hub_t),
+                      _box_sdf(X, Y, Z, 0, 0, c.fc_arm_w_side / 2 + gclr, tip, 0.0, c.hub_t))
 
 
 def _smin(a, b, k):
@@ -262,9 +509,18 @@ def _keepout_sdf(c, d, Z, Y, X):
     keep-out's edges rounded by surface_cut_round_mm: where a cut meets the body
     the frame gets a fillet, as a 0.4 mm nozzle prints it. Sharp, those re-entrant
     edges were stress singularities, and the crash checks' peak sat on one (where
-    the battery's and the strap's keep-outs met the saddle's underside)."""
+    the battery's and the strap's keep-outs met the saddle's underside).
+
+    _opened grows every keep-out by surface_clearance_mm, except the hub's two
+    faces: the board's keep-outs start that far above hub_t, and the battery's and
+    the strap's end that far below z = 0, so the hub comes out hub_t thick, its
+    faces on the same planes as the saddle's. Grown there too, the hub between
+    the battery and the board was 1.2 mm thick, under cad.wall_thickness's 1.26.
+    A plane is drawn exact (a linear function's level set is exact), so the fit
+    check (C5) finds no overlap on it, as it finds none under the saddle."""
     big = 200.0
     k = np.float32(c.surface_cut_round_mm)
+    flat = c.surface_clearance_mm
     K = np.full(np.broadcast(Z, Y, X).shape, -1e3, np.float32)
     z_band = d["prop_z"] - c.prop_sweep_half_h - c.prop_clear
     for (mx, my) in motor_centres(d):
@@ -275,16 +531,16 @@ def _keepout_sdf(c, d, Z, Y, X):
             K = np.maximum(K, _cyl_sdf(X, Y, Z, hx, hy, c.screw_access_d / 2, -big, 0.0, k))
     gclr = c.fc_board_clear
     tip = c.fc_arm_tip_r + gclr
-    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, tip, c.fc_arm_w_fb / 2 + gclr, c.hub_t, big, k))
-    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.fc_arm_w_side / 2 + gclr, tip, c.hub_t, big, k))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, tip, c.fc_arm_w_fb / 2 + gclr, c.hub_t + flat, big, k))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.fc_arm_w_side / 2 + gclr, tip, c.hub_t + flat, big, k))
     for (p0, p1) in d["lead_path"].values():
         K = np.maximum(K, _capsule_sdf(X, Y, Z, p0, p1, c.lead_d / 2 + c.lead_clear))
     pig = d["pigtail_path"]
     for p0, p1 in zip(pig, pig[1:]):
         K = np.maximum(K, _capsule_sdf(X, Y, Z, p0, p1, c.lead_d / 2 + c.lead_clear))
-    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.battery_l / 2 + 1, c.battery_w / 2 + 1, -big, 0.0, k))
+    K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, c.battery_l / 2 + 1, c.battery_w / 2 + 1, -big, -flat, k))
     K = np.maximum(K, _box_sdf(X, Y, Z, 0, 0, d["strap_slot_len"] / 2, d["strap_slot_y"] + c.strap_slot_w / 2,
-                               -big, 0.0, k))
+                               -big, -flat, k))
     K = np.maximum(K, Z - np.float32(d["guard_z1"]))              # nothing above the guards (C13)
     return K
 
@@ -322,19 +578,41 @@ def _capsule_sdf(X, Y, Z, p0, p1, r):
 
 
 def _opened(c, d, field):
-    """The field cut by the keep-outs, with the exact features in, opened: on the
-    print's grid (step surface_edge_mm / 2) whatever edge the caller draws at, so
-    the printed frame and every CalculiX surface lose the same thin parts. The
-    first version opened on each surface's own grid, and at a 0.4 mm step the
-    analysis surface lost 1.8 mm members the printed frame kept."""
+    """The body as drawn() draws it on the print's grid (step surface_edge_mm /
+    2): the field cut by the keep-outs, the exact features in, the holes cut;
+    then thickened and opened there, whatever edge the caller draws at, so the
+    printed frame and every CalculiX surface have the same walls. The first
+    version opened on each surface's own grid, and at a 0.4 mm step the analysis
+    surface lost 1.8 mm members the printed frame kept.
+
+    Every section the opening (surface_open_mm) would take is first grown
+    where it can (_thicken), so the opening takes what could not grow: the
+    feathered edges and lips a cut leaves, and sections cut on both faces. The
+    hub is spared: its two faces are planes, 1.4 mm apart, which the 0.25 mm
+    grid reads as 0.625 mm deep, a hair under the opening's 0.65 mm radius:
+    unspared, the opening would take it whole."""
     rho, g, region = field
     key = _cache_key(c, d, rho.tobytes() + region.tobytes())
     if key not in _OPENED:
         step = c.surface_edge_mm / 2
         F, lo, n, axes = _field_sdf(c, d, rho, g, region, step)
-        F = np.minimum(F, -(_keepout_sdf(c, d, *axes) + np.float32(c.surface_clearance_mm)))
+        keep = -(_keepout_sdf(c, d, *axes) + np.float32(c.surface_clearance_mm))
+        holes = _holes_sdf(c, d, *axes)
+        # thickened as drawn, so the walls it measures are the printed ones; grown into a hole, a
+        # section would come back as a skin round it when the hole is cut
+        feat = _features_sdf(c, d, *axes)
+        F = np.minimum(np.maximum(np.minimum(F, keep), feat), -holes)
+        # the opening keeps a point whose depth on the grid is over r + step / 2 (_open): a section at
+        # every grid phase only from (2 x (floor((r + step/2) / step) + 1) - 1) steps across, 1.75 mm at
+        # 0.65 on the 0.25 mm grid (the 0.02 is _thicken's ray step); a ball centred on a grid point
+        # is in the core when its radius is over r + step / 2
+        r = c.surface_open_mm
+        find = (2 * (math.floor((r + step / 2) / step) + 1) - 1) * step + 0.02
+        F = _thicken(F, lo, step, find, r + step / 2 + THICKEN_MARGIN_MM, np.minimum(keep, -holes),
+                     _shadow_room(c, d, F, step, axes[1], axes[2]), feat)
+        O = _open(F, step, c.surface_open_mm, _hub_sdf(c, d, *axes))
         _OPENED.clear()                                # one design at a time: ~70 MB each
-        _OPENED[key] = (_open(np.maximum(F, _features_sdf(c, d, *axes)), step, c.surface_open_mm), lo, n, step)
+        _OPENED[key] = (O, lo, n, step)
     return _OPENED[key]
 
 
@@ -402,13 +680,13 @@ def analysis_surface(c, d, field, edge):
 
 #: Bumped whenever the drawing changes for the same Config and field: it keys
 #: frame()'s cache and the analysis surfaces build() writes (build/fea/<key>/).
-DRAWING_VERSION = 17
+DRAWING_VERSION = 25
 
 
 def _cache_key(c, d, field_bytes):
     keys = ("surface_edge_mm", "surface_blur_mm", "surface_iso", "surface_scale_mm", "surface_fillet_mm",
             "surface_simplify_mm", "surface_open_mm", "surface_clearance_mm", "surface_cut_round_mm",
-            "guard_arc_deg", "plate_t", "fc_post_od",
+            "guard_arc_deg", "guard_link_sides", "plate_t", "fc_post_od",
             "prop_clear", "motor_clear", "motor_body_d", "motor_centre_relief_d", "screw_access_d",
             "fc_board_clear", "fc_arm_tip_r", "fc_arm_w_fb", "fc_arm_w_side", "lead_d", "lead_clear", "battery_l", "battery_w", "strap_slot_w", "hub_t",
             "motor_screw_clear_d", "fc_pilot_d", "prop_sweep_half_h")
@@ -423,8 +701,8 @@ def _cache_key(c, d, field_bytes):
 def frame(c, d, field=None, cache_dir=None):
     """The one-piece printed frame. `field`: (rho, grid, region) from the chosen
     proposal, or None (then the frame is its exact features alone: four seats,
-    four guard arcs, four posts and the saddle with nothing joining them, which the one-piece gate
-    refuses)."""
+    the guard arcs and their links, four posts and the saddle with nothing joining
+    them, which the one-piece gate refuses)."""
     exact = exact_features(c, d)
     if field is None:
         return exact - holes(c, d)

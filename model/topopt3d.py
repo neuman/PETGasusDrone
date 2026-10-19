@@ -60,6 +60,18 @@ fix changes the field, and so the frame and its verdicts.
      under the top face; 'under' gets one layer, the bottom face. On the 2 mm
      grid it was the other way round. The stored runs put the effect at about
      0.2 % of those cases' compliance. Fix: take the nearest node layer.
+  5. Two things the drawing adds are not in this problem: the straight bands
+     that join the guard arcs on the sides in Config.guard_link_sides
+     (geometry.guard_links), and what geometry._thicken grows on sections
+     thinner than the drawing's opening keeps: the sheets the field's grey top
+     cell layer draws (0.35 mm where it joins the front and back limbs to the
+     rim) and those the props' keep-out leaves of the layer under it
+     (0.47-0.61 mm under the guard arcs), grown to about 1.7 mm. No change to
+     this problem is yet known to make that layer come out solid or empty. The
+     problem spends its
+     12 g without them; the drawn frame carries both, and CalculiX and C14
+     judge it. Fix: make the bands' cells solid (regions) and solve again; the
+     problem's hash changes, so C17 refuses the current field until then.
 """
 from __future__ import annotations
 

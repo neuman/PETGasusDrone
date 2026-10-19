@@ -57,8 +57,8 @@ def thick_seat(ctx):
 
 
 def no_field(ctx):
-    """petgasus.one_piece — no topology field: four seats, four guard arcs, four
-    posts and the strap saddle with nothing joining them."""
+    """petgasus.one_piece — no topology field: four seats, the guard arcs and
+    their links, four posts and the strap saddle with nothing joining them."""
     return _with(ctx, topology_field="")
 
 

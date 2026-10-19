@@ -1,0 +1,45 @@
+{
+  "title": "Guard arcs joined by straight bands on the left and right",
+  "when": "2026-10-18T18:53:58Z",
+  "summary": "On the left and right sides the two guard arcs are joined by a straight band of the arcs' own section (1.4 mm wall, 4 mm tall) along their outer tangent (guard_link_sides); where a band leaves its arc, the slot between them is filled until it is 2 mm wide. There the optimiser's rim narrowed to a strand 0.66 mm wide and 1.13 mm tall, under C7's 1.26 mm wall. The band holds it whole: 6.4 mm^2 of section at the side's middle, where the drawing's thickening alone (decisions/thin-walls-thickened-before-the-drawing-is-opene.json) makes the strand about 1.5 x 2 mm, 2.7 mm^2. The PETG frame weighs 17.03 g, 0.43 g more than without the bands. At the front and back the thickening grows the rim's thin sheets instead. The bands are drawn, not part of the optimiser's problem.",
+  "rejected": [
+    {
+      "value": "open the side bridges (surface_open_mm 0.35 or more, with nothing thickened first and no bands)",
+      "why": "the sides open between the guards, which then end in stubs; the author chose to keep the rim closed and thicken it (2026-10-18)",
+      "type": "preferred_against",
+      "by": "Eric Neuman"
+    },
+    {
+      "value": "the optimiser's rim alone, thickened",
+      "why": "0.43 g lighter (16.60 g) and over C7's wall, but at the sides' middle the strand comes out about 1.5 x 2 mm (2.7 mm^2) between rims the field drew 4.2 mm tall; with the band the section is 6.4 mm^2",
+      "type": "unevaluated",
+      "returns_if": {
+        "text": "CalculiX finds the thickened strand holds a side hit (C16) as well as the band"
+      }
+    },
+    {
+      "value": "bands on all four sides",
+      "why": "0.43 g more plastic (17.46 g against 17.03 g in PETG) at the front and back, where the rim's thin parts were the sheets joining it to the limbs, mostly inside a band's line; the thickening grows those",
+      "type": "dominated"
+    },
+    {
+      "value": "a band 2 mm tall on the prop plane",
+      "why": "the strand runs at 12.8-14.0 mm, above the band's 11.6-13.6 mm: its top would stand out of the band as a fin, for the thickening to grow again",
+      "type": "dominated"
+    },
+    {
+      "value": "the bands in the optimiser's problem",
+      "why": "its hash changes, so the field must be solved again (about 45 minutes), and C17 refuses the current field until then",
+      "type": "unevaluated",
+      "returns_if": {
+        "text": "the next optimiser run"
+      }
+    }
+  ],
+  "params_changed": [
+    "guard_link_sides"
+  ],
+  "claims_changed": [
+    "C7"
+  ]
+}

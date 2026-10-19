@@ -147,7 +147,8 @@ def motor_screws(ctx: GateContext) -> Verdict:
     settles="frame pieces",
     negative_control=NegativeControl(
         fixture="selftest/bad_configs.py:no_field",
-        note="the known-good design with no topology field: seats, guard arcs, posts and saddle with nothing joining them"),
+        note="the known-good design with no topology field: seats, guard arcs and their links, posts and saddle with "
+             "nothing joining them"),
 )
 def one_piece(ctx: GateContext) -> Verdict:
     p = ctx.params

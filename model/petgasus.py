@@ -289,6 +289,25 @@ class Config:
     fixed hoops, which were a third of the frame's mass and set its whole look:
     the optimiser only bridged between four given circles."""
 
+    guard_link_sides: tuple = ("left", "right")
+    """The sides of the frame ("front", "back", "left", "right") where the two
+    neighbouring guard arcs are joined by a straight band of the arcs' own
+    section (guard_wall x guard_h) along their outer tangent, drawn exact
+    (geometry.guard_links). The optimiser drew a bridge on every side, but on
+    the left and right its rim narrowed to a strand 0.66 mm wide and 1.13 mm
+    tall, under cad.wall_thickness's 1.26 mm (C7). The band holds that strand
+    whole and matches the rim either side of it, which the field drew 4.2 mm
+    tall. The drawing's thickening (geometry._thicken) now grows that strand
+    over the limit too, but to about 1.5 x 2 mm (2.7 mm^2 at the side's middle);
+    with the band the section there is 6.4 mm^2 (the band alone is 1.4 x 4 mm),
+    and the band adds 0.43 g in PETG (17.03 g against 16.60 g). Where the band leaves its arc, the slot between them is
+    filled until it is 2 mm wide (geometry.LINK_SLOT_MM). At the front and
+    back the rim's thin parts were the sheets that join it to the limbs, most
+    of them inside a band's line, which the thickening grows instead. The
+    bands are drawn, not part of the optimiser's problem: adding them there
+    changes the problem's hash, so the field must be solved again (topopt3d:
+    known limitations)."""
+
     prop_clear: float = 1.0
     """mm the frame keeps from each prop's band and from the inflow above it."""
 
@@ -461,16 +480,20 @@ class Config:
     remove the level set's zero-length edges and nothing else. 0.02 lost: it let
     a long triangle from a fillet's rim span a seat 0.012 mm proud of its top,
     into the motor (C5 read 0.0175 mm^3)."""
-    surface_open_mm: float = 0.3
-    """mm, radius of the morphological opening of the drawn frame (geometry._open),
-    after the keep-outs are cut and the exact features added: any part thinner
-    than about twice this goes. Where the field met a keep-out at a grazing angle
-    the cut left a feathered edge down to 0.01 mm, and where its ring ran past a
-    guard arc's end, a 0.4 mm lip. 0.63 (half of cad.wall_thickness's 1.26 mm)
-    lost: it also deleted the rim's four bridges between neighbouring guards,
-    walls ~1.2 mm thick that the optimiser drew, and left the arcs ending in
-    stubs (the author's 'nubs', 2026-10-17). 0.75 lost on a 2 mm field: it broke
-    the frame apart."""
+    surface_open_mm: float = 0.65
+    """mm, radius of the morphological opening of the drawn frame (geometry._open):
+    any part thinner than about twice this goes. Half of cad.wall_thickness's
+    1.26 mm (perimeters x extrusion_width_mm) and a hair over, so it leaves no
+    section under that: change it with either. Every section it would take is
+    first grown where it can (geometry._thicken), so it takes what could not
+    grow: the feathered edges, down to 0.01 mm, where the field met a keep-out
+    at a grazing angle, the lips a cut leaves, and sections cut on both faces
+    (the hub, 1.4 mm between two cuts, is spared). 0.3, opening before any
+    thickening, left the rim's 0.35 mm sheets (C7). 0.63 lost when nothing was
+    thickened first: it also deleted the rim's four bridges between
+    neighbouring guards that the optimiser drew, and left the arcs ending in
+    stubs (the author's 'nubs', 2026-10-17). 0.75 lost on a 2 mm field: it
+    broke the frame apart."""
     surface_cut_round_mm: float = 0.5
     """mm, the radius every keep-out's edges are rounded to (geometry._keepout_sdf),
     so a cut leaves the frame a fillet where it meets the body, as a 0.4 mm
@@ -479,7 +502,11 @@ class Config:
     surface_clearance_mm: float = 0.1
     """mm the drawn field stands off every keep-out: the level set interpolates
     the cut linearly and the simplification moves faces, each by hundredths of a
-    millimetre, and the fit check counts any overlap past 1e-4 mm^3 (C5)."""
+    millimetre, and the fit check counts any overlap past 1e-4 mm^3 (C5). Not
+    on the hub's two faces: there the battery's and the strap's keep-outs end
+    this far below z = 0 and the board's start this far above hub_t, so the hub
+    is hub_t thick (geometry._keepout_sdf); a plane's level set is exact, so
+    the fit check finds no overlap on them."""
 
     # --- the print pose (geometry.print_rotation) ---
     print_tilt_deg: float = 0.0
@@ -579,6 +606,18 @@ PARAMS = [
          "why": "a different motor (1102 22000KV) on a 40 mm prop, tested at 4.0 V; the kit motor's own table says 66.6 g"}]},
     {"name": "guard_wall", "units": "mm", "rejected": [
         {"value": "1.26 mm (3 beads exactly)", "why": "the guard is the part that meets the wall first"}]},
+    {"name": "guard_link_sides", "rejected": [
+        {"value": "none: the optimiser's rim alone, thickened",
+         "why": "0.43 g lighter (16.60 g) and over the 1.26 mm wall (C7), but at the sides' middle the strand "
+                "comes out about 1.5 x 2 mm (2.7 mm^2) between rims the field drew 4.2 mm tall; with the band "
+                "the section is 6.4 mm^2. Whether the strand holds a side hit as well is unjudged (C16, tier 2)"},
+        {"value": "all four sides",
+         "why": "0.43 g more plastic (17.46 g against 17.03 g in PETG) at the front and back, where the rim's "
+                "thin parts were the sheets joining it to the limbs, mostly inside a band's line; the drawing's "
+                "thickening grows those"},
+        {"value": "a band 2 mm tall on the prop plane",
+         "why": "the field's strand runs at 12.8-14.0 mm, above a 2 mm band's 11.6-13.6: its top would "
+                "stand out of the band as a fin, for the thickening to grow again"}]},
     {"name": "fc_screw_len", "units": "mm", "rejected": [
         {"value": "5 mm (the board's own M1.4 x 5)", "why": "2.4 mm in the post, under C8's 3 mm"}]},
     {"name": "motor_screw_len", "units": "mm", "rejected": [
